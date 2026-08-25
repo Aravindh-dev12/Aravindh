@@ -31,7 +31,7 @@ export type Post = {
 export const site = {
   name: "Aravindh B",
   firstName: "Aravindh",
-  url: "https://anuragdotdev.vercel.app",
+  url: "https://aravindh-iota.vercel.app",
   quote: {
     text: "Simplicity is prerequisite for reliability.",
     author: "Edsger W. Dijkstra",
