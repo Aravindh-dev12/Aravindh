@@ -6,10 +6,10 @@ import { MapPin, Search, RotateCw, Eye } from "lucide-react";
 import { useVisitor } from "@/context/VisitorContext";
 
 const HEADLINE_TITLES = [
-  "Full Stack Developer",
-  "Backend Engineer",
+  "Full Stack Engineer",
+  "AI Engineer",
+  "Product Engineer",
   "Open Source Contributor",
-  "Clean Code Advocate",
 ];
 
 export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
