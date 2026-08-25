@@ -1,7 +1,7 @@
 import { site } from "@/config/site";
 import { Writing } from "@/components/writing";
 import { Reveal } from "@/components/reveal";
-import { BookOpen, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { MediumIcon } from "@/components/icons";
 
 export function WritingPage() {
@@ -20,21 +20,8 @@ export function WritingPage() {
           </p>
         </Reveal>
 
-        {site.writing.length > 0 ? (
-          <Writing />
-        ) : (
-          <Reveal delay={0.1}>
-            <div className="mt-8 rounded-2xl border border-neutral-800 bg-neutral-900/40 p-8 backdrop-blur-md text-center">
-              <BookOpen size={32} className="text-neutral-500 mx-auto mb-3" />
-              <h3 className="font-serif text-2xl text-neutral-200">Articles Coming Soon</h3>
-              <p className="mt-2 text-neutral-400 text-sm max-w-md mx-auto">
-                Currently drafting deep-dive articles on WebSocket state engines, local-first browser IDE architectures, and PostgreSQL performance tuning.
-              </p>
-            </div>
-          </Reveal>
-        )}
+        <Writing />
 
-        {/* Medium / External Publication Card */}
         <Reveal delay={0.2}>
           <div className="mt-12 rounded-3xl border border-neutral-800 bg-neutral-900/40 p-8 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
@@ -43,7 +30,7 @@ export function WritingPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-neutral-100 text-lg">Follow on Medium</h3>
-                <p className="text-sm text-neutral-400">Read longer-form engineering essays and technical guides.</p>
+                <p className="text-sm text-neutral-400">View the full archive and follow new posts.</p>
               </div>
             </div>
 
