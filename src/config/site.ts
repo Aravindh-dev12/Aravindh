@@ -15,6 +15,7 @@ export type Job = {
   company: string;
   role: string;
   period: string;
+  blurb?: string;
   bullets?: string[];
   url?: string;
 };
