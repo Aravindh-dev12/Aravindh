@@ -150,7 +150,7 @@ export function CommandPalette({
       id: "action-medium",
       category: "actions",
       title: "Open Medium Profile",
-      subtitle: "medium.com/@anuragdotdev",
+      subtitle: "medium.com/@aravindh1653",
       icon: <BookOpen size={16} />,
       action: () => {
         window.open((site.socials as any).medium, "_blank");
