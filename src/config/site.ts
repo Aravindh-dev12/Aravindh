@@ -28,8 +28,8 @@ export type Post = {
 };
 
 export const site = {
-  name: "Anurag Jha",
-  firstName: "Anurag",
+  name: "Aravindh B",
+  firstName: "Aravindh",
   url: "https://anuragdotdev.vercel.app",
   quote: {
     text: "Simplicity is prerequisite for reliability.",
@@ -41,15 +41,15 @@ export const site = {
   ],
   bannerImage: "/images/cover.jpg",
   socialBannerImage: "/social-banner.png",
-  initials: "AJ",
+  initials: "AB",
   role: "Full Stack Developer",
-  location: "Delhi, India",
+  location: "Bengaluru, India",
   timezone: "Asia/Kolkata",
   email: "conveytoanurag@gmail.com",
-  greeting: "Hey, I'm Anurag",
+  greeting: "Hey, I'm Aravindh",
   tagline: "I build clean, modern websites and web apps where design, functionality, and even the smallest details matter.",
   about: [
-    "Hey, I'm Anurag, a full stack developer who loves building clean, modern websites and apps where design, functionality, and even the smallest details matter, with a focus on making products that are both practical and visually satisfying.",
+    "Hey, I'm Aravindh, a full stack developer who loves building clean, modern websites and apps where design, functionality, and even the smallest details matter, with a focus on making products that are both practical and visually satisfying.",
     "I spend most of my time in the terminal, the browser, or scribbling on a whiteboard. I lean backend, not because I don't like frontend, but because I enjoy making polished things actually hold up.",
     "I don't ship junk. Maintainability isn't optional. And I build best when I'm curious.",
   ],
