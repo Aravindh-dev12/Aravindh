@@ -15,7 +15,7 @@ export type Job = {
   company: string;
   role: string;
   period: string;
-  blurb: string;
+  bullets?: string[];
   url?: string;
 };
 
@@ -77,12 +77,33 @@ export const site = {
   },
   experience: [
     {
-      company: "Independent Developer",
-      role: "Full Stack & AI Engineer",
-      period: "2025 – Present",
-      blurb:
-        "Building and deploying end-to-end web products, SaaS platforms, AI-powered features, APIs, databases, real-time systems, and modern cloud infrastructure.",
-      url: "",
+      company: "Nuclei Tech Solutions",
+      role: "Software Developer · Freelance",
+      period: "June 2026 – Present",
+      bullets: [
+        "Worked on acquiring and processing data from embedded devices to build local, on-premise ERP systems for enterprises.",
+        "Developed a lightweight MLP-Mixer based architecture designed to be applicable and extendable across multiple data modalities.",
+      ],
+    },
+    {
+      company: "Loam AI",
+      role: "AI Engineer",
+      period: "Feb 2026 – June 2026",
+      bullets: [
+        "Built and launched a full-stack B2B freight forwarding application from scratch, delivering the MVP in five months while overseeing ideation, architecture, production readiness, and Agile execution.",
+        "Architected a modular layered codebase using React.js, Next.js, TypeScript, PostgreSQL, and Drizzle ORM, with RBAC authentication, email workflows, onboarding tours, currency conversion markups, PWA push notifications, and CI/CD pipelines.",
+        "Led a team of five, assigning tasks and mentoring developers on clean code, version control, and modern web development practices.",
+      ],
+    },
+    {
+      company: "Perspectiv Labs",
+      role: "Software Developer",
+      period: "July 2024 – Feb 2026",
+      bullets: [
+        "Architected modular full-stack systems with React.js, Next.js, TypeScript, PostgreSQL, and Drizzle ORM, enabling clean service decoupling and maintainable application architecture.",
+        "Built RBAC-based authentication, email workflows, onboarding tours, currency conversion markups, PWA push notifications, and CI/CD pipelines.",
+        "Developed reusable frontend components, backend services, database models, and third-party integrations across the full software development lifecycle.",
+      ],
     },
   ] as Job[],
   projects: [
@@ -216,29 +237,7 @@ export const site = {
     "C++",
     "Python",
   ],
-  writing: [
-    {
-      title: "Understanding HTTP: The Backbone of the Web",
-      summary: "A deep dive into the Hypertext Transfer Protocol, exploring header lifecycle, request methods, statelessness, and connection optimization from HTTP/1.1 to HTTP/3.",
-      date: "Aug 22, 2026",
-      readingTime: "15 min read",
-      url: "https://medium.com/@anuragdotdev/understanding-http-the-backbone-of-the-web-3d2109d0facd",
-    },
-    {
-      title: "API Rate Limiting: I thought it was just counting requests...",
-      summary: "An analysis of rate limiting algorithms from Token Bucket to Sliding Window logs, detailing how distributed systems protect API infrastructure under load.",
-      date: "Jul 12, 2026",
-      readingTime: "14 min read",
-      url: "https://medium.com/@anuragdotdev/api-rate-limiting-i-thought-it-was-just-counting-requests-682cefa2f56c",
-    },
-    {
-      title: "The JWT Storage Debate is Over: Here's the Production-Grade Architecture Your App Actually Needs",
-      summary: "A definitive guide to JWT storage in frontend applications, detailing why standard localStorage fails and how to implement secure memory-session architecture with HTTP-only cookies.",
-      date: "Jun 24, 2026",
-      readingTime: "8 min read",
-      url: "https://medium.com/@anuragdotdev/the-jwt-storage-debate-is-over-heres-the-production-grade-architecture-your-app-actually-needs-9ab284da065f",
-    }
-  ] as Post[],
+  writing: [] as Post[],
   github: {
     username: "Aravindh-dev12",
     contributionsLastYear: "500+",
