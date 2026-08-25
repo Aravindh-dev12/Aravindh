@@ -65,20 +65,25 @@ export function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Dynamically load the cursor-following pixel cat (oneko.js)
+  // Dynamically load the cursor-following animated bat.
   useEffect(() => {
-    if (document.getElementById("oneko-script")) return;
+    if (document.getElementById("bat-script")) return;
 
     const script = document.createElement("script");
-    script.id = "oneko-script";
-    script.src = "/oneko.js";
+    script.id = "bat-script";
+    script.src = "/bat.js";
     script.async = true;
     document.body.appendChild(script);
 
     return () => {
       script.remove();
-      const neko = document.getElementById("oneko");
-      if (neko) neko.remove();
+      const cleanup = (window as typeof window & {
+        __batFollowerCleanup?: () => void;
+      }).__batFollowerCleanup;
+      cleanup?.();
+      delete (window as typeof window & {
+        __batFollowerCleanup?: () => void;
+      }).__batFollowerCleanup;
     };
   }, []);
 
