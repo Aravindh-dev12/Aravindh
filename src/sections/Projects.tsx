@@ -11,12 +11,11 @@ export function Projects({ isSearchable = false }: { isSearchable?: boolean }) {
 
   const displayedProjects = useMemo(() => {
     return site.projects.filter((p) => {
-      // Category filter
       if (projectTab === "Frontend" && !p.categories?.includes("Frontend")) return false;
       if (projectTab === "Backend" && !p.categories?.includes("Backend")) return false;
       if (projectTab === "Fullstack" && !p.categories?.includes("Fullstack")) return false;
-      
-      // Search filter
+      if (projectTab === "AI" && !p.categories?.includes("AI")) return false;
+
       if (isSearchable && searchQuery) {
         const q = searchQuery.toLowerCase();
         return (
@@ -29,6 +28,8 @@ export function Projects({ isSearchable = false }: { isSearchable?: boolean }) {
     });
   }, [projectTab, searchQuery, isSearchable]);
 
+  const tabs = ["All", "AI", "Fullstack", "Backend", "Frontend"];
+
   return (
     <div id="projects">
       <SectionHeader
@@ -36,7 +37,7 @@ export function Projects({ isSearchable = false }: { isSearchable?: boolean }) {
         aside={
           !isSearchable ? (
             <div className="flex gap-1 rounded-lg border border-[var(--line)] bg-[var(--chip)] p-0.5">
-              {["All", "Frontend", "Backend", "Fullstack"].map((tab) => (
+              {tabs.map((tab) => (
                 <button
                   key={tab}
                   type="button"
@@ -55,7 +56,6 @@ export function Projects({ isSearchable = false }: { isSearchable?: boolean }) {
         }
       />
       <Shell className="px-6 py-6 sm:px-8">
-        {/* Search Bar Dashboard (when isSearchable is true) */}
         {isSearchable && (
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-[var(--line)] pb-5">
             <div className="relative w-full sm:max-w-xs">
@@ -78,7 +78,7 @@ export function Projects({ isSearchable = false }: { isSearchable?: boolean }) {
             </div>
 
             <div className="flex gap-1 rounded-lg border border-[var(--line)] bg-[var(--chip)] p-0.5">
-              {["All", "Frontend", "Backend", "Fullstack"].map((tab) => (
+              {tabs.map((tab) => (
                 <button
                   key={tab}
                   type="button"
