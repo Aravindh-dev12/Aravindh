@@ -14,8 +14,8 @@ const QUOTES = [
     author: "Mark Zuckerberg",
   },
   {
-    text: "It's not who I am underneath, but what I do that defines me.",
-    author: "Batman",
+    text: "Train in silence. Build your power. Let results make the noise.",
+    author: "Personal Motto",
   },
   {
     text: "I’ve decided to become the Pirate King. If I die trying, then at least I die fighting for my dream.",
