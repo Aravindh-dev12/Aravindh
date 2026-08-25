@@ -14,8 +14,8 @@ const QUOTES = [
     author: "Mark Zuckerberg",
   },
   {
-    text: "The people who are crazy enough to think they can change the world are the ones who do.",
-    author: "Steve Jobs",
+    text: "It's not who I am underneath, but what I do that defines me.",
+    author: "Batman",
   },
   {
     text: "I’ve decided to become the Pirate King. If I die trying, then at least I die fighting for my dream.",
