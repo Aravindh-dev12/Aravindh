@@ -93,7 +93,7 @@ export function Footer() {
                   {QUOTES[quoteIndex].text}
                 </p>
                 <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--soft)] font-bold">
-                  — {QUOTES[quoteIndex].author}
+                  {QUOTES[quoteIndex].author}
                 </p>
               </motion.div>
             </AnimatePresence>
