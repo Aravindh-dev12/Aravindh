@@ -99,6 +99,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet",
       },
       featured: true,
+      image: "/projects/cieav.webp",
       categories: ["AI", "Fullstack", "Backend"],
     },
     {
@@ -114,6 +115,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier",
       },
       featured: true,
+      image: "/projects/hallucination-llm.webp",
       categories: ["AI", "Backend"],
     },
     {
@@ -129,6 +131,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/Adversarial-Model-Extraction",
       },
       featured: true,
+      image: "/projects/adversarial-extraction.webp",
       categories: ["AI", "Backend"],
     },
     {
@@ -158,6 +161,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/NeuroSymbolic-meta-reasoning-agent",
       },
       featured: true,
+      image: "/projects/neurosymbolic.webp",
       categories: ["AI", "Backend"],
     },
     {
