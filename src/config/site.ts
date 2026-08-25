@@ -176,6 +176,7 @@ export const site = {
         live: "https://looca-voice-ai-agent.onrender.com",
         source: "https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent",
       },
+      image: "/projects/looca.webp",
       categories: ["AI", "Fullstack"],
     },
     {
