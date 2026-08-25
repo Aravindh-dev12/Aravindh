@@ -8,7 +8,7 @@ export type Project = {
   featured?: boolean;
   status?: string;
   image?: string;
-  categories?: ("Frontend" | "Backend" | "Fullstack")[];
+  categories?: ("Frontend" | "Backend" | "Fullstack" | "AI")[];
 };
 
 export type Job = {
@@ -49,7 +49,7 @@ export const site = {
   greeting: "Hey, I'm Aravindh",
   tagline: "I build end-to-end products across modern web stacks and AI-powered systems, with a focus on clean engineering, strong UX, and reliable delivery.",
   about: [
-    "Hey, I'm Aravindh, a Full Stack & AI Engineer who enjoys building complete products—from polished interfaces and scalable APIs to intelligent features powered by modern AI.",
+    "Hey, I'm Aravindh, a Full Stack & AI Engineer who enjoys building complete products, from polished interfaces and scalable APIs to intelligent features powered by modern AI.",
     "I like working across the entire stack: frontend, backend, databases, cloud infrastructure, and AI integrations. I care about making systems that are useful, maintainable, and thoughtfully designed.",
     "I don't ship junk. Maintainability isn't optional. And I build best when I'm curious.",
   ],
@@ -63,7 +63,7 @@ export const site = {
     available: true,
     availableText: "open to opportunities",
     nowLearning: "AI Engineering • System Design • Full Stack Architecture • DevOps",
-    nowBuilding: "DoodleDash",
+    nowBuilding: "CIEAV",
     nowListening: "focus playlists",
   },
   socials: {
@@ -87,84 +87,104 @@ export const site = {
   ] as Job[],
   projects: [
     {
-      title: "FrameLabs",
+      title: "CIEAV",
       blurb:
-        "A creative tool that turns static card generation into a reactive, real-time design experience. Users can switch between retro palettes and layouts on the fly, with zero jank—because every state transition is memoized and component-driven.",
+        "An always-on commit layer for consequential digital actions, combining a local control plane, deterministic safety policy, privacy reduction, outcome verification, signed Action Receipts, and verified Undo.",
       story:
-        "The frontend is built with React's compositional model, styled atomically with Tailwind CSS, and powered by Zustand for predictable, lean state management. Icons from lucide-react keep the UI crisp and accessible. The result: a minimal surface area with a maximal creative ceiling.\n\n*Designed for speed • Engineered for feel.*",
-      stack: ["React.js", "Tailwind CSS", "Zustand", "lucide-react"],
+        "CIEAV keeps execution authority and durable user state local while using cloud intelligence only for semantic interpretation. The gateway mediates protected browser surfaces, minimizes semantic evidence before inference, tracks cognitive debt, verifies observable outcomes, and signs receipts with per-install Ed25519 identities. Cloud interpretation never receives local replay or commit authority.",
+      stack: ["Node.js", "Python", "Chrome", "Ed25519", "IBM Granite"],
       year: "2026",
       links: {
-        live: "https://framelabs.vercel.app/",
-        source: "https://github.com/nodeanurag/FrameLabs",
+        live: "https://cieav-web.vercel.app/",
+        source: "https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet",
       },
       featured: true,
-      image: "/projects/framelabs.png",
-      categories: ["Frontend"],
+      categories: ["AI", "Fullstack", "Backend"],
     },
     {
-      title: "DoodleDash",
+      title: "Hallucination-Resistant LLM",
       blurb:
-        "A real-time multiplayer drawing and guessing game (Skribbl.io clone) built as a TypeScript monorepo with absolute dimension-independent drawing synchronization.",
+        "A retrieval and verification LLM pipeline designed to reduce hallucinations using open web search, crawling, evidence grounding, and entailment-based verification.",
       story:
-        "Engineered using Socket.IO WebSockets for bidirectional event mapping. Features a zero-trust server validation engine (timers, guessing logic, turn loops managed strictly on the server), spectator rooms, and a custom canvas-to-image engine for client-side PNG sharing. Strikethroughs and drawing vectors are normalized to relative coordinates to ensure cross-device consistency.",
-      stack: ["React.js", "Node.js", "Socket.IO", "TypeScript", "Tailwind CSS v4", "Zustand"],
+        "The system combines Retrieval-Augmented Generation with Searx and Scrapy for large-scale web retrieval, LoRA-refined instruction models, vector search, and an entailment verifier that checks generated claims against retrieved evidence. The architecture is containerized for Docker and Kubernetes deployment and supports modular retrieval, generation, and verification services.",
+      stack: ["Python", "RAG", "Searx", "Scrapy", "LoRA"],
       year: "2026",
       links: {
-        live: "https://doodledash.pages.dev/",
-        source: "https://github.com/nodeanurag/DoodleDash",
+        live: "https://huggingface.co/spaces/Aravindhan11/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier_ensemble",
+        source: "https://github.com/Aravindh-dev12/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier",
       },
       featured: true,
-      image: "/projects/doodledash.png",
-      categories: ["Fullstack", "Backend"],
+      categories: ["AI", "Backend"],
     },
     {
-      title: "CodeForge",
+      title: "Advanced Adversarial Model Extraction Lab",
       blurb:
-        "A local-first browser-based IDE offering full Monaco editing, in-browser code execution for JS/Python/TS, sandboxed previews, and IndexedDB workspace persistence.",
+        "An authorized AI security research lab for studying model extraction attacks, active querying strategies, surrogate model fidelity, and defensive leakage analysis.",
       story:
-        "Engineered to run entirely client-side without servers. Integrates Monaco Editor models with dynamic Web Workers and Pyodide runtimes. Features resizable panel split layouts, instant sandboxed iframe live-previews for web files, Dexie-powered IndexedDB database state management, workspace-wide text search, and URL-encoded code snippets sharing.",
-      stack: ["React.js", "Vite", "Zustand", "Monaco Editor", "Pyodide", "Dexie.js"],
+        "The lab combines knockoff-style stealing, DisGUIDE-style active querying, logit reconstruction, and an active extraction simulator. It evaluates entropy, margin, disagreement, k-center, random, and hybrid query strategies with fidelity, KL divergence, calibration error, and task accuracy metrics, plus an interactive Gradio research interface.",
+      stack: ["Python", "Gradio", "Scikit-learn", "Active Learning", "AI Security"],
       year: "2026",
       links: {
-        source: "https://github.com/nodeanurag/codeforge",
+        live: "https://huggingface.co/spaces/Aravindhan11/advanced-adversarial-model-extraction-lab?logs=container",
+        source: "https://github.com/Aravindh-dev12/Adversarial-Model-Extraction",
       },
       featured: true,
+      categories: ["AI", "Backend"],
+    },
+    {
+      title: "NEXUS-LWM OS",
+      blurb:
+        "An MCP-native agentic AI operating architecture for latent-world planning, capability fabrication, governed automation, workflow orchestration, and safe cross-system execution.",
+      story:
+        "The system uses a nine-layer architecture with JEPA latent-state encoding, Transformer prediction, CEM planning, capability DAG fabrication, an AUQ and MACI safety gate, step-level RL credit assignment, and a LinUCB telemetry router. It also supports MCP JSON-RPC capabilities, approval-gated workflow execution, audit trails, triggers, and a resumable control plane.",
+      stack: ["Python", "MCP", "JEPA", "Transformers", "Reinforcement Learning"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/lwm-fabricator-modelNeural-Execution-and-Unified-Systems-Fabrication-Operating-Architecture",
+      },
       status: "In Progress",
-      image: "/projects/codeforge.png",
-      categories: ["Frontend"],
+      categories: ["AI", "Backend"],
     },
     {
-      title: "SwiftPoll",
+      title: "NeuroSymbolic Meta-Reasoning Agent",
       blurb:
-        "A real-time anonymous polling application built for maximum creation and voting speed without user registration friction.",
+        "A CLI-first reasoning agent that combines local LLM routing, symbolic solvers, neural inference, memory, hierarchical planning, recursive critique, and safety checks.",
       story:
-        "Uses Supabase Realtime DB and server actions for lightning-fast voting updates and creator actions. Features browser-stored secret admin tokens for accountless close/delete operations, server-side IP hashing spam de-duplication, full keyboard accessibility, and optimistic client voting counts.",
-      stack: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS v4", "Zod", "Vitest"],
+        "The agent routes across Ollama, llama.cpp, and Hugging Face model backends while combining symbolic reasoning through Z3 and SymPy with neural embeddings and task classification. It includes working and episodic memory, vector stores, recursive self-improvement, hierarchical planning, telemetry, constitutional guardrails, and a Gradio dashboard.",
+      stack: ["Python", "Ollama", "Z3", "SymPy", "Gradio"],
       year: "2026",
       links: {
-        source: "https://github.com/nodeanurag/swiftpoll",
+        live: "https://huggingface.co/spaces/Aravindhan11/NeuroSymbolic-Meta-Reasoner",
+        source: "https://github.com/Aravindh-dev12/NeuroSymbolic-meta-reasoning-agent",
       },
-      featured: false,
+      featured: true,
+      categories: ["AI", "Backend"],
+    },
+    {
+      title: "Looca Voice AI Agent",
+      blurb:
+        "A full-stack voice-first AI platform with real-time voice orchestration, retrieval memory, tool execution, authentication, and intelligent service workflows.",
+      story:
+        "Looca combines a Next.js and TypeScript frontend with a FastAPI backend, PostgreSQL, Qdrant, Redis, VAPI, and Claude. The architecture includes episodic memory, predictive intent preloading, psychoacoustic emotion analysis, semantic retrieval, tool-use execution, causal reasoning, and service auto-ingestion.",
+      stack: ["Next.js", "FastAPI", "PostgreSQL", "Qdrant", "VAPI"],
+      year: "2026",
+      links: {
+        live: "https://looca-voice-ai-agent.onrender.com",
+        source: "https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent",
+      },
+      categories: ["AI", "Fullstack"],
+    },
+    {
+      title: "Seelay App",
+      blurb:
+        "An application project currently in active development. The source repository is linked and the public live deployment is being prepared.",
+      stack: [],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/Seelay-App",
+      },
       status: "In Progress",
-      image: "/projects/swiftpoll.png",
       categories: ["Fullstack"],
-    },
-    {
-      title: "Nexus",
-      blurb:
-        "A workspace-based project management app featuring kanban boards, real-time activity tracking, nodemailer notifications, and robust team collaboration.",
-      story:
-        "Built to mimic enterprise collaboration canvases. Employs Next-Auth for role-based authentication, TanStack Query for caching and server synchronization, Recharts for team productivity insights, and @dnd-kit for seamless drag-and-drop workflow task transitions. Backed by a clean PostgreSQL database schema via Prisma.",
-      stack: ["Next.js", "Prisma", "PostgreSQL", "React Query", "@dnd-kit", "Next-Auth"],
-      year: "2026",
-      links: {
-        source: "https://github.com/nodeanurag/nexus",
-      },
-      featured: false,
-      status: "In Progress",
-      image: "/projects/nexus.png",
-      categories: ["Fullstack", "Backend"],
     },
   ] as Project[],
   skills: [
