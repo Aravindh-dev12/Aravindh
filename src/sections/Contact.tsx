@@ -9,7 +9,7 @@ export function Contact() {
     { label: "LinkedIn", href: site.socials.linkedin, Icon: LinkedInIcon },
     { label: "Twitter", href: site.socials.twitter, Icon: TwitterIcon },
     { label: "Mail", href: site.socials.email || `mailto:${site.email}`, Icon: MailIcon },
-    { label: "Resume", href: site.socials.resume || "#", Icon: FileIcon },
+    { label: "Medium", href: site.socials.medium, Icon: FileIcon },
   ];
 
   return (
