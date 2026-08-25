@@ -45,7 +45,7 @@ export const site = {
   role: "Full Stack & AI Engineer",
   location: "Bengaluru, India",
   timezone: "Asia/Kolkata",
-  email: "conveytoanurag@gmail.com",
+  email: "aravindh1653@gmail.com",
   greeting: "Hey, I'm Aravindh",
   tagline: "I build end-to-end products across modern web stacks and AI-powered systems, with a focus on clean engineering, strong UX, and reliable delivery.",
   about: [
@@ -67,13 +67,13 @@ export const site = {
     nowListening: "focus playlists",
   },
   socials: {
-    github: "https://github.com/nodeanurag",
-    twitter: "https://x.com/anuragdotdev",
-    linkedin: "https://linkedin.com/in/nodeanurag",
-    email: "mailto:conveytoanurag@gmail.com",
-    resume: "",
+    github: "https://github.com/Aravindh-dev12",
+    twitter: "https://x.com/aravindh213",
+    linkedin: "https://www.linkedin.com/in/aravindhanb/",
+    email: "mailto:aravindh1653@gmail.com",
+    resume: "https://medium.com/@aravindh1653",
     discord: "https://discord.gg/ra4kyKdTk",
-    medium: "https://medium.com/@anuragdotdev",
+    medium: "https://medium.com/@aravindh1653",
   },
   experience: [
     {
@@ -215,7 +215,7 @@ export const site = {
     }
   ] as Post[],
   github: {
-    username: "nodeanurag",
+    username: "Aravindh-dev12",
     contributionsLastYear: "500+",
   },
   footerNote: "Built with ❤️ and hardwork"
