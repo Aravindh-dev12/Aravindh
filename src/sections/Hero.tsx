@@ -36,8 +36,8 @@ export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
       <Shell className="px-2 pt-2 sm:px-3 sm:pt-3">
         <div className="relative h-36 overflow-hidden rounded-xl bg-neutral-950 sm:h-44 border border-[var(--line)]">
           <img
-            src="https://commons.wikimedia.org/wiki/Special:FilePath/Elon_musk.jpg?width=1600"
-            alt="Elon Musk"
+            src="https://res.cloudinary.com/tesla-events/image/upload/c_fill,h_700,w_2120/f_auto/v1/Predefined/events-main-hero-dark"
+            alt="Elon Musk speaking at a Tesla event"
             loading="eager"
             decoding="async"
             className="w-full h-full object-cover object-center opacity-65 grayscale"
