@@ -31,8 +31,8 @@ export const site = {
   name: "Anurag Jha",
   url: "https://anuragdotdev.vercel.app",
   profileImages: [
-    "/profile.jpeg",
-    "/profile2.png",
+    "/profile.png",
+    "/profile2.jpeg",
   ],
   bannerImage: "/banner.png",
   socialBannerImage: "/social-banner.png",

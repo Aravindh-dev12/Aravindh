@@ -37,8 +37,8 @@ export const site = {
     author: "Edsger W. Dijkstra",
   },
   profileImages: [
-    "/profile.jpeg",
-    "/profile2.png",
+    "/profile.png",
+    "/profile2.jpeg",
   ],
   bannerImage: "/images/cover.jpg",
   socialBannerImage: "/social-banner.png",
