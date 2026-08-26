@@ -111,10 +111,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
                   <MapPin size={12} className="shrink-0" /> {site.location}
                 </span>
                 <span>·</span>
-                <span className="flex items-center gap-1">
-                  <Eye size={12} className="shrink-0" />
-                  <span>{isLoading ? "..." : count?.toLocaleString()} views</span>
-                </span>
+                
               </p>
             </div>
           </div>
