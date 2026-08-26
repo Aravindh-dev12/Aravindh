@@ -121,7 +121,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet",
       },
       featured: true,
-      image: "/projects/cieav.webp",
+      image: "/projects/cieav.png",
       categories: ["AI", "Fullstack", "Backend"],
     },
     {
@@ -137,7 +137,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier",
       },
       featured: true,
-      image: "/projects/hallucination-llm.webp",
+      image: "/projects/hallucination.png",
       categories: ["AI", "Backend"],
     },
     {
@@ -153,7 +153,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/Adversarial-Model-Extraction",
       },
       featured: true,
-      image: "/projects/adversarial-extraction.webp",
+      image: "/projects/adversarial.png",
       categories: ["AI", "Backend"],
     },
     {
@@ -183,7 +183,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/NeuroSymbolic-meta-reasoning-agent",
       },
       featured: true,
-      image: "/projects/neurosymbolic.webp",
+      image: "/projects/neurosymbolic.png",
       categories: ["AI", "Backend"],
     },
     {
@@ -198,7 +198,7 @@ export const site = {
         live: "https://looca-voice-ai-agent.onrender.com",
         source: "https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent",
       },
-      image: "/projects/looca.webp",
+      image: "/projects/looca.png",
       categories: ["AI", "Fullstack"],
     },
     {
