@@ -210,6 +210,7 @@ export const site = {
       links: {
         source: "https://github.com/Aravindh-dev12/Seelay-App",
       },
+      image: "/projects/seelay.png",
       status: "In Progress",
       categories: ["Fullstack"],
     },
