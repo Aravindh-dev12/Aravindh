@@ -1,4 +1,4 @@
-# Aravindh B — Portfolio
+# Aravindh B - Portfolio
 
 A high-performance, responsive, and aesthetically premium personal portfolio built with React, Vite, Tailwind CSS, and TypeScript. Inspired by minimalist retro terminal grids and modern typographic grids.
 
