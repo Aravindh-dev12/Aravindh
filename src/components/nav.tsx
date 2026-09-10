@@ -52,6 +52,16 @@ export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
             );
           })}
 
+          <a
+            href="/resume.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative transition-colors hover:text-[var(--fg)]"
+          >
+            Resume
+            <span className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
+          </a>
+
           {onOpenPalette && (
             <button
               type="button"
@@ -133,6 +143,17 @@ export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
                   </Link>
                 );
               })}
+
+              <a
+                href="/resume.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 border-b border-dashed border-[var(--line)]/50 pb-2.5 text-[var(--muted)] transition-colors hover:text-[var(--fg)]"
+              >
+                <span className="size-1.5 rounded-full bg-[var(--fg)] opacity-0" />
+                Resume
+              </a>
             </div>
           </motion.div>
         )}
