@@ -3,76 +3,259 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Resume of Aravindh B, Full Stack AI Engineer." />
+  <meta name="description" content="Resume of Aravindh B, Full Stack AI Engineer specializing in production web systems, AI engineering, LLM applications, and end-to-end product delivery." />
   <title>Aravindh B | Full Stack AI Engineer Resume</title>
   <style>
     :root {
       color-scheme: light;
       --ink: #171717;
       --muted: #5f5f5f;
+      --soft: #777;
       --line: #d8d8d8;
       --paper: #ffffff;
+      --chip: #f7f7f7;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       background: #f3f3f3;
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.55;
+      line-height: 1.5;
     }
+
     main {
-      width: min(900px, calc(100% - 32px));
+      width: min(940px, calc(100% - 32px));
       margin: 32px auto;
       background: var(--paper);
-      padding: 48px;
+      padding: 46px 50px;
       border: 1px solid var(--line);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.06);
     }
+
     h1, h2, h3, p { margin-top: 0; }
-    h1 { font-size: 34px; margin-bottom: 4px; letter-spacing: -0.03em; }
-    h2 {
-      margin: 30px 0 14px;
-      padding-bottom: 7px;
-      border-bottom: 1px solid var(--line);
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+
+    h1 {
+      margin-bottom: 3px;
+      font-size: 36px;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
     }
-    h3 { margin-bottom: 4px; font-size: 16px; }
-    p, li { font-size: 14px; }
-    ul { margin: 8px 0 0 20px; padding: 0; }
-    a { color: inherit; }
-    .headline { font-size: 18px; font-weight: 700; }
+
+    h2 {
+      margin: 27px 0 13px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+    }
+
+    h3 {
+      margin-bottom: 3px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    p, li { font-size: 13.5px; }
+    p { margin-bottom: 8px; }
+    ul { margin: 7px 0 0 18px; padding: 0; }
+    li { margin-bottom: 4px; }
+    a { color: inherit; text-underline-offset: 2px; }
+
+    .headline {
+      font-size: 17px;
+      font-weight: 750;
+      letter-spacing: -0.01em;
+    }
+
+    .subheadline {
+      margin-top: 5px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .muted { color: var(--muted); }
-    .contact { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; font-size: 13px; }
-    .entry { margin-bottom: 20px; }
-    .entry-head { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; }
-    .period { white-space: nowrap; color: var(--muted); font-size: 13px; }
-    .skills { display: flex; flex-wrap: wrap; gap: 7px; }
-    .skills span { border: 1px solid var(--line); padding: 4px 8px; border-radius: 999px; font-size: 12px; }
-    .actions { display: flex; gap: 10px; margin-bottom: 28px; }
-    .actions button, .actions a {
+    .soft { color: var(--soft); }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 14px;
+      margin-top: 10px;
+      font-size: 12.5px;
+    }
+
+    .contact span,
+    .contact a {
+      white-space: nowrap;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 26px;
+    }
+
+    .actions button,
+    .actions a {
       border: 1px solid var(--ink);
       background: var(--paper);
       color: var(--ink);
       padding: 8px 12px;
       font: inherit;
-      font-size: 13px;
+      font-size: 12.5px;
       cursor: pointer;
       text-decoration: none;
     }
-    @media (max-width: 640px) {
-      main { width: 100%; margin: 0; padding: 28px 22px; border: 0; }
+
+    .summary {
+      margin-bottom: 0;
+      font-size: 13.5px;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 24px;
+    }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 8px;
+      align-items: start;
+      padding: 4px 0;
+    }
+
+    .skill-label {
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .skill-value {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .entry {
+      margin-bottom: 19px;
+    }
+
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+    }
+
+    .role-line {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .company {
+      font-weight: 650;
+    }
+
+    .period {
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+
+    .stack-line {
+      margin: 3px 0 0;
+      color: var(--soft);
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px 24px;
+    }
+
+    .project {
+      break-inside: avoid;
+    }
+
+    .project p {
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+
+    .project-meta {
+      font-size: 11.5px;
+      color: var(--soft);
+    }
+
+    .project-links {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 11.5px;
+      font-weight: 650;
+    }
+
+    .focus-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .focus-list span {
+      border: 1px solid var(--line);
+      background: var(--chip);
+      padding: 4px 7px;
+      border-radius: 5px;
+      font-size: 11.5px;
+    }
+
+    @media (max-width: 700px) {
+      main {
+        width: 100%;
+        margin: 0;
+        padding: 28px 22px;
+        border: 0;
+        box-shadow: none;
+      }
+
+      h1 { font-size: 31px; }
       .entry-head { display: block; }
       .period { margin-top: 2px; }
+      .skill-grid, .project-grid { grid-template-columns: 1fr; }
+      .skill-row { grid-template-columns: 100px 1fr; }
     }
+
     @media print {
+      @page { margin: 12mm 13mm; }
+
       body { background: #fff; }
-      main { width: 100%; margin: 0; padding: 0; border: 0; }
+
+      main {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+      }
+
       .actions { display: none; }
       a { text-decoration: none; }
-      h2 { break-after: avoid; }
-      .entry { break-inside: avoid; }
+      h2 { break-after: avoid; margin-top: 20px; }
+      .entry, .project, .skill-row { break-inside: avoid; }
+      .project-grid { gap: 10px 20px; }
     }
   </style>
 </head>
@@ -81,85 +264,164 @@
     <div class="actions">
       <button type="button" onclick="window.print()">Print / Save PDF</button>
       <a href="/">Back to Portfolio</a>
+      <a href="https://github.com/Aravindh-dev12" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/aravindhanb/" target="_blank" rel="noreferrer">LinkedIn</a>
     </div>
 
     <header>
       <h1>Aravindh B</h1>
       <div class="headline">Full Stack AI Engineer</div>
+      <p class="subheadline">Product engineering · AI systems · LLM applications · backend architecture · production delivery</p>
       <div class="contact muted">
         <span>Bengaluru, India</span>
         <a href="mailto:aravindh1653@gmail.com">aravindh1653@gmail.com</a>
-        <a href="https://github.com/Aravindh-dev12" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/aravindhanb/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://github.com/Aravindh-dev12" target="_blank" rel="noreferrer">github.com/Aravindh-dev12</a>
+        <a href="https://www.linkedin.com/in/aravindhanb/" target="_blank" rel="noreferrer">linkedin.com/in/aravindhanb</a>
       </div>
     </header>
 
     <section>
-      <h2>Profile</h2>
-      <p>
-        Full Stack AI Engineer building end-to-end products across modern web stacks and AI-powered systems. Experienced across frontend, backend, databases, cloud infrastructure, AI integrations, product architecture, and production delivery, with a strong focus on maintainability, reliability, and thoughtful user experience.
+      <h2>Professional Summary</h2>
+      <p class="summary">
+        Full Stack AI Engineer with experience building and shipping production-grade products across frontend, backend, databases, AI integrations, and deployment infrastructure. Experienced in owning product architecture from ideation through production, building LLM and retrieval systems, designing maintainable full-stack applications, and leading engineering execution. Strong focus on reliable systems, clean architecture, practical AI, and polished user experience.
       </p>
     </section>
 
     <section>
-      <h2>Experience</h2>
+      <h2>Technical Skills</h2>
+      <div class="skill-grid">
+        <div>
+          <div class="skill-row">
+            <div class="skill-label">AI / LLM</div>
+            <div class="skill-value">RAG, LLM pipelines, LoRA, vector search, embeddings, entailment verification, agentic workflows, Ollama, Hugging Face, Gradio</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label">Frontend</div>
+            <div class="skill-value">React, Next.js, TypeScript, JavaScript, Tailwind CSS, Shadcn UI, PWA, responsive UI</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label">Backend</div>
+            <div class="skill-value">Node.js, Express.js, FastAPI, REST APIs, authentication, RBAC, JWT, service integrations</div>
+          </div>
+        </div>
+        <div>
+          <div class="skill-row">
+            <div class="skill-label">Data</div>
+            <div class="skill-value">PostgreSQL, MongoDB, Qdrant, Redis, Drizzle ORM, Prisma, Supabase, Firebase</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label">Infra / DevOps</div>
+            <div class="skill-value">Docker, Kubernetes, CI/CD, Vercel, Git, GitHub, containerized services, production deployment</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label">Engineering</div>
+            <div class="skill-value">System design, full-stack architecture, API design, modular codebases, third-party integrations, Agile delivery</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Professional Experience</h2>
 
       <div class="entry">
         <div class="entry-head">
-          <div><h3>Software Developer · Freelance — Nuclei Tech Solutions</h3></div>
+          <div class="role-line">Software Developer · Freelance — <span class="company">Nuclei Tech Solutions</span></div>
           <div class="period">June 2026 – Present</div>
         </div>
+        <p class="stack-line">Embedded data systems · On-premise ERP · Machine Learning</p>
         <ul>
-          <li>Worked on acquiring and processing data from embedded devices to build local, on-premise ERP systems for enterprises.</li>
-          <li>Developed a lightweight MLP-Mixer-based architecture designed to be applicable and extendable across multiple data modalities.</li>
+          <li>Engineer data acquisition and processing workflows for embedded-device data used in local, on-premise ERP systems for enterprise environments.</li>
+          <li>Developed a lightweight MLP-Mixer-based architecture designed for extensibility across multiple data modalities.</li>
+          <li>Work across software and data boundaries to support reliable local processing where enterprise systems require on-premise execution.</li>
         </ul>
       </div>
 
       <div class="entry">
         <div class="entry-head">
-          <div><h3>AI Engineer — Loam AI</h3></div>
+          <div class="role-line">AI Engineer — <span class="company">Loam AI</span></div>
           <div class="period">Feb 2026 – June 2026</div>
         </div>
+        <p class="stack-line">React · Next.js · TypeScript · PostgreSQL · Drizzle ORM · PWA · CI/CD</p>
         <ul>
-          <li>Built and launched a full-stack B2B freight-forwarding application from scratch, delivering the MVP in five months while overseeing ideation, architecture, production readiness, and Agile execution.</li>
-          <li>Architected a modular layered codebase using React.js, Next.js, TypeScript, PostgreSQL, and Drizzle ORM, with RBAC authentication, email workflows, onboarding tours, currency conversion markups, PWA push notifications, and CI/CD pipelines.</li>
-          <li>Led a team of five and mentored developers on clean code, version control, and modern web development practices.</li>
+          <li>Built and launched a full-stack B2B freight-forwarding product from scratch, delivering the MVP in five months while owning ideation, architecture, production readiness, and Agile execution.</li>
+          <li>Architected a modular layered application spanning frontend, backend, database, and integration concerns using React.js, Next.js, TypeScript, PostgreSQL, and Drizzle ORM.</li>
+          <li>Implemented RBAC authentication, transactional email workflows, guided onboarding, currency-conversion markups, PWA push notifications, and CI/CD pipelines.</li>
+          <li>Led a team of five, assigned engineering work, reviewed implementation direction, and mentored developers on clean code, Git workflows, and modern web-development practices.</li>
         </ul>
       </div>
 
       <div class="entry">
         <div class="entry-head">
-          <div><h3>Software Developer — Perspectiv Labs</h3></div>
+          <div class="role-line">Software Developer — <span class="company">Perspectiv Labs</span></div>
           <div class="period">July 2024 – Feb 2026</div>
         </div>
+        <p class="stack-line">React · Next.js · TypeScript · PostgreSQL · Drizzle ORM · APIs · CI/CD</p>
         <ul>
-          <li>Architected modular full-stack systems with React.js, Next.js, TypeScript, PostgreSQL, and Drizzle ORM.</li>
-          <li>Built RBAC authentication, email workflows, onboarding tours, currency conversion markups, PWA push notifications, and CI/CD pipelines.</li>
-          <li>Developed reusable frontend components, backend services, database models, and third-party integrations across the full software development lifecycle.</li>
+          <li>Architected and developed modular full-stack systems using React.js, Next.js, TypeScript, PostgreSQL, and Drizzle ORM with clear service boundaries and maintainable application structure.</li>
+          <li>Built production features including RBAC authentication, email workflows, onboarding tours, currency-conversion markups, PWA push notifications, and deployment pipelines.</li>
+          <li>Delivered reusable frontend components, backend services, database models, APIs, and third-party integrations across the full software-development lifecycle.</li>
+          <li>Worked across product UI, application logic, persistence, integrations, and deployment rather than operating within a single layer of the stack.</li>
         </ul>
       </div>
     </section>
 
     <section>
-      <h2>Selected Projects</h2>
-      <div class="entry">
-        <h3>CIEAV</h3>
-        <p class="muted">Local-first control plane for consequential digital actions with deterministic safety policy, privacy reduction, outcome verification, signed Action Receipts, and verified Undo.</p>
-      </div>
-      <div class="entry">
-        <h3>Hallucination-Resistant LLM</h3>
-        <p class="muted">Retrieval and verification pipeline combining web retrieval, RAG, LoRA-refined instruction models, vector search, and entailment-based verification.</p>
-      </div>
-      <div class="entry">
-        <h3>Looca Voice AI Agent</h3>
-        <p class="muted">Full-stack voice-first AI platform with real-time voice orchestration, retrieval memory, tool execution, authentication, and intelligent service workflows.</p>
+      <h2>Selected AI & Full-Stack Projects</h2>
+      <div class="project-grid">
+        <div class="project">
+          <h3>CIEAV</h3>
+          <p>Local-first commit layer for consequential digital actions with deterministic safety policy, privacy reduction, outcome verification, signed Action Receipts, and verified Undo.</p>
+          <div class="project-meta">Node.js · Python · Chrome · Ed25519 · IBM Granite</div>
+          <div class="project-links">
+            <a href="https://cieav-web.vercel.app/" target="_blank" rel="noreferrer">Live</a>
+            <a href="https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet" target="_blank" rel="noreferrer">Source</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Hallucination-Resistant LLM</h3>
+          <p>Retrieval-and-verification LLM pipeline combining open-web retrieval, RAG, LoRA-refined instruction models, vector search, and entailment-based claim verification.</p>
+          <div class="project-meta">Python · RAG · Searx · Scrapy · LoRA</div>
+          <div class="project-links">
+            <a href="https://huggingface.co/spaces/Aravindhan11/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier_ensemble" target="_blank" rel="noreferrer">Live</a>
+            <a href="https://github.com/Aravindh-dev12/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier" target="_blank" rel="noreferrer">Source</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>NeuroSymbolic Meta-Reasoning Agent</h3>
+          <p>Reasoning agent combining local LLM routing, Z3 and SymPy symbolic reasoning, neural inference, memory, hierarchical planning, recursive critique, and safety checks.</p>
+          <div class="project-meta">Python · Ollama · Z3 · SymPy · Gradio</div>
+          <div class="project-links">
+            <a href="https://huggingface.co/spaces/Aravindhan11/NeuroSymbolic-Meta-Reasoner" target="_blank" rel="noreferrer">Live</a>
+            <a href="https://github.com/Aravindh-dev12/NeuroSymbolic-meta-reasoning-agent" target="_blank" rel="noreferrer">Source</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Looca Voice AI Agent</h3>
+          <p>Full-stack voice-first AI platform with real-time voice orchestration, retrieval memory, tool execution, authentication, and intelligent service workflows.</p>
+          <div class="project-meta">Next.js · FastAPI · PostgreSQL · Qdrant · Redis · VAPI</div>
+          <div class="project-links">
+            <a href="https://looca-voice-ai-agent.onrender.com" target="_blank" rel="noreferrer">Live</a>
+            <a href="https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent" target="_blank" rel="noreferrer">Source</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>Core Skills</h2>
-      <div class="skills">
-        <span>TypeScript</span><span>JavaScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>Express.js</span><span>Python</span><span>PostgreSQL</span><span>MongoDB</span><span>Prisma</span><span>Supabase</span><span>Firebase</span><span>REST APIs</span><span>JWT</span><span>Tailwind CSS</span><span>Git</span><span>GitHub</span><span>Vercel</span>
+      <h2>Engineering Focus</h2>
+      <div class="focus-list">
+        <span>Full-stack product ownership</span>
+        <span>AI-powered applications</span>
+        <span>LLM & retrieval systems</span>
+        <span>System architecture</span>
+        <span>Production readiness</span>
+        <span>Reliable APIs & data layers</span>
+        <span>Developer mentorship</span>
+        <span>Clean, maintainable code</span>
       </div>
     </section>
   </main>
