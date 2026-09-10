@@ -53,7 +53,7 @@ export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
           })}
 
           <a
-            href="/resume.html"
+            href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative transition-colors hover:text-[var(--fg)]"
@@ -145,7 +145,7 @@ export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
               })}
 
               <a
-                href="/resume.html"
+                href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
