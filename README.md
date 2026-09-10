@@ -1,10 +1,12 @@
 # Aravindh B - Full Stack AI Engineer Portfolio
 
-A high-performance, responsive personal portfolio for a Full Stack AI Engineer, built with React, Vite, Tailwind CSS, and TypeScript. It showcases end-to-end product engineering, AI systems, experience, projects, technical skills, and a printable resume.
+A high-performance, responsive personal portfolio for a Full Stack AI Engineer, built with React, Vite, Tailwind CSS, and TypeScript. It showcases end-to-end product engineering, AI systems, experience, projects, technical skills, and a recruiter-ready PDF resume.
 
 ## Resume
 
-The portfolio includes a dedicated printable resume at [`/resume.html`](./public/resume.html). Visitors can open it from the desktop or mobile navigation and use **Print / Save PDF** to export a PDF copy.
+The portfolio includes a dedicated PDF resume at [`/resume.pdf`](./public/resume.pdf). Visitors can open the **Resume** link from the desktop or mobile navigation to view the PDF directly in a new tab and download or print it from their browser.
+
+The editable/printable HTML resume source is also kept at [`/resume.html`](./public/resume.html) for future updates.
 
 ## Tech Stack
 
@@ -18,7 +20,7 @@ The portfolio includes a dedicated printable resume at [`/resume.html`](./public
 ## Features
 
 - **Full Stack AI Engineer Positioning:** Portfolio metadata and hero copy clearly present Aravindh as a Full Stack AI Engineer.
-- **Resume Link:** Dedicated resume entry in desktop and mobile navigation with a print-friendly resume page.
+- **Direct PDF Resume:** Dedicated Resume entry in desktop and mobile navigation opens `/resume.pdf` directly.
 - **Typographic & CRT Grid Design:** Sleek retro layout system using dashed alignment columns, custom serif layouts, scanline overlays, and grayscale images.
 - **Switchable Profile Avatar:** Rotate through different custom profile images by clicking the avatar frame directly or the quick rotate trigger icon.
 - **Search Command Palette (`⌘K` / `Ctrl+K`):** Dynamic keyboard-accessible command menu with shortcuts to jump directly to page sections, external socials, or toggle themes.
