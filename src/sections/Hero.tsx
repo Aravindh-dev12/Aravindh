@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shell } from "@/components/Layout";
 import { site } from "@/config/site";
-import { MapPin, Search, RotateCw, Eye } from "lucide-react";
+import { MapPin, Search, RotateCw } from "lucide-react";
 import { useVisitor } from "@/context/VisitorContext";
 
 const HEADLINE_TITLES = [
-  "Full Stack Engineer",
-  "AI Engineer",
+  "Full Stack AI Engineer",
+  "AI Systems Engineer",
   "Product Engineer",
   "Open Source Contributor",
 ];
