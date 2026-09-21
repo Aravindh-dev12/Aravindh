@@ -18,6 +18,7 @@ import { CommandPalette } from "@/components/command-palette";
 import { WritingPage } from "@/pages/WritingPage";
 import { Konami } from "@/components/konami";
 import { Analytics } from "@vercel/analytics/react";
+import { CursorGlow, ScrollProgress } from "@/components/CinematicEffects";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -93,6 +94,8 @@ export function App() {
       <VisitorProvider>
         <BrowserRouter>
           <Analytics />
+          <ScrollProgress />
+          <CursorGlow />
           <ScrollToTop />
           <Konami />
           <div className="min-h-screen bg-[var(--bg)] font-sans text-[var(--fg)] antialiased transition-colors duration-300 relative">
@@ -100,7 +103,7 @@ export function App() {
             <SideIndex />
             <AmbientMotion />
 
-            <main className="relative z-10">
+            <main className="relative z-10 cinematic-grid">
               <Routes>
                 <Route path="/" element={<MainLayout onOpenPalette={() => setPaletteOpen(true)} />} />
                 <Route path="/projects" element={<Projects isSearchable={true} />} />
