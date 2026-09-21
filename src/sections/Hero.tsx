@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Shell } from "@/components/Layout";
 import { site } from "@/config/site";
 import { MapPin, Search, RotateCw } from "lucide-react";
@@ -16,7 +16,37 @@ const HEADLINE_TITLES = [
 export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
   const [headlineIndex, setHeadlineIndex] = useState(0);
   const [imgIndex, setImgIndex] = useState(0);
-  const { count, isLoading } = useVisitor();\n  const mouseX = useMotionValue(0);\n  const mouseY = useMotionValue(0);\n  const smoothX = useSpring(mouseX, { stiffness: 70, damping: 20 });\n  const smoothY = useSpring(mouseY, { stiffness: 70, damping: 20 });\n  const avatarX = useTransform(smoothX, [-1, 1], [-7, 7]);\n  const avatarY = useTransform(smoothY, [-1, 1], [-7, 7]);\n\n  useEffect(() => {\n    const move = (e: PointerEvent) => {\n      mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);\n      mouseY.set((e.clientY / window.innerHeight - 0.5) * 2);\n    };\n    window.addEventListener("pointermove", move, { passive: true });\n    return () => window.removeEventListener("pointermove", move);\n  }, [mouseX, mouseY]);
+  const { count, isLoading } = useVisitor();
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const smoothX = useSpring(mouseX, { stiffness: 70, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 70, damping: 20 });
+  const avatarX = useTransform(smoothX, [-1, 1], [-7, 7]);
+  const avatarY = useTransform(smoothY, [-1, 1], [-7, 7]);
+
+  useEffect(() => {
+    const move = (e: PointerEvent) => {
+      mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);
+      mouseY.set((e.clientY / window.innerHeight - 0.5) * 2);
+    };
+    window.addEventListener("pointermove", move, { passive: true });
+    return () => window.removeEventListener("pointermove", move);
+  }, [mouseX, mouseY]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const smoothX = useSpring(mouseX, { stiffness: 70, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 70, damping: 20 });
+  const avatarX = useTransform(smoothX, [-1, 1], [-7, 7]);
+  const avatarY = useTransform(smoothY, [-1, 1], [-7, 7]);
+
+  useEffect(() => {
+    const move = (e: PointerEvent) => {
+      mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);
+      mouseY.set((e.clientY / window.innerHeight - 0.5) * 2);
+    };
+    window.addEventListener("pointermove", move, { passive: true });
+    return () => window.removeEventListener("pointermove", move);
+  }, [mouseX, mouseY]);
 
   const handleNextImage = () => {
     const nextIndex = (imgIndex + 1) % site.profileImages.length;
