@@ -64,7 +64,7 @@ export const site = {
     available: true,
     availableText: "open to opportunities",
     nowLearning: "AI Engineering • System Design • Full Stack Architecture • DevOps",
-    nowBuilding: "CIEAV",
+    nowBuilding: "Oeon",
     nowListening: "focus playlists",
   },
   socials: {
@@ -118,7 +118,7 @@ export const site = {
   ] as Job[],
   projects: [
     {
-      title: "CIEAV",
+      title: "Oeon",
       blurb:
         "An always-on commit layer for consequential digital actions, combining a local control plane, deterministic safety policy, privacy reduction, outcome verification, signed Action Receipts, and verified Undo.",
       story:
@@ -126,7 +126,7 @@ export const site = {
       stack: ["Node.js", "Python", "Chrome", "Ed25519", "IBM Granite"],
       year: "2026",
       links: {
-        live: "https://cieav-web.vercel.app/",
+        live: "https://oeonai.com",
         source: "https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet",
       },
       featured: true,
