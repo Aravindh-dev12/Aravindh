@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { Shell } from "@/components/Layout";
 import { site } from "@/config/site";
-import { MapPin, Search, RotateCw } from "lucide-react";
+import { MapPin, Search, RotateCw, ArrowDown, Sparkles } from "lucide-react";
 import { useVisitor } from "@/context/VisitorContext";
 
 const HEADLINE_TITLES = [
@@ -11,6 +11,59 @@ const HEADLINE_TITLES = [
   "Product Engineer",
   "Open Source Contributor",
 ];
+
+function HeroSideMotion({ side }: { side: "left" | "right" }) {
+  const isLeft = side === "left";
+  const labels = isLeft ? ["AI", "BUILD", "SHIP"] : ["01", "02", "03"];
+  return (
+    <motion.div
+      aria-hidden="true"
+      className={`pointer-events-none absolute top-24 hidden xl:block ${isLeft ? "left-[-128px]" : "right-[-128px]"} h-[520px] w-[96px]`}
+      initial={{ opacity: 0, x: isLeft ? -18 : 18 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, delay: 0.35, ease: "easeOut" }}
+    >
+      <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-[var(--line)] to-transparent" />
+      <motion.div
+        className="absolute left-1/2 top-10 size-14 -translate-x-1/2 rounded-full border border-[var(--line)]"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+      >
+        <span className="absolute left-1/2 top-[-2px] size-1.5 -translate-x-1/2 rounded-full bg-[var(--fg)] shadow-[0_0_16px_var(--fg)]" />
+        <span className="absolute bottom-1 left-1/2 size-1 -translate-x-1/2 rounded-full bg-[var(--muted)]" />
+      </motion.div>
+
+      <motion.div
+        className="absolute left-1/2 top-[118px] size-2 -translate-x-1/2 rounded-full bg-[var(--fg)]"
+        animate={{ y: [0, 110, 0], opacity: [0.25, 1, 0.25], scale: [0.7, 1.25, 0.7] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className={`absolute top-[210px] flex flex-col gap-7 ${isLeft ? "left-0 items-end" : "right-0 items-start"}`}>
+        {labels.map((label, i) => (
+          <motion.div
+            key={label}
+            className="flex items-center gap-2 font-mono text-[9px] tracking-[0.22em] text-[var(--soft)]"
+            animate={{ x: isLeft ? [0, 5, 0] : [0, -5, 0], opacity: [0.35, 0.9, 0.35] }}
+            transition={{ duration: 3.5 + i * 0.7, repeat: Infinity, delay: i * 0.35, ease: "easeInOut" }}
+          >
+            {isLeft ? <span>{label}</span> : <span>{label}</span>}
+            <span className="h-px w-7 bg-[var(--line)]" />
+          </motion.div>
+        ))}
+      </div>
+
+      <motion.div
+        className={`absolute bottom-12 flex items-center gap-2 font-mono text-[8px] tracking-[0.2em] text-[var(--soft)] ${isLeft ? "left-0" : "right-0"}`}
+        animate={{ opacity: [0.3, 0.8, 0.3] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {isLeft ? <Sparkles size={11} /> : <ArrowDown size={11} />}
+        <span>{isLeft ? "SYSTEM / MOTION" : "SCROLL / EXPLORE"}</span>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
   const [headlineIndex, setHeadlineIndex] = useState(0);
