@@ -310,3 +310,46 @@ body {
 .ambient-sparkle {
   animation: ambientSpin 9s linear infinite, ambientPulse 3.2s ease-in-out infinite;
 }
+
+
+/* Integrated portfolio motion layer */
+.cinematic-grid {
+  position: relative;
+  isolation: isolate;
+}
+.cinematic-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .18;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  animation: cinematicGridDrift 18s linear infinite;
+}
+.cinematic-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.055), transparent 34%);
+}
+@keyframes cinematicGridDrift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 56px 0, 0 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cinematic-grid::before { animation: none; }
+  .ambient-tech,
+  .ambient-orbit,
+  .ambient-orb,
+  .ambient-bar,
+  .ambient-sparkle,
+  .animate-scanline { animation: none !important; }
+}
