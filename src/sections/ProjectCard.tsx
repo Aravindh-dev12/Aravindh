@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { type Project } from "@/config/site";
 import { Globe, ChevronDown, ChevronUp } from "lucide-react";
-import { GitHubIcon } from "@/components/icons";
+import { GitHubIcon } from "@/components/icons";\nimport { TiltCard } from "@/components/CinematicEffects";
 import { TiltCard } from "@/components/CinematicEffects";
 
 const getProjectGradient = (index: number) => {
