@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   motion,
   useMotionTemplate,
@@ -13,7 +13,7 @@ export function Reveal({
   delay = 0,
   y = 28,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delay?: number;
   y?: number;
@@ -36,7 +36,7 @@ export function TiltCard({
   className = "",
   intensity = 5,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   intensity?: number;
 }) {
@@ -46,9 +46,7 @@ export function TiltCard({
   const rotateY = useSpring(0, { stiffness: 220, damping: 22 });
   const glowX = useMotionValue(50);
   const glowY = useMotionValue(50);
-  const glow = useMotionTemplate(
-    "radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,.10), transparent 38%)"
-  );
+  const glow = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,.10), transparent 38%)`;
 
   const handleMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = ref.current?.getBoundingClientRect();
@@ -94,9 +92,7 @@ export function CursorGlow() {
   const y = useMotionValue(-300);
   const springX = useSpring(x, { stiffness: 80, damping: 22 });
   const springY = useSpring(y, { stiffness: 80, damping: 22 });
-  const background = useMotionTemplate(
-    "radial-gradient(circle 260px at ${springX}px ${springY}px, rgba(255,255,255,.045), transparent 70%)"
-  );
+  const background = useMotionTemplate`radial-gradient(circle 260px at ${springX}px ${springY}px, rgba(255,255,255,.045), transparent 70%)`;
 
   useEffect(() => {
     const move = (event: PointerEvent) => {
@@ -137,7 +133,7 @@ export function ScrollProgress() {
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[60] h-px bg-[var(--fg)] origin-left"
+      className="pointer-events-none fixed left-0 top-0 z-[60] h-px origin-left bg-[var(--fg)]"
       style={{ width }}
     />
   );
