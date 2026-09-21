@@ -13,7 +13,6 @@ import { Experience } from "@/sections/Experience";
 import { TechStack } from "@/sections/TechStack";
 import { Writing } from "@/sections/Writing";
 import { GithubActivity } from "@/sections/GithubActivity";
-import { AmbientMotion } from "@/components/AmbientMotion";
 import { CommandPalette } from "@/components/command-palette";
 import { WritingPage } from "@/pages/WritingPage";
 import { Konami } from "@/components/konami";
@@ -101,7 +100,6 @@ export function App() {
           <div className="min-h-screen bg-[var(--bg)] font-sans text-[var(--fg)] antialiased transition-colors duration-300 relative">
             <Nav onOpenPalette={() => setPaletteOpen(true)} />
             <SideIndex />
-            <AmbientMotion />
 
             <main className="relative z-10 cinematic-grid">
               <Routes>
