@@ -13,7 +13,6 @@ import { Experience } from "@/sections/Experience";
 import { TechStack } from "@/sections/TechStack";
 import { Writing } from "@/sections/Writing";
 import { GithubActivity } from "@/sections/GithubActivity";
-import { Music } from "@/sections/Music";
 import { AmbientMotion } from "@/components/AmbientMotion";
 import { CommandPalette } from "@/components/command-palette";
 import { WritingPage } from "@/pages/WritingPage";
@@ -48,7 +47,6 @@ function MainLayout({ onOpenPalette }: { onOpenPalette: () => void }) {
       <Experience />
       <TechStack />
       <Writing />
-      <Music />
       <GithubActivity />
     </>
   );
