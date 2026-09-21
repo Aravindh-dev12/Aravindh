@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Shell, SectionHeader } from "@/components/Layout";
 import { site } from "@/config/site";
+import { Reveal } from "@/components/CinematicEffects";
 
 const EXPERIENCE_META: Record<string, { focus: string; tags: string[] }> = {
   "Nuclei Tech Solutions": {
@@ -40,13 +41,13 @@ export function Experience() {
         </div>
 
         <div className="relative">
-          <div className="absolute bottom-8 left-[31px] top-8 hidden w-px bg-[var(--line)] sm:block" />
+          <div className="absolute bottom-8 left-[31px] top-8 hidden w-px overflow-hidden bg-[var(--line)] sm:block">\n            <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 1.2, ease: "easeOut" }} className="h-full w-full origin-top bg-[var(--fg)]/60" />\n          </div>
 
           {site.experience.map((job, i) => {
             const meta = EXPERIENCE_META[job.company];
 
             return (
-              <motion.article
+              <Reveal delay={i * 0.06}>\n              <motion.article
                 key={`${job.company}-${i}`}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
