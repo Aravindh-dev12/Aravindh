@@ -1,8 +1,8 @@
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { type Project } from "@/config/site";
 import { Globe, ChevronDown, ChevronUp } from "lucide-react";
-import { GitHubIcon } from "@/components/icons";\nimport { TiltCard } from "@/components/CinematicEffects";
+import { GitHubIcon } from "@/components/icons";
 import { TiltCard } from "@/components/CinematicEffects";
 
 const getProjectGradient = (index: number) => {
@@ -14,6 +14,7 @@ export function ProjectCard({ project: p, index = 0 }: { project: Project; index
   const [imgError, setImgError] = useState(false);
 
   return (
+    <TiltCard intensity={4.5} className="h-full">
     <div className="group flex flex-col justify-between rounded-xl border border-[var(--line)] bg-[var(--card)] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--soft)] hover:shadow-md h-full">
       <div>
         {/* Angled Screenshot Preview Canvas Box */}
@@ -107,7 +108,9 @@ export function ProjectCard({ project: p, index = 0 }: { project: Project; index
                   className="overflow-hidden"
                 >
                   <div className="mt-2.5 rounded-lg border border-[var(--line)]/50 bg-[var(--chip)]/60 p-3 font-sans text-[12px] leading-relaxed text-[var(--muted)] border-l-2 border-l-[var(--soft)] space-y-1.5">
-                    {p.story.split("\n\n").map((para, idx) => (
+                    {p.story.split("
+
+").map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
                   </div>
@@ -156,5 +159,6 @@ export function ProjectCard({ project: p, index = 0 }: { project: Project; index
         </div>
       </div>
     </div>
+    </TiltCard>
   );
 }
