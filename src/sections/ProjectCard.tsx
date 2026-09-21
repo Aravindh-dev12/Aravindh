@@ -1,162 +1,152 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { type Project } from "@/config/site";
-import { Globe, ChevronDown, ChevronUp } from "lucide-react";
-import { GitHubIcon } from "@/components/icons";
+import { ArrowUpRight, ChevronDown, ChevronUp, Github } from "lucide-react";
 import { TiltCard } from "@/components/CinematicEffects";
 
-const getProjectGradient = (index: number) => {
-  return "from-[var(--chip)] via-[var(--card)] to-[var(--bg)]/40";
-};
+function projectMark(title: string) {
+  const words = title.replace(/[^a-zA-Z0-9 ]/g, "").split(" ").filter(Boolean);
+  if (words.length > 1) return `${words[0][0]}${words[1][0]}`.toUpperCase();
+  return title.slice(0, 2).toUpperCase();
+}
 
-export function ProjectCard({ project: p, index = 0 }: { project: Project; index?: number }) {
+function projectCategory(p: Project) {
+  if (p.categories?.includes("AI")) return "AI / SYSTEMS";
+  if (p.categories?.includes("Fullstack")) return "FULL STACK";
+  if (p.categories?.includes("Backend")) return "ENGINEERING";
+  return "PRODUCT / WEB";
+}
+
+export function ProjectCard({ project: p }: { project: Project; index?: number }) {
   const [showDetails, setShowDetails] = useState(false);
-  const [imgError, setImgError] = useState(false);
 
   return (
-    <TiltCard intensity={4.5} className="h-full">
-    <div className="group flex flex-col justify-between rounded-xl border border-[var(--line)] bg-[var(--card)] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--soft)] hover:shadow-md h-full">
-      <div>
-        {/* Angled Screenshot Preview Canvas Box */}
-        <div className={`relative mb-4 h-48 w-full overflow-hidden rounded-lg border border-[var(--line)] bg-gradient-to-br ${getProjectGradient(index)} p-3 flex flex-col justify-between`}>
-          <div className="bg-stripes absolute inset-0 opacity-20 pointer-events-none" />
+    <TiltCard intensity={3.5} className="h-full">
+      <article className="group relative min-h-[430px] overflow-hidden rounded-[28px] border border-[var(--line)] bg-[var(--card)]">
+        <div className="absolute inset-0 overflow-hidden">
+          {p.image ? (
+            <motion.img
+              src={p.image}
+              alt={`${p.title} project preview`}
+              className="h-full w-full object-cover object-top opacity-75 transition duration-700 ease-out group-hover:scale-[1.045] group-hover:opacity-95"
+            />
+          ) : (
+            <div className="h-full w-full bg-[var(--chip)]" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent opacity-95" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent" />
+        </div>
 
-          {/* Viewfinder Reticles (Camera REC / ISO) */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 font-mono text-[9px] text-white">
-            <div className="absolute top-2.5 left-2.5 w-2.5 h-2.5 border-t border-l border-white/70" />
-            <div className="absolute top-2.5 right-2.5 w-2.5 h-2.5 border-t border-r border-white/70" />
-            <div className="absolute bottom-2.5 left-2.5 w-2.5 h-2.5 border-b border-l border-white/70" />
-            <div className="absolute bottom-2.5 right-2.5 w-2.5 h-2.5 border-b border-r border-white/70" />
-            <div className="absolute top-2.5 left-7 flex items-center gap-1 text-[8px] font-semibold text-white/80">
-              <span className="size-1.5 rounded-full bg-rose-500 animate-pulse" /> REC
-            </div>
-            <div className="absolute top-2.5 right-7 text-[8px] text-white/80 font-semibold">
-              ISO 400
+        <div className="relative z-10 flex min-h-[430px] flex-col justify-between p-6 sm:p-7">
+          <div className="flex items-start justify-between gap-4">
+            <motion.div
+              className="relative grid size-20 place-items-center rounded-full border border-white/25 bg-black/25 backdrop-blur-md"
+              whileHover={{ rotate: 8, scale: 1.06 }}
+              transition={{ type: "spring", stiffness: 240, damping: 16 }}
+            >
+              <div className="absolute inset-2 rounded-full border border-dashed border-white/25 transition-transform duration-700 group-hover:rotate-180" />
+              <span className="font-mono text-xl tracking-[-0.08em] text-white">{projectMark(p.title)}</span>
+            </motion.div>
+
+            <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.18em] text-white/65">
+              <span>{projectCategory(p)}</span>
+              <span className="size-1 rounded-full bg-white/45" />
+              <span>{p.year}</span>
             </div>
           </div>
 
-          {/* Top Badges Row */}
-          <div className="relative z-20 flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              {p.status ? (
-                <span className="rounded bg-amber-500/20 border border-amber-500/40 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-amber-300 backdrop-blur-md">
-                  • {p.status}
+          <div>
+            <div className="mb-3 flex items-center gap-2">
+              {p.status && (
+                <span className="rounded-full border border-amber-200/30 bg-amber-300/10 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-amber-100 backdrop-blur-md">
+                  {p.status}
                 </span>
-              ) : (
-                <span className="rounded bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-emerald-300 backdrop-blur-md flex items-center gap-1">
-                  <span className="relative flex size-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                    <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
-                  </span>
-                  Live
+              )}
+              {p.featured && (
+                <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white/80 backdrop-blur-md">
+                  Featured
                 </span>
               )}
             </div>
 
-            {p.featured && (
-              <span className="rounded bg-amber-400/10 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-amber-500 border border-amber-500/30">
-                Featured
-              </span>
+            <div className="flex items-end justify-between gap-5">
+              <div className="max-w-[80%]">
+                <h3 className="font-serif text-4xl leading-[0.9] tracking-[-0.035em] text-white sm:text-5xl">
+                  {p.title}
+                </h3>
+                <p className="mt-4 max-w-xl text-[12.5px] leading-relaxed text-white/68 line-clamp-3">
+                  {p.blurb}
+                </p>
+              </div>
+
+              <div className="flex shrink-0 items-center gap-2">
+                {p.links.live && (
+                  <a
+                    href={p.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${p.title} live site`}
+                    className="grid size-11 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition hover:-translate-y-1 hover:bg-white hover:text-black"
+                  >
+                    <ArrowUpRight className="size-4" />
+                  </a>
+                )}
+                {p.links.source && (
+                  <a
+                    href={p.links.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${p.title} repository`}
+                    className="grid size-11 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition hover:-translate-y-1 hover:bg-white hover:text-black"
+                  >
+                    <Github className="size-4" />
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-1.5">
+              {p.stack.slice(0, 5).map((t) => (
+                <span key={t} className="rounded-full border border-white/15 bg-black/20 px-2.5 py-1 font-mono text-[9px] text-white/60 backdrop-blur-sm">
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {p.story && (
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowDetails(!showDetails)}
+                  className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-white/55 transition hover:text-white"
+                >
+                  {showDetails ? "Close case study" : "Read engineering note"}
+                  {showDetails ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                </button>
+                <AnimatePresence initial={false}>
+                  {showDetails && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-3 rounded-2xl border border-white/10 bg-black/45 p-4 text-[11px] leading-relaxed text-white/65 backdrop-blur-md">
+                        {p.story.split("\n\n").map((para, idx) => (
+                          <p key={idx} className={idx ? "mt-2" : ""}>{para}</p>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             )}
           </div>
-
-          {/* Angled Screenshot Image */}
-          {p.image && !imgError ? (
-            <div className="absolute -right-6 -bottom-3 w-56 h-32 sm:-right-12 sm:-bottom-5 sm:w-72 sm:h-40 rounded-lg border-4 border-[var(--bg)]/40 shadow-xl overflow-hidden group-hover:-right-4 group-hover:-bottom-1 sm:group-hover:-right-9 sm:group-hover:-bottom-2 transition-all duration-300 pointer-events-none">
-              <img
-                src={p.image}
-                alt={`${p.title} preview`}
-                className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.06] group-hover:brightness-110"
-                onError={() => setImgError(true)}
-              />
-            </div>
-          ) : (
-            <div className="font-serif text-2xl text-[var(--fg)] self-end opacity-90">{p.title}</div>
-          )}
         </div>
 
-        {/* Project Header Info */}
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="text-[16px] font-semibold tracking-wide text-[var(--fg)] group-hover:text-[var(--fg)]">
-            {p.title}
-          </h3>
-          <span className="font-mono text-xs text-[var(--soft)]">{p.year}</span>
-        </div>
-
-        <p className="mt-2 text-[13px] leading-relaxed text-[var(--muted)] line-clamp-4">
-          {p.blurb}
-        </p>
-
-        {/* Collapsible Details Drawer */}
-        {p.story && (
-          <div className="mt-3">
-            <button
-              type="button"
-              onClick={() => setShowDetails(!showDetails)}
-              className="flex items-center gap-1 font-mono text-[10px] text-[var(--soft)] hover:text-[var(--fg)] cursor-pointer outline-none"
-            >
-              {showDetails ? "Hide engineering details" : "Show engineering details"}
-              {showDetails ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-            </button>
-            <AnimatePresence initial={false}>
-              {showDetails && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="overflow-hidden"
-                >
-                  <div className="mt-2.5 rounded-lg border border-[var(--line)]/50 bg-[var(--chip)]/60 p-3 font-sans text-[12px] leading-relaxed text-[var(--muted)] border-l-2 border-l-[var(--soft)] space-y-1.5">
-                    {p.story.split("\n\n").map((para, idx) => (
-                      <p key={idx}>{para}</p>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        )}
-      </div>
-
-      {/* Tech Pills & Direct Links */}
-      <div className="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-[var(--line)]/50">
-        <div className="flex flex-wrap gap-1.5">
-          {p.stack.map((t) => (
-            <span
-              key={t}
-              className="rounded bg-[var(--chip)] px-2 py-0.5 font-mono text-[10.5px] text-[var(--muted)] border border-[var(--line)]/30"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-        <div className="flex shrink-0 items-center gap-2.5 text-[var(--soft)]">
-          {p.links.live && (
-            <a
-              href={p.links.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${p.title} live site`}
-              className="transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--fg)]"
-            >
-              <Globe className="size-4" />
-            </a>
-          )}
-          {p.links.source && (
-            <a
-              href={p.links.source}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${p.title} repository`}
-              className="transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--fg)]"
-            >
-              <GitHubIcon className="size-4" />
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
+        <div className="pointer-events-none absolute left-6 top-1/2 h-28 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      </article>
     </TiltCard>
   );
 }
