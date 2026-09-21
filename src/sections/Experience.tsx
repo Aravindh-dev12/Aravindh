@@ -50,7 +50,7 @@ export function Experience() {
 
             return (
               <Reveal delay={i * 0.06}>
-              <Reveal delay={i * 0.06}>\n              <motion.article
+                <motion.article
                 key={`${job.company}-${i}`}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +104,8 @@ export function Experience() {
                     ))}
                   </div>
                 ) : null}
-              </motion.article>
+                </motion.article>
+              </Reveal>
             );
           })}
         </div>
