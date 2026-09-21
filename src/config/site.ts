@@ -78,9 +78,18 @@ export const site = {
   },
   experience: [
     {
+      company: "Oeon OS",
+      role: "AI Research Fellow · Self-employed",
+      period: "Dec 2025 – Present",
+      bullets: [
+        "Conducting AI research focused on emerging artificial intelligence technologies and research-driven systems.",
+        "Exploring knowledge engineering, intelligent architectures, and practical applications of modern AI methods.",
+      ],
+    },
+    {
       company: "Nuclei Tech Solutions",
       role: "Software Developer · Freelance",
-      period: "June 2026 – Present",
+      period: "Dec 2025 – Present",
       bullets: [
         "Worked on acquiring and processing data from embedded devices to build local, on-premise ERP systems for enterprises.",
         "Developed a lightweight MLP-Mixer based architecture designed to be applicable and extendable across multiple data modalities.",
