@@ -96,7 +96,7 @@ export function Projects({ isSearchable = false }: { isSearchable?: boolean }) {
           </div>
         )}
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-2">
           <AnimatePresence>
             {displayedProjects.map((p, idx) => (
               <motion.div
