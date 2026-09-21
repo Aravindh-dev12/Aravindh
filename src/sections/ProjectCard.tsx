@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { type Project } from "@/config/site";
 import { Globe, ChevronDown, ChevronUp } from "lucide-react";
 import { GitHubIcon } from "@/components/icons";
+import { TiltCard } from "@/components/CinematicEffects";
 
 const getProjectGradient = (index: number) => {
   return "from-[var(--chip)] via-[var(--card)] to-[var(--bg)]/40";
