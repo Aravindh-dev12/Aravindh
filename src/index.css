@@ -237,20 +237,60 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.ambient-note {
+.ambient-tech {
   display: grid;
   place-items: center;
   width: 30px;
   height: 30px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   background: color-mix(in srgb, var(--card) 72%, transparent);
   backdrop-filter: blur(8px);
   box-shadow: 0 0 24px rgba(255,255,255,.04);
 }
-.ambient-note-one { animation: ambientFloat 5.5s ease-in-out infinite; }
-.ambient-note-two { animation: ambientFloatReverse 7s ease-in-out infinite; }
-.ambient-note-three { animation: ambientFloat 6.5s ease-in-out infinite reverse; }
+.ambient-tech-one { animation: ambientFloat 5.5s ease-in-out infinite; }
+.ambient-tech-two { animation: ambientFloatReverse 7s ease-in-out infinite; }
+.ambient-tech-three { animation: ambientFloat 6.5s ease-in-out infinite reverse; }
+
+@keyframes ambientOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.ambient-orbit {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  animation: ambientOrbit 8s linear infinite;
+}
+.ambient-orbit::before,
+.ambient-orbit::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed var(--line);
+  border-radius: 50%;
+}
+.ambient-orbit::after {
+  inset: 13px;
+  background: var(--fg);
+  border: 0;
+  box-shadow: 0 0 12px var(--fg);
+}
+.ambient-orbit span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--fg);
+  top: -2px;
+  left: 50%;
+  box-shadow: 0 0 10px var(--fg);
+}
+.ambient-orbit span:nth-child(2) { top: 50%; left: -2px; }
+.ambient-orbit span:nth-child(3) { top: auto; left: auto; right: -2px; bottom: 4px; }
+
 .ambient-orb {
   position: absolute;
   width: 3px;
