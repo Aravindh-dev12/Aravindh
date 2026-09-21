@@ -108,9 +108,7 @@ export function ProjectCard({ project: p, index = 0 }: { project: Project; index
                   className="overflow-hidden"
                 >
                   <div className="mt-2.5 rounded-lg border border-[var(--line)]/50 bg-[var(--chip)]/60 p-3 font-sans text-[12px] leading-relaxed text-[var(--muted)] border-l-2 border-l-[var(--soft)] space-y-1.5">
-                    {p.story.split("
-
-").map((para, idx) => (
+                    {p.story.split("\n\n").map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
                   </div>
