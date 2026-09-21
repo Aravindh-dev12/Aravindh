@@ -1,36 +1,52 @@
-import { Braces, Code2, Crosshair, Sparkles } from "lucide-react";
+import { useEffect, useRef } from "react";
 
-function Rail({ side }: { side: "left" | "right" }) {
+const MATH_SYMBOLS = [
+  "∑", "∫", "π", "∞", "√", "∂", "Δ", "λ",
+  "Σ", "Ω", "θ", "φ", "≈", "≠", "≤", "≥",
+  "∇", "μ", "α", "β", "γ", "eˣ", "x²", "∴",
+];
+
+function Spiral({ side }: { side: "left" | "right" }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let frame = 0;
+    const animate = () => {
+      const scroll = window.scrollY;
+      const drift = Math.sin(scroll * 0.004) * 18;
+      el.style.transform = `translate3d(0, ${drift}px, 0) rotate(${scroll * (side === "left" ? 0.035 : -0.035)}deg)`;
+      frame = requestAnimationFrame(animate);
+    };
+
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [side]);
+
   return (
     <div
+      ref={ref}
       aria-hidden="true"
-      className={`pointer-events-none fixed top-1/2 z-0 hidden -translate-y-1/2 lg:flex ${side === "left" ? "left-3" : "right-3"} h-[470px] w-10 flex-col items-center justify-between opacity-60`}
+      className={`math-spiral math-spiral-${side}`}
     >
-      <div className="ambient-orb ambient-orb-one" />
-      <div className="ambient-orb ambient-orb-two" />
-      <div className="ambient-orb ambient-orb-three" />
-
-      <div className="ambient-tech ambient-tech-one"><Braces size={14} /></div>
-      <div className="ambient-tech ambient-tech-two"><Code2 size={14} /></div>
-      <div className="ambient-tech ambient-tech-three"><Crosshair size={13} /></div>
-
-      <div className="ambient-orbit">
-        <span />
-        <span />
-        <span />
-      </div>
-
-      <div className="flex h-20 items-end gap-[2px]">
-        {Array.from({ length: 9 }).map((_, index) => (
-          <span
-            key={index}
-            className="ambient-bar w-[2px] rounded-full bg-[var(--fg)]"
-            style={{ animationDelay: `${index * 90}ms` }}
-          />
-        ))}
-      </div>
-
-      <Sparkles size={12} className="ambient-sparkle" />
+      <div className="math-spiral-ring math-spiral-ring-1" />
+      <div className="math-spiral-ring math-spiral-ring-2" />
+      <div className="math-spiral-ring math-spiral-ring-3" />
+      <div className="math-spiral-core" />
+      {MATH_SYMBOLS.map((symbol, index) => (
+        <span
+          key={symbol}
+          className="math-symbol"
+          style={{
+            ["--i" as string]: index,
+            ["--angle" as string]: `${(index / MATH_SYMBOLS.length) * 360}deg`,
+          }}
+        >
+          {symbol}
+        </span>
+      ))}
     </div>
   );
 }
@@ -38,8 +54,8 @@ function Rail({ side }: { side: "left" | "right" }) {
 export function AmbientMotion() {
   return (
     <>
-      <Rail side="left" />
-      <Rail side="right" />
+      <Spiral side="left" />
+      <Spiral side="right" />
     </>
   );
 }
