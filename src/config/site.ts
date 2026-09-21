@@ -37,7 +37,7 @@ export const site = {
     author: "Edsger W. Dijkstra",
   },
   profileImages: [
-    "/profile2.jpeg",
+    "/profile.jpeg",
     "/profile2.jpeg",
   ],
   bannerImage: "/images/cover.jpg",
@@ -80,7 +80,7 @@ export const site = {
     {
       company: "Oeon OS",
       role: "AI Research Fellow · Self-employed",
-      period: "Dec 2025 – Present",
+      period: "May 2026 – Present",
       bullets: [
         "Conducting AI research focused on emerging artificial intelligence technologies and research-driven systems.",
         "Exploring knowledge engineering, intelligent architectures, and practical applications of modern AI methods.",
