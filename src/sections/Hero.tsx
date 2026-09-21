@@ -4,7 +4,6 @@ import { Shell } from "@/components/Layout";
 import { site } from "@/config/site";
 import { MapPin, Search, RotateCw } from "lucide-react";
 import { useVisitor } from "@/context/VisitorContext";
-import { useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const HEADLINE_TITLES = [
   "Full Stack AI Engineer",
@@ -35,22 +34,6 @@ export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
     window.addEventListener("pointermove", move, { passive: true });
     return () => window.removeEventListener("pointermove", move);
   }, [mouseX, mouseY]);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const smoothX = useSpring(mouseX, { stiffness: 70, damping: 20 });
-  const smoothY = useSpring(mouseY, { stiffness: 70, damping: 20 });
-  const avatarX = useTransform(smoothX, [-1, 1], [-7, 7]);
-  const avatarY = useTransform(smoothY, [-1, 1], [-7, 7]);
-
-  useEffect(() => {
-    const move = (e: PointerEvent) => {
-      mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);
-      mouseY.set((e.clientY / window.innerHeight - 0.5) * 2);
-    };
-    window.addEventListener("pointermove", move, { passive: true });
-    return () => window.removeEventListener("pointermove", move);
-  }, [mouseX, mouseY]);
-
   const handleNextImage = () => {
     const nextIndex = (imgIndex + 1) % site.profileImages.length;
     setImgIndex(nextIndex);
@@ -91,7 +74,8 @@ export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
           className="flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-6 justify-between"
         >
           <div className="flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-5">
-            <div 
+            <motion.div
+              style={{ x: avatarX, y: avatarY }}
               onClick={handleNextImage}
               className="relative grid size-20 shrink-0 place-items-center overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--chip)] shadow-md group cursor-pointer select-none animate-fade-up"
               title="Click to change profile image"
@@ -121,8 +105,8 @@ export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
               >
                 <RotateCw size={10} strokeWidth={2} />
               </button>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div style={{ y: heroTextY, opacity: heroTextOpacity }}>
               <h1 className="font-serif text-3xl sm:text-[38px] leading-none tracking-tight text-[var(--fg)] text-glitch">
                 {site.name}
               </h1>
@@ -147,7 +131,7 @@ export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
                 <span>·</span>
                 
               </p>
-            </div>
+            </motion.div>
           </div>
 
           {/* Quick Command Palette Keyboard Badge */}
