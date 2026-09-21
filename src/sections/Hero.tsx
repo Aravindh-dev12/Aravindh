@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { Shell } from "@/components/Layout";
 import { site } from "@/config/site";
 import { MapPin, Search, RotateCw } from "lucide-react";
@@ -23,6 +23,9 @@ export function Hero({ onOpenPalette }: { onOpenPalette?: () => void }) {
   const smoothY = useSpring(mouseY, { stiffness: 70, damping: 20 });
   const avatarX = useTransform(smoothX, [-1, 1], [-7, 7]);
   const avatarY = useTransform(smoothY, [-1, 1], [-7, 7]);
+  const { scrollY } = useScroll();
+  const heroTextY = useTransform(scrollY, [0, 420], [0, -42]);
+  const heroTextOpacity = useTransform(scrollY, [0, 320], [1, 0.35]);
 
   useEffect(() => {
     const move = (e: PointerEvent) => {
