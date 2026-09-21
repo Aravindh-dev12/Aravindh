@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { type Project } from "@/config/site";
-import { ArrowUpRight, ChevronDown, ChevronUp, Github } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp, Github, Globe2 } from "lucide-react";
 import { TiltCard } from "@/components/CinematicEffects";
 
 function projectMark(title: string) {
@@ -22,7 +22,7 @@ export function ProjectCard({ project: p }: { project: Project; index?: number }
 
   return (
     <TiltCard intensity={3.5} className="h-full">
-      <article className="group relative min-h-[520px] overflow-hidden rounded-[28px] border border-[var(--line)] bg-[var(--card)]">
+      <article className="group relative h-[520px] overflow-hidden rounded-[28px] border border-[var(--line)] bg-[var(--card)]">
         <div className="relative h-[270px] overflow-hidden border-b border-[var(--line)] bg-[var(--chip)]">
           {p.image ? (
             <motion.img
@@ -37,7 +37,7 @@ export function ProjectCard({ project: p }: { project: Project; index?: number }
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent" />
         </div>
 
-        <div className="relative z-10 flex min-h-[250px] flex-col justify-between p-6 sm:p-7">
+        <div className="relative z-10 flex h-[250px] flex-col justify-between p-6 sm:p-7">
           <div className="flex items-start justify-between gap-4">
             <motion.div
               className="relative grid size-20 place-items-center rounded-full border border-white/25 bg-black/45 backdrop-blur-md"
@@ -80,28 +80,7 @@ export function ProjectCard({ project: p }: { project: Project; index?: number }
               </div>
 
               <div className="flex shrink-0 items-center gap-2">
-                {p.links.live && (
-                  <a
-                    href={p.links.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${p.title} live site`}
-                    className="grid size-11 place-items-center rounded-full border border-[var(--line)] bg-[var(--chip)] text-[var(--fg)] transition hover:-translate-y-1 hover:bg-[var(--fg)] hover:text-[var(--bg)]"
-                  >
-                    <ArrowUpRight className="size-4" />
-                  </a>
-                )}
-                {p.links.source && (
-                  <a
-                    href={p.links.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${p.title} repository`}
-                    className="grid size-11 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition hover:-translate-y-1 hover:bg-white hover:text-black"
-                  >
-                    <Github className="size-4" />
-                  </a>
-                )}
+                <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-[var(--soft)]">Explore</span>
               </div>
             </div>
 
@@ -113,7 +92,33 @@ export function ProjectCard({ project: p }: { project: Project; index?: number }
               ))}
             </div>
 
-            {p.story && (
+            <div className="mt-4 flex items-center justify-between border-t border-[var(--line)] pt-3">
+              <div className="font-mono text-[8px] uppercase tracking-[0.18em] text-[var(--soft)]">Project archive</div>
+              <div className="flex items-center gap-2">
+                {p.links.live && (
+                  <a
+                    href={p.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={p.title + " website"}
+                    className="flex items-center gap-1.5 rounded-full border border-[var(--line)] bg-[var(--chip)] px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--fg)] transition hover:-translate-y-0.5 hover:bg-[var(--fg)] hover:text-[var(--bg)]"
+                  >
+                    <Globe2 className="size-3" /> Web
+                  </a>
+                )}
+                {p.links.source && (
+                  <a
+                    href={p.links.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={p.title + " GitHub repository"}
+                    className="flex items-center gap-1.5 rounded-full border border-[var(--line)] bg-[var(--chip)] px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--fg)] transition hover:-translate-y-0.5 hover:bg-[var(--fg)] hover:text-[var(--bg)]"
+                  >
+                    <Github className="size-3" /> GitHub
+                  </a>
+                )}
+              </div>
+            </div>\n\n            {p.story && (
               <div className="mt-4">
                 <button
                   type="button"
