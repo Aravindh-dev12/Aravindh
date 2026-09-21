@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { type Project } from "@/config/site";
 import { Globe, ChevronDown, ChevronUp } from "lucide-react";
@@ -65,7 +65,7 @@ export function ProjectCard({ project: p, index = 0 }: { project: Project; index
               <img
                 src={p.image}
                 alt={`${p.title} preview`}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.06] group-hover:brightness-110"
                 onError={() => setImgError(true)}
               />
             </div>
