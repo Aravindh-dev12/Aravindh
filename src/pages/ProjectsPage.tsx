@@ -105,9 +105,9 @@ export function ProjectsPage() {
         </div>
 
         {/* Projects Grid */}
-        <div className="mt-6 grid gap-6 grid-cols-1 md:grid-cols-2">
+        <div className="mt-6 grid gap-6 grid-cols-1 md:grid-cols-2 auto-rows-[760px]">
           {filteredProjects.map((p, i) => (
-            <div key={p.title} onClick={() => setActiveModalProject(p)} className="h-[760px] cursor-pointer">
+            <div key={p.title} onClick={() => setActiveModalProject(p)} className="h-full min-h-0 cursor-pointer">
               <ProjectCard p={p} i={i} />
             </div>
           ))}
