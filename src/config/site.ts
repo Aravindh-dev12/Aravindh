@@ -134,6 +134,21 @@ export const site = {
       categories: ["AI", "Fullstack", "Backend"],
     },
     {
+      title: "CLI Smart Inbox Agent",
+      blurb:
+        "A production-oriented multi-modal document intelligence platform for email intake, PDF/OCR processing, multi-label classification, structured fact extraction, and human review.",
+      story:
+        "The system processes an isolated test mailbox through IMAP, stages and malware-scans PDF attachments, extracts text/tables/images with OCR, classifies messages into ICSR, PQC, MI, or Not Relevant, and produces field-level facts with confidence and source provenance. A Spring Boot orchestration layer coordinates an Angular reviewer UI, Python AI service, Oracle persistence, ClamAV scanning, durable jobs, and GreenMail-based end-to-end smoke testing. Optional structured LLM inference is schema-validated and evidence-checked against the original document so unsupported facts are discarded rather than trusted.",
+      stack: ["Angular", "Spring Boot", "Python", "Oracle", "Docker", "Kubernetes", "OCR", "LLM"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/cli-ai",
+      },
+      featured: true,
+      image: "/projects/cli-ai.png",
+      categories: ["AI", "Fullstack", "Backend"],
+    },
+    {
       title: "Hallucination-Resistant LLM",
       blurb:
         "A retrieval and verification LLM pipeline designed to reduce hallucinations using open web search, crawling, evidence grounding, and entailment-based verification.",
