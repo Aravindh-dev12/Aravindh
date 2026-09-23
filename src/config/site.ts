@@ -146,7 +146,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/cli-ai",
       },
       featured: true,
-      image: "/projects/cli-ai.png",
+      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=80",
       categories: ["AI", "Fullstack", "Backend"],
     },
     {
@@ -193,6 +193,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/lwm-fabricator-modelNeural-Execution-and-Unified-Systems-Fabrication-Operating-Architecture",
       },
       status: "In Progress",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
       categories: ["AI", "Backend"],
     },
     {
