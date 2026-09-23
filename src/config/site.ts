@@ -256,6 +256,35 @@ export const site = {
       status: "In Progress",
       categories: ["Fullstack"],
     },
+    {
+      title: "NSJ ERP System",
+      blurb:
+        "A production-oriented jewelry ERP platform for accounting, sales, inventory, manufacturing, CRM, reporting, and AI-assisted business operations.",
+      story:
+        "NSJ ERP centralizes finance, vouchers, invoices, customer and sales workflows, jewelry manufacturing, gold and gemstone inventory, task management, reporting, and operational analytics. Its AI agent layer supports product, accounting, vendor, inventory, sales, production, and reporting workflows through natural-language interaction. The stack combines Django REST Framework and PostgreSQL on the backend with Next.js, TypeScript, Tailwind CSS, shadcn/ui, and React tooling on the frontend.",
+      stack: ["Django", "Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "Docker"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/NSJ-ERP",
+      },
+      image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=80",
+      featured: true,
+      categories: ["Fullstack", "Backend"],
+    },
+    {
+      title: "Nucleitech CRM App",
+      blurb:
+        "A CRM application for organizing customer relationships, sales workflows, follow-ups, and business data in a focused operational workspace.",
+      story:
+        "Nucleitech CRM is a business-focused customer relationship management application built around practical sales and customer operations. It is included in the portfolio as an active CRM product project, with the source repository available for deeper implementation details.",
+      stack: ["CRM", "Fullstack", "Web App"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/Nucleitech-CRM-App",
+      },
+      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80",
+      categories: ["Fullstack"],
+    },
   ] as Project[],
   skills: [
     "TypeScript",
