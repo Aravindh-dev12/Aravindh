@@ -10,6 +10,7 @@ import { About } from "@/sections/About";
 import { Contact } from "@/sections/Contact";
 import { Projects } from "@/sections/Projects";
 import { Experience } from "@/sections/Experience";
+import { Education } from "@/sections/Education";
 import { TechStack } from "@/sections/TechStack";
 import { Writing } from "@/sections/Writing";
 import { GithubActivity } from "@/sections/GithubActivity";
@@ -45,6 +46,7 @@ function MainLayout({ onOpenPalette }: { onOpenPalette: () => void }) {
       <Contact />
       <Projects isSearchable={false} />
       <Experience />
+      <Education />
       <TechStack />
       <Writing />
       <GithubActivity />
@@ -106,6 +108,7 @@ export function App() {
                 <Route path="/" element={<MainLayout onOpenPalette={() => setPaletteOpen(true)} />} />
                 <Route path="/projects" element={<Projects isSearchable={true} />} />
                 <Route path="/experience" element={<Experience />} />
+                <Route path="/education" element={<Education />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/writing" element={<WritingPage />} />
               </Routes>
