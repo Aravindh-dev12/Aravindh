@@ -58,14 +58,14 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
   const [imageSrc, setImageSrc] = useState(p.image || fallbackImage);
 
   return (
-    <Reveal delay={i * 0.05} className="h-[760px] min-h-[760px] w-full min-w-0">
+    <Reveal delay={i * 0.05} className="h-[700px] min-h-[700px] w-full min-w-0">
       <article
         id={`project-card-${p.title.toLowerCase()}`}
-        className="group relative box-border flex h-[760px] min-h-[760px] max-h-[760px] w-full min-w-0 flex-col justify-between overflow-hidden rounded-2xl border border-neutral-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:shadow-2xl hover:shadow-black/40 backdrop-blur-md bg-neutral-900/40"
+        className="group relative box-border flex h-[700px] min-h-[700px] max-h-[700px] w-full min-w-0 flex-col justify-between overflow-hidden rounded-2xl border border-neutral-800 p-6 transition-all duration-300 hover:border-neutral-600 hover:shadow-2xl hover:shadow-black/40 backdrop-blur-md bg-neutral-900/40"
       >
         <div>
           {/* Creative Banner Canvas Header */}
-          <div className={`relative mb-5 h-60 sm:h-64 w-full overflow-hidden rounded-xl border border-neutral-800 bg-gradient-to-br ${getProjectGradient(i)} p-4 flex flex-col justify-between`}>
+          <div className={`relative mb-4 h-52 sm:h-56 w-full overflow-hidden rounded-xl border border-neutral-800 bg-gradient-to-br ${getProjectGradient(i)} p-4 flex flex-col justify-between`}>
             {/* Background Grid Pattern */}
             <div className="bg-grid absolute inset-0 opacity-20 pointer-events-none" />
 
@@ -101,7 +101,7 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
 
             {/* Prominent & Fully Visible Project Screenshot */}
             {imageSrc ? (
-              <div className="relative mt-2 h-44 sm:h-48 w-full overflow-hidden rounded-lg border border-neutral-800/80 shadow-md bg-neutral-900 transition-all duration-300 group-hover:border-neutral-600 group-hover:shadow-xl">
+              <div className="relative mt-2 h-36 sm:h-40 w-full overflow-hidden rounded-lg border border-neutral-800/80 shadow-md bg-neutral-900 transition-all duration-300 group-hover:border-neutral-600 group-hover:shadow-xl">
                 <img
                   src={imageSrc}
                   alt={`${p.title} preview`}
@@ -113,7 +113,7 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
                 />
               </div>
             ) : (
-              <div className="relative mt-2 h-44 sm:h-48 w-full overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900/95 shadow-md p-4 flex flex-col justify-between">
+              <div className="relative mt-2 h-36 sm:h-40 w-full overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900/95 shadow-md p-4 flex flex-col justify-between">
                 <div className="flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full bg-rose-500/80" />
                   <span className="h-2 w-2 rounded-full bg-amber-500/80" />
@@ -134,9 +134,9 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
             <span className="font-mono text-xs text-neutral-500">{p.year}</span>
           </div>
 
-          <p className="mt-2 h-20 overflow-y-auto pr-1 text-sm text-neutral-300 leading-relaxed scrollbar-thin">{p.blurb}</p>
+          <p className="mt-2 h-16 overflow-y-auto pr-1 text-sm text-neutral-300 leading-relaxed scrollbar-thin">{p.blurb}</p>
 
-          <div className="mt-4 h-20 overflow-y-auto pr-1 flex flex-wrap content-start gap-1.5 scrollbar-thin">
+          <div className="mt-3 h-14 overflow-y-auto pr-1 flex flex-wrap content-start gap-1.5 scrollbar-thin">
             {p.stack.map((tech) => (
               <span
                 key={tech}
@@ -157,7 +157,7 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
         </div>
 
         <div>
-          <div className="mt-6 min-h-8 flex items-center justify-between gap-4">
+          <div className="mt-4 h-8 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 text-sm">
               {p.links.live && (
                 <a
