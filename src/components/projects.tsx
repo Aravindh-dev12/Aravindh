@@ -58,10 +58,10 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
   const [imageSrc, setImageSrc] = useState(p.image || fallbackImage);
 
   return (
-    <Reveal delay={i * 0.05}>
+    <Reveal delay={i * 0.05} className="h-[760px]">
       <article
         id={`project-card-${p.title.toLowerCase()}`}
-        className="group relative flex flex-col justify-between h-[760px] overflow-hidden rounded-2xl border border-neutral-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:shadow-2xl hover:shadow-black/40 backdrop-blur-md bg-neutral-900/40"
+        className="group relative flex h-[760px] min-h-[760px] max-h-[760px] flex-col justify-between overflow-hidden rounded-2xl border border-neutral-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:shadow-2xl hover:shadow-black/40 backdrop-blur-md bg-neutral-900/40"
       >
         <div>
           {/* Creative Banner Canvas Header */}
