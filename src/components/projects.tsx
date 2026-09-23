@@ -58,10 +58,10 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
   const [imageSrc, setImageSrc] = useState(p.image || fallbackImage);
 
   return (
-    <Reveal delay={i * 0.05} className="h-[760px]">
+    <Reveal delay={i * 0.05} className="h-full min-h-0">
       <article
         id={`project-card-${p.title.toLowerCase()}`}
-        className="group relative flex h-[760px] min-h-[760px] max-h-[760px] flex-col justify-between overflow-hidden rounded-2xl border border-neutral-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:shadow-2xl hover:shadow-black/40 backdrop-blur-md bg-neutral-900/40"
+        className="group relative flex h-full min-h-0 flex-col justify-between overflow-hidden rounded-2xl border border-neutral-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:shadow-2xl hover:shadow-black/40 backdrop-blur-md bg-neutral-900/40"
       >
         <div>
           {/* Creative Banner Canvas Header */}
@@ -238,7 +238,7 @@ export function Projects() {
     <section className="mx-auto w-full max-w-5xl px-6 py-12">
       <SectionHeader id="projects" index="03" title="things I've built" />
 
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 auto-rows-[760px]">
         {site.projects.map((p, i) => (
           <ProjectCard key={p.title} p={p} i={i} />
         ))}
