@@ -3,18 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { site } from "@/config/site";
 import {
   GitHubIcon,
-  TwitterIcon,
   LinkedInIcon,
   MailIcon,
   FileIcon,
   DiscordIcon,
-  MediumIcon
+  MediumIcon,
+  GoogleScholarIcon
 } from "./icons";
 
 const items = [
   { key: "github", href: site.socials.github, label: "GitHub", Icon: GitHubIcon },
-  { key: "twitter", href: site.socials.twitter, label: "Twitter", Icon: TwitterIcon },
   { key: "linkedin", href: site.socials.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
+  { key: "googleScholar", href: site.socials.googleScholar, label: "Google Scholar", Icon: GoogleScholarIcon },
   { key: "medium", href: (site.socials as any).medium, label: "Medium", Icon: MediumIcon },
   { key: "email", href: site.socials.email, label: "Mail", Icon: MailIcon },
   { key: "resume", href: site.socials.resume, label: "Resume", Icon: FileIcon },
@@ -34,11 +34,11 @@ const hoverCardsData: Record<string, {
     stats: ["5+ Projects", "500+ Contributions"],
     bannerText: "learn • build • ship",
   },
-  twitter: {
-    handle: "@anuragdotdev",
-    bio: "Building clean, modern web apps where design, functionality, and even the smallest details matter.",
-    stats: ["Tech Thoughts", "Dev Twitter"],
-    bannerText: "connect • share • grow",
+  googleScholar: {
+    handle: "Google Scholar",
+    bio: "Academic publications, citations, and research profile.",
+    stats: ["Research Profile", "Citations"],
+    bannerText: "research • publish • discover",
   },
   linkedin: {
     pronouns: "He/Him",
