@@ -20,6 +20,14 @@ export type Job = {
   url?: string;
 };
 
+export type Education = {
+  degree: string;
+  field: string;
+  institution: string;
+  location: string;
+  period: string;
+};
+
 export type Post = {
   title: string;
   summary: string;
@@ -76,6 +84,15 @@ export const site = {
     discord: "https://discord.gg/ra4kyKdTk",
     medium: "https://medium.com/@aravindh1653",
   },
+  education: [
+    {
+      degree: "BE",
+      field: "Computer Science Engineering",
+      institution: "Chettinad College of Engineering and Technology",
+      location: "Karur, Tamil Nadu",
+      period: "Aug 2020 – Jun 2024",
+    },
+  ] as Education[],
   experience: [
     {
       company: "Oeon OS",
