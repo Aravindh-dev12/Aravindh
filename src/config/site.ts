@@ -71,6 +71,7 @@ export const site = {
     github: "https://github.com/Aravindh-dev12",
     twitter: "https://x.com/aravindh213",
     linkedin: "https://www.linkedin.com/in/aravindhanb/",
+    googleScholar: "https://scholar.google.com/citations?hl=en&user=o-qnHb4AAAAJ",
     email: "mailto:aravindh1653@gmail.com",
     resume: "https://medium.com/@aravindh1653",
     discord: "https://discord.gg/ra4kyKdTk",
