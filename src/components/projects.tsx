@@ -45,15 +45,23 @@ const getProjectGradient = (index: number) => {
   return gradients[index % gradients.length];
 };
 
+const fallbackProjectImages = [
+  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80"
+];
+
 export function ProjectCard({ p, i }: { p: Project; i: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [imgError, setImgError] = useState(false);
+  const fallbackImage = fallbackProjectImages[i % fallbackProjectImages.length];
+  const [imageSrc, setImageSrc] = useState(p.image || fallbackImage);
 
   return (
     <Reveal delay={i * 0.05}>
       <article
         id={`project-card-${p.title.toLowerCase()}`}
-        className="group relative flex flex-col justify-between h-full rounded-2xl border border-neutral-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:shadow-2xl hover:shadow-black/40 backdrop-blur-md bg-neutral-900/40"
+        className="group relative flex flex-col justify-between h-[760px] overflow-hidden rounded-2xl border border-neutral-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:shadow-2xl hover:shadow-black/40 backdrop-blur-md bg-neutral-900/40"
       >
         <div>
           {/* Creative Banner Canvas Header */}
@@ -92,14 +100,16 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
             </div>
 
             {/* Prominent & Fully Visible Project Screenshot */}
-            {p.image && !imgError ? (
+            {imageSrc ? (
               <div className="relative mt-2 h-44 sm:h-48 w-full overflow-hidden rounded-lg border border-neutral-800/80 shadow-md bg-neutral-900 transition-all duration-300 group-hover:border-neutral-600 group-hover:shadow-xl">
                 <img
-                  src={p.image}
+                  src={imageSrc}
                   alt={`${p.title} preview`}
                   className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
-                  onError={() => setImgError(true)}
+                  onError={() => {
+                    if (imageSrc !== fallbackImage) setImageSrc(fallbackImage);
+                  }}
                 />
               </div>
             ) : (
@@ -198,7 +208,7 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
                 className="overflow-hidden"
               >
                 {p.story && (
-                  <div className="mt-3 border-t border-neutral-800 pt-3">
+                  <div className="mt-3 max-h-36 overflow-y-auto border-t border-neutral-800 pt-3 pr-1">
                     <div className="text-xs leading-relaxed text-neutral-400 space-y-1.5">
                       {p.story.split("\n\n").map((para, idx) => {
                         const isItalic = para.startsWith("*") && para.endsWith("*");
