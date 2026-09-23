@@ -1,13 +1,13 @@
 import { Shell, SectionHeader } from "@/components/Layout";
 import { site } from "@/config/site";
-import { GitHubIcon, TwitterIcon, LinkedInIcon, MailIcon, FileIcon } from "@/components/icons";
+import { GitHubIcon, LinkedInIcon, GoogleScholarIcon, MailIcon, FileIcon } from "@/components/icons";
 import { ArrowUpRight } from "lucide-react";
 
 export function Contact() {
   const contactLinks = [
     { label: "GitHub", href: site.socials.github, Icon: GitHubIcon },
     { label: "LinkedIn", href: site.socials.linkedin, Icon: LinkedInIcon },
-    { label: "Twitter", href: site.socials.twitter, Icon: TwitterIcon },
+    { label: "Google Scholar", href: site.socials.googleScholar, Icon: GoogleScholarIcon },
     { label: "Mail", href: site.socials.email || `mailto:${site.email}`, Icon: MailIcon },
     { label: "Medium", href: site.socials.medium, Icon: FileIcon },
   ];
