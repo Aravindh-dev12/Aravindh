@@ -1,4 +1,4 @@
-import { Mail, FileText, ArrowUpRight as ArrowUpRightBase } from "lucide-react";
+import { Mail, FileText, ArrowUpRight as ArrowUpRightBase, GraduationCap } from "lucide-react";
 
 type P = { className?: string };
 
