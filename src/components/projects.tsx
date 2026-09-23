@@ -134,9 +134,9 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
             <span className="font-mono text-xs text-neutral-500">{p.year}</span>
           </div>
 
-          <p className="mt-2 text-sm text-neutral-300 leading-relaxed">{p.blurb}</p>
+          <p className="mt-2 h-20 overflow-y-auto pr-1 text-sm text-neutral-300 leading-relaxed scrollbar-thin">{p.blurb}</p>
 
-          <div className="mt-4 flex flex-wrap gap-1.5">
+          <div className="mt-4 h-20 overflow-y-auto pr-1 flex flex-wrap content-start gap-1.5 scrollbar-thin">
             {p.stack.map((tech) => (
               <span
                 key={tech}
@@ -157,7 +157,7 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
         </div>
 
         <div>
-          <div className="mt-6 flex items-center justify-between gap-4">
+          <div className="mt-6 min-h-8 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 text-sm">
               {p.links.live && (
                 <a
@@ -208,7 +208,7 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
                 className="overflow-hidden"
               >
                 {p.story && (
-                  <div className="mt-3 max-h-36 overflow-y-auto border-t border-neutral-800 pt-3 pr-1">
+                  <div className="mt-3 h-36 overflow-y-auto border-t border-neutral-800 pt-3 pr-1 scrollbar-thin">
                     <div className="text-xs leading-relaxed text-neutral-400 space-y-1.5">
                       {p.story.split("\n\n").map((para, idx) => {
                         const isItalic = para.startsWith("*") && para.endsWith("*");
