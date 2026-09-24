@@ -290,6 +290,8 @@ export const site = {
     "TypeScript",
     "JavaScript",
     "React",
+    "Flutter",
+    "Dart",
     "Next.js",
     "Node.js",
     "Express.js",
