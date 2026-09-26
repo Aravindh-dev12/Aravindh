@@ -95,17 +95,8 @@ export const site = {
   ] as Education[],
   experience: [
     {
-      company: "Oeon OS",
-      role: "AI Research Fellow · Self-employed",
-      period: "May 2026 – Present",
-      bullets: [
-        "Conducting AI research focused on emerging artificial intelligence technologies and research-driven systems.",
-        "Exploring knowledge engineering, intelligent architectures, and practical applications of modern AI methods.",
-      ],
-    },
-    {
       company: "Nuclei Tech Solutions",
-      role: "Software Developer · Freelance",
+      role: "Software Developer · Part-time",
       period: "Dec 2025 – Present",
       bullets: [
         "Worked on acquiring and processing data from embedded devices to build local, on-premise ERP systems for enterprises.",
