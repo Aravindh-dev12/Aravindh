@@ -124,6 +124,19 @@ export const site = {
   ] as Job[],
   projects: [
     {
+      title: "Octic AI Agent",
+      blurb:
+        "Autonomous AI workforce platform for building agents that research, plan, use tools, orchestrate workflows, manage memory, and execute tasks across local or managed runtimes.",
+      stack: ["Python", "LLMs", "MCP", "RAG", "Multi-Agent", "AI"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/octic-Agent",
+      },
+      featured: true,
+      image: "https://opengraph.githubassets.com/1/Aravindh-dev12/octic-Agent",
+      categories: ["AI", "Backend"],
+    },
+    {
       title: "Oundnote",
       blurb:
         "Private, local-first AI meeting assistant for recording, transcription, speaker diarization, searchable meeting notes, and grounded AI workflows.",
