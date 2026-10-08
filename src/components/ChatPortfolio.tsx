@@ -295,12 +295,12 @@ export function ChatPortfolio() {
               <img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt={site.name} className="mb-6 h-16 w-16 rounded-full object-cover ring-1 ring-[var(--line)]" />
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">How can I help you explore Aravindh?</h1>
               <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--muted)]">Ask about a project, architecture, engineering decisions, experience, technologies, or choose a conversation below.</p>
-              <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">{prompts.slice(0, 6).map(([id, label]) => <button key={id} onClick={() => ask(label)} className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 text-left text-sm transition hover:-translate-y-0.5 hover:bg-[var(--hover)]"><span>{label}</span><span className="mt-2 block text-xs text-[var(--soft)]">Open conversation →</span></button>)}</div>
+              <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">{prompts.slice(0, 6).map(([id, label]) => <button key={id} onClick={() => ask(label)} className="rounded-[28px] border border-[var(--line)] bg-[var(--card)] p-5 text-left text-sm transition hover:-translate-y-0.5 hover:bg-[var(--hover)]"><span>{label}</span><span className="mt-2 block text-xs text-[var(--soft)]">Open conversation →</span></button>)}</div>
             </div>
           ) : (
             <div className="mx-auto w-full max-w-4xl space-y-8 px-5 py-8 pb-36">
               {messages.map((m) => m.role === "user" ? (
-                <div key={m.id} className="flex justify-end"><div className="max-w-[80%] rounded-3xl bg-[var(--chip)] px-4 py-3 text-sm leading-6">{m.text}</div></div>
+                <div key={m.id} className="flex justify-end"><div className="max-w-[80%] rounded-[28px] bg-[var(--chip)] px-5 py-3.5 text-sm leading-6 shadow-sm">{m.text}</div></div>
               ) : (
                 <div key={m.id} className="group flex gap-3"><img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</p>{!m.typing && <><SectionContent section={m.section} project={m.project} decision={m.decision} onDecision={ask} />{m.text && <MessageActions text={m.text} />}</>}</div></div>
               ))}
@@ -310,9 +310,9 @@ export function ChatPortfolio() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)] to-transparent px-4 pb-5 pt-10">
-          <form onSubmit={(e) => { e.preventDefault(); ask(input); }} className="mx-auto flex w-full max-w-4xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2 shadow-2xl">
+          <form onSubmit={(e) => { e.preventDefault(); ask(input); }} className="mx-auto flex w-full max-w-4xl items-center gap-2 rounded-[28px] border border-[var(--line)] bg-[var(--card)] p-2 shadow-2xl">
             <div className="relative">
-  <button type="button" title="Add portfolio context" onClick={() => setAttachOpen((v) => !v)} className="rounded-xl p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]">
+  <button type="button" title="Add portfolio context" onClick={() => setAttachOpen((v) => !v)} className="rounded-full p-2.5 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]">
     <Plus className="h-4 w-4" />
   </button>
   {attachOpen && (
