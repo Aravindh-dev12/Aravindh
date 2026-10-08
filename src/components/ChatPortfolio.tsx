@@ -254,14 +254,14 @@ export function ChatPortfolio() {
 
         <div className="flex-1 overflow-y-auto">
           {!started ? (
-            <div className="mx-auto flex min-h-full w-full max-w-3xl flex-col items-center justify-center px-5 pb-32 pt-10 text-center">
+            <div className="mx-auto flex min-h-full w-full max-w-4xl flex-col items-center justify-center px-5 pb-32 pt-10 text-center">
               <img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt={site.name} className="mb-6 h-16 w-16 rounded-full object-cover ring-1 ring-[var(--line)]" />
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">How can I help you explore Aravindh?</h1>
               <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--muted)]">Ask about a project, architecture, engineering decisions, experience, technologies, or choose a conversation below.</p>
               <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">{prompts.slice(0, 6).map(([id, label]) => <button key={id} onClick={() => ask(label)} className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 text-left text-sm transition hover:-translate-y-0.5 hover:bg-[var(--hover)]"><span>{label}</span><span className="mt-2 block text-xs text-[var(--soft)]">Open conversation →</span></button>)}</div>
             </div>
           ) : (
-            <div className="mx-auto w-full max-w-3xl space-y-8 px-5 py-8 pb-36">
+            <div className="mx-auto w-full max-w-4xl space-y-8 px-5 py-8 pb-36">
               {messages.map((m) => m.role === "user" ? (
                 <div key={m.id} className="flex justify-end"><div className="max-w-[80%] rounded-3xl bg-[var(--chip)] px-4 py-3 text-sm leading-6">{m.text}</div></div>
               ) : (
@@ -272,7 +272,7 @@ export function ChatPortfolio() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)] to-transparent px-4 pb-5 pt-10">
-          <form onSubmit={(e) => { e.preventDefault(); ask(input); }} className="mx-auto flex w-full max-w-3xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2 shadow-2xl">
+          <form onSubmit={(e) => { e.preventDefault(); ask(input); }} className="mx-auto flex w-full max-w-4xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2 shadow-2xl">
             <div className="relative">
   <button type="button" title="Add portfolio context" onClick={() => setAttachOpen((v) => !v)} className="rounded-xl p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]">
     <Plus className="h-4 w-4" />
@@ -297,7 +297,7 @@ export function ChatPortfolio() {
             <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Message Aravindh Portfolio..." className="min-w-0 flex-1 bg-transparent px-2 py-2.5 text-sm outline-none placeholder:text-[var(--soft)]" />
             <button type="submit" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[var(--fg)] text-[var(--bg)] disabled:opacity-40" disabled={!input.trim() || isTyping}><ArrowUp className="h-4 w-4" /></button>
           </form>
-          <p className="mx-auto mt-2 w-full max-w-3xl text-center text-[10px] text-[var(--soft)]">Portfolio chat · Explore projects, decisions, experience, and engineering work</p>
+          <p className="mx-auto mt-2 w-full max-w-4xl text-center text-[10px] text-[var(--soft)]">Portfolio chat · Explore projects, decisions, experience, and engineering work</p>
         </div>
       </section>
     </div>
