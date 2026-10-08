@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import {
   ArrowUp, Copy, ExternalLink, Github, Linkedin, Mail,
   Menu, Moon, PanelLeftClose, PanelLeftOpen, Plus, Share2, Sparkles,
-  Sun, Settings, SlidersHorizontal, Type, X
+  Sun, Settings, SlidersHorizontal, X
 } from "lucide-react";
 import { site } from "@/config/site";
 import { projectKnowledge } from "@/config/projectKnowledge";
@@ -200,8 +200,9 @@ export function ChatPortfolio() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [fontScale, setFontScale] = useState(1);
   const [dark, setDark] = useState(true);
+  const [themeOpen, setThemeOpen] = useState(false);
+  const [theme, setTheme] = useState("default");
   const [isTyping, setIsTyping] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -211,9 +212,23 @@ export function ChatPortfolio() {
   const started = messages.length > 0;
 
   useEffect(() => {
-    document.documentElement.style.fontSize = `${fontScale}rem`;
     document.documentElement.classList.toggle("light", !dark);
-  }, [fontScale, dark]);
+  }, [dark]);
+
+  const backgroundThemes = {
+    default: "",
+    aurora: "https://picsum.photos/seed/aravindh-aurora/2400/1600.webp",
+    ocean: "https://picsum.photos/seed/aravindh-ocean/2400/1600.webp",
+    forest: "https://picsum.photos/seed/aravindh-forest/2400/1600.webp",
+    minimal: "https://picsum.photos/seed/aravindh-minimal/2400/1600.webp",
+  } as const;
+
+  const applyTheme = (name: keyof typeof backgroundThemes) => {
+    setTheme(name);
+    if (name === "default") setDark(false);
+    else setDark(true);
+    setThemeOpen(false);
+  };
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -255,26 +270,20 @@ export function ChatPortfolio() {
         <p className="mb-2 mt-7 px-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--soft)]">Elsewhere</p>
         <div className="space-y-0.5">{[["GitHub", site.socials.github], ["LinkedIn", site.socials.linkedin], ["Google Scholar", site.socials.googleScholar]].map(([label, href]) => <a key={label} href={href} target="_blank" rel="noreferrer" className="block rounded-lg px-3 py-2.5 text-sm text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]">{label}</a>)}</div>
       </div>
-      <div className="relative border-t border-[var(--line)] p-3">
-        {settingsOpen && <div className="absolute bottom-16 left-3 right-3 z-30 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-3 shadow-2xl">
-          <p className="mb-3 px-2 text-xs font-semibold">Settings</p>
-          <button onClick={() => setDark((v) => !v)} className="flex w-full items-center justify-between rounded-xl px-2 py-2 text-sm hover:bg-[var(--hover)]"><span className="flex items-center gap-2">{dark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />} Theme</span><span className="text-xs text-[var(--muted)]">{dark ? "Dark" : "Light"}</span></button>
-          <div className="mt-1 rounded-xl px-2 py-2"><div className="mb-2 flex items-center gap-2 text-sm"><Type className="h-4 w-4" /> Font size</div><div className="flex gap-1">{[0.9, 1, 1.1, 1.2].map((size) => <button key={size} onClick={() => setFontScale(size)} className={`flex-1 rounded-lg px-2 py-1 text-xs ${fontScale === size ? "bg-[var(--fg)] text-[var(--bg)]" : "bg-[var(--chip)]"}`}>{Math.round(size * 100)}%</button>)}</div></div>
-        </div>}
+      <div className="border-t border-[var(--line)] p-3">
         <div className="flex items-center gap-2">
           <img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="h-9 w-9 rounded-full object-cover" />
           <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium">{site.name}</p><p className="truncate text-xs text-[var(--muted)]">{site.location}</p></div>
-          <button onClick={() => setSettingsOpen((v) => !v)} aria-label="Settings" className="rounded-lg p-2 hover:bg-[var(--hover)]"><Settings className="h-4 w-4" /></button>
         </div>
       </div>
     </aside>
-  ), [isTyping, settingsOpen, dark, fontScale]);
+  ), [isTyping, settingsOpen, dark]);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[var(--bg)] text-[var(--fg)]">
+    <div className="relative flex h-screen overflow-hidden bg-[var(--bg)] text-[var(--fg)]" style={backgroundThemes[theme as keyof typeof backgroundThemes] ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)), url(${backgroundThemes[theme as keyof typeof backgroundThemes]})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
       {sidebarOpen && <div className="hidden md:block">{sidebar}</div>}
       {mobileOpen && <div className="fixed inset-0 z-50 md:hidden"><button aria-label="Close sidebar" className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />{sidebar}</div>}
-      <section className="relative flex min-w-0 flex-1 flex-col">
+      <section className="relative flex min-h-0 min-w-0 flex-1 flex-col bg-[var(--bg)]/80 backdrop-blur-[1px]">
         <header className="flex h-14 shrink-0 items-center border-b border-[var(--line)] px-3 md:px-5">
           <button className="mr-2 rounded-lg p-2 hover:bg-[var(--hover)] md:hidden" onClick={() => setMobileOpen(true)}><Menu className="h-5 w-5" /></button>
           <button aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"} className="mr-2 hidden rounded-lg p-2 hover:bg-[var(--hover)] md:block" onClick={() => setSidebarOpen((v) => !v)}>{sidebarOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeftOpen className="h-4 w-4" />}</button>
@@ -336,6 +345,35 @@ export function ChatPortfolio() {
             <button type="submit" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[var(--fg)] text-[var(--bg)] disabled:opacity-40" disabled={!input.trim() || isTyping}><ArrowUp className="h-4 w-4" /></button>
           </form>
           <p className="mx-auto mt-2 w-full max-w-4xl text-center text-[10px] text-[var(--soft)]">Portfolio chat · Explore projects, decisions, experience, and engineering work</p>
+        </div>
+        <div className="fixed bottom-5 right-5 z-50">
+          {settingsOpen && (
+            <div className="absolute bottom-14 right-0 w-72 rounded-[24px] border border-[var(--line)] bg-[var(--card)]/95 p-3 shadow-2xl backdrop-blur-xl">
+              <p className="px-2 py-1 text-sm font-semibold">Customize</p>
+              <p className="px-2 pb-3 text-xs text-[var(--muted)]">Change the whole portfolio experience.</p>
+              <div className="mb-3 grid grid-cols-2 gap-2">
+                <button onClick={() => { setDark(false); setTheme("default"); }} className="rounded-2xl border border-[var(--line)] px-3 py-2.5 text-left text-xs hover:bg-[var(--hover)]"><Sun className="mb-1 h-4 w-4" />Light</button>
+                <button onClick={() => { setDark(true); setTheme("default"); }} className="rounded-2xl border border-[var(--line)] px-3 py-2.5 text-left text-xs hover:bg-[var(--hover)]"><Moon className="mb-1 h-4 w-4" />Dark</button>
+              </div>
+              <p className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--soft)]">Background themes</p>
+              <div className="grid grid-cols-2 gap-2">
+                {([["aurora","Aurora"],["ocean","Ocean"],["forest","Forest"],["minimal","Photo"]] as const).map(([id,label]) => (
+                  <button key={id} onClick={() => applyTheme(id)} className={`overflow-hidden rounded-2xl border text-left ${theme === id ? "border-[var(--fg)]" : "border-[var(--line)]"}`}>
+                    <img src={backgroundThemes[id]} alt="" className="h-16 w-full object-cover" />
+                    <span className="block px-2 py-1.5 text-xs">{label}</span>
+                  </button>
+                ))}
+              </div>
+              <div className="mt-3 border-t border-[var(--line)] pt-2">
+                {[["Privacy","Tell me about privacy"],["Help","How does this portfolio work?"],["Support","How can I support Aravindh?"]].map(([label,question]) => (
+                  <button key={label} onClick={() => { setSettingsOpen(false); ask(question); }} className="w-full rounded-xl px-2.5 py-2 text-left text-sm hover:bg-[var(--hover)]">{label}</button>
+                ))}
+              </div>
+            </div>
+          )}
+          <button onClick={() => setSettingsOpen((v) => !v)} aria-label="Open settings" className="grid h-11 w-11 place-items-center rounded-full border border-[var(--line)] bg-[var(--card)]/95 shadow-xl backdrop-blur-xl hover:bg-[var(--hover)]">
+            <Settings className="h-4 w-4" />
+          </button>
         </div>
       </section>
     </div>
