@@ -243,7 +243,9 @@ export const site = {
         "Client CRM product focused on practical customer-management workflows and an operational business interface.",
       stack: ["React", "CRM", "TypeScript", "Product UI"],
       year: "Client",
-      links: {},
+      links: {
+        source: "https://github.com/Aravindh-dev12/Nucleitech-CRM-App",
+      },
       categories: ["Fullstack"],
     },
   ] as Project[],
