@@ -176,7 +176,7 @@ export function ChatPortfolio() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [fontScale, setFontScale] = useState(1);
   const [dark, setDark] = useState(true);
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);\n  const [attachOpen, setAttachOpen] = useState(false);
   const nextId = useRef(1);
   const started = messages.length > 0;
 
@@ -268,7 +268,27 @@ export function ChatPortfolio() {
 
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)] to-transparent px-4 pb-5 pt-10">
           <form onSubmit={(e) => { e.preventDefault(); ask(input); }} className="mx-auto flex max-w-3xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2 shadow-2xl">
-            <button type="button" title="Add" className="hidden rounded-xl p-2 text-[var(--muted)] hover:bg-[var(--hover)] sm:block"><Plus className="h-4 w-4" /></button>
+            <div className="relative">
+  <button type="button" title="Add portfolio context" onClick={() => setAttachOpen((v) => !v)} className="rounded-xl p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]">
+    <Plus className="h-4 w-4" />
+  </button>
+  {attachOpen && (
+    <div className="absolute bottom-12 left-0 z-20 w-64 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2 shadow-2xl">
+      <p className="px-3 py-2 text-xs font-medium text-[var(--muted)]">Add to this conversation</p>
+      {[
+        ["Project context", "Explore a specific project"],
+        ["Resume / experience", "View work history"],
+        ["Writing", "Read technical articles"],
+        ["Contact", "Open ways to connect"],
+      ].map(([title, hint]) => (
+        <button key={title} type="button" onClick={() => { setAttachOpen(false); ask(hint); }} className="flex w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left hover:bg-[var(--hover)]">
+          <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-[var(--chip)] text-xs">+</span>
+          <span><span className="block text-sm">{title}</span><span className="block text-[11px] text-[var(--muted)]">{hint}</span></span>
+        </button>
+      ))}
+    </div>
+  )}
+</div>
             <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Message Aravindh Portfolio..." className="min-w-0 flex-1 bg-transparent px-2 py-2.5 text-sm outline-none placeholder:text-[var(--soft)]" />
             <button type="submit" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[var(--fg)] text-[var(--bg)] disabled:opacity-40" disabled={!input.trim() || isTyping}><ArrowUp className="h-4 w-4" /></button>
           </form>
