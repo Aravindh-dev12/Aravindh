@@ -4,6 +4,7 @@ const INDEX_ITEMS = [
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
   { id: "projects", label: "Projects" },
+  { id: "testimonials", label: "Testimonials" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "writing", label: "Writing" },
@@ -35,7 +36,7 @@ export function SideIndex() {
   }, []);
 
   return (
-    <aside className="fixed top-[26vh] left-[calc(50%+410px)] pointer-events-auto hidden xl:flex flex-col gap-3.5 z-30">
+    <aside className="fixed top-[26vh] left-[calc(50%+550px)] pointer-events-auto hidden xl:flex flex-col gap-3.5 z-30">
       <h3 className="font-mono text-[10px] font-bold tracking-[0.2em] text-[var(--soft)] uppercase mb-1">
         INDEX
       </h3>
