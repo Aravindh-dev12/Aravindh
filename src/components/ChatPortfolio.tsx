@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 import { site } from "@/config/site";
 
+const PROFILE_IMAGE = "/profile.jpeg?v=2";
+
 type ChatProject = (typeof site.projects)[number];
 type Message = {
   id: number;
@@ -186,7 +188,7 @@ export function ChatPortfolio() {
           <div className="mt-1 rounded-xl px-2 py-2"><div className="mb-2 flex items-center gap-2 text-sm"><Type className="h-4 w-4" /> Font size</div><div className="flex gap-1">{[0.9, 1, 1.1, 1.2].map((size) => <button key={size} onClick={() => setFontScale(size)} className={`flex-1 rounded-lg px-2 py-1 text-xs ${fontScale === size ? "bg-[var(--fg)] text-[var(--bg)]" : "bg-[var(--chip)]"}`}>{Math.round(size * 100)}%</button>)}</div></div>
         </div>}
         <div className="flex items-center gap-2">
-          <img src={site.profileImages[0]} alt="" className="h-9 w-9 rounded-full object-cover" />
+          <img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="h-9 w-9 rounded-full object-cover" />
           <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium">{site.name}</p><p className="truncate text-xs text-[var(--muted)]">{site.location}</p></div>
           <button onClick={() => setSettingsOpen((v) => !v)} aria-label="Settings" className="rounded-lg p-2 hover:bg-[var(--hover)]"><Settings className="h-4 w-4" /></button>
         </div>
@@ -213,7 +215,7 @@ export function ChatPortfolio() {
         <div className="flex-1 overflow-y-auto">
           {!started ? (
             <div className="mx-auto flex min-h-full w-full max-w-3xl flex-col items-center justify-center px-5 pb-32 pt-10 text-center">
-              <img src={site.profileImages[0]} alt={site.name} className="mb-6 h-16 w-16 rounded-full object-cover ring-1 ring-[var(--line)]" />
+              <img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt={site.name} className="mb-6 h-16 w-16 rounded-full object-cover ring-1 ring-[var(--line)]" />
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">How can I help you explore Aravindh?</h1>
               <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--muted)]">Ask about a project, architecture, engineering decisions, experience, technologies, or choose a path below.</p>
               <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">{prompts.slice(0, 6).map(([id, label]) => <button key={id} onClick={() => ask(label)} className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 text-left text-sm transition hover:-translate-y-0.5 hover:bg-[var(--hover)]"><span>{label}</span><span className="mt-2 block text-xs text-[var(--soft)]">Explore →</span></button>)}</div>
@@ -223,7 +225,7 @@ export function ChatPortfolio() {
               {messages.map((m) => m.role === "user" ? (
                 <div key={m.id} className="flex justify-end"><div className="max-w-[80%] rounded-3xl bg-[var(--chip)] px-4 py-3 text-sm leading-6">{m.text}</div></div>
               ) : (
-                <div key={m.id} className="flex gap-3"><img src={site.profileImages[0]} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</p>{!m.typing && <SectionContent section={m.section} project={m.project} decision={m.decision} onDecision={ask} />}</div></div>
+                <div key={m.id} className="flex gap-3"><img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</p>{!m.typing && <SectionContent section={m.section} project={m.project} decision={m.decision} onDecision={ask} />}</div></div>
               ))}
             </div>
           )}
