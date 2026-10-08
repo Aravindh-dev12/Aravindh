@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  ArrowUp, Check, ChevronDown, Copy, ExternalLink, Github, Linkedin, Mail,
+  ArrowUp, Copy, ExternalLink, Github, Linkedin, Mail,
   Menu, Moon, PanelLeftClose, PanelLeftOpen, Plus, Share2, Sparkles,
   Sun, Settings, SlidersHorizontal, Type, X
 } from "lucide-react";
@@ -109,11 +109,27 @@ function answerFor(input: string): Omit<Message, "id"> {
 
   return {
     role: "assistant",
-    text: "I can answer portfolio questions directly without an AI API. Try asking about a project, architecture, experience, skills, today's date, the current time, or just say hello.",
+    text: "I can help you navigate Aravindh's work, projects, engineering decisions, experience, and contact details. Try asking naturally — for example, “what did you build with CIEAV?”, “which project shows the strongest systems work?”, or “how can I contact you?”",
     section: "about",
   };
 }
 
+function MessageActions({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard?.writeText(text);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1400);
+    } catch {}
+  };
+  return (
+    <div className="mt-2 flex items-center gap-1 opacity-0 transition group-hover:opacity-100">
+      <button onClick={copy} className="rounded-md p-1.5 text-[var(--soft)] hover:bg-[var(--hover)] hover:text-[var(--fg)]" title="Copy response"><Copy className="h-3.5 w-3.5" /></button>
+      {copied && <span className="text-[11px] text-[var(--muted)]">Copied</span>}
+    </div>
+  );
+}
 function SectionContent({ section, project, decision, onDecision }: {
   section?: string; project?: ChatProject; decision?: Message["decision"]; onDecision: (value: string) => void;
 }) {
@@ -236,15 +252,15 @@ export function ChatPortfolio() {
             <div className="mx-auto flex min-h-full w-full max-w-3xl flex-col items-center justify-center px-5 pb-32 pt-10 text-center">
               <img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt={site.name} className="mb-6 h-16 w-16 rounded-full object-cover ring-1 ring-[var(--line)]" />
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">How can I help you explore Aravindh?</h1>
-              <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--muted)]">Ask about a project, architecture, engineering decisions, experience, technologies, or choose a path below.</p>
-              <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">{prompts.slice(0, 6).map(([id, label]) => <button key={id} onClick={() => ask(label)} className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 text-left text-sm transition hover:-translate-y-0.5 hover:bg-[var(--hover)]"><span>{label}</span><span className="mt-2 block text-xs text-[var(--soft)]">Explore →</span></button>)}</div>
+              <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--muted)]">Ask about a project, architecture, engineering decisions, experience, technologies, or choose a conversation below.</p>
+              <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">{prompts.slice(0, 6).map(([id, label]) => <button key={id} onClick={() => ask(label)} className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 text-left text-sm transition hover:-translate-y-0.5 hover:bg-[var(--hover)]"><span>{label}</span><span className="mt-2 block text-xs text-[var(--soft)]">Open conversation →</span></button>)}</div>
             </div>
           ) : (
             <div className="mx-auto w-full max-w-3xl space-y-8 px-5 py-8 pb-36">
               {messages.map((m) => m.role === "user" ? (
                 <div key={m.id} className="flex justify-end"><div className="max-w-[80%] rounded-3xl bg-[var(--chip)] px-4 py-3 text-sm leading-6">{m.text}</div></div>
               ) : (
-                <div key={m.id} className="flex gap-3"><img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</p>{!m.typing && <SectionContent section={m.section} project={m.project} decision={m.decision} onDecision={ask} />}</div></div>
+                <div key={m.id} className="group flex gap-3"><img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</p>{!m.typing && <><SectionContent section={m.section} project={m.project} decision={m.decision} onDecision={ask} />{m.text && <MessageActions text={m.text} />}</>}</div></div>
               ))}
             </div>
           )}
@@ -256,7 +272,7 @@ export function ChatPortfolio() {
             <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Message Aravindh Portfolio..." className="min-w-0 flex-1 bg-transparent px-2 py-2.5 text-sm outline-none placeholder:text-[var(--soft)]" />
             <button type="submit" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[var(--fg)] text-[var(--bg)] disabled:opacity-40" disabled={!input.trim() || isTyping}><ArrowUp className="h-4 w-4" /></button>
           </form>
-          <p className="mx-auto mt-2 max-w-3xl text-center text-[10px] text-[var(--soft)]">Aravindh Portfolio · Ask naturally about projects, architecture, decisions, experience, or skills</p>
+          <p className="mx-auto mt-2 max-w-3xl text-center text-[10px] text-[var(--soft)]">Portfolio chat · Explore projects, decisions, experience, and engineering work</p>
         </div>
       </section>
     </div>
