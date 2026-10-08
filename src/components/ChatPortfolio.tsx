@@ -6,6 +6,7 @@ import {
   Sun, Settings, SlidersHorizontal, Type, X
 } from "lucide-react";
 import { site } from "@/config/site";
+import { projectKnowledge } from "@/config/projectKnowledge";
 
 const PROFILE_IMAGE = "/profile.jpeg?v=2";
 
@@ -58,15 +59,23 @@ function answerFor(input: string, activeProject?: ChatProject): Omit<Message, "i
   }
 
   if (project) {
-    if (q.includes("architect") || q.includes("how") || q.includes("work") || q.includes("intern")) {
+    const knowledge = projectKnowledge[project.title];
+    const deepQuestion = /architect|how|work|built|build|code|stack|tech|security|privacy|data|flow|deploy|deployment|why|feature|capabilit|detail|explain|deep|internals|implementation|tradeoff|problem|solution|test|performance|database|api|model|ai|agent|memory|mcp|browser|audio|safety/i.test(q);
+    if (knowledge && deepQuestion) {
       return {
         role: "assistant",
-        text: `Here's how ${project.title} is structured: it combines ${project.stack.slice(0, 5).join(", ")} around a focused product workflow. The main boundary is the user/interface layer, followed by orchestration and AI/business logic, data or external tools, and verification where reliability matters.`,
+        text: `${project.title}\n\n${knowledge.depth}\n\nArchitecture\n${knowledge.architecture}\n\nCapabilities\n${knowledge.capabilities}\n\nEngineering\n${knowledge.engineering}`,
         section: "architecture",
         project,
       };
     }
-    return { role: "assistant", text: project.blurb, section: "project", project };
+    return {
+      role: "assistant",
+      text: project.blurb,
+      section: "project",
+      project,
+      decision: { title: "Explore this project", options: ["How it works", "Architecture", "Tech stack", "Data flow", "Security", "Deployment"] },
+    };
   }
 
   if (q.includes("cieav")) {
