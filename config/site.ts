@@ -8,15 +8,24 @@ export type Project = {
   featured?: boolean;
   status?: string;
   image?: string;
-  categories?: ("Frontend" | "Backend" | "Fullstack")[];
+  categories?: ("Frontend" | "Backend" | "Fullstack" | "AI")[];
 };
 
 export type Job = {
   company: string;
   role: string;
   period: string;
-  blurb: string;
+  blurb?: string;
+  bullets?: string[];
   url?: string;
+};
+
+export type Education = {
+  degree: string;
+  field: string;
+  institution: string;
+  location: string;
+  period: string;
 };
 
 export type Post = {
@@ -28,185 +37,251 @@ export type Post = {
 };
 
 export const site = {
-  name: "Anurag Jha",
-  url: "https://anuragdotdev.vercel.app",
-  profileImages: [
-    "/profile.png",
-    "/profile2.jpeg",
-  ],
-  bannerImage: "/banner.png",
+  name: "Aravindh B",
+  firstName: "Aravindh",
+  url: "https://aravindh-iota.vercel.app",
+  quote: {
+    text: "Simplicity is prerequisite for reliability.",
+    author: "Edsger W. Dijkstra",
+  },
+  profileImages: ["/profile.jpeg", "/profile2.jpeg"],
+  bannerImage: "/images/cover.jpg",
   socialBannerImage: "/social-banner.png",
-  initials: "AJ",
-  role: "Full Stack Developer",
-  location: "Delhi, India",
+  initials: "AB",
+  role: "Full Stack & AI Engineer",
+  location: "Bengaluru, India",
   timezone: "Asia/Kolkata",
-  email: "conveytoanurag@gmail.com",
-  greeting: "Hey, I'm Anurag",
-  tagline: "I build clean, modern websites and web apps where design, functionality, and even the smallest details matter.",
+  email: "aravindh1653@gmail.com",
+  greeting: "Hey, I'm Aravindh",
+  tagline:
+    "I build end-to-end products across modern web stacks and AI-powered systems, with a focus on clean engineering, strong UX, and reliable delivery.",
   about: [
-    "Hey, I'm Anurag, a full stack developer who loves building clean, modern websites and apps where design, functionality, and even the smallest details matter, with a focus on making products that are both practical and visually satisfying.",
-    "I spend most of my time in the terminal, the browser, or scribbling on a whiteboard. I lean backend,not because I don't like frontend, but because I enjoy making polished things actually hold up.",
+    "Hey, I'm Aravindh, a Full Stack & AI Engineer who enjoys building complete products, from polished interfaces and scalable APIs to intelligent features powered by modern AI.",
+    "I work across frontend, backend, databases, cloud infrastructure, and AI integrations, with a focus on systems that are useful, maintainable, and thoughtfully designed.",
     "I don't ship junk. Maintainability isn't optional. And I build best when I'm curious.",
   ],
   tldr: [
-    "Building products.",
-    "Learning technologies.",
+    "Building end-to-end products.",
+    "Exploring AI engineering.",
     "Shipping consistently.",
     "Obsessed with clean code.",
   ],
   status: {
     available: true,
     availableText: "open to opportunities",
-    nowLearning: "Backend Engineering • System Design • DSA • DevOps",
-    nowBuilding: "DoodleDash",
+    nowLearning: "AI Engineering • System Design • Full Stack Architecture • DevOps",
+    nowBuilding: "Agentic AI systems",
     nowListening: "focus playlists",
   },
   socials: {
-    github: "https://github.com/nodeanurag",
-    twitter: "https://x.com/anuragdotdev",
-    linkedin: "https://linkedin.com/in/nodeanurag",
-    email: "mailto:conveytoanurag@gmail.com",
-    resume: "",
-    discord: "https://discord.gg/ra4kyKdTk",
-    medium: "https://medium.com/@anuragdotdev",
+    github: "https://github.com/Aravindh-dev12",
+    linkedin: "https://www.linkedin.com/in/aravindhanb/",
+    googleScholar: "https://scholar.google.com/citations?hl=en&user=o-qnHb4AAAAJ",
+    email: "mailto:aravindh1653@gmail.com",
+    resume: "https://drive.google.com/file/d/1eJR2RSZysk11_ITz_iz11MnL-SmAE1kk/view",
+    medium: "https://medium.com/@aravindh1653",
   },
+  education: [
+    {
+      degree: "BE",
+      field: "Computer Science Engineering",
+      institution: "Chettinad College of Engineering and Technology",
+      location: "Karur, Tamil Nadu",
+      period: "Aug 2020 – Jun 2024",
+    },
+  ] as Education[],
   experience: [
     {
-      company: "Independent Developer",
-      role: "Frontend Developer",
-      period: "2025 — Present",
-      blurb:
-        "Built and deployed multiple SPAs & web applications. Engaged in competitive coding events like the Smart India Hackathon and HT codeathon.",
-      url: "",
+      company: "Nuclei Tech Solutions",
+      role: "Software Developer · Freelance",
+      period: "Jun 2026 – Present",
+      bullets: [
+        "Engineer data acquisition and processing workflows for embedded-device data used in local, on-premise ERP systems.",
+        "Developed a lightweight MLP-Mixer-based architecture designed for extensibility across multiple data modalities.",
+      ],
+    },
+    {
+      company: "Loam AI",
+      role: "AI Engineer",
+      period: "Feb 2026 – Jun 2026",
+      bullets: [
+        "Built and launched a full-stack B2B freight-forwarding product from scratch, delivering the MVP in five months while owning ideation, architecture, production readiness, and Agile execution.",
+        "Architected a modular application across frontend, backend, database, and integrations using React, Next.js, TypeScript, PostgreSQL, and Drizzle ORM.",
+        "Implemented RBAC authentication, transactional email workflows, guided onboarding, currency-conversion markups, PWA push notifications, and CI/CD pipelines.",
+        "Led a team of five, assigned engineering work, reviewed implementation direction, and mentored developers on clean code and Git workflows.",
+      ],
+    },
+    {
+      company: "Perspectiv Labs",
+      role: "Software Developer",
+      period: "Jul 2024 – Feb 2026",
+      bullets: [
+        "Architected modular full-stack systems using React, Next.js, TypeScript, PostgreSQL, and Drizzle ORM with maintainable service boundaries.",
+        "Built production features including RBAC authentication, email workflows, onboarding tours, currency-conversion markups, PWA push notifications, and deployment pipelines.",
+        "Delivered reusable frontend components, backend services, database models, APIs, and third-party integrations across the software-development lifecycle.",
+      ],
     },
   ] as Job[],
   projects: [
     {
-      title: "FrameLabs",
+      title: "Propecare Energy Care",
       blurb:
-        "A creative tool that turns static card generation into a reactive, real-time design experience. Users can switch between retro palettes and layouts on the fly, with zero jank—because every state transition is memoized and component-driven.",
-      story:
-        "The frontend is built with React's compositional model, styled atomically with Tailwind CSS, and powered by Zustand for predictable, lean state management. Icons from lucide-react keep the UI crisp and accessible. The result: a minimal surface area with a maximal creative ceiling.\n\n*Designed for speed \u2022 Engineered for feel.*",
-      stack: ["React.js", "Tailwind CSS", "Zustand", "lucide-react"],
-      year: "2026",
+        "Client renewable-energy EPC website covering EPC services, power evacuation, grid connectivity, transmission infrastructure, testing, commissioning, safety, quality, and O&M.",
+      stack: ["React", "TypeScript", "Vite", "React Router"],
+      year: "Client",
       links: {
-        live: "https://framelabs.vercel.app/",
-        source: "https://github.com/nodeanurag/FrameLabs",
+        live: "https://propcare-epc.vercel.app/",
+        source: "https://github.com/Aravindh-dev12/Propecare",
       },
       featured: true,
-      image: "/projects/framelabs.png",
       categories: ["Frontend"],
     },
     {
-      title: "DoodleDash",
+      title: "Reperto AI",
       blurb:
-        "A real-time multiplayer drawing and guessing game (Skribbl.io clone) built as a TypeScript monorepo with absolute dimension-independent drawing synchronization.",
-      story:
-        "Engineered using Socket.IO WebSockets for bidirectional event mapping. Features a zero-trust server validation engine (timers, guessing logic, turn loops managed strictly on the server), spectator rooms, and a custom canvas-to-image engine for client-side PNG sharing. Strikethroughs and drawing vectors are normalized to relative coordinates to ensure cross-device consistency.",
-      stack: ["React.js", "Node.js", "Socket.IO", "TypeScript", "Tailwind CSS v4", "Zustand"],
-      year: "2026",
+        "Client medical assistant built with Expo React Native and FastAPI for English/Hinglish complaint capture, rubric suggestions, and guided clinical follow-up.",
+      stack: ["React Native", "Expo", "FastAPI", "NLP", "OpenAI"],
+      year: "Client",
       links: {
-        live: "https://doodledash.pages.dev/",
-        source: "https://github.com/nodeanurag/DoodleDash",
+        source: "https://github.com/Aravindh-dev12/Reperto-AI-App",
       },
       featured: true,
-      image: "/projects/doodledash.png",
-      categories: ["Fullstack", "Backend"],
+      categories: ["AI", "Fullstack"],
     },
     {
-      title: "CodeForge",
+      title: "Hallucination-Resistant LLM",
       blurb:
-        "A local-first browser-based IDE offering full Monaco editing, in-browser code execution for JS/Python/TS, sandboxed previews, and IndexedDB workspace persistence.",
-      story:
-        "Engineered to run entirely client-side without servers. Integrates Monaco Editor models with dynamic Web Workers and Pyodide runtimes. Features resizable panel split layouts, instant sandboxed iframe live-previews for web files, Dexie-powered IndexedDB database state management, workspace-wide text search, and URL-encoded code snippets sharing.",
-      stack: ["React.js", "Vite", "Zustand", "Monaco Editor", "Pyodide", "Dexie.js"],
+        "Retrieval-and-verification LLM pipeline combining open-web search, RAG, LoRA refinement, vector retrieval, and entailment-based claim verification.",
+      stack: ["Python", "RAG", "Searx", "Scrapy", "LoRA"],
       year: "2026",
       links: {
-        source: "https://github.com/nodeanurag/codeforge",
+        live: "https://huggingface.co/spaces/Aravindhan11/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier_ensemble",
+        source: "https://github.com/Aravindh-dev12/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier",
       },
       featured: true,
-      status: "In Progress",
-      image: "/projects/codeforge.png",
-      categories: ["Frontend"],
+      image: "/projects/hallucination.png",
+      categories: ["AI", "Backend"],
     },
     {
-      title: "SwiftPoll",
+      title: "CIEAV / Oeon Commit Layer",
       blurb:
-        "A real-time anonymous polling application built for maximum creation and voting speed without user registration friction.",
-      story:
-        "Uses Supabase Realtime DB and server actions for lightning-fast voting updates and creator actions. Features browser-stored secret admin tokens for accountless close/delete operations, server-side IP hashing spam de-duplication, full keyboard accessibility, and optimistic client voting counts.",
-      stack: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS v4", "Zod", "Vitest"],
+        "Local-first commit layer for consequential digital actions with deterministic safety policy, privacy reduction, outcome verification, signed receipts, and undo.",
+      stack: ["Node.js", "Python", "Chrome", "Ed25519", "IBM Granite"],
       year: "2026",
       links: {
-        source: "https://github.com/nodeanurag/swiftpoll",
+        live: "https://oeonai.com",
+        source: "https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet",
       },
-      featured: false,
+      featured: true,
+      image: "/projects/cieav.png",
+      categories: ["AI", "Fullstack", "Backend"],
+    },
+    {
+      title: "NeuroSymbolic Meta-Reasoning Agent",
+      blurb:
+        "Reasoning agent combining local LLM routing, symbolic solvers, memory, hierarchical planning, recursive critique, and safety checks.",
+      stack: ["Python", "Ollama", "Z3", "SymPy", "Gradio"],
+      year: "2026",
+      links: {
+        live: "https://huggingface.co/spaces/Aravindhan11/NeuroSymbolic-Meta-Reasoner",
+        source: "https://github.com/Aravindh-dev12/NeuroSymbolic-meta-reasoning-agent",
+      },
+      featured: true,
+      image: "/projects/neurosymbolic.png",
+      categories: ["AI", "Backend"],
+    },
+    {
+      title: "Looca Voice AI Agent",
+      blurb:
+        "Full-stack voice-first AI platform with retrieval memory, tool execution, authentication, and intelligent service workflows.",
+      stack: ["Next.js", "FastAPI", "PostgreSQL", "Qdrant", "VAPI"],
+      year: "2026",
+      links: {
+        live: "https://looca-voice-ai-agent.onrender.com",
+        source: "https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent",
+      },
+      image: "/projects/looca.png",
+      categories: ["AI", "Fullstack"],
+    },
+    {
+      title: "LWM Fabricator",
+      blurb:
+        "MCP and multi-agent operating architecture built around world-model planning, dynamic DAGs, tool execution, and safety controls.",
+      stack: ["Python", "MCP", "PyTorch", "JEPA", "Multi-Agent"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/lwm-fabricator-modelNeural-Execution-and-Unified-Systems-Fabrication-Operating-Architecture",
+      },
       status: "In Progress",
-      image: "/projects/swiftpoll.png",
+      categories: ["AI", "Backend"],
+    },
+    {
+      title: "Distributed Transformer Training Framework",
+      blurb:
+        "Transformer training framework work covering distributed execution patterns including tensor and pipeline parallelism.",
+      stack: ["Python", "PyTorch", "Transformers", "Distributed Training"],
+      year: "2024",
+      links: {
+        source: "https://github.com/Aravindh-dev12/Distributed-Transformer-Training-Framework",
+      },
+      categories: ["AI", "Backend"],
+    },
+    {
+      title: "Autonomous Voice Reasoning Agent",
+      blurb:
+        "Voice-first agent system combining ASR, LLM reasoning, tool use, function calling, and orchestration.",
+      stack: ["TypeScript", "LLM", "ASR", "TTS", "Tool Use"],
+      year: "2024",
+      links: {
+        source: "https://github.com/Aravindh-dev12/Autonomous-Voice-Reasoning-Agent",
+      },
+      categories: ["AI", "Fullstack"],
+    },
+    {
+      title: "NucleiTech CRM",
+      blurb:
+        "Client CRM product focused on practical customer-management workflows and an operational business interface.",
+      stack: ["React", "CRM", "TypeScript", "Product UI"],
+      year: "Client",
+      links: {},
       categories: ["Fullstack"],
-    },
-    {
-      title: "Nexus",
-      blurb:
-        "A workspace-based project management app featuring kanban boards, real-time activity tracking, nodemailer notifications, and robust team collaboration.",
-      story:
-        "Built to mimic enterprise collaboration canvases. Employs Next-Auth for role-based authentication, TanStack Query for caching and server synchronization, Recharts for team productivity insights, and @dnd-kit for seamless drag-and-drop workflow task transitions. Backed by a clean PostgreSQL database schema via Prisma.",
-      stack: ["Next.js", "Prisma", "PostgreSQL", "React Query", "@dnd-kit", "Next-Auth"],
-      year: "2026",
-      links: {
-        source: "https://github.com/nodeanurag/nexus",
-      },
-      featured: false,
-      status: "In Progress",
-      image: "/projects/nexus.png",
-      categories: ["Fullstack", "Backend"],
-    },
-    {
-      title: "AlumniConnect",
-      blurb:
-        "A white-label, production-ready alumni newsletter builder built entirely on @unlayer/react-email-editor.",
-      story:
-        "One React application renders a custom email client simulator, a responsive web portal, and a print-tuned PDF engine — and exports straight to Unlayer design JSON. It features a drag-and-drop editor canvas, live client simulator preview, and exports to Email-safe HTML, Dynamic JSON Layout, and A4 PDF Document.",
-      stack: ["React.js", "Unlayer", "TypeScript", "Tailwind CSS"],
-      year: "2026",
-      links: {
-        source: "https://github.com/nodeanurag/alumniconnect",
-      },
-      featured: false,
-      image: "/projects/alumniconnect.png",
-      categories: ["Frontend"],
     },
   ] as Project[],
   skills: [
     "TypeScript",
     "JavaScript",
     "React",
+    "React Native",
     "Next.js",
     "Node.js",
-    "Express.js",
+    "FastAPI",
     "Tailwind CSS",
-    "Shadcn UI",
     "PostgreSQL",
     "MongoDB",
-    "Prisma",
-    "Supabase",
-    "Firebase",
-    "REST APIs",
-    "JWT",
+    "Redis",
+    "Qdrant",
+    "RAG",
+    "LLMs",
+    "LoRA/PEFT",
+    "Transformers",
+    "MCP",
+    "Multi-Agent Systems",
+    "PyTorch",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "GCP",
     "Git",
     "GitHub",
-    "Postman",
     "Vercel",
-    "Figma",
-    "C++",
     "Python",
   ],
   writing: [] as Post[],
   github: {
-    username: "nodeanurag",
+    username: "Aravindh-dev12",
     contributionsLastYear: "500+",
   },
-  footerNote: "Built with ❤️ and hardwork "
+  footerNote: "Built with ❤️ and hard work",
 } as const;
 
 export type Site = typeof site;
