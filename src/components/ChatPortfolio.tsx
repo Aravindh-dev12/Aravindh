@@ -217,10 +217,15 @@ export function ChatPortfolio() {
 
   const backgroundThemes = {
     default: "",
-    aurora: "https://picsum.photos/seed/aravindh-aurora/2400/1600.webp",
-    ocean: "https://picsum.photos/seed/aravindh-ocean/2400/1600.webp",
-    forest: "https://picsum.photos/seed/aravindh-forest/2400/1600.webp",
-    minimal: "https://picsum.photos/seed/aravindh-minimal/2400/1600.webp",
+    aurora: "https://w.wallhaven.cc/full/m3/wallhaven-m3m2zm.png",
+    moonlight: "https://images.hdqwalls.com/wallpapers/moon-beams-it.jpg?dl=1",
+    purpleOcean: "https://wallpaperbat.com/img/47435-download-purple-ocean-horizon-mountains-minimal-art-wallpaper.jpg",
+    synthwave: "https://wallpapercrafter.com/desktop/128065-digital-art-artwork-planet-concept-art-mountains-landscape-skyscape-Retrowave-vaporwave-synthwave-pyramid-reflection-purple-cyan-blue-lines-stars-space-galaxy-universe.jpg",
+    neonMountains: "https://rare-gallery.com/uploads/posts/1227979-night.jpg",
+    neonPeaks: "https://mcdn.wallpapersafari.com/medium/16/0/KbA4NW.jpg",
+    pastelMountains: "https://rare-gallery.com/uploads/posts/358436-4k-wallpaper.jpg",
+    cosmic: "https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS92aWRlb3MvaW1hZ2VzL3dlYnNpdGVfdmlkZW9zLzIwMjUtMDMvdmRvLTI4MDIyNS1rdTQtcy0wMjcuanBn.jpg",
+    retroNight: "https://media.wallpaperengine.space/posters/v1/retro-night.webp",
   } as const;
 
   const applyTheme = (name: keyof typeof backgroundThemes) => {
@@ -259,7 +264,7 @@ export function ChatPortfolio() {
   };
 
   const sidebar = useMemo(() => (
-    <aside className="flex h-full w-[280px] shrink-0 flex-col border-r border-[var(--line)] bg-[var(--bg)]">
+    <aside className="flex h-full w-[280px] shrink-0 flex-col border-r border-[var(--line)] bg-[var(--bg)]/85 backdrop-blur-xl">
       <div className="flex items-center justify-between p-3">
         <button onClick={() => { setMessages([]); activeProjectRef.current = undefined; setMobileOpen(false); }} className="flex items-center gap-2 rounded-xl px-2.5 py-2 text-sm font-medium hover:bg-[var(--hover)]"><Sparkles className="h-4 w-4" /> New chat</button>
         <button onClick={() => setMobileOpen(false)} className="rounded-lg p-2 hover:bg-[var(--hover)] md:hidden"><X className="h-4 w-4" /></button>
@@ -356,10 +361,14 @@ export function ChatPortfolio() {
                 <button onClick={() => { setDark(true); setTheme("default"); }} className="rounded-2xl border border-[var(--line)] px-3 py-2.5 text-left text-xs hover:bg-[var(--hover)]"><Moon className="mb-1 h-4 w-4" />Dark</button>
               </div>
               <p className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--soft)]">Background themes</p>
-              <div className="grid grid-cols-2 gap-2">
-                {([["aurora","Aurora"],["ocean","Ocean"],["forest","Forest"],["minimal","Photo"]] as const).map(([id,label]) => (
-                  <button key={id} onClick={() => applyTheme(id)} className={`overflow-hidden rounded-2xl border text-left ${theme === id ? "border-[var(--fg)]" : "border-[var(--line)]"}`}>
-                    <img src={backgroundThemes[id]} alt="" className="h-16 w-full object-cover" />
+              <div className="grid max-h-[420px] grid-cols-2 gap-2 overflow-y-auto pr-1">
+                {([
+                  ["default","Clean"], ["aurora","Aurora"], ["moonlight","Moonlight"], ["purpleOcean","Purple Ocean"],
+                  ["synthwave","Synthwave"], ["neonMountains","Neon Mountains"], ["neonPeaks","Neon Peaks"],
+                  ["pastelMountains","Pastel"], ["cosmic","Cosmic"], ["retroNight","Retro Night"]
+                ] as const).map(([id,label]) => (
+                  <button key={id} onClick={() => applyTheme(id)} className={`overflow-hidden rounded-2xl border text-left transition hover:-translate-y-0.5 ${theme === id ? "border-[var(--fg)] ring-1 ring-[var(--fg)]/20" : "border-[var(--line)]"}`}>
+                    {id === "default" ? <div className="h-16 w-full bg-[var(--bg)]" /> : <img src={backgroundThemes[id]} alt="" className="h-16 w-full object-cover" />}
                     <span className="block px-2 py-1.5 text-xs">{label}</span>
                   </button>
                 ))}
