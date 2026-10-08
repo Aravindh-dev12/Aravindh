@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowUp, ExternalLink, Github, Linkedin, Mail, Menu, PanelLeftClose, PanelLeftOpen, Sparkles } from "lucide-react";
 import { site } from "@/config/site";
 
@@ -75,7 +75,6 @@ export function ChatPortfolio() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
   const nextId = useRef(1);
-  const bottomRef = useRef<HTMLDivElement>(null);
   const started = messages.length > 0;
 
   const ask = (value: string) => {
