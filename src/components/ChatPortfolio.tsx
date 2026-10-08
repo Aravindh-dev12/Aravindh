@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
-import { ArrowUp, ExternalLink, Github, Linkedin, Mail, Menu, X } from "lucide-react";
-import { site, type Project } from "@/config/site";
+import { useMemo, useRef, useState } from "react";
+import { ArrowUp, ExternalLink, Github, Linkedin, Mail, Menu, PanelLeftClose, PanelLeftOpen, Sparkles } from "lucide-react";
+import { site } from "@/config/site";
 
-type Message = { role: "user" | "assistant"; text?: string; section?: string; project?: Project };
+type ChatProject = (typeof site.projects)[number];
+type Message = { id: number; role: "user" | "assistant"; text?: string; section?: string; project?: ChatProject; typing?: boolean };
 
 const prompts = [
   ["about", "Tell me about Aravindh"],
@@ -13,7 +14,7 @@ const prompts = [
   ["contact", "How can I contact you?"],
 ];
 
-function answerFor(input: string): Message {
+function answerFor(input: string): Omit<Message, "id"> {
   const q = input.toLowerCase();
   if (q.includes("cieav")) {
     const project = site.projects.find((p) => p.title === "CIEAV");
@@ -34,7 +35,7 @@ function answerFor(input: string): Message {
   return { role: "assistant", text: site.about[0], section: "about" };
 }
 
-function SectionContent({ section, project }: { section?: string; project?: Project }) {
+function SectionContent({ section, project }: { section?: string; project?: ChatProject }) {
   if (project) {
     return (
       <div className="mt-4 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)]">
@@ -71,7 +72,32 @@ export function ChatPortfolio() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isTyping, setIsTyping] = useState(false);
+  const nextId = useRef(1);
+  const bottomRef = useRef<HTMLDivElement>(null);
   const started = messages.length > 0;
+
+  const ask = (value: string) => {
+    const text = value.trim();
+    if (!text || isTyping) return;
+    const answer = answerFor(text);
+    const userId = nextId.current++;
+    const assistantId = nextId.current++;
+    setMessages((m) => [...m, { id: userId, role: "user", text }, { id: assistantId, role: "assistant", text: "", typing: true, section: answer.section, project: answer.project }]);
+    setInput("");
+    setIsTyping(true);
+    const fullText = answer.text || "I can help with that.";
+    let index = 0;
+    const timer = window.setInterval(() => {
+      index = Math.min(fullText.length, index + Math.max(1, Math.ceil(fullText.length / 70)));
+      setMessages((m) => m.map((msg) => msg.id === assistantId ? { ...msg, text: fullText.slice(0, index), typing: index < fullText.length } : msg));
+      if (index >= fullText.length) {
+        window.clearInterval(timer);
+        setIsTyping(false);
+      }
+    }, 22);
+  };
 
   const sidebar = useMemo(() => (
     <aside className="flex h-full w-[280px] shrink-0 flex-col border-r border-[var(--line)] bg-[var(--bg)]">
@@ -82,7 +108,7 @@ export function ChatPortfolio() {
       <div className="flex-1 overflow-y-auto p-4">
         <p className="mb-3 px-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--soft)]">Index</p>
         <div className="space-y-1">
-          {prompts.map(([id, label]) => <button key={id} onClick={() => { setMessages((m) => [...m, { role: "user", text: label }, answerFor(label)]); setMobileOpen(false); }} className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-[var(--muted)] transition hover:bg-[var(--hover)] hover:text-[var(--fg)]">{label}</button>)}
+          {prompts.map(([id, label]) => <button key={id} onClick={() => { ask(label); setMobileOpen(false); }} className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-[var(--muted)] transition hover:bg-[var(--hover)] hover:text-[var(--fg)]">{label}</button>)}
         </div>
         <p className="mb-3 mt-8 px-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--soft)]">Elsewhere</p>
         <div className="space-y-1">
@@ -98,23 +124,16 @@ export function ChatPortfolio() {
         </div>
       </div>
     </aside>
-  ), []);
-
-  const send = (value = input) => {
-    const text = value.trim();
-    if (!text) return;
-    setMessages((m) => [...m, { role: "user", text }, answerFor(text)]);
-    setInput("");
-  };
+  ), [isTyping]);
 
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--bg)] text-[var(--fg)]">
-      <div className="hidden md:block">{sidebar}</div>
+      {sidebarOpen && <div className="hidden md:block">{sidebar}</div>}
       {mobileOpen && <div className="fixed inset-0 z-50 md:hidden"><button className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />{sidebar}</div>}
       <section className="relative flex min-w-0 flex-1 flex-col">
         <header className="flex h-14 shrink-0 items-center border-b border-[var(--line)] px-4 md:px-6">
-          <button className="mr-3 rounded-lg p-2 hover:bg-[var(--hover)] md:hidden" onClick={() => setMobileOpen(true)}><Menu className="h-5 w-5" /></button>
-          <div className="text-sm font-medium">{started ? "Aravindh · Portfolio" : "Aravindh B"}</div>
+          <button className="mr-2 rounded-lg p-2 hover:bg-[var(--hover)] md:hidden" onClick={() => setMobileOpen(true)}><Menu className="h-5 w-5" /></button><button aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"} className="mr-2 hidden rounded-lg p-2 hover:bg-[var(--hover)] md:block" onClick={() => setSidebarOpen((v) => !v)}>{sidebarOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeftOpen className="h-4 w-4" />}</button>
+          <div className="text-sm font-medium"><> <Sparkles className="inline h-4 w-4 text-[var(--muted)]" /> Aravindh Portfolio </></div>
           <div className="ml-auto flex items-center gap-3 text-xs text-[var(--muted)]"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Open to opportunities</div>
         </header>
 
@@ -124,25 +143,25 @@ export function ChatPortfolio() {
               <img src={site.profileImages[0]} alt={site.name} className="mb-6 h-16 w-16 rounded-full object-cover ring-1 ring-[var(--line)]" />
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Hey, I'm Aravindh.</h1>
               <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--muted)]">Ask me anything about my work, projects, experience, skills, or how to get in touch.</p>
-              <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">{prompts.slice(0, 4).map(([id, label]) => <button key={id} onClick={() => { setMessages([{ role: "user", text: label }, answerFor(label)]); }} className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 text-left text-sm transition hover:-translate-y-0.5 hover:bg-[var(--hover)]"><span className="text-[var(--muted)]">{label}</span><span className="mt-2 block text-xs text-[var(--soft)]">Ask Aravindh →</span></button>)}</div>
+              <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">{prompts.slice(0, 4).map(([id, label]) => <button key={id} onClick={() => ask(label)} className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 text-left text-sm transition hover:-translate-y-0.5 hover:bg-[var(--hover)]"><span className="text-[var(--muted)]">{label}</span><span className="mt-2 block text-xs text-[var(--soft)]">Ask Aravindh →</span></button>)}</div>
             </div>
           ) : (
             <div className="mx-auto w-full max-w-3xl space-y-8 px-5 py-8 pb-36">
               {messages.map((m, i) => m.role === "user" ? (
-                <div key={i} className="flex justify-end"><div className="max-w-[80%] rounded-3xl bg-[var(--chip)] px-4 py-3 text-sm leading-6">{m.text}</div></div>
+                <div key={m.id} className="flex justify-end"><div className="max-w-[80%] rounded-3xl bg-[var(--chip)] px-4 py-3 text-sm leading-6">{m.text}</div></div>
               ) : (
-                <div key={i} className="flex gap-3"><img src={site.profileImages[0]} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="text-sm leading-7">{m.text}</p><SectionContent section={m.section} project={m.project} /></div></div>
+                <div key={i} className="flex gap-3"><img src={site.profileImages[0]} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</p>{!m.typing && <SectionContent section={m.section} project={m.project} />}</div></div>
               ))}
             </div>
           )}
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)] to-transparent px-4 pb-5 pt-10">
-          <form onSubmit={(e) => { e.preventDefault(); send(); }} className="mx-auto flex max-w-3xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2 shadow-2xl">
-            <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask anything about Aravindh..." className="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-sm outline-none placeholder:text-[var(--soft)]" />
-            <button type="submit" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[var(--fg)] text-[var(--bg)] disabled:opacity-40" disabled={!input.trim()}><ArrowUp className="h-4 w-4" /></button>
+          <form onSubmit={(e) => { e.preventDefault(); ask(input); }} className="mx-auto flex max-w-3xl items-center gap-2 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2 shadow-2xl">
+            <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Message Aravindh Portfolio..." className="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-sm outline-none placeholder:text-[var(--soft)]" />
+            <button type="submit" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[var(--fg)] text-[var(--bg)] disabled:opacity-40" disabled={!input.trim() || isTyping}><ArrowUp className="h-4 w-4" /></button>
           </form>
-          <p className="mx-auto mt-2 max-w-3xl text-center text-[10px] text-[var(--soft)]">Portfolio assistant · answers are based on Aravindh's profile data</p>
+          <p className="mx-auto mt-2 max-w-3xl text-center text-[10px] text-[var(--soft)]">Aravindh Portfolio · Ask about projects, experience, skills, CIEAV, or contact</p>
         </div>
       </section>
     </div>
