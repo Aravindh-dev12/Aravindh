@@ -97,15 +97,15 @@
 /*  Onyx Theme CSS Variables                                          */
 /* ------------------------------------------------------------------ */
 :root {
-  --bg: #D9D7D6;
-  --fg: #18181b;
-  --muted: #52525b;
-  --soft: #71717a;
-  --line: rgba(24, 24, 27, 0.12);
-  --stripe: rgba(24, 24, 27, 0.055);
-  --hover: rgba(24, 24, 27, 0.045);
-  --card: #e0dedd;
-  --chip: #cfcdcc;
+  --bg: #0a0a0a;
+  --fg: #f5f5f4;
+  --muted: #a1a1aa;
+  --soft: #63636b;
+  --line: rgba(255, 255, 255, 0.10);
+  --stripe: rgba(255, 255, 255, 0.055);
+  --hover: rgba(255, 255, 255, 0.05);
+  --card: #101010;
+  --chip: #161616;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-sans: 'Amiamie', 'Inter', system-ui, sans-serif;
   --font-amiamie-round: 'Amiamie-Round', sans-serif;
