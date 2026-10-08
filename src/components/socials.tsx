@@ -29,8 +29,8 @@ const hoverCardsData: Record<string, {
   bannerText: string;
 }> = {
   github: {
-    handle: "@nodeanurag",
-    bio: "Full Stack Developer. Building products, learning technologies, shipping consistently. Obsessed with clean code.",
+    handle: "@Aravindh-dev12",
+    bio: "Full Stack & AI Engineer. Building production AI systems and full-stack products with an emphasis on clean engineering.",
     stats: ["5+ Projects", "500+ Contributions"],
     bannerText: "learn • build • ship",
   },
@@ -42,34 +42,28 @@ const hoverCardsData: Record<string, {
   },
   linkedin: {
     pronouns: "He/Him",
-    handle: "in/nodeanurag",
-    bio: "Frontend & Backend Developer. Experienced in React, Next.js, Node.js, and database systems.",
+    handle: "in/aravindhanb",
+    bio: "Full Stack & AI Engineer working across React, Next.js, Python, AI/ML systems, and production infrastructure.",
     stats: ["Open to Work", "Delhi, India"],
     bannerText: "network • build • impact",
   },
   medium: {
-    handle: "@anuragdotdev",
-    bio: "Writing technical articles about software development, system design, React, and backend architecture.",
+    handle: "@aravindh1653",
+    bio: "Writing about AI engineering, LLM systems, software architecture, and practical product development.",
     stats: ["Tech Articles", "Blog Posts"],
     bannerText: "write • share • read",
   },
   email: {
-    handle: "conveytoanurag@gmail.com",
-    bio: "Available for contract work, internship opportunities, and collaborative software engineering projects.",
+    handle: "aravindh1653@gmail.com",
+    bio: "Available for engineering collaborations, product development, and AI/ML systems work.",
     stats: ["Fast Response", "Direct Email"],
     bannerText: "collab • contact • direct",
   },
   resume: {
     handle: "Curriculum Vitae",
-    bio: "View academic records, developer skills, and internship details.",
+    bio: "View experience, skills, projects, and education.",
     stats: ["PDF Resume", "1-Page CV"],
     bannerText: "skills • experience • cv",
-  },
-  discord: {
-    handle: "anurag.dev",
-    bio: "Join my server or drop a DM to chat about web dev, coding challenges, or side projects.",
-    stats: ["Developer Chat", "Active DM"],
-    bannerText: "hangout • chat • code",
   },
 };
 
