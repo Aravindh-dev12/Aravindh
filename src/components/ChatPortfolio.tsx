@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowUp, Copy, ExternalLink, Github, Linkedin, Mail,
-  Menu, Moon, PanelLeftClose, PanelLeftOpen, Plus, Share2, Sparkles,
+  Menu, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Plus, Share2, Sparkles,
   Sun, Settings, SlidersHorizontal, Type, X
 } from "lucide-react";
 import { site } from "@/config/site";
@@ -244,7 +244,7 @@ export function ChatPortfolio() {
           <div className="ml-auto flex items-center gap-0.5">
             <a href={site.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Github className="h-4 w-4" /></a>
             <a href={site.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Linkedin className="h-4 w-4" /></a>
-            <button type="button" aria-label="Discord" title="Discord" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><span className="text-sm leading-none">◉</span></button>
+            <button type="button" aria-label="Discord" title="Discord" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><MessageCircle className="h-4 w-4" /></button>
             <a href={site.socials.email} aria-label="Email" title="Email" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Mail className="h-4 w-4" /></a>
           </div>
         </header>
