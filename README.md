@@ -1,6 +1,6 @@
 # Aravindh B - Full Stack AI Engineer Portfolio
 
-A high-performance, responsive personal portfolio for a Full Stack AI Engineer, built with React, Vite, Tailwind CSS, and TypeScript. It showcases end-to-end product engineering, AI systems, experience, projects, technical skills, and a recruiter-ready PDF resume.
+A production-focused portfolio for Aravindh B, showcasing AI/ML systems, full-stack products, client deliveries, professional experience, education, research, and technical writing.
 
 ## Resume
 
@@ -27,7 +27,7 @@ The editable/printable HTML resume source is also kept at [`/resume.html`](./pub
 - **Interactive GitHub Contributions Matrix:** Asynchronous heatmap fetching live contribution levels directly from the GitHub API using a custom React hook, displayed in a responsive 7-row calendar grid.
 - **Fading Quotes Rotator:** An interactive inspiration panel in the footer cycling through selected quotes with custom fading transitions.
 - **Animated Bat Cursor Follower:** A lightweight inline-SVG bat with flapping wings, smooth swooping pursuit, directional rotation, idle circling, and reduced-motion support that follows the user's pointer across the site.
-- **Konami Code Easter Egg:** Listening for classic trigger keys ("anurag", "jha", or the classic Konami sequence) to activate interactive falling confetti achievements.
+- **Konami Code Easter Egg:** A small interactive easter egg triggered by the portfolio key sequence.
 - **Writing / Blog Integration:** Centered grid writing section displaying technical essays and system architecture reviews synced directly to Medium.
 
 ## Getting Started
