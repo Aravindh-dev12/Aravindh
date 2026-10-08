@@ -124,6 +124,19 @@ export const site = {
   ] as Job[],
   projects: [
     {
+      title: "openDev",
+      blurb:
+        "Local autonomous company operator for trustworthy back-office automation, combining local LLMs, browser control, company procedures, deterministic policy guardrails, audit trails, and independent verification.",
+      stack: ["Python", "Qwen", "Ollama", "Playwright", "BM25", "Flask", "AI"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/Opendev",
+      },
+      featured: true,
+      image: "https://raw.githubusercontent.com/Aravindh-dev12/Opendev/main/docs/media/approved.png",
+      categories: ["AI", "Backend"],
+    },
+    {
       title: "Octic AI Agent",
       blurb:
         "Autonomous AI workforce platform for building agents that research, plan, use tools, orchestrate workflows, manage memory, and execute tasks across local or managed runtimes.",
