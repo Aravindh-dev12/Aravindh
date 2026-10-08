@@ -87,6 +87,22 @@ function answerFor(input: string): Omit<Message, "id"> {
       project: p,
     };
   }
+  if (q.includes("ai agents") || q.includes("automation")) {
+    const p = site.projects.find((x) => x.title.toLowerCase().includes("agent")) || site.projects[0];
+    return { role: "assistant", text: "For AI agents and automation, I would start with the project that best shows orchestration, tool use, and reliable execution. The useful lens is not just the model, but how the system manages state, actions, failure handling, and verification.", section: "project", project: p };
+  }
+  if (q.includes("systems") || q.includes("infrastructure")) {
+    const p = site.projects.find((x) => x.title.toLowerCase().includes("cieav")) || site.projects[0];
+    return { role: "assistant", text: "For systems and infrastructure, CIEAV is the strongest starting point. It shows the local control boundary, deterministic policy checks, and the separation between intent interpretation and final authority.", section: "architecture", project: p };
+  }
+  if (q.includes("product engineering")) {
+    const p = site.projects.find((x) => x.featured) || site.projects[0];
+    return { role: "assistant", text: "For product engineering, I would explore a featured project first and then trace its interface, workflow, and implementation choices. That gives a clearer picture of how the engineering decisions translate into a usable product.", section: "project", project: p };
+  }
+  if (q.includes("privacy") || q.includes("local-first")) {
+    const p = site.projects.find((x) => x.title.toLowerCase().includes("cieav")) || site.projects[0];
+    return { role: "assistant", text: "For privacy and local-first AI, start with CIEAV. Its core idea is keeping sensitive authority and safety decisions local while still allowing cloud systems to help interpret intent.", section: "architecture", project: p };
+  }
   if (q.includes("compare") || q.includes("which project") || q.includes("recommend") || q.includes("explore first")) {
     return {
       role: "assistant",
@@ -110,7 +126,7 @@ function answerFor(input: string): Omit<Message, "id"> {
 
   return {
     role: "assistant",
-    text: "I can help you navigate Aravindh's work, projects, engineering decisions, experience, and contact details. Try asking naturally — for example, “what did you build with CIEAV?”, “which project shows the strongest systems work?”, or “how can I contact you?”",
+    text: "I can help you navigate Aravindh's work, projects, engineering decisions, experience, and contact details. Try asking naturally for example, “what did you build with CIEAV?”, “which project shows the strongest systems work?”, or “how can I contact you?”",
     section: "about",
   };
 }
@@ -136,10 +152,10 @@ function SectionContent({ section, project, decision, onDecision }: {
 }) {
   if (decision) {
     return (
-      <div className="mt-4 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4">
+      <div className="mt-4 rounded-2xl border border-[var(--line)] bg-[var(--card)]/90 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-sm">
         <div className="mb-3 flex items-center gap-2 text-sm font-medium"><SlidersHorizontal className="h-4 w-4 text-[var(--muted)]" />{decision.title}</div>
         <div className="grid gap-2 sm:grid-cols-2">
-          {decision.options.map((option) => <button key={option} onClick={() => onDecision(option)} className="group flex items-center justify-between rounded-xl border border-[var(--line)] px-3 py-3 text-left text-sm transition hover:border-[var(--fg)]/30 hover:bg-[var(--hover)]"><span>{option}</span><span className="text-[var(--soft)] group-hover:text-[var(--fg)]">→</span></button>)}
+          {decision.options.map((option) => <button key={option} onClick={() => onDecision(option)} className="group flex items-center justify-between rounded-xl border border-[var(--line)] px-3 py-3 text-left text-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--fg)]/40 hover:bg-[var(--hover)] hover:shadow-lg"><span>{option}</span><span className="text-[var(--soft)] group-hover:text-[var(--fg)]">→</span></button>)}
         </div>
       </div>
     );
@@ -179,13 +195,14 @@ export function ChatPortfolio() {
   const [dark, setDark] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const nextId = useRef(1);
   const started = messages.length > 0;
 
   useEffect(() => {
     document.documentElement.style.fontSize = `${fontScale}rem`;
     document.documentElement.classList.toggle("light", !dark);
-  }, [fontScale, dark]);
+  }, [fontScale, dark]);\n\n  useEffect(() => {\n    const el = scrollRef.current;\n    if (!el) return;\n    requestAnimationFrame(() => {\n      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });\n    });\n  }, [messages, isTyping]);
 
   const ask = (value: string) => {
     const text = value.trim();
@@ -252,7 +269,7 @@ export function ChatPortfolio() {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto scroll-smooth">
           {!started ? (
             <div className="mx-auto flex min-h-full w-full max-w-4xl flex-col items-center justify-center px-5 pb-32 pt-10 text-center">
               <img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt={site.name} className="mb-6 h-16 w-16 rounded-full object-cover ring-1 ring-[var(--line)]" />
