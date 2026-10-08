@@ -9,6 +9,7 @@ import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
 import { Contact } from "@/sections/Contact";
 import { Projects } from "@/sections/Projects";
+import { Testimonials } from "@/sections/Testimonials";
 import { Experience } from "@/sections/Experience";
 import { Education } from "@/sections/Education";
 import { TechStack } from "@/sections/TechStack";
@@ -45,6 +46,7 @@ function MainLayout({ onOpenPalette }: { onOpenPalette: () => void }) {
       <About />
       <Contact />
       <Projects isSearchable={false} />
+      <Testimonials />
       <Experience />
       <Education />
       <TechStack />
