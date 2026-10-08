@@ -15,9 +15,9 @@ export function ProjectCard({ project: p }: { project: Project; index?: number }
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="group flex h-[390px] w-full flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--soft)]"
+      className="group flex h-[430px] w-full flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--soft)]"
     >
-      <div className="relative h-[155px] shrink-0 overflow-hidden bg-[var(--chip)]">
+      <div className="relative h-[190px] shrink-0 overflow-hidden bg-[var(--chip)]">
         {p.image ? (
           <img
             src={p.image}
