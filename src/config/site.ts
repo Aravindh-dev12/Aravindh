@@ -134,6 +134,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/Propecare",
       },
       featured: true,
+      image: "https://raw.githubusercontent.com/Aravindh-dev12/Propecare/main/public/images/propecare-site-1.jpg",
       categories: ["Frontend"],
     },
     {
@@ -146,6 +147,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/Reperto-AI-App",
       },
       featured: true,
+      image: "https://images.unsplash.com/photo-1758691463606-1493d79cc577?auto=format&fit=crop&w=1200&q=80",
       categories: ["AI", "Fullstack"],
     },
     {
@@ -246,6 +248,7 @@ export const site = {
       links: {
         source: "https://github.com/Aravindh-dev12/Nucleitech-CRM-App",
       },
+      image: "https://images.unsplash.com/photo-1763038311036-6d18805537e5?auto=format&fit=crop&w=1200&q=80",
       categories: ["Fullstack"],
     },
   ] as Project[],
