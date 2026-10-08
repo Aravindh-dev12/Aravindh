@@ -214,6 +214,23 @@ export function ChatPortfolio() {
     document.documentElement.classList.toggle("light", !dark);
   }, [dark]);
 
+  useEffect(() => {
+    if (!settingsOpen) return;
+    const closeOnOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest("[data-settings-root]")) setSettingsOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSettingsOpen(false);
+    };
+    document.addEventListener("mousedown", closeOnOutside);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("mousedown", closeOnOutside);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [settingsOpen]);
+
   const backgroundThemes = {
     default: "",
     aurora: "https://w.wallhaven.cc/full/m3/wallhaven-m3m2zm.png",
@@ -262,7 +279,7 @@ export function ChatPortfolio() {
   };
 
   const sidebar = useMemo(() => (
-    <aside className="flex h-full w-[280px] shrink-0 flex-col border-r border-[var(--line)] bg-[var(--bg)]/45 backdrop-blur-2xl">
+    <aside className="flex h-full w-[280px] shrink-0 flex-col border-r border-[var(--line)] bg-black/20 backdrop-blur-2xl">
       <div className="flex items-center justify-between p-3">
         <button onClick={() => { setMessages([]); activeProjectRef.current = undefined; setMobileOpen(false); }} className="flex items-center gap-2 rounded-xl px-2.5 py-2 text-sm font-medium hover:bg-[var(--hover)]"><Sparkles className="h-4 w-4" /> New chat</button>
         <button onClick={() => setMobileOpen(false)} className="rounded-lg p-2 hover:bg-[var(--hover)] md:hidden"><X className="h-4 w-4" /></button>
@@ -283,11 +300,17 @@ export function ChatPortfolio() {
   ), [isTyping, settingsOpen, dark]);
 
   return (
-    <div className="relative flex h-screen overflow-hidden bg-[var(--bg)] text-[var(--fg)]" style={backgroundThemes[theme as keyof typeof backgroundThemes] ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)), url(${backgroundThemes[theme as keyof typeof backgroundThemes]})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
+    <div className="relative flex h-screen overflow-hidden bg-[var(--bg)] text-[var(--fg)]"
+      style={backgroundThemes[theme as keyof typeof backgroundThemes] ? {
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.28)), url("${backgroundThemes[theme as keyof typeof backgroundThemes]}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed"
+      } : undefined}>
       {sidebarOpen && <div className="hidden md:block">{sidebar}</div>}
       {mobileOpen && <div className="fixed inset-0 z-50 md:hidden"><button aria-label="Close sidebar" className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />{sidebar}</div>}
-      <section className="relative flex min-h-0 min-w-0 flex-1 flex-col bg-[var(--bg)]/35 backdrop-blur-[3px]">
-        <header className="flex h-14 shrink-0 items-center border-b border-[var(--line)] bg-[var(--bg)]/35 px-3 backdrop-blur-xl md:px-5">
+      <section className="relative flex min-h-0 min-w-0 flex-1 flex-col bg-transparent backdrop-blur-[1px]">
+        <header className="flex h-14 shrink-0 items-center border-b border-[var(--line)] bg-black/10 px-3 backdrop-blur-xl md:px-5">
           <button className="mr-2 rounded-lg p-2 hover:bg-[var(--hover)] md:hidden" onClick={() => setMobileOpen(true)}><Menu className="h-5 w-5" /></button>
           <button aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"} className="mr-2 hidden rounded-lg p-2 hover:bg-[var(--hover)] md:block" onClick={() => setSidebarOpen((v) => !v)}>{sidebarOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeftOpen className="h-4 w-4" />}</button>
           <div className="flex items-center gap-2 text-sm font-medium"><Sparkles className="h-4 w-4 text-[var(--muted)]" /> Aravindh Portfolio</div>
@@ -349,9 +372,9 @@ export function ChatPortfolio() {
           </form>
           <p className="mx-auto mt-2 w-full max-w-4xl text-center text-[10px] text-[var(--soft)]">Portfolio chat · Explore projects, decisions, experience, and engineering work</p>
         </div>
-        <div className="fixed bottom-5 right-5 z-50">
+        <div data-settings-root className="fixed bottom-5 right-5 z-50">
           {settingsOpen && (
-            <div className="absolute bottom-14 right-0 w-72 rounded-[24px] border border-[var(--line)] bg-[var(--card)]/95 p-3 shadow-2xl backdrop-blur-xl">
+            <div className="absolute bottom-14 right-0 w-72 rounded-[24px] shadow-2xl border border-[var(--line)] bg-[var(--card)]/95 p-3 shadow-2xl backdrop-blur-xl">
               <p className="px-2 py-1 text-sm font-semibold">Customize</p>
               <p className="px-2 pb-3 text-xs text-[var(--muted)]">Change the whole portfolio experience.</p>
               <div className="mb-3 grid grid-cols-2 gap-2">
