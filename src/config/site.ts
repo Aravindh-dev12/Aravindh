@@ -44,10 +44,7 @@ export const site = {
     text: "Simplicity is prerequisite for reliability.",
     author: "Edsger W. Dijkstra",
   },
-  profileImages: [
-    "/profile.jpeg",
-    "/profile2.jpeg",
-  ],
+  profileImages: ["/profile.jpeg", "/profile2.jpeg"],
   bannerImage: "/images/cover.jpg",
   socialBannerImage: "/social-banner.png",
   initials: "AB",
@@ -56,10 +53,11 @@ export const site = {
   timezone: "Asia/Kolkata",
   email: "aravindh1653@gmail.com",
   greeting: "Hey, I'm Aravindh",
-  tagline: "I build end-to-end products across modern web stacks and AI-powered systems, with a focus on clean engineering, strong UX, and reliable delivery.",
+  tagline:
+    "I build end-to-end products across modern web stacks and AI-powered systems, with a focus on clean engineering, strong UX, and reliable delivery.",
   about: [
     "Hey, I'm Aravindh, a Full Stack & AI Engineer who enjoys building complete products, from polished interfaces and scalable APIs to intelligent features powered by modern AI.",
-    "I like working across the entire stack: frontend, backend, databases, cloud infrastructure, and AI integrations. I care about making systems that are useful, maintainable, and thoughtfully designed.",
+    "I work across frontend, backend, databases, cloud infrastructure, and AI integrations, with a focus on systems that are useful, maintainable, and thoughtfully designed.",
     "I don't ship junk. Maintainability isn't optional. And I build best when I'm curious.",
   ],
   tldr: [
@@ -72,7 +70,7 @@ export const site = {
     available: true,
     availableText: "open to opportunities",
     nowLearning: "AI Engineering • System Design • Full Stack Architecture • DevOps",
-    nowBuilding: "Oeon",
+    nowBuilding: "Agentic AI systems",
     nowListening: "focus playlists",
   },
   socials: {
@@ -80,8 +78,7 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/aravindhanb/",
     googleScholar: "https://scholar.google.com/citations?hl=en&user=o-qnHb4AAAAJ",
     email: "mailto:aravindh1653@gmail.com",
-    resume: "https://medium.com/@aravindh1653",
-    discord: "https://discord.gg/ra4kyKdTk",
+    resume: "https://drive.google.com/file/d/1eJR2RSZysk11_ITz_iz11MnL-SmAE1kk/view",
     medium: "https://medium.com/@aravindh1653",
   },
   education: [
@@ -96,72 +93,65 @@ export const site = {
   experience: [
     {
       company: "Nuclei Tech Solutions",
-      role: "Software Developer · Part-time",
-      period: "Dec 2025 – Present",
+      role: "Software Developer · Freelance",
+      period: "Jun 2026 – Present",
       bullets: [
-        "Worked on acquiring and processing data from embedded devices to build local, on-premise ERP systems for enterprises.",
-        "Developed a lightweight MLP-Mixer based architecture designed to be applicable and extendable across multiple data modalities.",
+        "Engineer data acquisition and processing workflows for embedded-device data used in local, on-premise ERP systems.",
+        "Developed a lightweight MLP-Mixer-based architecture designed for extensibility across multiple data modalities.",
       ],
     },
     {
       company: "Loam AI",
       role: "AI Engineer",
-      period: "Feb 2026 – June 2026",
+      period: "Feb 2026 – Jun 2026",
       bullets: [
-        "Built and launched a full-stack B2B freight forwarding application from scratch, delivering the MVP in five months while overseeing ideation, architecture, production readiness, and Agile execution.",
-        "Architected a modular layered codebase using React.js, Next.js, TypeScript, PostgreSQL, and Drizzle ORM, with RBAC authentication, email workflows, onboarding tours, currency conversion markups, PWA push notifications, and CI/CD pipelines.",
-        "Led a team of five, assigning tasks and mentoring developers on clean code, version control, and modern web development practices.",
+        "Built and launched a full-stack B2B freight-forwarding product from scratch, delivering the MVP in five months while owning ideation, architecture, production readiness, and Agile execution.",
+        "Architected a modular application across frontend, backend, database, and integrations using React, Next.js, TypeScript, PostgreSQL, and Drizzle ORM.",
+        "Implemented RBAC authentication, transactional email workflows, guided onboarding, currency-conversion markups, PWA push notifications, and CI/CD pipelines.",
+        "Led a team of five, assigned engineering work, reviewed implementation direction, and mentored developers on clean code and Git workflows.",
       ],
     },
     {
       company: "Perspectiv Labs",
       role: "Software Developer",
-      period: "July 2024 – Feb 2026",
+      period: "Jul 2024 – Feb 2026",
       bullets: [
-        "Architected modular full-stack systems with React.js, Next.js, TypeScript, PostgreSQL, and Drizzle ORM, enabling clean service decoupling and maintainable application architecture.",
-        "Built RBAC-based authentication, email workflows, onboarding tours, currency conversion markups, PWA push notifications, and CI/CD pipelines.",
-        "Developed reusable frontend components, backend services, database models, and third-party integrations across the full software development lifecycle.",
+        "Architected modular full-stack systems using React, Next.js, TypeScript, PostgreSQL, and Drizzle ORM with maintainable service boundaries.",
+        "Built production features including RBAC authentication, email workflows, onboarding tours, currency-conversion markups, PWA push notifications, and deployment pipelines.",
+        "Delivered reusable frontend components, backend services, database models, APIs, and third-party integrations across the software-development lifecycle.",
       ],
     },
   ] as Job[],
   projects: [
     {
-      title: "Oeon",
+      title: "Propecare Energy Care",
       blurb:
-        "An always-on commit layer for consequential digital actions, combining a local control plane, deterministic safety policy, privacy reduction, outcome verification, signed Action Receipts, and verified Undo.",
-      story:
-        "CIEAV keeps execution authority and durable user state local while using cloud intelligence only for semantic interpretation. The gateway mediates protected browser surfaces, minimizes semantic evidence before inference, tracks cognitive debt, verifies observable outcomes, and signs receipts with per-install Ed25519 identities. Cloud interpretation never receives local replay or commit authority.",
-      stack: ["Node.js", "Python", "Chrome", "Ed25519", "IBM Granite"],
-      year: "2026",
+        "Client renewable-energy EPC website covering EPC services, power evacuation, grid connectivity, transmission infrastructure, testing, commissioning, safety, quality, and O&M.",
+      stack: ["React", "TypeScript", "Vite", "React Router"],
+      year: "Client",
       links: {
-        live: "https://oeonai.com",
-        source: "https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet",
+        live: "https://propcare-epc.vercel.app/",
+        source: "https://github.com/Aravindh-dev12/Propecare",
       },
       featured: true,
-      image: "/projects/cieav.png",
-      categories: ["AI", "Fullstack", "Backend"],
+      categories: ["Frontend"],
     },
     {
-      title: "CLI Smart Inbox Agent",
+      title: "Reperto AI",
       blurb:
-        "A production-oriented multi-modal document intelligence platform for email intake, PDF/OCR processing, multi-label classification, structured fact extraction, and human review.",
-      story:
-        "The system processes an isolated test mailbox through IMAP, stages and malware-scans PDF attachments, extracts text/tables/images with OCR, classifies messages into ICSR, PQC, MI, or Not Relevant, and produces field-level facts with confidence and source provenance. A Spring Boot orchestration layer coordinates an Angular reviewer UI, Python AI service, Oracle persistence, ClamAV scanning, durable jobs, and GreenMail-based end-to-end smoke testing. Optional structured LLM inference is schema-validated and evidence-checked against the original document so unsupported facts are discarded rather than trusted.",
-      stack: ["Angular", "Spring Boot", "Python", "Oracle", "Docker", "Kubernetes", "OCR", "LLM"],
-      year: "2026",
+        "Client medical assistant built with Expo React Native and FastAPI for English/Hinglish complaint capture, rubric suggestions, and guided clinical follow-up.",
+      stack: ["React Native", "Expo", "FastAPI", "NLP", "OpenAI"],
+      year: "Client",
       links: {
-        source: "https://github.com/Aravindh-dev12/cli-ai",
+        source: "https://github.com/Aravindh-dev12/Reperto-AI-App",
       },
       featured: true,
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=80",
-      categories: ["AI", "Fullstack", "Backend"],
+      categories: ["AI", "Fullstack"],
     },
     {
       title: "Hallucination-Resistant LLM",
       blurb:
-        "A retrieval and verification LLM pipeline designed to reduce hallucinations using open web search, crawling, evidence grounding, and entailment-based verification.",
-      story:
-        "The system combines Retrieval-Augmented Generation with Searx and Scrapy for large-scale web retrieval, LoRA-refined instruction models, vector search, and an entailment verifier that checks generated claims against retrieved evidence. The architecture is containerized for Docker and Kubernetes deployment and supports modular retrieval, generation, and verification services.",
+        "Retrieval-and-verification LLM pipeline combining open-web search, RAG, LoRA refinement, vector retrieval, and entailment-based claim verification.",
       stack: ["Python", "RAG", "Searx", "Scrapy", "LoRA"],
       year: "2026",
       links: {
@@ -173,42 +163,23 @@ export const site = {
       categories: ["AI", "Backend"],
     },
     {
-      title: "Advanced Adversarial Model Extraction Lab",
+      title: "CIEAV / Oeon Commit Layer",
       blurb:
-        "An authorized AI security research lab for studying model extraction attacks, active querying strategies, surrogate model fidelity, and defensive leakage analysis.",
-      story:
-        "The lab combines knockoff-style stealing, DisGUIDE-style active querying, logit reconstruction, and an active extraction simulator. It evaluates entropy, margin, disagreement, k-center, random, and hybrid query strategies with fidelity, KL divergence, calibration error, and task accuracy metrics, plus an interactive Gradio research interface.",
-      stack: ["Python", "Gradio", "Scikit-learn", "Active Learning", "AI Security"],
+        "Local-first commit layer for consequential digital actions with deterministic safety policy, privacy reduction, outcome verification, signed receipts, and undo.",
+      stack: ["Node.js", "Python", "Chrome", "Ed25519", "IBM Granite"],
       year: "2026",
       links: {
-        live: "https://huggingface.co/spaces/Aravindhan11/advanced-adversarial-model-extraction-lab?logs=container",
-        source: "https://github.com/Aravindh-dev12/Adversarial-Model-Extraction",
+        live: "https://oeonai.com",
+        source: "https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet",
       },
       featured: true,
-      image: "/projects/adversarial.png",
-      categories: ["AI", "Backend"],
-    },
-    {
-      title: "NEXUS-LWM OS",
-      blurb:
-        "An MCP-native agentic AI operating architecture for latent-world planning, capability fabrication, governed automation, workflow orchestration, and safe cross-system execution.",
-      story:
-        "The system uses a nine-layer architecture with JEPA latent-state encoding, Transformer prediction, CEM planning, capability DAG fabrication, an AUQ and MACI safety gate, step-level RL credit assignment, and a LinUCB telemetry router. It also supports MCP JSON-RPC capabilities, approval-gated workflow execution, audit trails, triggers, and a resumable control plane.",
-      stack: ["Python", "MCP", "JEPA", "Transformers", "Reinforcement Learning"],
-      year: "2026",
-      links: {
-        source: "https://github.com/Aravindh-dev12/lwm-fabricator-modelNeural-Execution-and-Unified-Systems-Fabrication-Operating-Architecture",
-      },
-      status: "In Progress",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-      categories: ["AI", "Backend"],
+      image: "/projects/cieav.png",
+      categories: ["AI", "Fullstack", "Backend"],
     },
     {
       title: "NeuroSymbolic Meta-Reasoning Agent",
       blurb:
-        "A CLI-first reasoning agent that combines local LLM routing, symbolic solvers, neural inference, memory, hierarchical planning, recursive critique, and safety checks.",
-      story:
-        "The agent routes across Ollama, llama.cpp, and Hugging Face model backends while combining symbolic reasoning through Z3 and SymPy with neural embeddings and task classification. It includes working and episodic memory, vector stores, recursive self-improvement, hierarchical planning, telemetry, constitutional guardrails, and a Gradio dashboard.",
+        "Reasoning agent combining local LLM routing, symbolic solvers, memory, hierarchical planning, recursive critique, and safety checks.",
       stack: ["Python", "Ollama", "Z3", "SymPy", "Gradio"],
       year: "2026",
       links: {
@@ -222,9 +193,7 @@ export const site = {
     {
       title: "Looca Voice AI Agent",
       blurb:
-        "A full-stack voice-first AI platform with real-time voice orchestration, retrieval memory, tool execution, authentication, and intelligent service workflows.",
-      story:
-        "Looca combines a Next.js and TypeScript frontend with a FastAPI backend, PostgreSQL, Qdrant, Redis, VAPI, and Claude. The architecture includes episodic memory, predictive intent preloading, psychoacoustic emotion analysis, semantic retrieval, tool-use execution, causal reasoning, and service auto-ingestion.",
+        "Full-stack voice-first AI platform with retrieval memory, tool execution, authentication, and intelligent service workflows.",
       stack: ["Next.js", "FastAPI", "PostgreSQL", "Qdrant", "VAPI"],
       year: "2026",
       links: {
@@ -235,45 +204,46 @@ export const site = {
       categories: ["AI", "Fullstack"],
     },
     {
-      title: "Seelay App",
+      title: "LWM Fabricator",
       blurb:
-        "An application project currently in active development. The source repository is linked and the public live deployment is being prepared.",
-      stack: [],
+        "MCP and multi-agent operating architecture built around world-model planning, dynamic DAGs, tool execution, and safety controls.",
+      stack: ["Python", "MCP", "PyTorch", "JEPA", "Multi-Agent"],
       year: "2026",
       links: {
-        source: "https://github.com/Aravindh-dev12/Seelay-App",
+        source: "https://github.com/Aravindh-dev12/lwm-fabricator-modelNeural-Execution-and-Unified-Systems-Fabrication-Operating-Architecture",
       },
-      image: "/projects/seelay.png",
       status: "In Progress",
-      categories: ["Fullstack"],
+      categories: ["AI", "Backend"],
     },
     {
-      title: "NSJ ERP System",
+      title: "Distributed Transformer Training Framework",
       blurb:
-        "A production-oriented jewelry ERP platform for accounting, sales, inventory, manufacturing, CRM, reporting, and AI-assisted business operations.",
-      story:
-        "NSJ ERP centralizes finance, vouchers, invoices, customer and sales workflows, jewelry manufacturing, gold and gemstone inventory, task management, reporting, and operational analytics. Its AI agent layer supports product, accounting, vendor, inventory, sales, production, and reporting workflows through natural-language interaction. The stack combines Django REST Framework and PostgreSQL on the backend with Next.js, TypeScript, Tailwind CSS, shadcn/ui, and React tooling on the frontend.",
-      stack: ["Django", "Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "Docker"],
-      year: "2026",
+        "Transformer training framework work covering distributed execution patterns including tensor and pipeline parallelism.",
+      stack: ["Python", "PyTorch", "Transformers", "Distributed Training"],
+      year: "2024",
       links: {
-        source: "https://github.com/Aravindh-dev12/NSJ-ERP",
+        source: "https://github.com/Aravindh-dev12/Distributed-Transformer-Training-Framework",
       },
-      image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=80",
-      featured: true,
-      categories: ["Fullstack", "Backend"],
+      categories: ["AI", "Backend"],
     },
     {
-      title: "Nucleitech CRM App",
+      title: "Autonomous Voice Reasoning Agent",
       blurb:
-        "A CRM application for organizing customer relationships, sales workflows, follow-ups, and business data in a focused operational workspace.",
-      story:
-        "Nucleitech CRM is a business-focused customer relationship management application built around practical sales and customer operations. It is included in the portfolio as an active CRM product project, with the source repository available for deeper implementation details.",
-      stack: ["CRM", "Fullstack", "Web App"],
-      year: "2026",
+        "Voice-first agent system combining ASR, LLM reasoning, tool use, function calling, and orchestration.",
+      stack: ["TypeScript", "LLM", "ASR", "TTS", "Tool Use"],
+      year: "2024",
       links: {
-        source: "https://github.com/Aravindh-dev12/Nucleitech-CRM-App",
+        source: "https://github.com/Aravindh-dev12/Autonomous-Voice-Reasoning-Agent",
       },
-      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80",
+      categories: ["AI", "Fullstack"],
+    },
+    {
+      title: "NucleiTech CRM",
+      blurb:
+        "Client CRM product focused on practical customer-management workflows and an operational business interface.",
+      stack: ["React", "CRM", "TypeScript", "Product UI"],
+      year: "Client",
+      links: {},
       categories: ["Fullstack"],
     },
   ] as Project[],
@@ -281,26 +251,29 @@ export const site = {
     "TypeScript",
     "JavaScript",
     "React",
-    "Flutter",
-    "Dart",
+    "React Native",
     "Next.js",
     "Node.js",
-    "Express.js",
+    "FastAPI",
     "Tailwind CSS",
-    "Shadcn UI",
     "PostgreSQL",
     "MongoDB",
-    "Prisma",
-    "Supabase",
-    "Firebase",
-    "REST APIs",
-    "JWT",
+    "Redis",
+    "Qdrant",
+    "RAG",
+    "LLMs",
+    "LoRA/PEFT",
+    "Transformers",
+    "MCP",
+    "Multi-Agent Systems",
+    "PyTorch",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "GCP",
     "Git",
     "GitHub",
-    "Postman",
     "Vercel",
-    "Figma",
-    "C++",
     "Python",
   ],
   writing: [] as Post[],
@@ -308,7 +281,7 @@ export const site = {
     username: "Aravindh-dev12",
     contributionsLastYear: "500+",
   },
-  footerNote: "Built with ❤️ and hardwork"
+  footerNote: "Built with ❤️ and hard work",
 } as const;
 
 export type Site = typeof site;
