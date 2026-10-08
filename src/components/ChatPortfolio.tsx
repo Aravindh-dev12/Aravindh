@@ -201,7 +201,6 @@ export function ChatPortfolio() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [dark, setDark] = useState(true);
-  const [themeOpen, setThemeOpen] = useState(false);
   const [theme, setTheme] = useState("default");
   const [isTyping, setIsTyping] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
@@ -232,7 +231,6 @@ export function ChatPortfolio() {
     setTheme(name);
     if (name === "default") setDark(false);
     else setDark(true);
-    setThemeOpen(false);
   };
 
   useEffect(() => {
@@ -264,21 +262,21 @@ export function ChatPortfolio() {
   };
 
   const sidebar = useMemo(() => (
-    <aside className="flex h-full w-[280px] shrink-0 flex-col border-r border-[var(--line)] bg-[var(--bg)]/85 backdrop-blur-xl">
+    <aside className="flex h-full w-[280px] shrink-0 flex-col border-r border-[var(--line)] bg-[var(--bg)]/45 backdrop-blur-2xl">
       <div className="flex items-center justify-between p-3">
         <button onClick={() => { setMessages([]); activeProjectRef.current = undefined; setMobileOpen(false); }} className="flex items-center gap-2 rounded-xl px-2.5 py-2 text-sm font-medium hover:bg-[var(--hover)]"><Sparkles className="h-4 w-4" /> New chat</button>
         <button onClick={() => setMobileOpen(false)} className="rounded-lg p-2 hover:bg-[var(--hover)] md:hidden"><X className="h-4 w-4" /></button>
       </div>
       <div className="flex-1 overflow-y-auto px-3 pb-3">
         <p className="mb-2 px-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--soft)]">Index</p>
-        <div className="space-y-0.5">{prompts.map(([id, label]) => <button key={id} onClick={() => { ask(label); setMobileOpen(false); }} className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-[var(--muted)] transition hover:bg-[var(--hover)] hover:text-[var(--fg)]">{label}</button>)}</div>
+        <div className="space-y-0.5">{prompts.map(([id, label]) => <button key={id} disabled={isTyping} onClick={() => { ask(label); setMobileOpen(false); }} className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-[var(--muted)] transition hover:bg-[var(--hover)] hover:text-[var(--fg)] disabled:cursor-wait disabled:opacity-50">{label}</button>)}</div>
         <p className="mb-2 mt-7 px-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--soft)]">Elsewhere</p>
         <div className="space-y-0.5">{[["GitHub", site.socials.github], ["LinkedIn", site.socials.linkedin], ["Google Scholar", site.socials.googleScholar]].map(([label, href]) => <a key={label} href={href} target="_blank" rel="noreferrer" className="block rounded-lg px-3 py-2.5 text-sm text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]">{label}</a>)}</div>
       </div>
       <div className="border-t border-[var(--line)] p-3">
         <div className="flex items-center gap-2">
           <img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="h-9 w-9 rounded-full object-cover" />
-          <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium">{site.name}</p><p className="truncate text-xs text-[var(--muted)]">{site.location}</p></div>
+          <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium">{site.name}</p><p className="truncate text-xs text-[var(--muted)]">{isTyping ? "Generating answer…" : site.location}</p></div>
         </div>
       </div>
     </aside>
@@ -288,8 +286,8 @@ export function ChatPortfolio() {
     <div className="relative flex h-screen overflow-hidden bg-[var(--bg)] text-[var(--fg)]" style={backgroundThemes[theme as keyof typeof backgroundThemes] ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)), url(${backgroundThemes[theme as keyof typeof backgroundThemes]})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
       {sidebarOpen && <div className="hidden md:block">{sidebar}</div>}
       {mobileOpen && <div className="fixed inset-0 z-50 md:hidden"><button aria-label="Close sidebar" className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />{sidebar}</div>}
-      <section className="relative flex min-h-0 min-w-0 flex-1 flex-col bg-[var(--bg)]/80 backdrop-blur-[1px]">
-        <header className="flex h-14 shrink-0 items-center border-b border-[var(--line)] px-3 md:px-5">
+      <section className="relative flex min-h-0 min-w-0 flex-1 flex-col bg-[var(--bg)]/35 backdrop-blur-[3px]">
+        <header className="flex h-14 shrink-0 items-center border-b border-[var(--line)] bg-[var(--bg)]/35 px-3 backdrop-blur-xl md:px-5">
           <button className="mr-2 rounded-lg p-2 hover:bg-[var(--hover)] md:hidden" onClick={() => setMobileOpen(true)}><Menu className="h-5 w-5" /></button>
           <button aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"} className="mr-2 hidden rounded-lg p-2 hover:bg-[var(--hover)] md:block" onClick={() => setSidebarOpen((v) => !v)}>{sidebarOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeftOpen className="h-4 w-4" />}</button>
           <div className="flex items-center gap-2 text-sm font-medium"><Sparkles className="h-4 w-4 text-[var(--muted)]" /> Aravindh Portfolio</div>
@@ -316,7 +314,7 @@ export function ChatPortfolio() {
               {messages.map((m) => m.role === "user" ? (
                 <div key={m.id} className="flex justify-end"><div className="max-w-[80%] rounded-[28px] bg-[var(--chip)] px-5 py-3.5 text-sm leading-6 shadow-sm">{m.text}</div></div>
               ) : (
-                <div key={m.id} className="group flex gap-3"><img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</p>{!m.typing && <><SectionContent section={m.section} project={m.project} decision={m.decision} onDecision={ask} />{m.text && <MessageActions text={m.text} />}</>}</div></div>
+                <div key={m.id} className="group flex gap-3"><img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.typing && !m.text ? <span className="inline-flex items-center gap-1 py-1" aria-label="Generating response"><span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current [animation-delay:-0.2s]" /><span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current [animation-delay:-0.1s]" /><span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current" /></span> : <>{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</>}</p>{!m.typing && <><SectionContent section={m.section} project={m.project} decision={m.decision} onDecision={ask} />{m.text && <MessageActions text={m.text} />}</>}</div></div>
               ))}
               <div ref={bottomRef} className="h-px w-full" aria-hidden="true" />
             </div>
@@ -360,7 +358,7 @@ export function ChatPortfolio() {
                 <button onClick={() => { setDark(false); setTheme("default"); }} className="rounded-2xl border border-[var(--line)] px-3 py-2.5 text-left text-xs hover:bg-[var(--hover)]"><Sun className="mb-1 h-4 w-4" />Light</button>
                 <button onClick={() => { setDark(true); setTheme("default"); }} className="rounded-2xl border border-[var(--line)] px-3 py-2.5 text-left text-xs hover:bg-[var(--hover)]"><Moon className="mb-1 h-4 w-4" />Dark</button>
               </div>
-              <p className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--soft)]">Background themes</p>
+              <p className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--soft)]">4K background themes</p>
               <div className="grid max-h-[420px] grid-cols-2 gap-2 overflow-y-auto pr-1">
                 {([
                   ["default","Clean"], ["aurora","Aurora"], ["moonlight","Moonlight"], ["purpleOcean","Purple Ocean"],
