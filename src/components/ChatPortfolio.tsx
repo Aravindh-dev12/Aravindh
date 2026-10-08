@@ -37,9 +37,9 @@ function findProject(q: string) {
   return hit ? site.projects.find((p) => p.title.toLowerCase() === hit) : undefined;
 }
 
-function answerFor(input: string): Omit<Message, "id"> {
+function answerFor(input: string, activeProject?: ChatProject): Omit<Message, "id"> {
   const q = input.trim().toLowerCase();
-  const project = site.projects.find((p) => q.includes(p.title.toLowerCase()));
+  const project = site.projects.find((p) => q.includes(p.title.toLowerCase())) || activeProject;
 
   if (/^(hi|hello|hey|hii|helo|good morning|good afternoon|good evening)\\b/.test(q)) {
     return { role: "assistant", text: "Hey! 👋 I'm Aravindh's portfolio assistant. Ask me about projects, architecture, experience, skills, or anything else you'd like to explore." };
@@ -196,20 +196,31 @@ export function ChatPortfolio() {
   const [isTyping, setIsTyping] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const activeProjectRef = useRef<ChatProject | undefined>(undefined);
   const nextId = useRef(1);
   const started = messages.length > 0;
 
   useEffect(() => {
     document.documentElement.style.fontSize = `${fontScale}rem`;
     document.documentElement.classList.toggle("light", !dark);
-  }, [fontScale, dark]);\n\n  useEffect(() => {\n    const el = scrollRef.current;\n    if (!el) return;\n    requestAnimationFrame(() => {\n      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });\n    });\n  }, [messages, isTyping]);
+  }, [fontScale, dark]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    requestAnimationFrame(() => {
+      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    });
+  }, [messages, isTyping]);
 
   const ask = (value: string) => {
     const text = value.trim();
     if (!text || isTyping) return;
-    const answer = answerFor(text);
+    const answer = answerFor(text, activeProjectRef.current);
     const userId = nextId.current++;
     const assistantId = nextId.current++;
+    if (answer.project) activeProjectRef.current = answer.project;
     setMessages((m) => [...m, { id: userId, role: "user", text }, { id: assistantId, role: "assistant", text: "", typing: true, section: answer.section, project: answer.project, decision: answer.decision }]);
     setInput("");
     setIsTyping(true);
@@ -226,7 +237,7 @@ export function ChatPortfolio() {
   const sidebar = useMemo(() => (
     <aside className="flex h-full w-[280px] shrink-0 flex-col border-r border-[var(--line)] bg-[var(--bg)]">
       <div className="flex items-center justify-between p-3">
-        <button onClick={() => { setMessages([]); setMobileOpen(false); }} className="flex items-center gap-2 rounded-xl px-2.5 py-2 text-sm font-medium hover:bg-[var(--hover)]"><Sparkles className="h-4 w-4" /> New chat</button>
+        <button onClick={() => { setMessages([]); activeProjectRef.current = undefined; setMobileOpen(false); }} className="flex items-center gap-2 rounded-xl px-2.5 py-2 text-sm font-medium hover:bg-[var(--hover)]"><Sparkles className="h-4 w-4" /> New chat</button>
         <button onClick={() => setMobileOpen(false)} className="rounded-lg p-2 hover:bg-[var(--hover)] md:hidden"><X className="h-4 w-4" /></button>
       </div>
       <div className="flex-1 overflow-y-auto px-3 pb-3">
@@ -284,6 +295,7 @@ export function ChatPortfolio() {
               ) : (
                 <div key={m.id} className="group flex gap-3"><img src={PROFILE_IMAGE} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg?v=2"; }} alt="" className="mt-1 h-7 w-7 rounded-full object-cover" /><div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-[15px] leading-7">{m.text}{m.typing && <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse rounded-sm bg-current align-middle" />}</p>{!m.typing && <><SectionContent section={m.section} project={m.project} decision={m.decision} onDecision={ask} />{m.text && <MessageActions text={m.text} />}</>}</div></div>
               ))}
+              <div ref={bottomRef} className="h-px w-full" aria-hidden="true" />
             </div>
           )}
         </div>
