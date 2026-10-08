@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Icon } from "@iconify/react";
 import {
-  ArrowUp, Copy, ExternalLink, Mail,
+  ArrowUp, Copy, ExternalLink, Github, Linkedin, Mail,
   Menu, Moon, PanelLeftClose, PanelLeftOpen, Plus, Share2, Sparkles,
   Sun, Settings, SlidersHorizontal, Type, X
 } from "lucide-react";
@@ -249,7 +249,7 @@ export function ChatPortfolio() {
             <button type="button" aria-label="Discord" title="Discord" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:discord" className="h-[17px] w-[17px]" /></button>
             <a href={site.socials.email} aria-label="Email" title="Email" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Mail className="h-[17px] w-[17px]" /></a>
             <a href={site.socials.booking} target="_blank" rel="noreferrer" aria-label="Book a call" title="Book a call" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:caldotcom" className="h-[17px] w-[17px]" /></a>
-          </div>>
+          </div>
         </header>
 
         <div className="flex-1 overflow-y-auto">
