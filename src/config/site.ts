@@ -124,6 +124,19 @@ export const site = {
   ] as Job[],
   projects: [
     {
+      title: "Oundnote",
+      blurb:
+        "Private, local-first AI meeting assistant for recording, transcription, speaker diarization, searchable meeting notes, and grounded AI workflows.",
+      stack: ["Python", "FastAPI", "SQLite", "RAG", "MCP", "AI"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/oundnote",
+      },
+      featured: true,
+      image: "https://opengraph.githubassets.com/1/Aravindh-dev12/oundnote",
+      categories: ["AI", "Backend"],
+    },
+    {
       title: "Propecare Energy Care",
       blurb:
         "Client renewable-energy EPC website covering EPC services, power evacuation, grid connectivity, transmission infrastructure, testing, commissioning, safety, quality, and O&M.",
@@ -227,17 +240,6 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/Distributed-Transformer-Training-Framework",
       },
       categories: ["AI", "Backend"],
-    },
-    {
-      title: "Autonomous Voice Reasoning Agent",
-      blurb:
-        "Voice-first agent system combining ASR, LLM reasoning, tool use, function calling, and orchestration.",
-      stack: ["TypeScript", "LLM", "ASR", "TTS", "Tool Use"],
-      year: "2024",
-      links: {
-        source: "https://github.com/Aravindh-dev12/Autonomous-Voice-Reasoning-Agent",
-      },
-      categories: ["AI", "Fullstack"],
     },
     {
       title: "NucleiTech CRM",
