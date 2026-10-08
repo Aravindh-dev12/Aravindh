@@ -124,6 +124,19 @@ export const site = {
   ] as Job[],
   projects: [
     {
+      title: "CIEAV",
+      blurb:
+        "The commit layer for the internet: an always-on local control plane between digital intent and consequence, keeping deterministic safety and final authority local while cloud services provide privacy-reduced interpretation.",
+      stack: ["Node.js", "Python", "Chrome", "Ed25519", "IBM Granite", "AI"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/cieav",
+      },
+      featured: true,
+      image: "https://opengraph.githubassets.com/1/Aravindh-dev12/cieav",
+      categories: ["AI", "Fullstack", "Backend"],
+    },
+    {
       title: "openDev",
       blurb:
         "Local autonomous company operator for trustworthy back-office automation, combining local LLMs, browser control, company procedures, deterministic policy guardrails, audit trails, and independent verification.",
@@ -163,6 +176,46 @@ export const site = {
       categories: ["AI", "Backend"],
     },
     {
+      title: "Looca Voice AI Agent",
+      blurb:
+        "Full-stack voice-first AI platform with retrieval memory, tool execution, authentication, and intelligent service workflows.",
+      stack: ["Next.js", "FastAPI", "PostgreSQL", "Qdrant", "VAPI"],
+      year: "2026",
+      links: {
+        live: "https://looca-voice-ai-agent.onrender.com",
+        source: "https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent",
+      },
+      featured: true,
+      image: "/projects/looca.png",
+      categories: ["AI", "Fullstack"],
+    },
+    {
+      title: "Oli — Sovereign Notch Meeting Copilot",
+      blurb:
+        "Tray-resident desktop meeting copilot designed around a black notch-style HUD: ambient when quiet, a short whisper flare for important live cues, and a command shelf for live transcript, battlecards, MEDDPICC intelligence, and commitments.",
+      stack: ["Electron", "Rust", "Whisper", "SQLite", "MCP", "AI"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/Oli-Note-Take-Agent",
+      },
+      featured: true,
+      image: "https://opengraph.githubassets.com/1/Aravindh-dev12/Oli-Note-Take-Agent",
+      categories: ["AI", "Fullstack"],
+    },
+    {
+      title: "CLI Smart Inbox Agent",
+      blurb:
+        "Production-oriented Smart Inbox Assistant that reads an isolated test mailbox, processes PDF attachments, classifies messages into ICSR / Safety Report, PQC / Quality Complaint, MI / Medical Information Request, or Not Relevant, extracts structured facts with field-level confidence and source provenance, and presents results for human review.",
+      stack: ["Angular", "Spring Boot", "Python", "Oracle", "ClamAV", "AI"],
+      year: "2026",
+      links: {
+        source: "https://github.com/Aravindh-dev12/cli-ai",
+      },
+      featured: true,
+      image: "https://opengraph.githubassets.com/1/Aravindh-dev12/cli-ai",
+      categories: ["AI", "Fullstack", "Backend"],
+    },
+    {
       title: "Propecare Energy Care",
       blurb:
         "Client renewable-energy EPC website covering EPC services, power evacuation, grid connectivity, transmission infrastructure, testing, commissioning, safety, quality, and O&M.",
@@ -172,7 +225,7 @@ export const site = {
         live: "https://propcare-epc.vercel.app/",
         source: "https://github.com/Aravindh-dev12/Propecare",
       },
-      featured: true,
+      featured: false,
       image: "https://raw.githubusercontent.com/Aravindh-dev12/Propecare/main/public/images/propecare-site-1.jpg",
       categories: ["Frontend"],
     },
@@ -185,7 +238,7 @@ export const site = {
       links: {
         source: "https://github.com/Aravindh-dev12/Reperto-AI-App",
       },
-      featured: true,
+      featured: false,
       image: "https://images.unsplash.com/photo-1758691463606-1493d79cc577?auto=format&fit=crop&w=1200&q=80",
       categories: ["AI", "Fullstack"],
     },
@@ -199,23 +252,9 @@ export const site = {
         live: "https://huggingface.co/spaces/Aravindhan11/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier_ensemble",
         source: "https://github.com/Aravindh-dev12/hallucination_resistant_llm_with_searx_scrapy_retrieval_and_verifier",
       },
-      featured: true,
+      featured: false,
       image: "/projects/hallucination.png",
       categories: ["AI", "Backend"],
-    },
-    {
-      title: "CIEAV / Oeon Commit Layer",
-      blurb:
-        "Local-first commit layer for consequential digital actions with deterministic safety policy, privacy reduction, outcome verification, signed receipts, and undo.",
-      stack: ["Node.js", "Python", "Chrome", "Ed25519", "IBM Granite"],
-      year: "2026",
-      links: {
-        live: "https://oeonai.com",
-        source: "https://github.com/Aravindh-dev12/Cieav-the-Commit-Layer-for-the-Internet",
-      },
-      featured: true,
-      image: "/projects/cieav.png",
-      categories: ["AI", "Fullstack", "Backend"],
     },
     {
       title: "NeuroSymbolic Meta-Reasoning Agent",
@@ -227,22 +266,9 @@ export const site = {
         live: "https://huggingface.co/spaces/Aravindhan11/NeuroSymbolic-Meta-Reasoner",
         source: "https://github.com/Aravindh-dev12/NeuroSymbolic-meta-reasoning-agent",
       },
-      featured: true,
+      featured: false,
       image: "/projects/neurosymbolic.png",
       categories: ["AI", "Backend"],
-    },
-    {
-      title: "Looca Voice AI Agent",
-      blurb:
-        "Full-stack voice-first AI platform with retrieval memory, tool execution, authentication, and intelligent service workflows.",
-      stack: ["Next.js", "FastAPI", "PostgreSQL", "Qdrant", "VAPI"],
-      year: "2026",
-      links: {
-        live: "https://looca-voice-ai-agent.onrender.com",
-        source: "https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent",
-      },
-      image: "/projects/looca.png",
-      categories: ["AI", "Fullstack"],
     },
     {
       title: "LWM Fabricator",
@@ -254,6 +280,7 @@ export const site = {
         source: "https://github.com/Aravindh-dev12/lwm-fabricator-modelNeural-Execution-and-Unified-Systems-Fabrication-Operating-Architecture",
       },
       status: "In Progress",
+      featured: false,
       categories: ["AI", "Backend"],
     },
     {
@@ -265,6 +292,7 @@ export const site = {
       links: {
         source: "https://github.com/Aravindh-dev12/Distributed-Transformer-Training-Framework",
       },
+      featured: false,
       categories: ["AI", "Backend"],
     },
     {
@@ -276,6 +304,7 @@ export const site = {
       links: {
         source: "https://github.com/Aravindh-dev12/Nucleitech-CRM-App",
       },
+      featured: false,
       image: "https://images.unsplash.com/photo-1763038311036-6d18805537e5?auto=format&fit=crop&w=1200&q=80",
       categories: ["Fullstack"],
     },
