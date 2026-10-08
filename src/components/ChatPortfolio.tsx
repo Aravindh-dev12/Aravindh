@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Icon } from "@iconify/react";
 import {
-  ArrowUp, Calendar, Copy, ExternalLink, Github, Linkedin, Mail,
-  Menu, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Plus, Share2, Sparkles,
+  ArrowUp, Copy, ExternalLink, Mail,
+  Menu, Moon, PanelLeftClose, PanelLeftOpen, Plus, Share2, Sparkles,
   Sun, Settings, SlidersHorizontal, Type, X
 } from "lucide-react";
 import { site } from "@/config/site";
@@ -243,13 +243,13 @@ export function ChatPortfolio() {
           <button aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"} className="mr-2 hidden rounded-lg p-2 hover:bg-[var(--hover)] md:block" onClick={() => setSidebarOpen((v) => !v)}>{sidebarOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeftOpen className="h-4 w-4" />}</button>
           <div className="flex items-center gap-2 text-sm font-medium"><Sparkles className="h-4 w-4 text-[var(--muted)]" /> Aravindh Portfolio</div>
           <div className="ml-auto flex items-center gap-0.5">
-            <a href={site.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Github className="h-4 w-4" /></a>
-            <a href={site.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Linkedin className="h-4 w-4" /></a>
-            <a href={site.socials.medium} target="_blank" rel="noreferrer" aria-label="Medium" title="Medium" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:medium" className="h-4 w-4" /></a>
-            <button type="button" aria-label="Discord" title="Discord" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><MessageCircle className="h-4 w-4" /></button>
-            <a href={site.socials.email} aria-label="Email" title="Email" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Mail className="h-4 w-4" /></a>
-            <a href={site.socials.booking} target="_blank" rel="noreferrer" aria-label="Book a call" title="Book a call" className="rounded-lg p-2 text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:caldotcom" className="h-4 w-4" /></a>
-          </div>
+            <a href={site.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:github" className="h-[17px] w-[17px]" /></a>
+            <a href={site.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:linkedin" className="h-[17px] w-[17px]" /></a>
+            <a href={site.socials.medium} target="_blank" rel="noreferrer" aria-label="Medium" title="Medium" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:medium" className="h-[17px] w-[17px]" /></a>
+            <button type="button" aria-label="Discord" title="Discord" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:discord" className="h-[17px] w-[17px]" /></button>
+            <a href={site.socials.email} aria-label="Email" title="Email" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Mail className="h-[17px] w-[17px]" /></a>
+            <a href={site.socials.booking} target="_blank" rel="noreferrer" aria-label="Book a call" title="Book a call" className="grid h-8 w-8 place-items-center rounded-lg text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"><Icon icon="simple-icons:caldotcom" className="h-[17px] w-[17px]" /></a>
+          </div>>
         </header>
 
         <div className="flex-1 overflow-y-auto">
