@@ -8,7 +8,7 @@ export function Shell({
   className?: string;
 }) {
   return (
-    <div className={`relative mx-auto w-full max-w-[760px] border-x border-dashed border-[var(--line)] ${className}`}>
+    <div className={`relative mx-auto w-full max-w-[1040px] border-x border-dashed border-[var(--line)] ${className}`}>
       {children}
     </div>
   );
