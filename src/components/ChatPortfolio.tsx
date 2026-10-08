@@ -36,64 +36,41 @@ function findProject(q: string) {
   return hit ? site.projects.find((p) => p.title.toLowerCase() === hit) : undefined;
 }
 
-function answerFor(input: string): Omit<Message, "id"> {
-  const q = input.toLowerCase();
-  const project = findProject(q);
+async function answerFor(input: string): Promise<Omit<Message, "id">> {
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: input,
+        context: {
+          name: site.name,
+          role: site.role,
+          location: site.location,
+          timezone: site.timezone,
+          about: site.about,
+          experience: site.experience,
+          skills: site.skills,
+          projects: site.projects.map((p) => ({
+            title: p.title,
+            blurb: p.blurb,
+            stack: p.stack,
+            year: p.year,
+            links: p.links,
+          })),
+        },
+      }),
+    });
 
-  if (project) {
-    if (q.includes("architect") || q.includes("how") || q.includes("work") || q.includes("intern")) {
-      return {
-        role: "assistant",
-        text: `Here's the way I think about ${project.title}: it combines ${project.stack.slice(0, 4).join(", ")} into a focused system. The important design goal is to keep the product boundary simple while letting the underlying AI or automation components remain replaceable.`,
-        section: "architecture",
-        project,
-      };
-    }
-    return { role: "assistant", text: project.blurb, section: "project", project };
-  }
-
-  if (q.includes("cieav")) {
-    const p = site.projects.find((x) => x.title === "CIEAV");
+    if (!response.ok) throw new Error("AI request failed");
+    const data = await response.json();
+    return { role: "assistant", text: data.text || "I couldn't generate a response right now." };
+  } catch {
     return {
       role: "assistant",
-      text: "CIEAV is designed as a local commit layer between digital intent and consequence. The key idea is that interpretation can happen in the cloud, while deterministic safety checks, policy decisions, signing, and final authority remain local.",
-      section: "architecture",
-      project: p,
+      text: "I'm temporarily unable to reach the AI service. Please try again in a moment.",
     };
   }
-
-  if (q.includes("architect") || q.includes("system design") || q.includes("how does") || q.includes("how it works")) {
-    const p = project || site.projects[0];
-    return {
-      role: "assistant",
-      text: `For ${p.title}, I would explain the architecture in layers: interface → orchestration → AI / business logic → persistence or external tools → verification. The interesting part is how those boundaries make the system observable, testable, and replaceable.`,
-      section: "architecture",
-      project: p,
-    };
-  }
-
-  if (q.includes("compare") || q.includes("which project") || q.includes("recommend") || q.includes("explore first")) {
-    return {
-      role: "assistant",
-      text: "If you want to understand the breadth of the portfolio, I'd start with one project from each systems layer rather than reading everything sequentially.",
-      section: "decision",
-      decision: { title: "What are you most interested in?", options: ["AI agents & automation", "Systems & infrastructure", "Product engineering", "Privacy & local-first AI"] },
-    };
-  }
-
-  if (q.includes("project") || q.includes("work") || q.includes("built")) {
-    return { role: "assistant", text: "Here are the projects I’d highlight first. Each card is a different window into the way I build systems.", section: "projects" };
-  }
-  if (q.includes("experience") || q.includes("career")) {
-    return { role: "assistant", text: "My experience sits at the intersection of full-stack product engineering, AI systems, and production delivery.", section: "experience" };
-  }
-  if (q.includes("skill") || q.includes("stack") || q.includes("technology") || q.includes("tech")) {
-    return { role: "assistant", text: "The stack changes by problem, but the recurring themes are product engineering, AI/LLM systems, automation, infrastructure, and developer tooling.", section: "skills" };
-  }
-  if (q.includes("contact") || q.includes("hire") || q.includes("email")) {
-    return { role: "assistant", text: "I'm open to opportunities and collaborations. Email, LinkedIn, and GitHub are the best ways to reach me.", section: "contact" };
-  }
-  return { role: "assistant", text: site.about[0], section: "about" };
 }
 
 function SectionContent({ section, project, decision, onDecision }: {
@@ -151,15 +128,17 @@ export function ChatPortfolio() {
     document.documentElement.classList.toggle("light", !dark);
   }, [fontScale, dark]);
 
-  const ask = (value: string) => {
+  const ask = async (value: string) => {
     const text = value.trim();
     if (!text || isTyping) return;
-    const answer = answerFor(text);
+    const answerPromise = answerFor(text);
     const userId = nextId.current++;
     const assistantId = nextId.current++;
     setMessages((m) => [...m, { id: userId, role: "user", text }, { id: assistantId, role: "assistant", text: "", typing: true, section: answer.section, project: answer.project, decision: answer.decision }]);
     setInput("");
     setIsTyping(true);
+    const answer = await answerPromise;
+    setMessages((m) => m.map((msg) => msg.id === assistantId ? { ...msg, section: answer.section, project: answer.project, decision: answer.decision } : msg));
     const fullText = answer.text || "I can help with that.";
     let index = 0;
     const timer = window.setInterval(() => {
