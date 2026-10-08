@@ -80,7 +80,7 @@ export const site = {
     email: "mailto:aravindh1653@gmail.com",
     resume: "https://drive.google.com/file/d/1eJR2RSZysk11_ITz_iz11MnL-SmAE1kk/view",
     medium: "https://medium.com/@aravindh1653",
-    booking: "mailto:aravindh1653@gmail.com?subject=Book%20a%20call",
+    booking: "https://cal.com/aravindhan-b-n2l0be/aravindh-cal?user=aravindhan-b-n2l0be&overlayCalendar=true",
   },
   education: [
     {
