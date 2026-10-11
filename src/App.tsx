@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { VisitorProvider } from "@/context/VisitorContext";
 import { Analytics } from "@vercel/analytics/react";
 import { ChatPortfolio } from "@/components/ChatPortfolio";
+import { ProfileDashboard } from "@/components/ProfileDashboard";
 import { Projects } from "@/sections/Projects";
 import { Experience } from "@/sections/Experience";
 import { Contact } from "@/sections/Contact";
@@ -15,7 +16,8 @@ export function App() {
         <BrowserRouter>
           <Analytics />
           <Routes>
-            <Route path="/" element={<ChatPortfolio />} />
+            <Route path="/" element={<ProfileDashboard />} />
+            <Route path="/chat" element={<ChatPortfolio />} />
             <Route path="/projects" element={<Projects isSearchable={true} />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/contact" element={<Contact />} />
