@@ -168,38 +168,38 @@ export function ProfileDashboard() {
 
   const sidebar = (
     <aside className={cx(
-      "flex h-full w-[264px] shrink-0 flex-col border-r",
+      "flex h-full w-[248px] shrink-0 flex-col border-r",
       dark ? "border-[#282e2a] bg-[#101521] text-slate-100" : "border-[#e1e5ef] bg-[#f7f8fc] text-slate-900"
     )}>
-      <div className="flex items-center gap-3 px-5 pb-5 pt-6">
+      <div className="flex items-center gap-3 px-4 pb-4 pt-5">
         <div className={cx("grid h-9 w-9 place-items-center rounded-xl", dark ? "bg-cyan-300 text-[#10251e]" : "bg-[#111a30] text-white")}><Sparkles size={17} /></div>
         <div className="min-w-0"><p className="text-[14px] font-semibold tracking-tight">Aravindh<span className="text-cyan-600">.</span></p><p className={cx("mt-0.5 text-[9px] font-medium uppercase tracking-[.19em]", muted)}>Personal portfolio</p></div>
         <button onClick={() => setMobileNav(false)} aria-label="Close navigation" className="ml-auto rounded-lg p-1.5 md:hidden"><X size={17} /></button>
       </div>
 
       <div className="px-4 pb-5">
-        <div className={cx("rounded-2xl border p-4", dark ? "border-white/10 bg-white/[.025]" : "border-[#e2e7f0] bg-white shadow-[0_8px_28px_rgba(48,64,130,.035)]")}>
+        <div className={cx("rounded-xl border p-3", dark ? "border-white/10 bg-white/[.025]" : "border-[#e2e7f0] bg-white")}>
           <div className="flex items-center gap-3">
             <img
               src={profileImage}
               alt={site.name}
               onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/profile2.jpeg"; }}
-              className="h-14 w-14 shrink-0 rounded-full object-cover ring-2 ring-white shadow-sm"
+              className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-black/5"
             />
             <div className="min-w-0 flex-1">
               <p className="truncate text-[13px] font-semibold">{site.name}</p>
               <p className={cx("mt-1 text-[10px] leading-4", muted)}>{site.role}</p>
-              <p className={cx("mt-1 line-clamp-2 text-[10px] leading-4", muted)}>{site.tagline}</p>
+              <p className={cx("mt-1 line-clamp-1 text-[10px] leading-4", muted)}>{site.tagline}</p>
             </div>
           </div>
-          <div className={cx("mt-3 flex items-center gap-1.5 text-[10px]", muted)}><MapPin size={12} /> {site.location}</div>
-          <div className={cx("mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px]", dark ? "bg-cyan-300/10 text-cyan-200" : "bg-cyan-50 text-cyan-800")}>
+          <div className={cx("mt-2 flex items-center gap-1.5 text-[10px]", muted)}><MapPin size={12} /> {site.location}</div>
+          <div className={cx("mt-2 inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-[10px]", dark ? "bg-cyan-300/10 text-cyan-200" : "bg-cyan-50 text-cyan-800")}>
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-500" /> {site.status.availableText}
           </div>
         </div>
       </div>
 
-      <div className="px-3">
+      <div className="px-3 pt-1">
         <p className={cx("mb-2 px-3 text-[9px] font-semibold uppercase tracking-[.2em]", muted)}>Workspace</p>
         <nav className="space-y-1" aria-label="Portfolio sections">
           {navigation.map(({ label, icon: Icon }) => {
@@ -244,7 +244,7 @@ export function ProfileDashboard() {
   );
 
   return (
-    <div className={cx("min-h-screen transition-colors md:flex", dark ? "bg-[#0b0f19] text-slate-100" : "bg-[#f6f7fb] text-slate-900")}>
+    <div className={cx("min-h-screen transition-colors md:flex", dark ? "bg-[#0b0b0e] text-slate-100" : "bg-[#fafafa] text-slate-900")}>
       <div className="sticky top-0 hidden h-screen md:block">{sidebar}</div>
       {mobileNav && (
         <div className="fixed inset-0 z-50 md:hidden">
@@ -258,7 +258,7 @@ export function ProfileDashboard() {
           className="fixed inset-0 z-[70] flex items-start justify-center bg-slate-950/40 px-4 pt-[12vh] backdrop-blur-[3px]"
           onMouseDown={(event) => { if (event.target === event.currentTarget) setQuickFindOpen(false); }}
         >
-          <section role="dialog" aria-modal="true" aria-label="Quick find" className={cx("w-full max-w-xl overflow-hidden rounded-2xl border shadow-2xl", dark ? "border-white/10 bg-[#171d18] text-slate-100" : "border-slate-200 bg-white text-slate-900")}>
+          <section role="dialog" aria-modal="true" aria-label="Quick find" className={cx("w-full max-w-xl overflow-hidden rounded-2xl border shadow-2xl", dark ? "border-white/10 bg-[#111115] text-slate-100" : "border-slate-200 bg-white text-slate-900")}>
             <div className={cx("flex items-center gap-3 border-b px-4", divider)}>
               <Search size={17} className={muted} />
               <input
@@ -330,7 +330,7 @@ export function ProfileDashboard() {
               <div aria-hidden="true" className="pointer-events-none absolute -right-2 -top-10 h-52 w-52 rounded-full border border-cyan-800/10" />
               <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_250px] lg:items-center">
                 <div className="max-w-3xl">
-                  <div className={cx("mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-medium", dark ? "border-cyan-300/20 bg-cyan-300/10 text-cyan-100" : "border-cyan-200 bg-white/70 text-cyan-900")}><Sparkles size={12} /> FULL STACK & AI ENGINEER</div>
+                  <div className={cx("mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-medium", dark ? "border-white/15 bg-white/[.04] text-slate-200" : "border-slate-200 bg-white text-slate-700")}><Sparkles size={12} /> FULL STACK & AI ENGINEER</div>
                   <h1 className={cx("max-w-3xl text-[38px] font-semibold leading-[1.08] tracking-[-.055em] sm:text-5xl lg:text-[54px]", titleText)}>I turn complex ideas into <span className={dark ? "text-cyan-200" : "text-[#4656d6]"}>useful systems.</span></h1>
                   <p className={cx("mt-5 max-w-2xl text-sm leading-7 sm:text-[15px]", dark ? "text-slate-300" : "text-slate-600")}>{site.tagline}</p>
                   <div className="mt-7 flex flex-wrap items-center gap-3">
