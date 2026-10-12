@@ -167,27 +167,28 @@ export function ProfileDashboard() {
 
   const sidebar = (
     <aside className={cx(
-      "flex h-full w-[260px] shrink-0 flex-col border-r",
-      dark ? "border-[#282e2a] bg-[#151916] text-slate-100" : "border-[#e5eae6] bg-[#f7f9f7] text-slate-900"
+      "flex h-full w-[264px] shrink-0 flex-col border-r",
+      dark ? "border-[#282e2a] bg-[#151916] text-slate-100" : "border-[#e7ece8] bg-[#f8faf8] text-slate-900"
     )}>
       <div className="flex items-center gap-3 px-5 pb-5 pt-6">
         <div className={cx("grid h-9 w-9 place-items-center rounded-xl", dark ? "bg-emerald-300 text-[#10251e]" : "bg-[#173b31] text-white")}><Sparkles size={17} /></div>
-        <div className="min-w-0"><p className="text-[14px] font-semibold tracking-tight">Aravindh<span className="text-emerald-600">.</span></p><p className={cx("mt-0.5 text-[9px] font-medium uppercase tracking-[.19em]", muted)}>Portfolio workspace</p></div>
+        <div className="min-w-0"><p className="text-[14px] font-semibold tracking-tight">Aravindh<span className="text-emerald-600">.</span></p><p className={cx("mt-0.5 text-[9px] font-medium uppercase tracking-[.19em]", muted)}>Personal portfolio</p></div>
         <button onClick={() => setMobileNav(false)} aria-label="Close navigation" className="ml-auto rounded-lg p-1.5 md:hidden"><X size={17} /></button>
       </div>
 
       <div className="px-4 pb-5">
-        <div className={cx("rounded-2xl border p-4", dark ? "border-white/10 bg-white/[.025]" : "border-[#e4e9e5] bg-white")}>
+        <div className={cx("rounded-2xl border p-4", dark ? "border-white/10 bg-white/[.025]" : "border-[#e6ebe7] bg-white shadow-[0_8px_28px_rgba(18,55,38,.035)]")}>
           <div className="flex items-center gap-3">
             <img
               src={profileImage}
               alt={site.name}
               onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/profile2.jpeg"; }}
-              className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-white"
+              className="h-14 w-14 shrink-0 rounded-full object-cover ring-2 ring-white shadow-sm"
             />
             <div className="min-w-0 flex-1">
               <p className="truncate text-[13px] font-semibold">{site.name}</p>
               <p className={cx("mt-1 text-[10px] leading-4", muted)}>{site.role}</p>
+              <p className={cx("mt-1 line-clamp-2 text-[10px] leading-4", muted)}>{site.tagline}</p>
             </div>
           </div>
           <div className={cx("mt-3 flex items-center gap-1.5 text-[10px]", muted)}><MapPin size={12} /> {site.location}</div>
@@ -242,7 +243,7 @@ export function ProfileDashboard() {
   );
 
   return (
-    <div className={cx("min-h-screen transition-colors md:flex", dark ? "bg-[#101311] text-slate-100" : "bg-white text-slate-900")}>
+    <div className={cx("min-h-screen transition-colors md:flex", dark ? "bg-[#101311] text-slate-100" : "bg-[#fbfcfb] text-slate-900")}>
       <div className="sticky top-0 hidden h-screen md:block">{sidebar}</div>
       {mobileNav && (
         <div className="fixed inset-0 z-50 md:hidden">
@@ -318,11 +319,11 @@ export function ProfileDashboard() {
           </div>
         </header>
 
-        <main className="mx-auto w-full max-w-[1120px] px-4 pb-14 pt-7 sm:px-7 sm:pt-9 lg:px-10 lg:pt-10">
+        <main className="mx-auto w-full max-w-[1120px] px-4 pb-14 pt-7 sm:px-8 sm:pt-9 lg:px-10 lg:pt-10">
           {view === "Overview" && <>
             <section className={cx(
               "relative overflow-hidden rounded-[26px] border p-6 sm:p-8 lg:p-10",
-              dark ? "border-white/10 bg-[linear-gradient(130deg,rgba(24,70,55,.32),rgba(30,42,36,.68),rgba(24,34,29,.98))]" : "border-[#e2eee6] bg-[linear-gradient(125deg,#eaf8ef_0%,#f5fbf7_48%,#f7fbff_100%)]"
+              dark ? "border-white/10 bg-[linear-gradient(130deg,rgba(24,70,55,.32),rgba(30,42,36,.68),rgba(24,34,29,.98))]" : "border-[#e3ece5] bg-[linear-gradient(135deg,#eff9f2_0%,#ffffff_58%,#f7fbf8_100%)]"
             )}>
               <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full border border-emerald-800/10" />
               <div aria-hidden="true" className="pointer-events-none absolute -right-2 -top-10 h-52 w-52 rounded-full border border-emerald-800/10" />
