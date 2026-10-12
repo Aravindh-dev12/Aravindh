@@ -206,15 +206,161 @@ function FormattedAgentText({ text, dark }: { text: string; dark: boolean }) {
   );
 }
 
-// Grounded AI Agent reasoning engine trained on Aravindh's full portfolio & project architecture
+// Grounded Conversational AI Agent reasoning engine for Aravindh's portfolio
 function generateAgentResponse(query: string): string {
   const q = query.toLowerCase().trim();
+  const clean = q.replace(/[?!.,;:']/g, "").trim();
+  const words = clean.split(/\s+/);
 
-  // 1. CIEAV
-  if (q.includes("cieav") || q.includes("commit layer") || (q.includes("commit") && q.includes("internet"))) {
+  // 1. Natural Conversational Greetings: "hi", "hello", "hey", "yo", "sup", etc.
+  const greetingWords = [
+    "hi", "hello", "hey", "heyy", "heya", "hiya", "yo", "sup", "hola",
+    "namaste", "howdy", "wassup", "greetings"
+  ];
+  const isGreeting =
+    greetingWords.includes(clean) ||
+    greetingWords.some((w) => clean.startsWith(w + " ")) ||
+    clean === "good morning" ||
+    clean === "good evening" ||
+    clean === "good afternoon" ||
+    clean.startsWith("hey there") ||
+    clean.startsWith("hi there") ||
+    clean.startsWith("hello there");
+
+  if (isGreeting) {
+    return (
+      `Hey there! 👋 Great to meet you. I'm **Aravindh AI**, an autonomous agent trained directly on Aravindh's engineering portfolio and project knowledge graph.\n\n` +
+      `I can tell you everything about his work:\n` +
+      `• **Flagship Projects**: **CIEAV** (the commit layer for the internet), **openDev** (autonomous company operator), or **Looca** (real-time voice AI agent)\n` +
+      `• **Tech Stack**: React, Next.js, TypeScript, Python, FastAPI, PyTorch, Qdrant, Docker\n` +
+      `• **Career & Experience**: His engineering journey at Loam AI, Nuclei Tech Solutions, and Perspectiv Labs\n` +
+      `• **Contact & Hiring**: How to book a call, discuss a role, or grab his resume\n\n` +
+      `What would you like to explore? Feel free to ask anything!`
+    );
+  }
+
+  // 2. Casual Pleasantries: "how are you", "how's it going", "what's up", etc.
+  if (
+    clean.includes("how are you") ||
+    clean.includes("how r u") ||
+    clean.includes("how do you do") ||
+    clean.includes("hows it going") ||
+    clean.includes("how is it going") ||
+    clean.includes("whats up") ||
+    clean.includes("what is up") ||
+    clean.includes("how is your day")
+  ) {
+    return (
+      `I'm running in top condition! ⚡ All systems operational, zero cloud credential leakage, and Aravindh's deterministic knowledge base is hot and ready.\n\n` +
+      `How can I help you today? You can ask about Aravindh's software architectures, tech stack, or how to get in touch with him.`
+    );
+  }
+
+  // 3. Gratitude & Affirmations: "thanks", "thank you", "cool", "awesome", "great"
+  if (
+    clean === "thanks" ||
+    clean === "thank you" ||
+    clean === "thx" ||
+    clean.startsWith("thank you") ||
+    clean.startsWith("thanks") ||
+    clean === "appreciate it" ||
+    clean === "awesome" ||
+    clean === "cool" ||
+    clean === "great" ||
+    clean === "perfect" ||
+    clean === "nice" ||
+    clean === "good"
+  ) {
+    return (
+      `You're very welcome! 😊 Glad I could help. If you have any more questions about Aravindh's codebases, systems, or availability, just ask away!`
+    );
+  }
+
+  // 4. Goodbyes: "bye", "goodbye", "cya", "see you"
+  if (
+    clean === "bye" ||
+    clean === "goodbye" ||
+    clean === "cya" ||
+    clean === "see you" ||
+    clean.startsWith("bye") ||
+    clean.startsWith("goodbye")
+  ) {
+    return (
+      `Goodbye! Thanks for exploring Aravindh's portfolio. You can connect with him anytime via email at [aravindh1653@gmail.com](mailto:aravindh1653@gmail.com) or book a chat on [Cal.com](https://cal.com/aravindhan-b-n2l0be/aravindh-cal?user=aravindhan-b-n2l0be&overlayCalendar=true). Have a wonderful day!`
+    );
+  }
+
+  // 5. Identity: "who are you", "what is this", "are you real", "who made you"
+  if (
+    clean.includes("who are you") ||
+    clean.includes("what are you") ||
+    clean.includes("who made you") ||
+    clean.includes("who built you") ||
+    clean.includes("who created you") ||
+    clean.includes("are you an ai") ||
+    clean.includes("are you real")
+  ) {
+    return (
+      `I am **Aravindh AI**, an autonomous conversational agent engineered to represent **Aravindh B** and his engineering work.\n\n` +
+      `• **My Architecture**: I'm grounded directly in Aravindh's real project specifications, system diagrams, and career documentation.\n` +
+      `• **My Purpose**: To give developers, hiring managers, and collaborators instant, accurate answers about his code, design decisions, and engineering availability without generic AI hallucinations.\n\n` +
+      `Would you like to know more about Aravindh or explore one of his flagship systems like **CIEAV** or **openDev**?`
+    );
+  }
+
+  // 6. Help / Capabilities: "help", "what can you do"
+  if (clean === "help" || clean.includes("what can you do") || clean.includes("what do you know") || clean === "menu" || clean === "features") {
+    return (
+      `Here is what you can ask me about:\n\n` +
+      `1. **Projects**: "How does CIEAV work?", "What is openDev?", "Tell me about Looca Voice AI", "What is Octic?"\n` +
+      `2. **Tech Stack**: "What is your stack?", "Does Aravindh know Python?", "How much React experience does he have?"\n` +
+      `3. **Experience**: "Where has he worked?", "Tell me about Loam AI", "Tell me about Nuclei Tech Solutions"\n` +
+      `4. **Hiring & Contact**: "How can I hire him?", "What is his email?", "Can I see his resume?"\n` +
+      `5. **Philosophy**: "What is his engineering philosophy?"\n\n` +
+      `Ask me anything in plain English!`
+    );
+  }
+
+  // 7. Resume / CV
+  if (clean.includes("resume") || clean.includes("cv") || clean.includes("curriculum vitae")) {
+    return (
+      `**Aravindh's Resume**:\n\n` +
+      `• You can view and download his complete PDF resume here: [View Online Resume (Google Drive)](https://drive.google.com/file/d/1eJR2RSZysk11_ITz_iz11MnL-SmAE1kk/view)\n\n` +
+      `It outlines his full career history, engineering leadership at Loam AI, freelance work at Nuclei Tech Solutions, and production project portfolio.`
+    );
+  }
+
+  // 8. Location / Timezone
+  if (clean.includes("where") && (clean.includes("live") || clean.includes("from") || clean.includes("located") || clean.includes("based") || clean.includes("aravindh"))) {
+    return (
+      `Aravindh is based in **Bengaluru, India** (Timezone: IST / UTC+5:30).\n\n` +
+      `He works seamlessly across global time zones (US, Europe, APAC) and is available for remote or on-site engineering roles.`
+    );
+  }
+
+  // 9. Specific Technology checks: Python, React, Next.js, TypeScript, etc.
+  if (words.includes("python")) {
+    return (
+      `Yes! **Python** is one of Aravindh's core languages. He uses Python extensively for:\n\n` +
+      `• **AI & Agent Runtimes**: openDev (Playwright + Qwen planning), Octic AI framework, and RAG pipelines.\n` +
+      `• **Backend APIs**: High-performance asynchronous services using **FastAPI**.\n` +
+      `• **ML & Neural Modeling**: PyTorch, MLP-Mixer architectures at Nuclei Tech Solutions, and embeddings processing with Qdrant.`
+    );
+  }
+
+  if (words.includes("react") || words.includes("nextjs") || words.includes("next.js") || words.includes("frontend")) {
+    return (
+      `Yes! Aravindh has deep production expertise with **React & Next.js**:\n\n` +
+      `• Architected and shipped an end-to-end B2B freight forwarding platform from scratch in Next.js, React, and TypeScript at Loam AI.\n` +
+      `• Expert in modern React architecture, SSR/SSG, Tailwind CSS, component modularity, and real-time state management with zero UI junk.`
+    );
+  }
+
+  // 10. CIEAV
+  if (clean.includes("cieav") || clean.includes("commit layer") || (clean.includes("commit") && clean.includes("internet"))) {
     return (
       `**CIEAV (Commit Interface for Explicit Action Verification)** is the commit layer for the internet.\n\n` +
-      `• **Core Purpose**: An always-on local control plane between digital intent and consequence. It keeps deterministic safety and ultimate authority local on your computer, while cloud AI models provide privacy-reduced semantic interpretation.\n` +
+      `• **Core Purpose**: Acts as an always-on local control plane between digital intent and consequence. It keeps deterministic safety and ultimate authority local on your computer, while cloud AI models provide privacy-reduced semantic interpretation.\n` +
       `• **Architecture**: Human/AI intent -> local Gateway -> deterministic safety -> privacy reduction -> cloud semantic interpretation -> conservative local merge -> policy engine -> Preview/Commit/Cancel -> Ed25519 signed receipt -> local outcome observer -> verified Undo.\n` +
       `• **Engineering Depth**: Built with Node.js, Python, Chrome extension, IBM Granite, Ed25519 cryptographic signing, and TLS. Separates transaction commit from actual real-world success.\n` +
       `• **Live Application**: [cieav.vercel.app](https://cieav.vercel.app/)\n` +
@@ -222,11 +368,11 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 2. openDev
-  if (q.includes("opendev") || q.includes("open dev") || q.includes("company operator") || q.includes("invoice") || q.includes("erp")) {
+  // 11. openDev
+  if (clean.includes("opendev") || clean.includes("open dev") || clean.includes("company operator") || clean.includes("invoice") || clean.includes("erp")) {
     return (
       `**openDev** is a local autonomous company operator with deterministic guardrails.\n\n` +
-      `• **Core Concept**: Handles complex enterprise requests (such as invoice ingestion, purchase orders, and accounting workflows) without blindly trusting LLM claims.\n` +
+      `• **Core Concept**: Handles complex enterprise operations (such as invoice intake, purchase orders, and accounting workflows) without blindly trusting LLM claims.\n` +
       `• **Architecture**: Company request -> SOP retrieval with BM25 -> local model planning (Qwen via Ollama) -> one tool action at a time -> deterministic YAML policy engine -> Playwright browser/file execution -> hash-chained audit logs -> independent ERP invariant verification -> repair feedback.\n` +
       `• **Safety Principle**: An independent verifier validates actual Flask ERP database state and invariants instead of trusting the agent's textual claims.\n` +
       `• **Engineering Stack**: Python, Qwen, Ollama, Playwright, Flask ERP, BM25, YAML policy, hash-chained audit logs.\n` +
@@ -234,8 +380,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 3. Looca
-  if (q.includes("looca") || q.includes("voice") || q.includes("speech")) {
+  // 12. Looca
+  if (clean.includes("looca") || clean.includes("voice") || clean.includes("speech")) {
     return (
       `**Looca Voice AI Agent** is an end-to-end voice-first conversational AI platform with deep episodic memory.\n\n` +
       `• **Architecture**: Next.js frontend -> FastAPI backend -> PostgreSQL application state, Qdrant semantic memory, Redis predictive preloading, and VAPI voice orchestration.\n` +
@@ -244,8 +390,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 4. Octic AI
-  if (q.includes("octic") || q.includes("workforce") || q.includes("multi-agent")) {
+  // 13. Octic AI
+  if (clean.includes("octic") || clean.includes("workforce") || clean.includes("multi-agent") || clean.includes("multi agent")) {
     return (
       `**Octic AI Agent** is an autonomous AI workforce framework engineered for deterministic tool execution.\n\n` +
       `• **Architecture**: Context -> Harness -> Loop -> Graph -> Managed runtime, cleanly isolating planning, tool execution, and memory into inspectable layers.\n` +
@@ -254,8 +400,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 5. Oundnote
-  if (q.includes("oundnote") || q.includes("diarization") || q.includes("meeting assistant")) {
+  // 14. Oundnote
+  if (clean.includes("oundnote") || clean.includes("diarization") || clean.includes("meeting assistant")) {
     return (
       `**Oundnote** is a private, local-first AI meeting assistant with offline RAG and speaker diarization.\n\n` +
       `• **Architecture**: Audio capture -> modular transcription -> diarization & voice matching -> analysis -> SQLite FTS5 -> local retrieval & MCP.\n` +
@@ -264,8 +410,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 6. Oli
-  if (q.includes("oli") || q.includes("notch") || q.includes("copilot")) {
+  // 15. Oli
+  if (clean.includes("oli") || clean.includes("notch") || clean.includes("copilot")) {
     return (
       `**Oli** is a sovereign notch-resident ambient meeting copilot.\n\n` +
       `• **Architecture**: Electron shell -> native macOS audio capture -> persistent Rust whisper.cpp -> local Express API -> SQLite FTS5 -> local AI & MCP -> protected notch HUD.\n` +
@@ -274,8 +420,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 7. Tech Stack / Skills
-  if (q.includes("stack") || q.includes("skill") || q.includes("tech") || q.includes("language") || q.includes("framework")) {
+  // 16. Tech Stack / Skills
+  if (clean.includes("stack") || clean.includes("skill") || clean.includes("tech") || clean.includes("language") || clean.includes("framework") || clean.includes("tools")) {
     return (
       `**Aravindh's Core Engineering Stack**:\n\n` +
       `• **Frontend**: React, Next.js, TypeScript, Tailwind CSS, Redux Toolkit, WebSockets\n` +
@@ -286,8 +432,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 8. Experience / Career Timeline
-  if (q.includes("experience") || q.includes("job") || q.includes("work") || q.includes("career") || q.includes("company") || q.includes("nuclei") || q.includes("loam") || q.includes("perspectiv")) {
+  // 17. Experience / Career Timeline
+  if (clean.includes("experience") || clean.includes("job") || clean.includes("work") || clean.includes("career") || clean.includes("company") || clean.includes("nuclei") || clean.includes("loam") || clean.includes("perspectiv")) {
     return (
       `**Aravindh's Professional Engineering Experience**:\n\n` +
       `1. **Nuclei Tech Solutions** (Jun 2026 – Present) · *Software Developer (Freelance)*\n` +
@@ -302,8 +448,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 9. Education
-  if (q.includes("education") || q.includes("college") || q.includes("degree") || q.includes("university") || q.includes("study")) {
+  // 18. Education
+  if (clean.includes("education") || clean.includes("college") || clean.includes("degree") || clean.includes("university") || clean.includes("study") || clean.includes("school")) {
     return (
       `**Education**:\n\n` +
       `• **Degree**: Bachelor of Engineering (B.E.) in Computer Science & Engineering\n` +
@@ -312,8 +458,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 10. Contact / Hire
-  if (q.includes("contact") || q.includes("hire") || q.includes("email") || q.includes("reach") || q.includes("call") || q.includes("booking") || q.includes("available")) {
+  // 19. Contact / Hire / Booking / Collaboration
+  if (clean.includes("contact") || clean.includes("hire") || clean.includes("email") || clean.includes("reach") || clean.includes("call") || clean.includes("booking") || clean.includes("available") || clean.includes("collaborat") || clean.includes("work with")) {
     return (
       `**How to Connect with Aravindh**:\n\n` +
       `• **Email**: [aravindh1653@gmail.com](mailto:aravindh1653@gmail.com)\n` +
@@ -325,8 +471,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 11. Projects Overview
-  if (q.includes("project") || q.includes("built") || q.includes("portfolio")) {
+  // 20. Projects Overview
+  if (clean.includes("project") || clean.includes("built") || clean.includes("portfolio") || clean.includes("products")) {
     return (
       `**Aravindh's Flagship Engineering Projects**:\n\n` +
       `1. **CIEAV**: The commit layer for the internet (Ed25519 signing + IBM Granite + local authority).\n` +
@@ -340,8 +486,8 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 12. About / Bio / Who is Aravindh
-  if (q.includes("aravindh") || q.includes("who are you") || q.includes("about") || q.includes("bio") || q.includes("yourself")) {
+  // 21. Bio / Who is Aravindh
+  if (clean.includes("aravindh") || clean.includes("about") || clean.includes("bio") || clean.includes("background") || clean.includes("yourself")) {
     return (
       `**Aravindh B** is a **Full Stack & AI Engineer** based in Bengaluru, India.\n\n` +
       `• **Core Focus**: Building end-to-end products across modern web stacks and intelligent AI systems, with rigorous engineering, robust UX, and dependable delivery.\n` +
@@ -352,16 +498,16 @@ function generateAgentResponse(query: string): string {
     );
   }
 
-  // 13. Fallback
+  // 22. Conversational fallback (Warm, helpful, non-robotic)
   return (
-    `I searched Aravindh's engineering knowledge base for **"${query}"**.\n\n` +
-    `Aravindh specializes in building end-to-end full-stack web products and deterministic AI agent architectures.\n\n` +
-    `Here are great questions you can ask me:\n` +
+    `I'd love to help with that! As Aravindh's portfolio AI, I'm specialized in his software systems, engineering architectures, and career.\n\n` +
+    `Here are great topics you can ask me about:\n` +
     `• **"How does CIEAV work?"** (The commit layer for the internet)\n` +
     `• **"What is openDev?"** (Autonomous company operator with ERP verification)\n` +
-    `• **"What is your tech stack?"** (Frontend, backend, AI, databases)\n` +
-    `• **"Show work experience"** (Nuclei Tech Solutions, Loam AI, Perspectiv Labs)\n` +
-    `• **"How can I contact or hire you?"** (Email, Cal.com, LinkedIn)`
+    `• **"What is his tech stack?"** (React, Next.js, Python, FastAPI, AI/ML)\n` +
+    `• **"Show work experience"** (Loam AI, Nuclei Tech Solutions, Perspectiv Labs)\n` +
+    `• **"How can I hire him?"** (Email, Cal.com booking, LinkedIn)\n\n` +
+    `What would you like to know?`
   );
 }
 
