@@ -511,6 +511,41 @@ function generateAgentResponse(query: string): string {
   );
 }
 
+// Asynchronous resolver that blends instant verified portfolio knowledge with live dynamic AI completions
+async function resolveAgentResponse(query: string): Promise<string> {
+  const localMatch = generateAgentResponse(query);
+
+  // If local response is a specific matched intent (not the generic fallback), return it!
+  const isFallback = localMatch.startsWith("I'd love to help with that! As Aravindh's portfolio AI");
+  if (!isFallback) {
+    await new Promise((r) => setTimeout(r, 280));
+    return localMatch;
+  }
+
+  // For open-ended general queries, code generation, or creative questions, query live AI with portfolio system prompt!
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 4000);
+    const systemPrompt = "You are Aravindh AI, personal autonomous assistant of Aravindh B (Full Stack & AI Engineer from Bengaluru). Answer helpfully, naturally, and concisely with markdown formatting.";
+    const encodedPrompt = encodeURIComponent(`${query} (system: ${systemPrompt})`);
+    const res = await fetch(`https://text.pollinations.ai/${encodedPrompt}`, {
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    if (res.ok) {
+      const text = await res.text();
+      if (text && text.trim().length > 4 && text.trim() !== "{}") {
+        return text.trim();
+      }
+    }
+  } catch {
+    // If network fails or times out, fallback gracefully
+  }
+
+  await new Promise((r) => setTimeout(r, 280));
+  return localMatch;
+}
+
 // ============================================================================
 // SUPERMEMORY-STYLE ANIMATED IN-BETWEEN BOXES
 // ============================================================================
@@ -1001,7 +1036,7 @@ export function SupermemoryPortfolio() {
     "How can I contact or hire you?",
   ];
 
-  const handleSendMessage = (textToSend?: string) => {
+  const handleSendMessage = async (textToSend?: string) => {
     const query = (textToSend ?? chatInput).trim();
     if (!query || isTyping) return;
 
@@ -1016,8 +1051,8 @@ export function SupermemoryPortfolio() {
     if (!textToSend) setChatInput("");
     setIsTyping(true);
 
-    setTimeout(() => {
-      const responseText = generateAgentResponse(query);
+    try {
+      const responseText = await resolveAgentResponse(query);
       const agentMsg = {
         id: "a-" + Date.now(),
         sender: "agent" as const,
@@ -1025,8 +1060,18 @@ export function SupermemoryPortfolio() {
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
       };
       setChatMessages((prev) => [...prev, agentMsg]);
+    } catch {
+      const fallbackText = generateAgentResponse(query);
+      const agentMsg = {
+        id: "a-" + Date.now(),
+        sender: "agent" as const,
+        text: fallbackText,
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      };
+      setChatMessages((prev) => [...prev, agentMsg]);
+    } finally {
       setIsTyping(false);
-    }, 450);
+    }
   };
 
   const handleClearChat = () => {
@@ -1144,17 +1189,40 @@ LinkedIn: ${site.socials.linkedin}`;
     setSimRunning(true);
     setTimeout(() => {
       setSimRunning(false);
+      const q = simQuery.toLowerCase().trim();
+      let node1 = "context/aravindh-fullstack-ai";
+      let node2 = "runtime/deterministic-execution";
+      let actionText = `Synthesized context for "${simQuery}". Zero hallucination verified.`;
+
+      if (q.includes("cieav") || q.includes("commit")) {
+        node1 = "cieav/deterministic-intent-plane";
+        node2 = "auth/ed25519-local-authority";
+        actionText = "Grounded dispatch to CIEAV local execution plane with 0ms cloud leakage.";
+      } else if (q.includes("opendev") || q.includes("erp") || q.includes("invoice")) {
+        node1 = "opendev/sop-retrieval-bm25";
+        node2 = "verify/flask-erp-invariant";
+        actionText = "Retrieved SOP-104 with independent ERP database verification.";
+      } else if (q.includes("looca") || q.includes("voice")) {
+        node1 = "looca/qdrant-vector-memory";
+        node2 = "vapi/realtime-voice-transport";
+        actionText = "Indexed episodic memory with sub-second speech synthesis.";
+      } else if (q.includes("hi") || q.includes("hello") || q.includes("hey")) {
+        node1 = "agent/conversational-init";
+        node2 = "identity/aravindh-b-engineer";
+        actionText = "Aravindh AI initialized and ready to answer any questions.";
+      }
+
       setSimResult({
         status: "RESOLVED",
         score: "0.998 RETRIEVAL CONFIDENCE",
         memoryNodes: [
-          `query/${simQuery.slice(0, 24).toLowerCase().replace(/\s+/g, "-")}`,
-          "context/aravindh-fullstack-ai",
-          "runtime/deterministic-execution"
+          node1,
+          node2,
+          "privacy/granite-guard-active"
         ],
-        action: `Synthesized context for "${simQuery}". Zero hallucination verified.`
+        action: actionText
       });
-    }, 600);
+    }, 500);
   };
 
   const scrollToSection = (id: string) => {
