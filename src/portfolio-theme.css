@@ -1,47 +1,47 @@
-/* Futuristic portfolio workspace — neutral surfaces with electric blue and cyan accents */
+/* Supermemory-inspired workspace: quiet neutrals, compact navigation, precise alignment. */
 :root {
   color-scheme: light;
-  --portfolio-bg: #f6f7fb;
+  --portfolio-bg: #fafafa;
   --portfolio-panel: #ffffff;
-  --portfolio-sidebar: #f7f8fc;
-  --portfolio-border: #e1e5ef;
-  --portfolio-text: #171a2b;
-  --portfolio-muted: #687089;
+  --portfolio-sidebar: #fcfcfc;
+  --portfolio-border: #e8e8eb;
+  --portfolio-text: #17171b;
+  --portfolio-muted: #777780;
   --portfolio-accent: #4f46e5;
-  --portfolio-accent-soft: #eef2ff;
-  --bg: #f6f7fb;
-  --fg: #171a2b;
-  --muted: #687089;
-  --soft: #9aa2b8;
-  --line: rgba(64, 75, 130, .14);
-  --stripe: rgba(64, 75, 130, .035);
+  --portfolio-accent-soft: #f0efff;
+  --bg: #fafafa;
+  --fg: #17171b;
+  --muted: #777780;
+  --soft: #a0a0a8;
+  --line: rgba(20, 20, 30, .10);
+  --stripe: rgba(20, 20, 30, .025);
   --hover: rgba(79, 70, 229, .055);
   --card: #ffffff;
-  --chip: #eef2ff;
+  --chip: #f1f1f4;
 }
 .light {
   color-scheme: light;
-  --bg: #f6f7fb;
-  --fg: #171a2b;
-  --muted: #687089;
-  --soft: #9aa2b8;
-  --line: rgba(64, 75, 130, .14);
-  --stripe: rgba(64, 75, 130, .035);
+  --bg: #fafafa;
+  --fg: #17171b;
+  --muted: #777780;
+  --soft: #a0a0a8;
+  --line: rgba(20, 20, 30, .10);
+  --stripe: rgba(20, 20, 30, .025);
   --hover: rgba(79, 70, 229, .055);
   --card: #ffffff;
-  --chip: #eef2ff;
+  --chip: #f1f1f4;
 }
 .dark {
   color-scheme: dark;
-  --bg: #0b0f19;
-  --fg: #edf0ff;
-  --muted: #a3abc2;
-  --soft: #737d9c;
-  --line: rgba(220, 228, 255, .13);
-  --stripe: rgba(220, 228, 255, .035);
-  --hover: rgba(125, 145, 255, .09);
-  --card: #121827;
-  --chip: #1b2440;
+  --bg: #0b0b0e;
+  --fg: #f4f4f6;
+  --muted: #a0a0aa;
+  --soft: #73737e;
+  --line: rgba(240, 240, 255, .12);
+  --stripe: rgba(240, 240, 255, .025);
+  --hover: rgba(129, 140, 248, .09);
+  --card: #111115;
+  --chip: #1b1b23;
 }
 html, body, #root {
   min-height: 100%;
@@ -53,7 +53,7 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-::selection { background: #dce2ff; color: #1c245b; }
+::selection { background: #e0e7ff; color: #24215b; }
 :focus-visible { outline: 2px solid #6366f1; outline-offset: 3px; }
 a { text-underline-offset: 3px; }
 #root > div.min-h-screen > div.sticky { z-index: 35; }
@@ -61,74 +61,89 @@ a { text-underline-offset: 3px; }
   border-color: var(--portfolio-border);
   scrollbar-width: thin;
 }
-#root > div.min-h-screen aside img {
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, .12);
-}
+#root > div.min-h-screen aside img { box-shadow: none; }
 #root > div.min-h-screen aside nav button {
-  min-height: 42px;
-  border-radius: 11px;
+  min-height: 36px;
+  border-radius: 8px;
 }
 #root > div.min-h-screen aside nav button:hover { color: #4f46e5; }
 #root > div.min-h-screen header {
   border-color: var(--portfolio-border);
-  box-shadow: 0 1px 0 rgba(20, 27, 60, .025);
+  box-shadow: none;
 }
 #root > div.min-h-screen main {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 1240px;
+  max-width: 1160px;
   margin-inline: auto;
 }
 #root > div.min-h-screen main > section,
-#root > div.min-h-screen main > div > section { border-radius: 16px; }
+#root > div.min-h-screen main > div > section { border-radius: 14px; }
 #root > div.min-h-screen main article {
   border-color: var(--portfolio-border);
   border-radius: 12px;
-  box-shadow: 0 1px 2px rgba(20, 27, 60, .025);
+  box-shadow: none;
 }
 #root > div.min-h-screen main article:hover {
-  box-shadow: 0 16px 42px rgba(54, 65, 150, .09);
+  box-shadow: 0 8px 28px rgba(20, 20, 35, .055);
 }
 #root > div.min-h-screen main h1,
-#root > div.min-h-screen main h2 { letter-spacing: -0.04em; }
-#root > div.min-h-screen main input { border-radius: 10px; }
+#root > div.min-h-screen main h2 { letter-spacing: -0.045em; }
+#root > div.min-h-screen main input { border-radius: 8px; }
 #root > div.min-h-screen aside > div:first-child {
   border-bottom: 1px solid var(--portfolio-border);
 }
 #root > div.min-h-screen header button,
-#root > div.min-h-screen header a { border-radius: 9px; }
+#root > div.min-h-screen header a { border-radius: 8px; }
 #root > div.min-h-screen button[class~="bg-zinc-900"] { background: #4f46e5; }
 #root > div.min-h-screen button[class~="bg-zinc-900"]:hover { background: #4338ca; }
 #root > div.min-h-screen a:hover,
-#root > div.min-h-screen button:hover { transition-duration: 160ms; }
+#root > div.min-h-screen button:hover { transition-duration: 150ms; }
+
+/* Flatten the oversized dashboard hero and keep the accent restrained. */
+#root > div.min-h-screen main > section:first-child {
+  border-color: var(--portfolio-border);
+  box-shadow: none;
+}
+#root > div.min-h-screen main > section:first-child h1 { max-width: 760px; }
+#root > div.min-h-screen main article,
+#root > div.min-h-screen main section { scroll-margin-top: 84px; }
+#root > div.min-h-screen aside > div:nth-child(2) > div {
+  border-radius: 12px;
+  box-shadow: none;
+}
+#root > div.min-h-screen aside nav button[aria-current="page"] {
+  font-weight: 600;
+}
 @media (min-width: 768px) {
   #root > div.min-h-screen > div.sticky {
     position: fixed !important;
     inset: 0 auto 0 0;
-    width: 272px;
+    width: 248px;
     height: 100vh;
     flex: none;
   }
   #root > div.min-h-screen > div.sticky > aside {
-    width: 272px;
+    box-sizing: border-box;
+    width: 248px;
     height: 100vh;
     overflow-y: auto;
-    box-shadow: 8px 0 32px rgba(22, 30, 65, .035);
+    box-shadow: none;
   }
   #root > div.min-h-screen > div.min-w-0.flex-1 {
     box-sizing: border-box;
-    width: calc(100% - 272px);
+    width: calc(100% - 248px);
     min-width: 0;
-    margin-left: 272px;
+    margin-left: 248px;
   }
   #root > div.min-h-screen > div.min-w-0.flex-1 > header {
-    padding-left: clamp(24px, 3vw, 48px);
-    padding-right: clamp(24px, 3vw, 48px);
+    padding-left: clamp(24px, 3vw, 44px);
+    padding-right: clamp(24px, 3vw, 44px);
   }
   #root > div.min-h-screen > div.min-w-0.flex-1 > main {
-    box-sizing: border-box;
-    max-width: 1240px;
-    padding-left: clamp(24px, 3.2vw, 56px);
-    padding-right: clamp(24px, 3.2vw, 56px);
+    max-width: 1160px;
+    padding-left: clamp(24px, 3vw, 48px);
+    padding-right: clamp(24px, 3vw, 48px);
   }
 }
 @media (max-width: 767px) {
