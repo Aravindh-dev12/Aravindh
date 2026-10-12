@@ -116,14 +116,14 @@ export function ProfileDashboard() {
   };
 
   const sidebar = (
-    <aside className={`flex h-full w-[258px] shrink-0 flex-col border-r ${dark ? "border-white/10 bg-[#10131a] text-slate-100" : "border-slate-200 bg-white text-slate-900"}`}>
+    <aside className={`flex h-full w-[264px] shrink-0 flex-col border-r ${dark ? "border-white/10 bg-[#10131a] text-slate-100" : "border-slate-200 bg-white text-slate-900"}`}>
       <div className="flex items-center gap-3 px-5 pb-6 pt-7">
         <div className={`grid h-9 w-9 place-items-center rounded-xl ${dark ? "bg-blue-400 text-slate-950" : "bg-slate-950 text-white"}`}><Sparkles size={17} /></div>
-        <div><p className="text-[15px] font-semibold tracking-tight">Aravindh<span className="text-blue-500">.</span></p><p className={`mt-0.5 text-[9px] font-medium uppercase tracking-[.2em] ${muted}`}>Personal workspace</p></div>
+        <div><p className="text-[15px] font-semibold tracking-tight">Aravindh<span className="text-blue-500">.</span></p><p className={`mt-0.5 text-[9px] font-medium uppercase tracking-[.2em] ${muted}`}>DEVELOPER PORTFOLIO</p></div>
         <button onClick={() => setMobileNav(false)} aria-label="Close navigation" className="ml-auto rounded-lg p-1.5 md:hidden"><X size={17} /></button>
       </div>
 
-      <div className={`mx-3 mb-6 rounded-2xl border p-3.5 ${dark ? "border-white/10 bg-white/[.035]" : "border-slate-200 bg-slate-50/80"}`}>
+      <div className={`mx-3 mb-6 rounded-2xl border p-3.5 ${dark ? "border-white/10 bg-white/[.025]" : "border-slate-200 bg-white"}`}>
         <div className="flex items-center gap-3">
           <img src={profileImage} alt={site.name} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "/profile2.jpeg"; }} className="h-11 w-11 rounded-xl object-cover" />
           <div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold">{site.name}</p><p className={`mt-1 truncate text-[11px] ${muted}`}>{site.role}</p></div>
@@ -133,7 +133,7 @@ export function ProfileDashboard() {
       </div>
 
       <div className="px-4">
-        <p className={`mb-2 px-2 text-[9px] font-semibold uppercase tracking-[.22em] ${muted}`}>Workspace</p>
+        <p className={`mb-2 px-2 text-[9px] font-semibold uppercase tracking-[.22em] ${muted}`}>Navigation</p>
         <nav className="space-y-1" aria-label="Portfolio sections">
           {navigation.map(({ label, icon: Icon }) => {
             const active = view === label;
@@ -156,7 +156,7 @@ export function ProfileDashboard() {
   );
 
   return (
-    <div className={`min-h-screen transition-colors md:flex ${dark ? "bg-[#0c0f15] text-slate-100" : "bg-[#f7f9fc] text-slate-900"}`}>
+    <div className={`min-h-screen transition-colors md:flex ${dark ? "bg-[#0b0d12] text-slate-100" : "bg-[#f8fafc] text-slate-900"}`}>
       <div className="sticky top-0 hidden h-screen md:block">{sidebar}</div>
       {mobileNav && <div className="fixed inset-0 z-50 md:hidden"><button aria-label="Close navigation overlay" className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm" onClick={() => setMobileNav(false)} /><div className="relative z-10 h-full w-[min(84vw,300px)] shadow-2xl">{sidebar}</div></div>}
 
@@ -205,9 +205,9 @@ export function ProfileDashboard() {
           </div>
         </header>
 
-        <main className="mx-auto w-full max-w-[1240px] px-4 pb-14 pt-7 sm:px-7 sm:pt-9 lg:px-10 lg:pt-11">
+        <main className="mx-auto w-full max-w-[1180px] px-4 pb-14 pt-7 sm:px-7 sm:pt-9 lg:px-10 lg:pt-11">
           {view === "Overview" && <>
-            <section className={`relative overflow-hidden rounded-[26px] border p-6 sm:p-9 lg:p-11 ${dark ? "border-white/10 bg-[#111722]" : "border-slate-200 bg-white"}`}>
+            <section className={`relative overflow-hidden rounded-2xl border p-6 sm:p-8 lg:p-10 ${dark ? "border-white/10 bg-[#111722]" : "border-slate-200 bg-white"}`}>
               <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: dark ? "radial-gradient(circle at 85% 15%, rgba(39,117,255,.2), transparent 28%), radial-gradient(circle at 12% 110%, rgba(39,117,255,.08), transparent 35%)" : "radial-gradient(circle at 90% 10%, rgba(59,130,246,.10), transparent 28%), radial-gradient(circle at 2% 100%, rgba(147,197,253,.14), transparent 30%)" }} />
               <div aria-hidden="true" className={`absolute inset-0 opacity-[.10] ${dark ? "" : ""}`} style={{ backgroundImage: "radial-gradient(currentColor 0.7px, transparent 0.7px)", backgroundSize: "18px 18px", maskImage: "linear-gradient(90deg, transparent, black)" }} />
               <div className="relative max-w-3xl">
