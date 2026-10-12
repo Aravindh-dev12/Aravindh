@@ -298,7 +298,29 @@ export const site = {
     "Transformers", "MCP", "Multi-Agent Systems", "PyTorch", "Docker", "Kubernetes", "AWS",
     "GCP", "Git", "GitHub", "Vercel", "Python",
   ],
-  writing: [] as Post[],
+  writing: [
+    {
+      title: "AI Security in 2026: When the Defender Becomes the Threat",
+      summary: "A field guide to the evolving AI security landscape, including prompt injection, multi-agent attack surfaces, vulnerability discovery, governance, and practical controls for engineering teams.",
+      date: "May 30, 2026",
+      url: "https://medium.com/@aravindh1653/ai-security-in-2026-when-the-defender-becomes-the-threat-0ecb4b83253e",
+      readingTime: "12 min read",
+    },
+    {
+      title: "ReACT AI Agents: Smarter AI Through Reasoning and Action",
+      summary: "An introduction to agent architecture, tool use, planning, feedback loops, and the differences between single-agent and multi-agent systems.",
+      date: "Dec 27, 2025",
+      url: "https://medium.com/@aravindh1653/react-ai-agents-smarter-ai-through-reasoning-and-action-1b4f59744ce8",
+      readingTime: "11 min read",
+    },
+    {
+      title: "Introduction to Large Language Models and Their Future Scope",
+      summary: "A practical overview of language-model evolution, from recurrent networks to transformers, and how pre-training and fine-tuning shape model behavior.",
+      date: "Dec 25, 2025",
+      url: "https://medium.com/@aravindh1653/introduction-to-large-language-models-and-their-future-scope-35269fbdd076",
+      readingTime: "7 min read",
+    },
+  ] as Post[],
   github: { username: "Aravindh-dev12", contributionsLastYear: "500+" },
   footerNote: "Built with ❤️ and hard work",
 } as const;
