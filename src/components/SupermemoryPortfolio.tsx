@@ -713,125 +713,7 @@ function MemoryGraphBox({ dark }: { dark: boolean }) {
   );
 }
 
-// 2. Interactive Deterministic Verification Pipeline Box
-function DeterministicPipelineBox({ dark }: { dark: boolean }) {
-  const [activeStep, setActiveStep] = useState(0);
-  const [isSimulating, setIsSimulating] = useState(false);
 
-  const steps = [
-    { title: "User / Agent Intent", tag: "DISPATCH", desc: "Action captured at local boundary", status: "VERIFIED" },
-    { title: "Deterministic Safety", tag: "POLICY", desc: "Local YAML rules evaluate permissions", status: "SAFE" },
-    { title: "Privacy Reduction", tag: "GRANITE", desc: "Raw secrets & PII scrubbed from payload", status: "STRIPPED" },
-    { title: "Execution Sandbox", tag: "PLAYWRIGHT", desc: "Browser / system state mutated locally", status: "ISOLATED" },
-    { title: "Ed25519 Receipt", tag: "OUTCOME", desc: "Signed outcome logged with verified undo", status: "COMMITTED" }
-  ];
-
-  const triggerSimulation = () => {
-    if (isSimulating) return;
-    setIsSimulating(true);
-    let step = 0;
-    setActiveStep(0);
-    const interval = setInterval(() => {
-      step++;
-      if (step < steps.length) {
-        setActiveStep(step);
-      } else {
-        clearInterval(interval);
-        setTimeout(() => setIsSimulating(false), 500);
-      }
-    }, 450);
-  };
-
-  return (
-    <div className={cx(
-      "relative rounded-xl border p-5 my-8 transition-all overflow-hidden",
-      dark ? "bg-[#0b0c10] border-neutral-800 text-neutral-100" : "bg-neutral-50/80 border-neutral-200 text-neutral-900"
-    )}>
-      {/* 4 Corner Crosshairs */}
-      <span className="absolute -top-2.5 -left-1 font-mono text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -top-2.5 -right-1 font-mono text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -bottom-2.5 -left-1 font-mono text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -bottom-2.5 -right-1 font-mono text-[11px] text-neutral-400 select-none">+</span>
-
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-200/60 dark:border-neutral-800 pb-3 mb-4">
-        <div className="flex items-center gap-2">
-          <Workflow size={14} className="text-[#0066ff]" />
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
-            DETERMINISTIC VERIFICATION PIPELINE
-          </span>
-        </div>
-        <button
-          onClick={triggerSimulation}
-          disabled={isSimulating}
-          className={cx(
-            "px-2.5 py-1 rounded text-xs font-mono font-medium flex items-center gap-1.5 transition border",
-            isSimulating
-              ? "bg-[#0066ff]/20 text-[#0066ff] border-[#0066ff]/30 cursor-wait"
-              : "bg-[#0066ff] text-white hover:bg-[#0052cc] border-[#0066ff] cursor-pointer"
-          )}
-        >
-          <Sparkles size={11} />
-          <span>{isSimulating ? "VERIFYING..." : "SIMULATE PIPELINE"}</span>
-        </button>
-      </div>
-
-      {/* Stepped Process Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 relative">
-        {steps.map((st, idx) => {
-          const isActive = idx === activeStep;
-          const isDone = idx < activeStep || (!isSimulating && idx <= activeStep);
-          return (
-            <div
-              key={st.title}
-              onClick={() => setActiveStep(idx)}
-              className={cx(
-                "p-3 rounded-lg border font-mono transition-all cursor-pointer relative",
-                isActive
-                  ? (dark ? "bg-blue-950/40 border-[#0066ff] ring-1 ring-[#0066ff]" : "bg-blue-50/80 border-[#0066ff] ring-1 ring-[#0066ff]")
-                  : (dark ? "bg-neutral-900/40 border-neutral-800 hover:border-neutral-700" : "bg-white border-neutral-200 hover:border-neutral-300")
-              )}
-            >
-              <div className="flex items-center justify-between text-[10px] mb-1.5">
-                <span className={cx(
-                  "font-bold px-1.5 py-0.5 rounded text-[9px]",
-                  isActive ? "bg-[#0066ff] text-white" : (dark ? "bg-neutral-800 text-neutral-400" : "bg-neutral-100 text-neutral-600")
-                )}>
-                  {st.tag}
-                </span>
-                <span className={cx(
-                  "text-[9px] font-medium",
-                  isDone ? "text-emerald-500" : "text-neutral-400"
-                )}>
-                  0{idx + 1}
-                </span>
-              </div>
-              <p className="text-xs font-semibold leading-tight text-neutral-900 dark:text-neutral-100">
-                {st.title}
-              </p>
-              <p className="text-[10px] text-neutral-500 mt-1 leading-normal line-clamp-2">
-                {st.desc}
-              </p>
-              {isActive && (
-                <div className="mt-2 pt-1 border-t border-[#0066ff]/20 flex items-center justify-between text-[9px] text-[#0066ff]">
-                  <span>STATUS</span>
-                  <span className="font-bold">{st.status}</span>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-neutral-400">
-        <span className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-          <span>ZERO UNVERIFIED CLAIMS · INDEPENDENT STATE VERIFIER</span>
-        </span>
-        <span>FAIL-CLOSED: ENABLED</span>
-      </div>
-    </div>
-  );
-}
 
 // 3. Interactive Telemetry Terminal Box
 function TelemetryTerminalBox({ dark }: { dark: boolean }) {
@@ -978,668 +860,60 @@ function AgentRadarBox({ dark }: { dark: boolean }) {
 }
 
 // ========================================================
-// INTERACTIVE PROJECTS SECTION COMPONENTS
+// CATEGORY DEFINITIONS & HELPER FOR PROJECTS
 // ========================================================
 
-interface SpotlightProject {
-  id: string;
-  title: string;
-  tagline: string;
-  status: string;
-  badge: string;
-  latency: string;
-  entropy: string;
-  privacy: string;
-  description: string;
-  nodes: Array<{ name: string; tech: string; role: string }>;
-  liveUrl?: string;
-  sourceUrl?: string;
+type ProjectCategoryId = "featured" | "agents" | "research" | "fullstack" | "client";
+
+interface CategoryMeta {
+  id: ProjectCategoryId;
+  label: string;
 }
 
-const SPOTLIGHT_PROJECTS: SpotlightProject[] = [
-  {
-    id: "CIEAV",
-    title: "CIEAV",
-    tagline: "The Commit Layer for the Internet",
-    status: "PRODUCTION",
-    badge: "ED25519 VERIFIED",
-    latency: "18ms",
-    entropy: "0.00%",
-    privacy: "100% LOCAL",
-    description: "An always-on local control plane between digital intent and consequence. Keeps deterministic safety and authority local while using cloud models for privacy-reduced interpretation.",
-    nodes: [
-      { name: "Intent Capture", tech: "Local Gateway", role: "Captures user/agent action at OS boundary" },
-      { name: "Deterministic Safety", tech: "YAML Rules Engine", role: "Enforces strict fail-closed policy checks" },
-      { name: "Privacy Reduction", tech: "IBM Granite 3.3", role: "Scrubs credentials & PII before semantic analysis" },
-      { name: "Local Authority", tech: "Ed25519 Signing", role: "Signs cryptographic execution receipts" },
-      { name: "Verified Undo", tech: "Outcome Observer", role: "Separates commit from success with inverse rollback" }
-    ],
-    liveUrl: "https://cieav.vercel.app/",
-    sourceUrl: "https://github.com/Aravindh-dev12/cieav"
-  },
-  {
-    id: "openDev",
-    title: "openDev",
-    tagline: "Autonomous Company Operator",
-    status: "PRODUCTION",
-    badge: "INDEPENDENT VERIFIER",
-    latency: "210ms",
-    entropy: "0.02%",
-    privacy: "LOCAL CONFINED",
-    description: "Autonomous back-office operator combining local LLMs, browser execution, company procedures, and hash-chained audit trails with independent ERP state verification.",
-    nodes: [
-      { name: "Company Request", tech: "Task Dispatcher", role: "Ingests invoice/task request from staff" },
-      { name: "SOP Retrieval", tech: "BM25 Search", role: "Pulls exact corporate standard operating procedure" },
-      { name: "Local Planning", tech: "Qwen 2.5 / Ollama", role: "Plans bounded single-tool actions" },
-      { name: "Browser Sandbox", tech: "Playwright Core", role: "Executes form entry & file mutation in container" },
-      { name: "Independent Verifier", tech: "Flask ERP Invariant", role: "Directly verifies DB state; never trusts model claims" }
-    ],
-    sourceUrl: "https://github.com/Aravindh-dev12/Opendev"
-  },
-  {
-    id: "Looca Voice AI Agent",
-    title: "Looca Voice AI Agent",
-    tagline: "Voice-First Fullstack AI Platform",
-    status: "PRODUCTION",
-    badge: "SUB-SECOND SPEECH",
-    latency: "180ms",
-    entropy: "0.01%",
-    privacy: "ENCRYPTED TRANSIT",
-    description: "Full-stack voice-first platform with sub-second speech synthesis, semantic memory retrieval in Qdrant, Redis predictive preloading, and robust PostgreSQL domain state.",
-    nodes: [
-      { name: "Audio Transport", tech: "WebRTC / WebSocket", role: "Captures user speech with minimal jitter" },
-      { name: "Voice Pipeline", tech: "VAPI Orchestration", role: "Coordinates realtime streaming speech synthesis" },
-      { name: "Semantic Memory", tech: "Qdrant Vector DB", role: "Indexes user episodic facts & conversation embeddings" },
-      { name: "Predictive Cache", tech: "Redis In-Memory", role: "Preloads conversational turns and hot context" },
-      { name: "Durable State", tech: "FastAPI + Postgres", role: "Transactional persistence separate from voice transport" }
-    ],
-    liveUrl: "https://looca-voice-ai-agent.onrender.com",
-    sourceUrl: "https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent"
-  },
-  {
-    id: "Octic AI Agent",
-    title: "Octic AI Agent",
-    tagline: "Autonomous AI Workforce Platform",
-    status: "ACTIVE",
-    badge: "MCP ORCHESTRATION",
-    latency: "95ms",
-    entropy: "0.00%",
-    privacy: "RUNTIME CONFINED",
-    description: "Autonomous workforce platform engineered as a modular runtime. Separates context, tool harness, agent loops, stopping conditions, and multi-agent coordination.",
-    nodes: [
-      { name: "Context Ingestion", tech: "Memory Harness", role: "Assembles structured task context and invariants" },
-      { name: "Agent Loop", tech: "Cognitive Harness", role: "Step-by-step reasoning with explicit exit criteria" },
-      { name: "Tool Bridge", tech: "Model Context Protocol", role: "Sandboxed tool execution with schema enforcement" },
-      { name: "Critic Consensus", tech: "Multi-Agent Verifier", role: "Dual-agent debate validates solution correctness" },
-      { name: "Managed Runtime", tech: "Python Execution Host", role: "Safely produces final verified artifact" }
-    ],
-    sourceUrl: "https://github.com/Aravindh-dev12/octic-Agent"
-  },
-  {
-    id: "Oundnote",
-    title: "Oundnote",
-    tagline: "Private Local-First Meeting Assistant",
-    status: "OFFLINE-FIRST",
-    badge: "100% PRIVATE",
-    latency: "0ms CLOUD",
-    entropy: "0.00%",
-    privacy: "AIR-GAPPED",
-    description: "Private meeting assistant running local transcription and diarization. All recordings, transcripts, and embeddings remain under user control without cloud dependencies.",
-    nodes: [
-      { name: "Audio Ingest", tech: "System & Mic Capture", role: "Captures desktop system audio & microphone feed" },
-      { name: "Speech Recognition", tech: "Local Whisper CPP", role: "Transcribes audio locally without cloud transmission" },
-      { name: "Diarization Worker", tech: "Speaker Embeddings", role: "Separates multiple speakers and timestamps" },
-      { name: "Search Engine", tech: "SQLite FTS5", role: "Full-text searchable archive with zero latency" },
-      { name: "Local RAG Core", tech: "MCP Copilot", role: "Allows desktop AI tools to query past meeting knowledge" }
-    ],
-    sourceUrl: "https://github.com/Aravindh-dev12/oundnote"
-  }
+const PROJECT_CATEGORIES: CategoryMeta[] = [
+  { id: "featured", label: "Featured" },
+  { id: "agents", label: "AI & Agents" },
+  { id: "research", label: "Research & ML" },
+  { id: "fullstack", label: "Full-Stack" },
+  { id: "client", label: "Client Work" },
 ];
 
-// 1. Flagship Spotlight Playground
-function ProjectSpotlightPlayground({
-  dark,
-  onOpenSpecs
-}: {
-  dark: boolean;
-  onOpenSpecs: (projectTitle: string) => void;
-}) {
-  const [activeId, setActiveId] = useState<string>("CIEAV");
-  const [activeNodeIdx, setActiveNodeIdx] = useState<number>(0);
-  const [isSimulating, setIsSimulating] = useState<boolean>(false);
-  const [simStep, setSimStep] = useState<number>(-1);
-  const [simDone, setSimDone] = useState<boolean>(false);
-
-  const activeProject = SPOTLIGHT_PROJECTS.find((p) => p.id === activeId) || SPOTLIGHT_PROJECTS[0];
-
-  const handleRunSim = () => {
-    if (isSimulating) return;
-    setIsSimulating(true);
-    setSimDone(false);
-    let step = 0;
-    setSimStep(0);
-    setActiveNodeIdx(0);
-
-    const timer = setInterval(() => {
-      step++;
-      if (step < activeProject.nodes.length) {
-        setSimStep(step);
-        setActiveNodeIdx(step);
-      } else {
-        clearInterval(timer);
-        setSimStep(-1);
-        setIsSimulating(false);
-        setSimDone(true);
-      }
-    }, 420);
-  };
-
-  return (
-    <div className={cx(
-      "relative rounded-xl border p-5 sm:p-6 transition-all overflow-hidden",
-      dark ? "bg-[#09090c] border-neutral-800 text-neutral-100" : "bg-white border-neutral-200 text-neutral-900 shadow-xs"
-    )}>
-      {/* 4 Corner Crosshairs */}
-      <span className="absolute -top-2.5 -left-1 font-mono text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -top-2.5 -right-1 font-mono text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -bottom-2.5 -left-1 font-mono text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -bottom-2.5 -right-1 font-mono text-[11px] text-neutral-400 select-none">+</span>
-
-      {/* Header with Project Selector Tabs */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-200/60 dark:border-neutral-800 pb-4 mb-5">
-        <div className="flex items-center gap-2">
-          <Workflow size={15} className="text-[#0066ff]" />
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
-            SYSTEM ARCHITECTURE SPOTLIGHT
-          </span>
-          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-[#0066ff]/10 text-[#0066ff] border border-[#0066ff]/20">
-            INTERACTIVE
-          </span>
-        </div>
-
-        {/* Project Selector Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
-          {SPOTLIGHT_PROJECTS.map((p) => {
-            const isSelected = p.id === activeId;
-            return (
-              <button
-                key={p.id}
-                onClick={() => {
-                  setActiveId(p.id);
-                  setActiveNodeIdx(0);
-                  setSimDone(false);
-                  setSimStep(-1);
-                }}
-                className={cx(
-                  "px-2.5 py-1 rounded transition border",
-                  isSelected
-                    ? "bg-[#0066ff] text-white border-[#0066ff] font-semibold shadow-xs"
-                    : dark
-                      ? "bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-white"
-                      : "bg-neutral-50 border-neutral-200 text-neutral-600 hover:text-neutral-900"
-                )}
-              >
-                {p.title}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Active Project Info Row */}
-      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-5">
-        <div className="space-y-1.5 max-w-xl">
-          <div className="flex items-center gap-2">
-            <h3 className="text-xl font-bold tracking-tight text-neutral-950 dark:text-white">
-              {activeProject.title}
-            </h3>
-            <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
-              {activeProject.status}
-            </span>
-            <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-[#0066ff]/10 text-[#0066ff] border border-[#0066ff]/20">
-              {activeProject.badge}
-            </span>
-          </div>
-          <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            {activeProject.description}
-          </p>
-        </div>
-
-        {/* Action Controls & Simulation Trigger */}
-        <div className="flex flex-wrap items-center gap-2 shrink-0">
-          <button
-            onClick={handleRunSim}
-            disabled={isSimulating}
-            className={cx(
-              "px-3 py-1.5 rounded text-xs font-mono font-semibold flex items-center gap-2 transition border shadow-xs",
-              isSimulating
-                ? "bg-[#0066ff]/20 text-[#0066ff] border-[#0066ff]/30 cursor-wait"
-                : "bg-[#0066ff] text-white hover:bg-[#0052cc] border-[#0066ff] cursor-pointer"
-            )}
-          >
-            <Play size={12} className={isSimulating ? "animate-spin" : "fill-current"} />
-            <span>{isSimulating ? "DISPATCHING PACKET..." : "TEST INVARIANT FLOW"}</span>
-          </button>
-
-          <button
-            onClick={() => onOpenSpecs(activeProject.title)}
-            className={cx(
-              "px-2.5 py-1.5 rounded text-xs font-mono transition border",
-              dark
-                ? "bg-neutral-900 border-neutral-800 text-neutral-300 hover:text-white"
-                : "bg-white border-neutral-200 text-neutral-700 hover:text-neutral-950"
-            )}
-          >
-            Specs [↗]
-          </button>
-
-          {activeProject.liveUrl && (
-            <a
-              href={activeProject.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="px-2.5 py-1.5 rounded text-xs font-mono text-[#0066ff] hover:underline flex items-center gap-1"
-            >
-              Live Demo <ArrowUpRight size={12} />
-            </a>
-          )}
-          {activeProject.sourceUrl && (
-            <a
-              href={activeProject.sourceUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="px-2.5 py-1.5 rounded text-xs font-mono text-neutral-500 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1"
-            >
-              Source <ArrowUpRight size={12} />
-            </a>
-          )}
-        </div>
-      </div>
-
-      {/* Stepped Interactive Architecture Pipeline Nodes */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pb-1">
-          <span>DATAFLOW PIPELINE (CLICK NODE TO INSPECT)</span>
-          <span>LATENCY: {activeProject.latency} · PRIVACY: {activeProject.privacy}</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 relative">
-          {activeProject.nodes.map((node, idx) => {
-            const isNodeSelected = idx === activeNodeIdx;
-            const isPacketHere = simStep === idx;
-
-            return (
-              <div
-                key={node.name}
-                onClick={() => setActiveNodeIdx(idx)}
-                className={cx(
-                  "p-3 rounded-lg border font-mono transition-all cursor-pointer relative",
-                  isPacketHere
-                    ? "bg-[#0066ff] text-white border-[#0066ff] ring-2 ring-[#0066ff] shadow-md scale-[1.02]"
-                    : isNodeSelected
-                      ? (dark ? "bg-blue-950/40 border-[#0066ff] ring-1 ring-[#0066ff]" : "bg-blue-50/80 border-[#0066ff] ring-1 ring-[#0066ff]")
-                      : (dark ? "bg-neutral-900/40 border-neutral-800 hover:border-neutral-700" : "bg-neutral-50 border-neutral-200 hover:border-neutral-300")
-                )}
-              >
-                <div className="flex items-center justify-between text-[10px] mb-1.5">
-                  <span className={cx(
-                    "font-bold px-1.5 py-0.2 rounded text-[9px]",
-                    isPacketHere
-                      ? "bg-white text-[#0066ff]"
-                      : isNodeSelected
-                        ? "bg-[#0066ff] text-white"
-                        : (dark ? "bg-neutral-800 text-neutral-400" : "bg-neutral-200 text-neutral-700")
-                  )}>
-                    0{idx + 1}
-                  </span>
-                  <span className={cx(
-                    "text-[9px] font-mono",
-                    isPacketHere ? "text-white" : "text-neutral-400"
-                  )}>
-                    {node.tech}
-                  </span>
-                </div>
-
-                <p className={cx(
-                  "text-xs font-semibold leading-tight",
-                  isPacketHere ? "text-white" : (dark ? "text-neutral-100" : "text-neutral-900")
-                )}>
-                  {node.name}
-                </p>
-
-                <p className={cx(
-                  "text-[10px] mt-1 leading-normal line-clamp-2",
-                  isPacketHere ? "text-blue-100" : "text-neutral-500"
-                )}>
-                  {node.role}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Selected Node Details & Verification Feedback */}
-      <div className={cx(
-        "mt-4 p-3 rounded-lg border flex flex-wrap items-center justify-between gap-3 text-xs font-mono",
-        simDone
-          ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400"
-          : (dark ? "bg-neutral-900/60 border-neutral-800" : "bg-neutral-50 border-neutral-200")
-      )}>
-        <div className="flex items-center gap-2">
-          {simDone ? (
-            <>
-              <CheckCircle2 size={15} className="text-emerald-500" />
-              <span className="font-bold">INVARIANT DISPATCH PASSED:</span>
-              <span className="text-neutral-700 dark:text-neutral-300">
-                Grounded execution verified · 0ms cloud leakage · Cryptographic receipt signed.
-              </span>
-            </>
-          ) : (
-            <>
-              <span className="px-1.5 py-0.5 rounded bg-[#0066ff]/10 text-[#0066ff] font-bold text-[10px]">
-                NODE 0{activeNodeIdx + 1}
-              </span>
-              <span className="font-bold text-neutral-900 dark:text-neutral-100">
-                {activeProject.nodes[activeNodeIdx].name}:
-              </span>
-              <span className="text-neutral-600 dark:text-neutral-400">
-                {activeProject.nodes[activeNodeIdx].role} ({activeProject.nodes[activeNodeIdx].tech})
-              </span>
-            </>
-          )}
-        </div>
-
-        <div className="flex items-center gap-2 text-[10px] text-neutral-400">
-          <span>ENTROPY: {activeProject.entropy}</span>
-          <span>·</span>
-          <span>FAIL-CLOSED: ACTIVE</span>
-        </div>
-      </div>
-    </div>
-  );
+function isProjectInCategory(project: Project, categoryId: ProjectCategoryId): boolean {
+  switch (categoryId) {
+    case "featured":
+      return project.featured === true && project.year !== "Client";
+    case "agents":
+      return [
+        "openDev",
+        "Octic AI Agent",
+        "Looca Voice AI Agent",
+        "Oundnote",
+        "Oli — Sovereign Notch Meeting Copilot",
+        "CLI Smart Inbox Agent"
+      ].includes(project.title);
+    case "research":
+      return [
+        "Hallucination-Resistant LLM",
+        "NeuroSymbolic Meta-Reasoning Agent",
+        "LWM Fabricator",
+        "Distributed Transformer Training Framework"
+      ].includes(project.title);
+    case "fullstack":
+      return [
+        "CIEAV",
+        "Looca Voice AI Agent",
+        "Oli — Sovereign Notch Meeting Copilot",
+        "CLI Smart Inbox Agent",
+        "Propecare Energy Care"
+      ].includes(project.title);
+    case "client":
+      return project.year === "Client" || project.title === "Propecare Energy Care" || project.title === "Reperto AI";
+    default:
+      return false;
+  }
 }
 
-// 2. Interactive Telemetry KPI Strip (Placed Between Spotlight & Projects)
-function ProjectMetricsStrip({ dark }: { dark: boolean }) {
-  const metrics = [
-    {
-      value: "100%",
-      label: "Deterministic Guarantee",
-      detail: "Cryptographic Ed25519 & hash-chained ERP verifiers prevent hallucinated mutations.",
-      tag: "INVARIANTS"
-    },
-    {
-      value: "0ms / 0b",
-      label: "Cloud Secret Exposure",
-      detail: "Strict local-first privacy boundary keeps raw keys, PII, and durable state on-premise.",
-      tag: "PRIVACY"
-    },
-    {
-      value: "< 240ms",
-      label: "Median Inference Latency",
-      detail: "Optimized local runtimes on Ollama, vLLM, and real-time streaming transports.",
-      tag: "PERFORMANCE"
-    },
-    {
-      value: "10+ Systems",
-      label: "Production Architectures",
-      detail: "Production systems spanning agentic control planes, voice copilots, and fullstack apps.",
-      tag: "DEPLOYMENTS"
-    }
-  ];
-
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-      {metrics.map((m) => (
-        <div
-          key={m.label}
-          className={cx(
-            "p-4 rounded-xl border relative font-mono transition-all hover:border-[#0066ff]/50",
-            dark ? "bg-neutral-900/40 border-neutral-800" : "bg-white border-neutral-200"
-          )}
-        >
-          {/* Subtle corner pluses */}
-          <span className="absolute -top-2 -left-0.5 text-[9px] text-neutral-400 select-none">+</span>
-          <span className="absolute -top-2 -right-0.5 text-[9px] text-neutral-400 select-none">+</span>
-
-          <div className="flex items-center justify-between text-[10px] mb-1">
-            <span className="text-[#0066ff] font-bold">{m.tag}</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-          </div>
-
-          <p className="text-xl font-bold tracking-tight text-neutral-950 dark:text-white">
-            {m.value}
-          </p>
-
-          <p className="text-xs font-semibold text-neutral-800 dark:text-neutral-200 mt-0.5">
-            {m.label}
-          </p>
-
-          <p className="text-[10px] text-neutral-500 mt-1 leading-normal">
-            {m.detail}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// 3. Interactive Invariant & Architecture Comparator Box (In-between project catalog)
-function ProjectComparatorBox({ dark }: { dark: boolean }) {
-  const [systemA, setSystemA] = useState<string>("CIEAV");
-  const [systemB, setSystemB] = useState<string>("openDev");
-  const [isComparing, setIsComparing] = useState<boolean>(false);
-  const [simVerdict, setSimVerdict] = useState<string | null>(null);
-
-  const systems = [
-    {
-      id: "CIEAV",
-      name: "CIEAV",
-      role: "Commit Layer for Internet",
-      execPlane: "Local Gateway Daemon",
-      authority: "Ed25519 Cryptographic Receipts",
-      privacy: "IBM Granite (0ms Cloud Leak)",
-      recovery: "Verified Inverse Rollback (Undo)",
-      model: "Local IBM Granite 3.3"
-    },
-    {
-      id: "openDev",
-      name: "openDev",
-      role: "Autonomous Company Operator",
-      execPlane: "Playwright Browser Sandbox",
-      authority: "Hash-Chained Audit Trails",
-      privacy: "Strict SOP Context Confinement",
-      recovery: "Independent ERP Verifier & Escalation",
-      model: "Qwen 2.5 via Ollama"
-    },
-    {
-      id: "Looca Voice AI Agent",
-      name: "Looca Voice AI Agent",
-      role: "Voice-First Agent Platform",
-      execPlane: "FastAPI + WebRTC Engine",
-      authority: "PostgreSQL Application State",
-      privacy: "Encrypted Webhook Transit",
-      recovery: "Redis Preloaded Fallback",
-      model: "Claude + VAPI Synthesizer"
-    },
-    {
-      id: "Oundnote",
-      name: "Oundnote",
-      role: "Sovereign Meeting Copilot",
-      execPlane: "Local Background Process",
-      authority: "Local SQLite FTS5 Storage",
-      privacy: "100% Air-Gapped Local-First",
-      recovery: "Durable SQLite Transactions",
-      model: "Local Whisper CPP"
-    }
-  ];
-
-  const objA = systems.find((s) => s.id === systemA) || systems[0];
-  const objB = systems.find((s) => s.id === systemB) || systems[1];
-
-  const handleRunComparison = () => {
-    setIsComparing(true);
-    setSimVerdict(null);
-    setTimeout(() => {
-      setIsComparing(false);
-      setSimVerdict(
-        `Architectural Complementarity Confirmed: ${objA.name} provides ${objA.authority}, while ${objB.name} enforces ${objB.recovery}. Zero conflicting invariants.`
-      );
-    }, 600);
-  };
-
-  return (
-    <div className={cx(
-      "relative rounded-xl border p-5 sm:p-6 my-6 font-mono transition-all overflow-hidden",
-      dark ? "bg-[#09090c] border-neutral-800 text-neutral-200" : "bg-[#f8f9fa] border-neutral-200 text-neutral-800"
-    )}>
-      {/* 4 Corner Crosshairs */}
-      <span className="absolute -top-2.5 -left-1 text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -top-2.5 -right-1 text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -bottom-2.5 -left-1 text-[11px] text-neutral-400 select-none">+</span>
-      <span className="absolute -bottom-2.5 -right-1 text-[11px] text-neutral-400 select-none">+</span>
-
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-200 dark:border-neutral-800 pb-3 mb-4">
-        <div className="flex items-center gap-2">
-          <GitCompare size={15} className="text-[#0066ff]" />
-          <span className="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
-            SYSTEM ARCHITECTURE & INVARIANT COMPARATOR
-          </span>
-        </div>
-        <span className="text-[10px] text-neutral-400">SIDE-BY-SIDE RUNTIME ANALYSIS</span>
-      </div>
-
-      {/* Selectors for System A and System B */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <div className="space-y-1.5">
-          <label className="text-[10px] uppercase text-neutral-400 font-semibold block">
-            SYSTEM A (PRIMARY PLANE)
-          </label>
-          <div className="flex flex-wrap gap-1.5">
-            {systems.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => {
-                  setSystemA(s.id);
-                  setSimVerdict(null);
-                }}
-                className={cx(
-                  "px-2.5 py-1 rounded text-[11px] border transition",
-                  systemA === s.id
-                    ? "bg-[#0066ff] text-white border-[#0066ff] font-semibold"
-                    : dark
-                      ? "bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-white"
-                      : "bg-white border-neutral-200 text-neutral-600 hover:text-neutral-900"
-                )}
-              >
-                {s.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-1.5">
-          <label className="text-[10px] uppercase text-neutral-400 font-semibold block">
-            SYSTEM B (COMPARATIVE PLANE)
-          </label>
-          <div className="flex flex-wrap gap-1.5">
-            {systems.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => {
-                  setSystemB(s.id);
-                  setSimVerdict(null);
-                }}
-                className={cx(
-                  "px-2.5 py-1 rounded text-[11px] border transition",
-                  systemB === s.id
-                    ? "bg-purple-600 text-white border-purple-600 font-semibold"
-                    : dark
-                      ? "bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-white"
-                      : "bg-white border-neutral-200 text-neutral-600 hover:text-neutral-900"
-                )}
-              >
-                {s.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Comparative Matrix Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs border-collapse">
-          <thead>
-            <tr className={cx("border-b text-[10px] uppercase text-neutral-400", dark ? "border-neutral-800" : "border-neutral-200")}>
-              <th className="py-2 pr-3 font-semibold">Invariant Vector</th>
-              <th className="py-2 px-3 font-semibold text-[#0066ff]">{objA.name}</th>
-              <th className="py-2 pl-3 font-semibold text-purple-500">{objB.name}</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-neutral-200/60 dark:divide-neutral-800/60 text-[11px]">
-            <tr>
-              <td className="py-2.5 pr-3 text-neutral-500 font-medium">Core Role</td>
-              <td className="py-2.5 px-3 font-semibold text-neutral-900 dark:text-neutral-100">{objA.role}</td>
-              <td className="py-2.5 pl-3 font-semibold text-neutral-900 dark:text-neutral-100">{objB.role}</td>
-            </tr>
-            <tr>
-              <td className="py-2.5 pr-3 text-neutral-500 font-medium">Execution Plane</td>
-              <td className="py-2.5 px-3 text-neutral-700 dark:text-neutral-300">{objA.execPlane}</td>
-              <td className="py-2.5 pl-3 text-neutral-700 dark:text-neutral-300">{objB.execPlane}</td>
-            </tr>
-            <tr>
-              <td className="py-2.5 pr-3 text-neutral-500 font-medium">State Authority</td>
-              <td className="py-2.5 px-3 text-[#0066ff] font-semibold">{objA.authority}</td>
-              <td className="py-2.5 pl-3 text-purple-500 font-semibold">{objB.authority}</td>
-            </tr>
-            <tr>
-              <td className="py-2.5 pr-3 text-neutral-500 font-medium">Privacy Boundary</td>
-              <td className="py-2.5 px-3 text-neutral-700 dark:text-neutral-300">{objA.privacy}</td>
-              <td className="py-2.5 pl-3 text-neutral-700 dark:text-neutral-300">{objB.privacy}</td>
-            </tr>
-            <tr>
-              <td className="py-2.5 pr-3 text-neutral-500 font-medium">Failure Recovery</td>
-              <td className="py-2.5 px-3 text-emerald-600 dark:text-emerald-400">{objA.recovery}</td>
-              <td className="py-2.5 pl-3 text-emerald-600 dark:text-emerald-400">{objB.recovery}</td>
-            </tr>
-            <tr>
-              <td className="py-2.5 pr-3 text-neutral-500 font-medium">Model Runtime</td>
-              <td className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400">{objA.model}</td>
-              <td className="py-2.5 pl-3 text-neutral-600 dark:text-neutral-400">{objB.model}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      {/* Trigger Invariant Interop Analysis */}
-      <div className="mt-4 pt-3 border-t border-neutral-200/60 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-3">
-        <button
-          onClick={handleRunComparison}
-          disabled={isComparing}
-          className={cx(
-            "px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-2 transition border",
-            isComparing
-              ? "bg-[#0066ff]/20 text-[#0066ff] border-[#0066ff]/30 cursor-wait"
-              : "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 border-neutral-900 dark:border-white hover:opacity-90"
-          )}
-        >
-          <Zap size={12} className={isComparing ? "animate-pulse" : ""} />
-          <span>{isComparing ? "ANALYZING INVARIANTS..." : "RUN INTEROP VERIFICATION"}</span>
-        </button>
-
-        {simVerdict && (
-          <p className="text-[11px] text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 font-medium">
-            <Check size={13} />
-            <span>{simVerdict}</span>
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// 4. Interactive Project Card with 3 Tabs
+// Clean, Responsive Project Card
 function ProjectCardItem({
   project,
   dark,
@@ -1649,39 +923,16 @@ function ProjectCardItem({
   dark: boolean;
   onOpenSpecs: () => void;
 }) {
-  const [tab, setTab] = useState<"overview" | "arch" | "depth">("overview");
-  const [copiedSpec, setCopiedSpec] = useState(false);
-
+  const [tab, setTab] = useState<"overview" | "arch">("overview");
   const knowledge = projectKnowledge[project.title];
-
-  const handleCopySpec = () => {
-    const spec = JSON.stringify(
-      {
-        title: project.title,
-        year: project.year,
-        blurb: project.blurb,
-        stack: project.stack,
-        architecture: knowledge?.architecture || "N/A",
-        capabilities: knowledge?.capabilities || "N/A",
-        engineering: knowledge?.engineering || "N/A",
-        depth: knowledge?.depth || "N/A",
-        links: project.links
-      },
-      null,
-      2
-    );
-    navigator.clipboard.writeText(spec);
-    setCopiedSpec(true);
-    setTimeout(() => setCopiedSpec(false), 2000);
-  };
 
   return (
     <article
       className={cx(
-        "group rounded-xl border overflow-hidden flex flex-col transition-all relative hover:-translate-y-0.5 font-mono",
+        "group rounded-xl border overflow-hidden flex flex-col transition-all relative font-mono text-xs hover:-translate-y-0.5",
         dark
-          ? "border-neutral-800 bg-neutral-900/30 hover:border-[#0066ff]/60 hover:shadow-[0_0_24px_rgba(0,102,255,0.06)]"
-          : "border-neutral-200 bg-white hover:border-[#0066ff]/60 hover:shadow-sm"
+          ? "border-neutral-800 bg-neutral-900/30 hover:border-[#0066ff]/60 hover:shadow-[0_0_20px_rgba(0,102,255,0.06)]"
+          : "border-neutral-200 bg-white hover:border-[#0066ff]/60 hover:shadow-xs"
       )}
     >
       {/* 4 Corner Crosshairs */}
@@ -1691,66 +942,70 @@ function ProjectCardItem({
       <span className="absolute -bottom-2 -right-0.5 text-[9px] text-neutral-400 select-none">+</span>
 
       {/* Card Header with Title and Year */}
-      <div className="p-5 pb-3">
-        <div className="flex items-center justify-between gap-3 mb-2">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#0066ff]" />
-            <h3 className="text-base font-semibold font-sans text-neutral-950 dark:text-white">
+      <div className="p-4 sm:p-5 pb-3">
+        <div className="flex items-start justify-between gap-3 mb-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-[#0066ff] shrink-0" />
+            <h3 className="text-sm sm:text-base font-semibold font-sans text-neutral-950 dark:text-white truncate">
               {project.title}
             </h3>
           </div>
-          <span className="font-mono text-[11px] text-neutral-400">
-            {project.year}
+          <span className={cx(
+            "font-mono text-[10px] px-2 py-0.5 rounded shrink-0",
+            project.year === "Client"
+              ? "bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20"
+              : dark
+                ? "bg-neutral-800 text-neutral-400"
+                : "bg-neutral-100 text-neutral-600"
+          )}>
+            {project.year === "Client" ? "CLIENT" : project.year}
           </span>
         </div>
 
-        {/* 3-Way Segmented Tab Switcher on Card */}
-        <div className={cx(
-          "inline-flex p-0.5 rounded border text-[10px] w-full my-2",
-          dark ? "bg-neutral-950/80 border-neutral-800" : "bg-neutral-100 border-neutral-200"
-        )}>
-          {(["overview", "arch", "depth"] as const).map((t) => (
+        {/* 2-Way Segmented Tab Switcher on Card */}
+        {knowledge?.architecture && (
+          <div className={cx(
+            "inline-flex p-0.5 rounded border text-[10px] w-full my-2",
+            dark ? "bg-neutral-950/80 border-neutral-800" : "bg-neutral-100 border-neutral-200"
+          )}>
             <button
-              key={t}
-              onClick={() => setTab(t)}
+              onClick={() => setTab("overview")}
               className={cx(
-                "flex-1 py-1 rounded text-center transition font-semibold capitalize",
-                tab === t
+                "flex-1 py-1 rounded text-center transition font-semibold",
+                tab === "overview"
                   ? "bg-[#0066ff] text-white shadow-xs"
                   : "text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200"
               )}
             >
-              {t === "arch" ? "Architecture" : t === "depth" ? "Invariants" : "Overview"}
+              Overview
             </button>
-          ))}
-        </div>
+            <button
+              onClick={() => setTab("arch")}
+              className={cx(
+                "flex-1 py-1 rounded text-center transition font-semibold",
+                tab === "arch"
+                  ? "bg-[#0066ff] text-white shadow-xs"
+                  : "text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200"
+              )}
+            >
+              Architecture
+            </button>
+          </div>
+        )}
 
         {/* Tab Body Content */}
-        <div className="min-h-[72px] mt-2 text-xs">
-          {tab === "overview" && (
+        <div className="min-h-[64px] text-xs">
+          {tab === "overview" || !knowledge?.architecture ? (
             <p className="font-sans text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-3">
               {project.blurb}
             </p>
-          )}
-
-          {tab === "arch" && (
-            <div className="space-y-1.5">
+          ) : (
+            <div className="space-y-1">
               <span className="text-[10px] text-[#0066ff] font-bold block uppercase tracking-wider">
                 DATAFLOW PIPELINE:
               </span>
               <p className="text-[11px] text-neutral-700 dark:text-neutral-300 leading-relaxed line-clamp-3">
-                {knowledge?.architecture || project.blurb}
-              </p>
-            </div>
-          )}
-
-          {tab === "depth" && (
-            <div className="space-y-1.5">
-              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block uppercase tracking-wider">
-                SAFETY INVARIANT:
-              </span>
-              <p className="text-[11px] text-neutral-700 dark:text-neutral-300 leading-relaxed line-clamp-3">
-                {knowledge?.depth || knowledge?.capabilities || "Deterministic safety bounds verified."}
+                {knowledge.architecture}
               </p>
             </div>
           )}
@@ -1758,7 +1013,7 @@ function ProjectCardItem({
       </div>
 
       {/* Stack Tags */}
-      <div className="px-5 py-2 flex flex-wrap gap-1.5 mt-auto">
+      <div className="px-4 sm:px-5 py-2 flex flex-wrap gap-1.5 mt-auto">
         {project.stack.map((tech) => (
           <span
             key={tech}
@@ -1774,7 +1029,7 @@ function ProjectCardItem({
 
       {/* Action Links Bar */}
       <div className={cx(
-        "px-5 py-3 border-t mt-3 flex items-center justify-between text-xs font-mono",
+        "px-4 sm:px-5 py-3 border-t mt-2 flex items-center justify-between text-xs font-mono",
         dark ? "border-neutral-800 bg-neutral-950/40" : "border-neutral-100 bg-neutral-50/50"
       )}>
         <div className="flex items-center gap-3">
@@ -1800,23 +1055,12 @@ function ProjectCardItem({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handleCopySpec}
-            className="text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 text-[10px] flex items-center gap-1"
-            title="Copy system spec JSON"
-          >
-            {copiedSpec ? <Check size={11} className="text-emerald-500" /> : <Copy size={11} />}
-            <span>{copiedSpec ? "Copied" : "JSON"}</span>
-          </button>
-          <span>·</span>
-          <button
-            onClick={onOpenSpecs}
-            className="text-neutral-400 hover:text-[#0066ff] text-[11px] font-medium"
-          >
-            Specs [↗]
-          </button>
-        </div>
+        <button
+          onClick={onOpenSpecs}
+          className="text-neutral-400 hover:text-[#0066ff] text-[11px] font-medium"
+        >
+          Specs [↗]
+        </button>
       </div>
     </article>
   );
@@ -1830,7 +1074,7 @@ export function SupermemoryPortfolio() {
   const [copiedPrompt, setCopiedPrompt] = useState<boolean>(false);
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
   const [promptDrawerOpen, setPromptDrawerOpen] = useState<boolean>(false);
-  const [projectCategory, setProjectCategory] = useState<string>("All");
+  const [projectCategory, setProjectCategory] = useState<ProjectCategoryId>("featured");
   const [projectSearch, setProjectSearch] = useState<string>("");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -2086,15 +1330,9 @@ LinkedIn: ${site.socials.linkedin}`;
     setMobileMenuOpen(false);
   };
 
-  // Filtered projects
+  // Filtered projects (Category-divided, never dumps all projects at once)
   const filteredProjects = site.projects.filter((p) => {
-    const matchesCategory =
-      projectCategory === "All" ||
-      (projectCategory === "AI" && p.categories?.includes("AI")) ||
-      (projectCategory === "Fullstack" && p.categories?.includes("Fullstack")) ||
-      (projectCategory === "Backend" && p.categories?.includes("Backend")) ||
-      (projectCategory === "Frontend" && p.categories?.includes("Frontend")) ||
-      (projectCategory === "Client work" && p.year === "Client");
+    const matchesCategory = isProjectInCategory(p, projectCategory);
 
     const q = projectSearch.toLowerCase().trim();
     const matchesSearch =
@@ -2901,136 +2139,114 @@ LinkedIn: ${site.socials.linkedin}`;
                 </div>
               </section>
 
-              {/* Animated Box: Deterministic Action Pipeline */}
-              <DeterministicPipelineBox dark={dark} />
+              {/* Section: Projects (Category Divided, Focused, Fully Responsive) */}
+              <section id="projects" className="space-y-5 pt-8 border-t border-neutral-100 dark:border-neutral-800/80">
+                {/* Header & Controls */}
+                <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                    <div className="space-y-1">
+                      <span className="font-mono text-[11px] uppercase tracking-widest text-[#0066ff] font-semibold">
+                        03 // IN PRODUCTION
+                      </span>
+                      <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-neutral-950 dark:text-white">
+                        Selected Projects & Systems
+                      </h2>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                        Autonomous agent platforms, local-first control planes, and verified web systems.
+                      </p>
+                    </div>
 
-              {/* Section: Projects (All Aravindh's Real Projects) */}
-              <section id="projects" className="space-y-6 pt-6 border-t border-neutral-100 dark:border-neutral-800/80">
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div className="space-y-1">
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-[#0066ff] font-semibold">
-                      03 // IN PRODUCTION
-                    </span>
-                    <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-neutral-950 dark:text-white">
-                      Selected Projects & Systems
-                    </h2>
-                  </div>
-
-                  {/* Filter Pills */}
-                  <div className="flex flex-wrap items-center gap-1.5 font-mono text-xs">
-                    {["All", "AI", "Fullstack", "Backend", "Frontend", "Client work"].map((cat) => (
-                      <button
-                        key={cat}
-                        onClick={() => setProjectCategory(cat)}
+                    {/* Search Bar - Responsive on mobile & desktop */}
+                    <div className="relative w-full sm:w-60 shrink-0">
+                      <Search className="absolute left-3 top-2.5 w-3.5 h-3.5 text-neutral-400" />
+                      <input
+                        type="text"
+                        value={projectSearch}
+                        onChange={(e) => setProjectSearch(e.target.value)}
+                        placeholder="Search projects or stack..."
                         className={cx(
-                          "px-3 py-1 rounded transition border",
-                          projectCategory === cat
-                            ? "bg-[#0066ff] text-white border-[#0066ff] font-semibold"
-                            : dark
-                              ? "bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-white"
-                              : "bg-white border-neutral-200 text-neutral-600 hover:text-neutral-900"
+                          "w-full pl-9 pr-7 py-1.5 text-xs rounded border outline-none font-mono transition",
+                          dark
+                            ? "bg-neutral-900/60 border-neutral-800 text-white placeholder-neutral-500 focus:border-[#0066ff]"
+                            : "bg-white border-neutral-200 text-neutral-900 placeholder-neutral-400 focus:border-[#0066ff]"
                         )}
-                      >
-                        {cat}
-                      </button>
-                    ))}
+                      />
+                      {projectSearch && (
+                        <button
+                          onClick={() => setProjectSearch("")}
+                          className="absolute right-2.5 top-2 text-neutral-400 hover:text-neutral-600"
+                        >
+                          <X size={13} />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Clean Category Selector Tabs (Horizontally scrollable on mobile, wrap on tablet/desktop) */}
+                  <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+                    {PROJECT_CATEGORIES.map((cat) => {
+                      const isSelected = projectCategory === cat.id;
+                      const count = site.projects.filter((p) => isProjectInCategory(p, cat.id)).length;
+                      return (
+                        <button
+                          key={cat.id}
+                          onClick={() => setProjectCategory(cat.id)}
+                          className={cx(
+                            "px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition shrink-0 flex items-center gap-1.5 border",
+                            isSelected
+                              ? "bg-[#0066ff] text-white border-[#0066ff] shadow-xs"
+                              : dark
+                                ? "bg-neutral-900/60 border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700"
+                                : "bg-neutral-50 border-neutral-200 text-neutral-600 hover:text-neutral-950 hover:border-neutral-300"
+                          )}
+                        >
+                          <span>{cat.label}</span>
+                          <span
+                            className={cx(
+                              "text-[10px] px-1.5 py-0.2 rounded-full font-semibold",
+                              isSelected
+                                ? "bg-white/20 text-white"
+                                : dark
+                                  ? "bg-neutral-800 text-neutral-400"
+                                  : "bg-neutral-200/70 text-neutral-600"
+                            )}
+                          >
+                            {count}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
-                {/* Search Bar for Projects */}
-                <div className="relative max-w-md">
-                  <Search className="absolute left-3.5 top-3 w-4 h-4 text-neutral-400" />
-                  <input
-                    type="text"
-                    value={projectSearch}
-                    onChange={(e) => setProjectSearch(e.target.value)}
-                    placeholder="Search projects by name, keyword, or stack..."
-                    className={cx(
-                      "w-full pl-10 pr-4 py-2 text-xs rounded border outline-none font-mono transition",
-                      dark
-                        ? "bg-neutral-900/50 border-neutral-800 text-white placeholder-neutral-500 focus:border-[#0066ff]"
-                        : "bg-white border-neutral-200 text-neutral-900 placeholder-neutral-400 focus:border-[#0066ff]"
-                    )}
-                  />
-                  {projectSearch && (
-                    <button
-                      onClick={() => setProjectSearch("")}
-                      className="absolute right-3 top-2.5 text-neutral-400 hover:text-neutral-600"
-                    >
-                      <X size={14} />
-                    </button>
-                  )}
-                </div>
-
-                {/* Interactive Flagship Project Spotlight Playground */}
-                <ProjectSpotlightPlayground
-                  dark={dark}
-                  onOpenSpecs={(title) => {
-                    const match = site.projects.find(
-                      (p) => p.title.toLowerCase().includes(title.toLowerCase()) || title.toLowerCase().includes(p.title.toLowerCase())
-                    );
-                    if (match) setSelectedProject(match);
-                  }}
-                />
-
-                {/* Interactive Telemetry & Invariant Metric Strip (In-Between Spotlight and Catalog) */}
-                <ProjectMetricsStrip dark={dark} />
-
-                {/* Projects Catalog Header with Counter */}
-                <div className="pt-2 flex items-center justify-between font-mono text-xs text-neutral-400">
-                  <span className="font-semibold text-neutral-800 dark:text-neutral-200">
-                    ALL PRODUCTION & OPEN-SOURCE SYSTEMS ({filteredProjects.length})
-                  </span>
-                  <span>CLICK CARDS TO TOGGLE ARCHITECTURE & INVARIANTS</span>
-                </div>
-
-                {/* Projects Catalog */}
+                {/* Projects Grid (Only shows selected category's 2-7 projects, never endless scroll) */}
                 {filteredProjects.length === 0 ? (
                   <div className={cx(
                     "p-8 rounded-xl border text-center font-mono space-y-3",
                     dark ? "border-neutral-800 bg-neutral-900/30" : "border-neutral-200 bg-neutral-50"
                   )}>
-                    <p className="text-sm text-neutral-500">No projects found matching current filters.</p>
+                    <p className="text-xs text-neutral-500">
+                      No projects found matching &ldquo;{projectSearch}&rdquo; in this category.
+                    </p>
                     <button
                       onClick={() => {
-                        setProjectCategory("All");
                         setProjectSearch("");
                       }}
                       className="px-3 py-1.5 rounded text-xs bg-[#0066ff] text-white font-semibold hover:bg-[#0052cc] transition"
                     >
-                      Reset All Filters
+                      Clear Search
                     </button>
                   </div>
                 ) : (
-                  <div className="space-y-6">
-                    {/* First Batch of Projects (Up to 4) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      {filteredProjects.slice(0, 4).map((project) => (
-                        <ProjectCardItem
-                          key={project.title}
-                          project={project}
-                          dark={dark}
-                          onOpenSpecs={() => setSelectedProject(project)}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Interactive In-Between Architecture Comparator */}
-                    <ProjectComparatorBox dark={dark} />
-
-                    {/* Remaining Projects (If > 4) */}
-                    {filteredProjects.length > 4 && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
-                        {filteredProjects.slice(4).map((project) => (
-                          <ProjectCardItem
-                            key={project.title}
-                            project={project}
-                            dark={dark}
-                            onOpenSpecs={() => setSelectedProject(project)}
-                          />
-                        ))}
-                      </div>
-                    )}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 pt-1">
+                    {filteredProjects.map((project) => (
+                      <ProjectCardItem
+                        key={project.title}
+                        project={project}
+                        dark={dark}
+                        onOpenSpecs={() => setSelectedProject(project)}
+                      />
+                    ))}
                   </div>
                 )}
               </section>
