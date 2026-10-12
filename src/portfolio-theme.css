@@ -103,8 +103,10 @@ a { text-underline-offset: 3px; }
 /* Flatten the oversized dashboard hero and keep the accent restrained. */
 #root > div.min-h-screen main > section:first-child {
   border-color: var(--portfolio-border);
+  background: var(--card) !important;
   box-shadow: none;
 }
+#root > div.min-h-screen main > section:first-child > div[aria-hidden="true"] { display: none; }
 #root > div.min-h-screen main > section:first-child h1 { max-width: 760px; }
 #root > div.min-h-screen main article,
 #root > div.min-h-screen main section { scroll-margin-top: 84px; }
