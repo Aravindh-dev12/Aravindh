@@ -169,16 +169,14 @@ export function ProfileDashboard() {
   const sidebar = (
     <aside className={cx(
       "flex h-full w-[248px] shrink-0 flex-col border-r",
-      dark ? "border-[#282e2a] bg-[#101521] text-slate-100" : "border-[#e1e5ef] bg-[#f7f8fc] text-slate-900"
+      dark ? "border-[#27272a] bg-[#101014] text-slate-100" : "border-[#e8e8eb] bg-[#ffffff] text-slate-900"
     )}>
-      <div className="flex items-center gap-3 px-4 pb-4 pt-5">
-        <div className={cx("grid h-9 w-9 place-items-center rounded-xl", dark ? "bg-cyan-300 text-[#10251e]" : "bg-[#111a30] text-white")}><Sparkles size={17} /></div>
-        <div className="min-w-0"><p className="text-[14px] font-semibold tracking-tight">Aravindh<span className="text-cyan-600">.</span></p><p className={cx("mt-0.5 text-[9px] font-medium uppercase tracking-[.19em]", muted)}>Personal portfolio</p></div>
-        <button onClick={() => setMobileNav(false)} aria-label="Close navigation" className="ml-auto rounded-lg p-1.5 md:hidden"><X size={17} /></button>
+      <div className="flex items-center justify-end px-3 pt-3 md:hidden">
+        <button onClick={() => setMobileNav(false)} aria-label="Close navigation" className="rounded-lg p-1.5 text-slate-500"><X size={17} /></button>
       </div>
 
       <div className="px-4 pb-5">
-        <div className={cx("rounded-xl border p-3", dark ? "border-white/10 bg-white/[.025]" : "border-[#e2e7f0] bg-white")}>
+        <div className={cx("rounded-xl border p-3", dark ? "border-white/10 bg-white/[.025]" : "border-[#e8e8eb] bg-white")}>
           <div className="flex items-center gap-3">
             <img
               src={profileImage}
@@ -212,8 +210,8 @@ export function ProfileDashboard() {
                 className={cx(
                   "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[12px] font-medium transition",
                   active
-                    ? (dark ? "bg-cyan-300/10 text-cyan-100" : "bg-[#e9edff] text-[#3345b7]")
-                    : (dark ? "text-slate-400 hover:bg-white/[.05] hover:text-white" : "text-slate-500 hover:bg-white hover:text-slate-900")
+                    ? (dark ? "bg-white/[.07] text-white" : "bg-[#f2f2f5] text-[#24242a]")
+                    : (dark ? "text-slate-400 hover:bg-white/[.05] hover:text-white" : "text-slate-500 hover:bg-[#f6f6f8] hover:text-slate-900")
                 )}
               >
                 <Icon size={16} strokeWidth={active ? 2.1 : 1.8} />
