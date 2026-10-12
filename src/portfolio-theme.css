@@ -9,6 +9,39 @@
   --portfolio-muted: #68766e;
   --portfolio-green: #16734a;
   --portfolio-green-soft: #e7f4eb;
+  --bg: #f7f9f7;
+  --fg: #17221c;
+  --muted: #68766e;
+  --soft: #9aa69e;
+  --line: rgba(22, 64, 38, .13);
+  --stripe: rgba(22, 64, 38, .035);
+  --hover: rgba(22, 64, 38, .05);
+  --card: #ffffff;
+  --chip: #edf3ee;
+}
+.light {
+  color-scheme: light;
+  --bg: #f7f9f7;
+  --fg: #17221c;
+  --muted: #68766e;
+  --soft: #9aa69e;
+  --line: rgba(22, 64, 38, .13);
+  --stripe: rgba(22, 64, 38, .035);
+  --hover: rgba(22, 64, 38, .05);
+  --card: #ffffff;
+  --chip: #edf3ee;
+}
+.dark {
+  color-scheme: dark;
+  --bg: #111713;
+  --fg: #edf5ef;
+  --muted: #a1afa5;
+  --soft: #78867d;
+  --line: rgba(235, 255, 240, .12);
+  --stripe: rgba(235, 255, 240, .035);
+  --hover: rgba(235, 255, 240, .06);
+  --card: #18201a;
+  --chip: #202b23;
 }
 html, body, #root {
   min-height: 100%;
