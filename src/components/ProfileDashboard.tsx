@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowUpRight, BookOpen, BriefcaseBusiness, CheckCircle2, Code2, FileText,
   Github, GraduationCap, House, Layers3, Linkedin, Mail, MapPin, Menu, Moon,
-  Sparkles, Sun, Search, X
+  Sparkles, Sun, Search, X, Command as CommandIcon
 } from "lucide-react";
 import { site } from "@/config/site";
 
@@ -65,7 +65,27 @@ export function ProfileDashboard() {
   const [mobileNav, setMobileNav] = useState(false);
   const [projectQuery, setProjectQuery] = useState("");
   const [projectCategory, setProjectCategory] = useState("All");
+  const [quickFindOpen, setQuickFindOpen] = useState(false);
+  const [quickFindQuery, setQuickFindQuery] = useState("");
+  const quickFindInputRef = useRef<HTMLInputElement>(null);
   const featured = site.projects.filter((project) => project.featured).slice(0, 4);
+
+  useEffect(() => {
+    const handleShortcut = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setQuickFindOpen((open) => !open);
+      }
+      if (event.key === "Escape") setQuickFindOpen(false);
+    };
+    window.addEventListener("keydown", handleShortcut);
+    return () => window.removeEventListener("keydown", handleShortcut);
+  }, []);
+
+  useEffect(() => {
+    if (quickFindOpen) quickFindInputRef.current?.focus();
+    else setQuickFindQuery("");
+  }, [quickFindOpen]);
   const filteredProjects = site.projects.filter((project) => {
     const query = projectQuery.trim().toLowerCase();
     const matchesQuery = !query || [project.title, project.blurb, project.stack.join(" ")].join(" ").toLowerCase().includes(query);
@@ -79,7 +99,21 @@ export function ProfileDashboard() {
   const panel = dark ? "border-white/10 bg-white/[.035]" : "border-slate-200 bg-white";
   const titleText = dark ? "text-white" : "text-slate-950";
 
-  const chooseView = (next: View) => { setView(next); setMobileNav(false); };
+  const chooseView = (next: View) => { setView(next); setMobileNav(false); setQuickFindOpen(false); };
+  const quickFindTerm = quickFindQuery.trim().toLowerCase();
+  const quickFindSections = navigation.filter((item) => item.label.toLowerCase().includes(quickFindTerm));
+  const quickFindProjects = quickFindTerm
+    ? site.projects.filter((project) =>
+        [project.title, project.blurb, project.stack.join(" ")].join(" ").toLowerCase().includes(quickFindTerm)
+      ).slice(0, 5)
+    : site.projects.filter((project) => project.featured).slice(0, 4);
+  const openProjectFromQuickFind = (projectTitle: string) => {
+    setProjectQuery(projectTitle);
+    setProjectCategory("All");
+    setView("Projects");
+    setMobileNav(false);
+    setQuickFindOpen(false);
+  };
 
   const sidebar = (
     <aside className={`flex h-full w-[258px] shrink-0 flex-col border-r ${dark ? "border-white/10 bg-[#10131a] text-slate-100" : "border-slate-200 bg-white text-slate-900"}`}>
@@ -126,6 +160,36 @@ export function ProfileDashboard() {
       <div className="sticky top-0 hidden h-screen md:block">{sidebar}</div>
       {mobileNav && <div className="fixed inset-0 z-50 md:hidden"><button aria-label="Close navigation overlay" className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm" onClick={() => setMobileNav(false)} /><div className="relative z-10 h-full w-[min(84vw,300px)] shadow-2xl">{sidebar}</div></div>}
 
+      {quickFindOpen && (
+        <div className="fixed inset-0 z-[70] flex items-start justify-center bg-slate-950/45 px-4 pt-[12vh] backdrop-blur-[3px]" onMouseDown={(event) => { if (event.target === event.currentTarget) setQuickFindOpen(false); }}>
+          <section role="dialog" aria-modal="true" aria-label="Quick find" className={`w-full max-w-xl overflow-hidden rounded-2xl border shadow-2xl ${dark ? "border-white/10 bg-[#111722] text-slate-100" : "border-slate-200 bg-white text-slate-900"}`}>
+            <div className={`flex items-center gap-3 border-b px-4 ${dark ? "border-white/10" : "border-slate-100"}`}>
+              <Search size={17} className={muted} />
+              <input ref={quickFindInputRef} value={quickFindQuery} onChange={(event) => setQuickFindQuery(event.target.value)} placeholder="Jump to a section or search projects..." aria-label="Search portfolio" className="h-14 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-500" />
+              <button onClick={() => setQuickFindOpen(false)} className={`rounded-md border px-2 py-1 text-[10px] ${dark ? "border-white/10 text-slate-400" : "border-slate-200 text-slate-500"}`} aria-label="Close quick find">ESC</button>
+            </div>
+            <div className="max-h-[60vh] overflow-y-auto p-3">
+              <p className={`px-2 pb-2 pt-1 text-[9px] font-semibold uppercase tracking-[.2em] ${muted}`}>Sections</p>
+              {quickFindSections.length > 0 ? quickFindSections.map(({ label, icon: Icon }) => (
+                <button key={label} onClick={() => chooseView(label)} className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-xs transition ${dark ? "text-slate-300 hover:bg-white/[.06]" : "text-slate-700 hover:bg-slate-50"}`}>
+                  <Icon size={15} className={muted} /><span>{label}</span><ArrowUpRight size={12} className={`ml-auto ${muted}`} />
+                </button>
+              )) : <p className={`px-3 py-2 text-xs ${muted}`}>No matching sections</p>}
+              <div className={`my-3 border-t ${dark ? "border-white/10" : "border-slate-100"}`} />
+              <p className={`px-2 pb-2 text-[9px] font-semibold uppercase tracking-[.2em] ${muted}`}>{quickFindTerm ? "Matching projects" : "Featured projects"}</p>
+              {quickFindProjects.length > 0 ? quickFindProjects.map((project) => (
+                <button key={project.title} onClick={() => openProjectFromQuickFind(project.title)} className={`flex w-full items-start gap-3 rounded-xl px-3 py-3 text-left transition ${dark ? "hover:bg-white/[.06]" : "hover:bg-slate-50"}`}>
+                  <span className={`mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg ${dark ? "bg-blue-300/10 text-blue-200" : "bg-blue-50 text-blue-700"}`}><Code2 size={15} /></span>
+                  <span className="min-w-0 flex-1"><span className={`block text-xs font-semibold ${titleText}`}>{project.title}</span><span className={`mt-1 line-clamp-2 block text-[10px] leading-4 ${muted}`}>{project.blurb}</span></span>
+                  <ArrowUpRight size={13} className={`mt-1 shrink-0 ${muted}`} />
+                </button>
+              )) : <p className={`px-3 py-2 text-xs ${muted}`}>No projects found. Try a technology such as React, Python, or RAG.</p>}
+            </div>
+            <div className={`flex items-center justify-between border-t px-4 py-3 text-[10px] ${dark ? "border-white/10 text-slate-500" : "border-slate-100 text-slate-400"}`}><span>Quick navigation across Aravindh's portfolio</span><span>Ctrl/⌘ K to open</span></div>
+          </section>
+        </div>
+      )}
+
       <div className="min-w-0 flex-1">
         <header className={`sticky top-0 z-20 flex h-[62px] items-center justify-between border-b px-4 backdrop-blur-xl sm:px-7 lg:px-10 ${dark ? "border-white/10 bg-[#0c0f15]/90" : "border-slate-200/80 bg-[#f7f9fc]/90"}`}>
           <div className="flex items-center gap-3">
@@ -133,6 +197,9 @@ export function ProfileDashboard() {
             <div className={`flex items-center gap-2 text-[11px] ${muted}`}><span>Portfolio</span><span className={dark ? "text-slate-600" : "text-slate-300"}>/</span><span className={`font-semibold ${titleText}`}>{view}</span></div>
           </div>
           <div className="flex items-center gap-2">
+            <button onClick={() => setQuickFindOpen(true)} className={`inline-flex items-center gap-2 rounded-lg border px-2.5 py-2 text-[11px] transition ${dark ? "border-white/10 text-slate-300 hover:bg-white/[.05]" : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"}`} aria-label="Open quick find">
+              <Search size={14} /><span className="hidden sm:inline">Quick find</span><kbd className={`ml-1 hidden rounded border px-1.5 py-0.5 text-[9px] sm:inline ${dark ? "border-white/10 text-slate-500" : "border-slate-200 text-slate-400"}`}>⌘ K</kbd>
+            </button>
             <a href={site.socials.resume} target="_blank" rel="noreferrer" className={`hidden items-center gap-2 rounded-lg border px-3 py-2 text-[11px] font-medium transition sm:inline-flex ${dark ? "border-white/10 text-slate-300 hover:bg-white/[.05]" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`}><FileText size={14} /> Resume <ArrowUpRight size={12} /></a>
             <button onClick={() => setDark((value) => !value)} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} className={`rounded-lg border p-2 transition ${dark ? "border-white/10 text-slate-300 hover:bg-white/[.05]" : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"}`}>{dark ? <Sun size={15} /> : <Moon size={15} />}</button>
           </div>
