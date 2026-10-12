@@ -1,0 +1,105 @@
+/* Portfolio workspace refresh — ChatGPT-inspired layout with SuperMoney-like clarity */
+:root {
+  color-scheme: light;
+  --portfolio-bg: #f7f9f7;
+  --portfolio-panel: #ffffff;
+  --portfolio-sidebar: #f1f5f2;
+  --portfolio-border: #e1e8e3;
+  --portfolio-text: #17221c;
+  --portfolio-muted: #68766e;
+  --portfolio-green: #16734a;
+  --portfolio-green-soft: #e7f4eb;
+}
+html, body, #root {
+  min-height: 100%;
+  background: var(--portfolio-bg);
+  color: var(--portfolio-text);
+}
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #ccebd7; color: #123d28; }
+:focus-visible { outline: 2px solid #2b9860; outline-offset: 3px; }
+a { text-underline-offset: 3px; }
+#root > div.min-h-screen {
+  background: var(--portfolio-bg);
+}
+#root > div.min-h-screen > div.sticky {
+  z-index: 35;
+}
+#root > div.min-h-screen aside {
+  border-color: var(--portfolio-border);
+  scrollbar-width: thin;
+}
+#root > div.min-h-screen aside img {
+  box-shadow: 0 0 0 4px #e9f4ec;
+}
+#root > div.min-h-screen aside nav button {
+  min-height: 42px;
+  border-radius: 12px;
+}
+#root > div.min-h-screen aside nav button:hover {
+  color: var(--portfolio-green);
+}
+#root > div.min-h-screen header {
+  border-color: var(--portfolio-border);
+  box-shadow: 0 1px 0 rgba(23, 34, 28, .025);
+}
+#root > div.min-h-screen main {
+  max-width: 1120px;
+}
+#root > div.min-h-screen main article {
+  border-color: var(--portfolio-border);
+  box-shadow: 0 1px 2px rgba(20, 48, 31, .025);
+}
+#root > div.min-h-screen main article:hover {
+  box-shadow: 0 14px 36px rgba(20, 90, 50, .07);
+}
+#root > div.min-h-screen button[class~="bg-zinc-900"] {
+  background: var(--portfolio-green);
+}
+#root > div.min-h-screen button[class~="bg-zinc-900"]:hover {
+  background: #105c3a;
+}
+#root > div.min-h-screen a:hover,
+#root > div.min-h-screen button:hover {
+  transition-duration: 160ms;
+}
+@media (min-width: 768px) {
+  #root > div.min-h-screen > div.sticky {
+    position: fixed !important;
+    inset: 0 auto 0 0;
+    width: 264px;
+    height: 100vh;
+  }
+  #root > div.min-h-screen > div.sticky > aside {
+    width: 264px;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--portfolio-sidebar);
+    box-shadow: 8px 0 28px rgba(24, 56, 35, .025);
+  }
+  #root > div.min-h-screen > div.min-w-0.flex-1 {
+    width: calc(100% - 264px);
+    margin-left: 264px;
+  }
+}
+@media (max-width: 767px) {
+  #root > div.min-h-screen > div.min-w-0.flex-1 {
+    width: 100%;
+    margin-left: 0;
+  }
+  #root > div.min-h-screen aside {
+    max-width: 88vw;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
