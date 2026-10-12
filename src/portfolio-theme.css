@@ -134,9 +134,17 @@ a { text-underline-offset: 3px; }
   font-weight: 600;
 }
 @media (min-width: 768px) {
+  /* Center the complete sidebar + content workspace on wide screens. */
+  #root > div.min-h-screen {
+    box-sizing: border-box;
+    width: calc(100% - 48px);
+    max-width: 1320px;
+    margin-inline: auto;
+    position: relative;
+  }
   #root > div.min-h-screen > div.sticky {
     position: fixed !important;
-    inset: 0 auto 0 0;
+    inset: 0 auto 0 max(24px, calc((100vw - 1320px) / 2));
     width: 248px;
     height: 100vh;
     flex: none;
