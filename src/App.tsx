@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { VisitorProvider } from "@/context/VisitorContext";
 import { Analytics } from "@vercel/analytics/react";
 import { ChatPortfolio } from "@/components/ChatPortfolio";
+import { ProfileDashboard } from "@/components/ProfileDashboard";
 import { PortfolioWorkspace } from "@/components/PortfolioWorkspace";
 import { Projects } from "@/sections/Projects";
 import { Experience } from "@/sections/Experience";
@@ -17,7 +18,8 @@ export function App() {
         <BrowserRouter>
           <Analytics />
           <Routes>
-            <Route path="/" element={<PortfolioWorkspace />} />
+            <Route path="/" element={<ProfileDashboard />} />
+            <Route path="/workspace" element={<PortfolioWorkspace />} />
             <Route path="/chat" element={<ChatPortfolio />} />
             <Route path="/projects" element={<Projects isSearchable={true} />} />
             <Route path="/experience" element={<Experience />} />
