@@ -56,9 +56,6 @@ body {
 ::selection { background: #ccebd7; color: #123d28; }
 :focus-visible { outline: 2px solid #2b9860; outline-offset: 3px; }
 a { text-underline-offset: 3px; }
-#root > div.min-h-screen {
-  background: var(--portfolio-bg);
-}
 #root > div.min-h-screen > div.sticky {
   z-index: 35;
 }
@@ -82,6 +79,27 @@ a { text-underline-offset: 3px; }
 }
 #root > div.min-h-screen main {
   max-width: 1120px;
+}
+#root > div.min-h-screen main > section,
+#root > div.min-h-screen main > div > section {
+  border-radius: 16px;
+}
+#root > div.min-h-screen main article {
+  border-radius: 12px;
+}
+#root > div.min-h-screen main h1,
+#root > div.min-h-screen main h2 {
+  letter-spacing: -0.04em;
+}
+#root > div.min-h-screen main input {
+  border-radius: 10px;
+}
+#root > div.min-h-screen aside > div:first-child {
+  border-bottom: 1px solid var(--portfolio-border);
+}
+#root > div.min-h-screen header button,
+#root > div.min-h-screen header a {
+  border-radius: 9px;
 }
 #root > div.min-h-screen main article {
   border-color: var(--portfolio-border);
@@ -111,7 +129,6 @@ a { text-underline-offset: 3px; }
     width: 264px;
     height: 100vh;
     overflow-y: auto;
-    background: var(--portfolio-sidebar);
     box-shadow: 8px 0 28px rgba(24, 56, 35, .025);
   }
   #root > div.min-h-screen > div.min-w-0.flex-1 {

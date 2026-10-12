@@ -7,13 +7,14 @@ import {
 } from "lucide-react";
 import { site } from "@/config/site";
 
-type View = "Overview" | "Projects" | "Experience" | "Skills" | "Education" | "Writing" | "Contact";
+type View = "Overview" | "Projects" | "Experience" | "Research" | "Skills" | "Education" | "Writing" | "Contact";
 type NavItem = { label: View; icon: LucideIcon };
 
 const navigation: NavItem[] = [
   { label: "Overview", icon: House },
   { label: "Projects", icon: Layers3 },
   { label: "Experience", icon: BriefcaseBusiness },
+  { label: "Research", icon: BookOpen },
   { label: "Skills", icon: Code2 },
   { label: "Education", icon: GraduationCap },
   { label: "Writing", icon: BookOpen },
@@ -378,6 +379,14 @@ export function ProfileDashboard() {
               <div className="grid gap-4 md:grid-cols-2">{featured.map((project) => <ProjectTile key={project.title} project={project} dark={dark} />)}</div>
             </section>
 
+            <section className={cx("mt-11 flex flex-col gap-5 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between", panel)}>
+              <div className="flex items-start gap-4">
+                <div className={cx("grid h-10 w-10 shrink-0 place-items-center rounded-xl", dark ? "bg-emerald-300/10 text-emerald-200" : "bg-emerald-50 text-emerald-800")}><GraduationCap size={18} /></div>
+                <div><p className={cx("text-[10px] font-semibold uppercase tracking-[.18em]", dark ? "text-emerald-200" : "text-emerald-800")}>Research & publications</p><h2 className={cx("mt-1 text-lg font-semibold tracking-tight", titleText)}>Published work and academic profile</h2><p className={cx("mt-1 max-w-2xl text-xs leading-5", muted)}>Find publication records, co-authors, and citation information on Google Scholar.</p></div>
+              </div>
+              <button onClick={() => chooseView("Research")} className={cx("inline-flex shrink-0 items-center gap-2 rounded-xl border px-4 py-3 text-xs font-semibold transition", dark ? "border-white/10 hover:bg-white/[.05]" : "border-slate-200 bg-white hover:border-emerald-200")}>Explore research <ArrowUpRight size={14} /></button>
+            </section>
+
             <section className="mt-11">
               <div className="mb-5 flex items-end justify-between gap-3">
                 <SectionHeading kicker="Ideas & notes" title="Latest writing" detail="Notes from exploring AI agents, language models, and AI security." dark={dark} />
@@ -443,6 +452,32 @@ export function ProfileDashboard() {
                   </div>
                 </article>
               ))}
+            </div>
+          </>}
+
+          {view === "Research" && <>
+            <SectionHeading kicker="Research & publications" title="Research profile" detail="A dedicated home for published work, co-authors, citation history, and academic indexing." dark={dark} />
+            <section className={cx("overflow-hidden rounded-2xl border", panel)}>
+              <div className={cx("flex flex-col gap-5 p-6 sm:flex-row sm:items-start sm:justify-between sm:p-8", dark ? "bg-[linear-gradient(120deg,rgba(16,75,53,.28),transparent)]" : "bg-[linear-gradient(120deg,#edf8f0,white)]")}>
+                <div className="flex items-start gap-4">
+                  <div className={cx("grid h-12 w-12 shrink-0 place-items-center rounded-2xl", dark ? "bg-emerald-300/10 text-emerald-200" : "bg-white text-emerald-800 shadow-sm")}><GraduationCap size={23} /></div>
+                  <div>
+                    <p className={cx("text-[10px] font-semibold uppercase tracking-[.18em]", dark ? "text-emerald-200" : "text-emerald-800")}>Google Scholar</p>
+                    <h3 className={cx("mt-2 text-xl font-semibold tracking-tight", titleText)}>{site.name}</h3>
+                    <p className={cx("mt-2 max-w-xl text-sm leading-6", muted)}>Explore the indexed publication list, author details, citation counts, related versions, and co-author information on my live academic profile.</p>
+                  </div>
+                </div>
+                <a href={site.socials.googleScholar} target="_blank" rel="noreferrer" className={cx("inline-flex shrink-0 items-center justify-center gap-2 rounded-xl px-4 py-3 text-xs font-semibold transition", dark ? "bg-emerald-200 text-[#10241a] hover:bg-emerald-100" : "bg-[#174f3c] text-white hover:bg-[#0e4230]")}>View Google Scholar <ArrowUpRight size={14} /></a>
+              </div>
+              <div className={cx("grid gap-px border-t sm:grid-cols-3", dark ? "border-white/10 bg-white/10" : "border-slate-200 bg-slate-200")}>
+                <div className={cx("p-5", dark ? "bg-[#151916]" : "bg-white")}><p className={cx("text-xs font-semibold", titleText)}>Publications</p><p className={cx("mt-1 text-xs leading-5", muted)}>Browse the complete, current list on Scholar.</p></div>
+                <div className={cx("p-5", dark ? "bg-[#151916]" : "bg-white")}><p className={cx("text-xs font-semibold", titleText)}>Citations & impact</p><p className={cx("mt-1 text-xs leading-5", muted)}>Use the live profile for citation and h-index data rather than stale copied figures.</p></div>
+                <div className={cx("p-5", dark ? "bg-[#151916]" : "bg-white")}><p className={cx("text-xs font-semibold", titleText)}>Author details</p><p className={cx("mt-1 text-xs leading-5", muted)}>Check co-authors, publication years, and indexed versions at the source.</p></div>
+              </div>
+            </section>
+            <div className={cx("mt-4 flex flex-col gap-3 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between", panel)}>
+              <div><p className={cx("text-sm font-semibold", titleText)}>Keep publication metadata accurate</p><p className={cx("mt-1 text-xs leading-5", muted)}>Google Scholar restricts embedding and its public profile could not be reliably read here, so this portfolio links directly to the authoritative live publication list instead of guessing paper titles or citation counts.</p></div>
+              <a href={site.socials.googleScholar} target="_blank" rel="noreferrer" className={cx("inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold", dark ? "text-emerald-200" : "text-emerald-800")}>Open publication list <ArrowUpRight size={13} /></a>
             </div>
           </>}
 
