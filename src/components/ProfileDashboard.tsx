@@ -176,8 +176,8 @@ export function ProfileDashboard() {
 
       <div className="space-y-5 px-3 pt-1">
         {[
-          { label: "Portfolio", items: navigation.slice(0, 4) },
-          { label: "More", items: navigation.slice(4, 7) },
+          { label: "Workspace", items: navigation.slice(0, 4) },
+          { label: "Explore", items: navigation.slice(4, 7) },
           { label: "Connect", items: navigation.slice(7) },
         ].map((group) => (
           <div key={group.label}>
@@ -283,7 +283,7 @@ export function ProfileDashboard() {
         )}>
           <div className="flex items-center gap-3">
             <button onClick={() => setMobileNav(true)} aria-label="Open navigation" className={cx("rounded-lg p-2 md:hidden", muted)}><Menu size={18} /></button>
-            <div className={cx("flex items-center gap-2 text-[11px]", muted)}><span>Portfolio</span><span className={dark ? "text-slate-600" : "text-slate-300"}>/</span><span className={cx("font-semibold", titleText)}>{view}</span></div>
+            <div className={cx("text-[13px] font-semibold tracking-tight", titleText)}>{view}</div>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => setQuickFindOpen(true)} className={cx(
