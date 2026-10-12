@@ -1,181 +1,109 @@
-/* Light Supermemory-inspired workspace: neutral surfaces, fixed sidebar, centered content. */
+/* Supermemory-inspired theme: pristine canvas, precise borders, electric blue accents */
 :root {
   color-scheme: light;
-  --portfolio-bg: #fafafa;
+  --portfolio-bg: #ffffff;
   --portfolio-panel: #ffffff;
-  --portfolio-sidebar: #fcfcfc;
+  --portfolio-sidebar: #ffffff;
   --portfolio-border: #e5e7eb;
-  --portfolio-text: #17171b;
-  --portfolio-muted: #777780;
-  --portfolio-accent: #2563eb;
+  --portfolio-text: #09090b;
+  --portfolio-muted: #71717a;
+  --portfolio-accent: #0066ff;
   --portfolio-accent-soft: #eff6ff;
-  --bg: #fafafa;
-  --fg: #17171b;
-  --muted: #777780;
-  --soft: #a0a0a8;
-  --line: rgba(20, 20, 30, .10);
-  --stripe: rgba(20, 20, 30, .025);
-  --hover: rgba(37, 99, 235, .055);
+  --bg: #ffffff;
+  --fg: #09090b;
+  --muted: #71717a;
+  --soft: #a1a1aa;
+  --line: #e5e7eb;
+  --stripe: rgba(0, 0, 0, 0.025);
+  --hover: rgba(0, 102, 255, 0.05);
   --card: #ffffff;
-  --chip: #f1f1f4;
+  --chip: #f4f4f5;
 }
+
 .light {
   color-scheme: light;
-  --portfolio-bg: #fafafa;
+  --portfolio-bg: #ffffff;
   --portfolio-panel: #ffffff;
-  --portfolio-sidebar: #fcfcfc;
+  --portfolio-sidebar: #ffffff;
   --portfolio-border: #e5e7eb;
-  --portfolio-text: #17171b;
-  --portfolio-muted: #777780;
-  --portfolio-accent: #2563eb;
+  --portfolio-text: #09090b;
+  --portfolio-muted: #71717a;
+  --portfolio-accent: #0066ff;
   --portfolio-accent-soft: #eff6ff;
-  --bg: #fafafa;
-  --fg: #17171b;
-  --muted: #777780;
-  --soft: #a0a0a8;
-  --line: rgba(20, 20, 30, .10);
-  --stripe: rgba(20, 20, 30, .025);
-  --hover: rgba(37, 99, 235, .055);
+  --bg: #ffffff;
+  --fg: #09090b;
+  --muted: #71717a;
+  --soft: #a1a1aa;
+  --line: #e5e7eb;
+  --stripe: rgba(0, 0, 0, 0.025);
+  --hover: rgba(0, 102, 255, 0.05);
   --card: #ffffff;
-  --chip: #f1f1f4;
+  --chip: #f4f4f5;
 }
+
 .dark {
   color-scheme: dark;
-  --portfolio-bg: #0b0c0f;
-  --portfolio-panel: #111318;
-  --portfolio-sidebar: #0d0f13;
-  --portfolio-border: #282b32;
-  --portfolio-text: #f3f4f6;
-  --portfolio-muted: #9ca3af;
-  --portfolio-accent: #3b82f6;
-  --portfolio-accent-soft: #14233f;
-  --bg: #0b0c0f;
-  --fg: #f4f4f6;
-  --muted: #9ca3af;
-  --soft: #73737e;
-  --line: rgba(240, 240, 255, .12);
-  --stripe: rgba(240, 240, 255, .025);
-  --hover: rgba(59, 130, 246, .10);
-  --card: #111318;
-  --chip: #1b1d24;
+  --portfolio-bg: #09090b;
+  --portfolio-panel: #111113;
+  --portfolio-sidebar: #09090b;
+  --portfolio-border: #27272a;
+  --portfolio-text: #f4f4f5;
+  --portfolio-muted: #a1a1aa;
+  --portfolio-accent: #0066ff;
+  --portfolio-accent-soft: #0c1a30;
+  --bg: #09090b;
+  --fg: #f4f4f5;
+  --muted: #a1a1aa;
+  --soft: #71717a;
+  --line: #27272a;
+  --stripe: rgba(255, 255, 255, 0.03);
+  --hover: rgba(0, 102, 255, 0.1);
+  --card: #121215;
+  --chip: #1c1c20;
 }
+
 html, body, #root {
   min-height: 100%;
   background: var(--bg);
   color: var(--fg);
 }
+
 body {
   margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-::selection { background: #dbeafe; color: #1e3a8a; }
-:focus-visible { outline: 2px solid #6366f1; outline-offset: 3px; }
-a { text-underline-offset: 3px; }
-#root > div.min-h-screen > div.sticky { z-index: 35; }
-#root > div.min-h-screen aside {
-  border-color: var(--portfolio-border);
-  scrollbar-width: thin;
-}
-#root > div.min-h-screen aside img { box-shadow: none; }
-#root > div.min-h-screen aside nav button {
-  min-height: 36px;
-  border-radius: 8px;
-}
-#root > div.min-h-screen aside nav button:hover { color: #3b82f6; }
-#root > div.min-h-screen header {
-  border-color: var(--portfolio-border);
-  box-shadow: none;
-}
-#root > div.min-h-screen main {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 1160px;
-  margin-inline: auto;
-}
-#root > div.min-h-screen main > section,
-#root > div.min-h-screen main > div > section { border-radius: 14px; }
-#root > div.min-h-screen main article {
-  border-color: var(--portfolio-border);
-  border-radius: 12px;
-  box-shadow: none;
-}
-#root > div.min-h-screen main article:hover {
-  box-shadow: 0 8px 28px rgba(59, 130, 246, .045);
-}
-#root > div.min-h-screen main h1,
-#root > div.min-h-screen main h2 { letter-spacing: -0.045em; }
-#root > div.min-h-screen main input { border-radius: 8px; }
-#root > div.min-h-screen aside > div:first-child {
-  border-bottom: 1px solid var(--portfolio-border);
-}
-#root > div.min-h-screen header button,
-#root > div.min-h-screen header a { border-radius: 8px; }
-#root > div.min-h-screen button[class~="bg-zinc-900"] { background: #2563eb; }
-#root > div.min-h-screen button[class~="bg-zinc-900"]:hover { background: #1d4ed8; }
-#root > div.min-h-screen a:hover,
-#root > div.min-h-screen button:hover { transition-duration: 150ms; }
 
-/* Flatten the oversized dashboard hero and keep the accent restrained. */
-#root > div.min-h-screen main > section:first-child {
-  border-color: var(--portfolio-border);
-  background: var(--card) !important;
-  box-shadow: none;
+::selection {
+  background: #0066ff;
+  color: #ffffff;
 }
-#root > div.min-h-screen main > section:first-child > div[aria-hidden="true"] { display: none; }
-#root > div.min-h-screen main > section:first-child h1 { max-width: 760px; }
-#root > div.min-h-screen main article,
-#root > div.min-h-screen main section { scroll-margin-top: 84px; }
-#root > div.min-h-screen aside > div:nth-child(2) > div {
-  border-radius: 12px;
-  box-shadow: none;
+
+:focus-visible {
+  outline: 2px solid #0066ff;
+  outline-offset: 2px;
 }
-#root > div.min-h-screen aside nav button[aria-current="page"] {
-  font-weight: 600;
+
+a {
+  text-underline-offset: 3px;
 }
-@media (min-width: 768px) {
-  #root > div.min-h-screen > div.sticky {
-    position: fixed !important;
-    inset: 0 auto 0 0;
-    width: 248px;
-    height: 100vh;
-    flex: none;
-  }
-  #root > div.min-h-screen > div.sticky > aside {
-    box-sizing: border-box;
-    width: 248px;
-    height: 100vh;
-    overflow-y: auto;
-    box-shadow: none;
-  }
-  #root > div.min-h-screen > div.min-w-0.flex-1 {
-    box-sizing: border-box;
-    width: calc(100% - 248px);
-    min-width: 0;
-    margin-left: 248px;
-  }
-  #root > div.min-h-screen > div.min-w-0.flex-1 > header {
-    padding-left: clamp(24px, 3vw, 44px);
-    padding-right: clamp(24px, 3vw, 44px);
-  }
-  #root > div.min-h-screen > div.min-w-0.flex-1 > main {
-    max-width: 1160px;
-    padding-left: clamp(24px, 3vw, 48px);
-    padding-right: clamp(24px, 3vw, 48px);
-  }
+
+/* Hide all visible scrollbars while preserving full smooth scrolling */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
-@media (max-width: 767px) {
-  #root > div.min-h-screen > div.min-w-0.flex-1 {
-    width: 100%;
-    margin-left: 0;
-  }
-  #root > div.min-h-screen aside { max-width: 88vw; }
+
+*::-webkit-scrollbar,
+::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+aside::-webkit-scrollbar,
+main::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
-}
+
