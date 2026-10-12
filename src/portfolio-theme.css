@@ -57,7 +57,8 @@ body {
 :focus-visible { outline: 2px solid #2b9860; outline-offset: 3px; }
 a { text-underline-offset: 3px; }
 #root > div.min-h-screen {
-  background: var(--portfolio-bg);
+  background: var(--bg);
+  color: var(--fg);
 }
 #root > div.min-h-screen > div.sticky {
   z-index: 35;
@@ -82,6 +83,31 @@ a { text-underline-offset: 3px; }
 }
 #root > div.min-h-screen main {
   max-width: 1120px;
+}
+#root > div.min-h-screen main > section,
+#root > div.min-h-screen main > div > section {
+  border-radius: 16px;
+}
+#root > div.min-h-screen main article {
+  border-radius: 12px;
+}
+#root > div.min-h-screen main h1,
+#root > div.min-h-screen main h2 {
+  letter-spacing: -0.04em;
+}
+#root > div.min-h-screen main input {
+  border-radius: 10px;
+}
+#root > div.min-h-screen aside > div:first-child {
+  border-bottom: 1px solid var(--portfolio-border);
+}
+#root > div.min-h-screen aside nav button[aria-current="page"] {
+  background: #e4f2e9;
+  color: #17533d;
+}
+#root > div.min-h-screen header button,
+#root > div.min-h-screen header a {
+  border-radius: 9px;
 }
 #root > div.min-h-screen main article {
   border-color: var(--portfolio-border);
