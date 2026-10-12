@@ -1,47 +1,63 @@
 /* Supermemory-inspired workspace: quiet neutrals, compact navigation, precise alignment. */
 :root {
+  color-scheme: dark;
+  --portfolio-bg: #0b0c0f;
+  --portfolio-panel: #111318;
+  --portfolio-sidebar: #0d0f13;
+  --portfolio-border: #282b32;
+  --portfolio-text: #f3f4f6;
+  --portfolio-muted: #9ca3af;
+  --portfolio-accent: #3b82f6;
+  --portfolio-accent-soft: #14233f;
+  --bg: #0b0c0f;
+  --fg: #f4f4f6;
+  --muted: #9ca3af;
+  --soft: #73737e;
+  --line: rgba(240, 240, 255, .12);
+  --stripe: rgba(240, 240, 255, .025);
+  --hover: rgba(59, 130, 246, .10);
+  --card: #111318;
+  --chip: #1b1d24;
+}
+.light {
   color-scheme: light;
   --portfolio-bg: #fafafa;
   --portfolio-panel: #ffffff;
   --portfolio-sidebar: #fcfcfc;
-  --portfolio-border: #e8e8eb;
+  --portfolio-border: #e5e7eb;
   --portfolio-text: #17171b;
   --portfolio-muted: #777780;
-  --portfolio-accent: #4f46e5;
-  --portfolio-accent-soft: #f0efff;
+  --portfolio-accent: #2563eb;
+  --portfolio-accent-soft: #eff6ff;
   --bg: #fafafa;
   --fg: #17171b;
   --muted: #777780;
   --soft: #a0a0a8;
   --line: rgba(20, 20, 30, .10);
   --stripe: rgba(20, 20, 30, .025);
-  --hover: rgba(79, 70, 229, .055);
-  --card: #ffffff;
-  --chip: #f1f1f4;
-}
-.light {
-  color-scheme: light;
-  --bg: #fafafa;
-  --fg: #17171b;
-  --muted: #777780;
-  --soft: #a0a0a8;
-  --line: rgba(20, 20, 30, .10);
-  --stripe: rgba(20, 20, 30, .025);
-  --hover: rgba(79, 70, 229, .055);
+  --hover: rgba(37, 99, 235, .055);
   --card: #ffffff;
   --chip: #f1f1f4;
 }
 .dark {
   color-scheme: dark;
-  --bg: #0b0b0e;
+  --portfolio-bg: #0b0c0f;
+  --portfolio-panel: #111318;
+  --portfolio-sidebar: #0d0f13;
+  --portfolio-border: #282b32;
+  --portfolio-text: #f3f4f6;
+  --portfolio-muted: #9ca3af;
+  --portfolio-accent: #3b82f6;
+  --portfolio-accent-soft: #14233f;
+  --bg: #0b0c0f;
   --fg: #f4f4f6;
-  --muted: #a0a0aa;
+  --muted: #9ca3af;
   --soft: #73737e;
   --line: rgba(240, 240, 255, .12);
   --stripe: rgba(240, 240, 255, .025);
-  --hover: rgba(129, 140, 248, .09);
-  --card: #111115;
-  --chip: #1b1b23;
+  --hover: rgba(59, 130, 246, .10);
+  --card: #111318;
+  --chip: #1b1d24;
 }
 html, body, #root {
   min-height: 100%;
@@ -53,7 +69,7 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-::selection { background: #e0e7ff; color: #24215b; }
+::selection { background: #dbeafe; color: #1d4ed8; }
 :focus-visible { outline: 2px solid #6366f1; outline-offset: 3px; }
 a { text-underline-offset: 3px; }
 #root > div.min-h-screen > div.sticky { z-index: 35; }
@@ -66,7 +82,7 @@ a { text-underline-offset: 3px; }
   min-height: 36px;
   border-radius: 8px;
 }
-#root > div.min-h-screen aside nav button:hover { color: #4f46e5; }
+#root > div.min-h-screen aside nav button:hover { color: #3b82f6; }
 #root > div.min-h-screen header {
   border-color: var(--portfolio-border);
   box-shadow: none;
@@ -85,7 +101,7 @@ a { text-underline-offset: 3px; }
   box-shadow: none;
 }
 #root > div.min-h-screen main article:hover {
-  box-shadow: 0 8px 28px rgba(20, 20, 35, .055);
+  box-shadow: 0 8px 28px rgba(59, 130, 246, .045);
 }
 #root > div.min-h-screen main h1,
 #root > div.min-h-screen main h2 { letter-spacing: -0.045em; }
@@ -95,8 +111,8 @@ a { text-underline-offset: 3px; }
 }
 #root > div.min-h-screen header button,
 #root > div.min-h-screen header a { border-radius: 8px; }
-#root > div.min-h-screen button[class~="bg-zinc-900"] { background: #4f46e5; }
-#root > div.min-h-screen button[class~="bg-zinc-900"]:hover { background: #4338ca; }
+#root > div.min-h-screen button[class~="bg-zinc-900"] { background: #2563eb; }
+#root > div.min-h-screen button[class~="bg-zinc-900"]:hover { background: #1d4ed8; }
 #root > div.min-h-screen a:hover,
 #root > div.min-h-screen button:hover { transition-duration: 150ms; }
 
