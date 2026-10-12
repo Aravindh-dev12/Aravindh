@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowUpRight, BookOpen, BriefcaseBusiness, CheckCircle2, Code2, FileText,
-  Github, GraduationCap, House, Layers3, Linkedin, Mail, MapPin, Menu,
+  Github, GraduationCap, House, Layers3, Linkedin, Mail, Menu, MessageCircle,
   Moon, Sparkles, Sun, Search, X
 } from "lucide-react";
 import { site } from "@/config/site";
@@ -22,7 +22,6 @@ const navigation: NavItem[] = [
 ];
 
 const categories = ["All", "AI", "Fullstack", "Backend", "Frontend", "Client work"];
-const profileImage = "/profile.jpeg";
 
 function cx(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
@@ -175,28 +174,6 @@ export function ProfileDashboard() {
         <button onClick={() => setMobileNav(false)} aria-label="Close navigation" className="rounded-lg p-1.5 text-slate-500"><X size={17} /></button>
       </div>
 
-      <div className="px-4 pb-5">
-        <div className={cx("rounded-xl border p-3", dark ? "border-white/10 bg-white/[.025]" : "border-[#e8e8eb] bg-white")}>
-          <div className="flex items-center gap-3">
-            <img
-              src={profileImage}
-              alt={site.name}
-              onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/profile2.jpeg"; }}
-              className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-black/5"
-            />
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-[13px] font-semibold">{site.name}</p>
-              <p className={cx("mt-1 text-[10px] leading-4", muted)}>{site.role}</p>
-              <p className={cx("mt-1 line-clamp-1 text-[10px] leading-4", muted)}>{site.tagline}</p>
-            </div>
-          </div>
-          <div className={cx("mt-2 flex items-center gap-1.5 text-[10px]", muted)}><MapPin size={12} /> {site.location}</div>
-          <div className={cx("mt-2 inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-[10px]", dark ? "bg-blue-300/10 text-blue-200" : "bg-blue-50 text-blue-800")}>
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-500" /> {site.status.availableText}
-          </div>
-        </div>
-      </div>
-
       <div className="space-y-5 px-3 pt-1">
         {[
           { label: "Portfolio", items: navigation.slice(0, 4) },
@@ -236,10 +213,10 @@ export function ProfileDashboard() {
           "flex items-center gap-2 rounded-xl border px-3 py-3 text-[11px] font-medium transition",
           dark ? "border-white/10 bg-white/[.025] text-slate-300 hover:bg-white/[.06]" : "border-[#dce2ef] bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50/50"
         )}>
-          <Sparkles size={15} className="text-blue-600" /><span>Chat with my portfolio</span><ArrowUpRight size={13} className="ml-auto" />
+          <MessageCircle size={15} className="text-blue-400" /><span>Chat with my portfolio</span><ArrowUpRight size={13} className="ml-auto" />
         </a>
         <div className={cx("mt-4 flex items-center justify-between border-t pt-4", dark ? "border-white/10" : "border-[#e2e7f0]")}>
-          <span className={cx("text-[9px]", muted)}>Built by Aravindh</span>
+          <span className={cx("text-[9px]", muted)}>Connect</span>
           <div className="flex items-center gap-1">
             <a href={site.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className={cx("rounded-lg p-1.5 transition hover:text-blue-600", muted)}><Github size={14} /></a>
             <a href={site.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className={cx("rounded-lg p-1.5 transition hover:text-blue-600", muted)}><Linkedin size={14} /></a>
