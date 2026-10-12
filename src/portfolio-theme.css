@@ -45,8 +45,8 @@
 }
 html, body, #root {
   min-height: 100%;
-  background: var(--portfolio-bg);
-  color: var(--portfolio-text);
+  background: var(--bg);
+  color: var(--fg);
 }
 body {
   margin: 0;
