@@ -313,7 +313,7 @@ export function ProfileDashboard() {
               <div aria-hidden="true" className="pointer-events-none absolute -right-2 -top-10 h-52 w-52 rounded-full border border-blue-800/10" />
               <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_250px] lg:items-center">
                 <div className="max-w-3xl">
-                  <div className={cx("mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-medium", dark ? "border-white/15 bg-white/[.04] text-slate-200" : "border-slate-200 bg-white text-slate-700")}><Sparkles size={12} /> FULL STACK & AI ENGINEER</div>
+                  <div className={cx("mb-5 inline-flex items-center rounded-full border px-3 py-1.5 text-[10px] font-medium", dark ? "border-white/15 bg-white/[.04] text-slate-200" : "border-slate-200 bg-white text-slate-700")}>FULL STACK & AI ENGINEER</div>
                   <h1 className={cx("max-w-3xl text-[38px] font-semibold leading-[1.08] tracking-[-.055em] sm:text-5xl lg:text-[54px]", titleText)}>I turn complex ideas into <span className={dark ? "text-blue-200" : "text-[#4656d6]"}>useful systems.</span></h1>
                   <p className={cx("mt-5 max-w-2xl text-sm leading-7 sm:text-[15px]", dark ? "text-slate-300" : "text-slate-600")}>{site.tagline}</p>
                   <div className="mt-7 flex flex-wrap items-center gap-3">
