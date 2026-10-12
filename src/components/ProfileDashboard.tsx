@@ -3,7 +3,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   ArrowUpRight, BookOpen, BriefcaseBusiness, CheckCircle2, Code2, FileText,
   Github, GraduationCap, House, Layers3, Linkedin, Mail, MapPin, Menu, Moon,
-  Sparkles, Sun, UserRound, X
+  Sparkles, Sun, Search, X
 } from "lucide-react";
 import { site } from "@/config/site";
 
@@ -63,7 +63,18 @@ export function ProfileDashboard() {
   const [view, setView] = useState<View>("Overview");
   const [dark, setDark] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
+  const [projectQuery, setProjectQuery] = useState("");
+  const [projectCategory, setProjectCategory] = useState("All");
   const featured = site.projects.filter((project) => project.featured).slice(0, 4);
+  const filteredProjects = site.projects.filter((project) => {
+    const query = projectQuery.trim().toLowerCase();
+    const matchesQuery = !query || [project.title, project.blurb, project.stack.join(" ")].join(" ").toLowerCase().includes(query);
+    const matchesCategory =
+      projectCategory === "All" ||
+      project.categories?.includes(projectCategory as "AI" | "Frontend" | "Backend" | "Fullstack") ||
+      (projectCategory === "Client work" && project.year === "Client");
+    return matchesQuery && Boolean(matchesCategory);
+  });
   const muted = dark ? "text-slate-400" : "text-slate-500";
   const panel = dark ? "border-white/10 bg-white/[.035]" : "border-slate-200 bg-white";
   const titleText = dark ? "text-white" : "text-slate-950";
@@ -170,8 +181,18 @@ export function ProfileDashboard() {
 
           {view === "Projects" && <>
             <SectionHeading kicker="Selected and ongoing work" title="Projects" detail="Products, experiments, and systems across AI, full-stack engineering, and developer tooling." dark={dark} />
-            <div className="mb-5 flex flex-wrap gap-2">{["AI systems", "Full-stack apps", "Backend & infrastructure", "Client work"].map((tag) => <span key={tag} className={`rounded-full border px-3 py-1.5 text-[10px] ${dark ? "border-white/10 text-slate-300" : "border-slate-200 bg-white text-slate-600"}`}>{tag}</span>)}</div>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-2">{site.projects.map((project) => <ProjectTile key={project.title} project={project} dark={dark} />)}</div>
+            <div className="mb-5 space-y-3">
+              <label className={`flex max-w-xl items-center gap-2.5 rounded-xl border px-3.5 py-3 ${dark ? "border-white/10 bg-white/[.035] focus-within:border-blue-300/40" : "border-slate-200 bg-white focus-within:border-blue-300"}`}>
+                <Search size={15} className={muted} />
+                <input value={projectQuery} onChange={(event) => setProjectQuery(event.target.value)} placeholder="Search projects or technologies..." aria-label="Search projects or technologies" className={`w-full bg-transparent text-xs outline-none placeholder:opacity-60 ${titleText}`} />
+                {projectQuery && <button type="button" onClick={() => setProjectQuery("")} aria-label="Clear project search" className={muted}><X size={14} /></button>}
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {["All", "AI", "Fullstack", "Backend", "Frontend", "Client work"].map((category) => <button key={category} type="button" onClick={() => setProjectCategory(category)} className={`rounded-lg border px-3 py-2 text-[10px] font-medium transition ${projectCategory === category ? (dark ? "border-blue-300/20 bg-blue-300/10 text-blue-200" : "border-blue-200 bg-blue-50 text-blue-800") : (dark ? "border-white/10 text-slate-400 hover:bg-white/[.05]" : "border-slate-200 bg-white text-slate-500 hover:bg-slate-50")}`}>{category}</button>)}
+              </div>
+              <p className={`pt-1 text-[10px] ${muted}`}>{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"} {projectQuery || projectCategory !== "All" ? "match your filters" : "in the portfolio"}</p>
+            </div>
+            {filteredProjects.length > 0 ? <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-2">{filteredProjects.map((project) => <ProjectTile key={project.title} project={project} dark={dark} />)}</div> : <div className={`rounded-2xl border border-dashed p-9 text-center ${panel}`}><Search size={20} className={`mx-auto mb-3 ${muted}`} /><p className={`text-sm font-semibold ${titleText}`}>No matching projects</p><p className={`mt-1 text-xs ${muted}`}>Try another keyword or clear the category filter.</p><button onClick={() => { setProjectQuery(""); setProjectCategory("All"); }} className={`mt-4 text-xs font-semibold ${dark ? "text-blue-200" : "text-blue-700"}`}>Clear filters</button></div>}
           </>}
 
           {view === "Experience" && <>
