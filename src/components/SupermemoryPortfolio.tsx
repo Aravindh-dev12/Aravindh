@@ -41,10 +41,12 @@ import {
   Zap,
   GitCompare,
   ChevronRight,
-  Info
+  Info,
+  Eye
 } from "lucide-react";
 import { site, type Project } from "@/config/site";
 import { projectKnowledge } from "@/config/projectKnowledge";
+import { useVisitor } from "@/context/VisitorContext";
 
 // Helper function for conditional class names
 function cx(...classes: (string | boolean | undefined | null)[]) {
@@ -1070,6 +1072,7 @@ export function SupermemoryPortfolio() {
   // Mode: "human" | "agent"
   const [mode, setMode] = useState<"human" | "agent">("human");
   const [dark, setDark] = useState<boolean>(false);
+  const { count, liveCount } = useVisitor();
   const [activeSection, setActiveSection] = useState<string>("overview");
   const [copiedPrompt, setCopiedPrompt] = useState<boolean>(false);
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
@@ -1414,6 +1417,19 @@ LinkedIn: ${site.socials.linkedin}`;
             {dark ? <Sun size={14} /> : <Moon size={14} />}
           </button>
 
+          {/* Mobile Live Visitors Pill */}
+          <div
+            className={cx(
+              "flex items-center gap-1 px-2 py-1 rounded border text-[10px] font-mono select-none",
+              dark ? "bg-neutral-900 border-neutral-800 text-neutral-300" : "bg-neutral-100 border-neutral-200 text-neutral-700"
+            )}
+            title={`Live Portfolio Traffic: ${liveCount} active visitors`}
+          >
+            <Eye size={11} className="text-[#0066ff]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-semibold">{liveCount}</span>
+          </div>
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-1.5 rounded text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
@@ -1671,36 +1687,58 @@ LinkedIn: ${site.socials.linkedin}`;
           </div>
 
           {/* Bottom Sidebar Footer */}
-          <div className="mt-auto pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
-            <button
-              onClick={() => setDark(!dark)}
-              className="flex items-center gap-1.5 hover:text-neutral-800 dark:hover:text-neutral-200 transition"
-              title="Toggle theme"
-            >
-              {dark ? <Sun size={13} /> : <Moon size={13} />}
-              <span className="font-mono text-[10px]">{dark ? "LIGHT" : "DARK"}</span>
-            </button>
+          <div className="mt-auto pt-3 border-t border-neutral-100 dark:border-neutral-800 space-y-2.5">
+            {/* Primary Controls Row: Dark/Light Theme Button + Live Visitors Badge */}
+            <div className="flex items-center justify-between gap-1 text-xs text-neutral-400">
+              <button
+                onClick={() => setDark(!dark)}
+                className="flex items-center gap-1.5 hover:text-neutral-800 dark:hover:text-neutral-200 transition py-0.5"
+                title="Toggle dark / light theme"
+              >
+                {dark ? <Sun size={13} /> : <Moon size={13} />}
+                <span className="font-mono text-[10px]">{dark ? "LIGHT" : "DARK"}</span>
+              </button>
 
-            <div className="flex items-center gap-2">
-              <a
-                href={site.socials.github}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-neutral-800 dark:hover:text-neutral-200"
-                title="GitHub"
+              {/* Live Visitors with Eye Icon */}
+              <div
+                className={cx(
+                  "flex items-center gap-1.5 px-2 py-0.5 rounded-full border font-mono text-[10px] select-none transition cursor-default",
+                  dark
+                    ? "bg-neutral-900/80 border-neutral-800 text-neutral-300"
+                    : "bg-neutral-100/90 border-neutral-200 text-neutral-700"
+                )}
+                title={`Live Portfolio Traffic: ${liveCount} active visitors online right now${count ? ` · ${count.toLocaleString()} total views` : ""}`}
               >
-                GH
-              </a>
-              <span>·</span>
-              <a
-                href={site.socials.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-neutral-800 dark:hover:text-neutral-200"
-                title="LinkedIn"
-              >
-                IN
-              </a>
+                <Eye size={11} className="text-[#0066ff]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-semibold text-neutral-800 dark:text-neutral-200">{liveCount} live</span>
+              </div>
+            </div>
+
+            {/* Bottom Links: Year & Socials */}
+            <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-0.5">
+              <span className="text-[10px] text-neutral-400">Aravindh B · 2026</span>
+              <div className="flex items-center gap-1.5">
+                <a
+                  href={site.socials.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-neutral-800 dark:hover:text-neutral-200"
+                  title="GitHub"
+                >
+                  GH
+                </a>
+                <span>·</span>
+                <a
+                  href={site.socials.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-neutral-800 dark:hover:text-neutral-200"
+                  title="LinkedIn"
+                >
+                  IN
+                </a>
+              </div>
             </div>
           </div>
         </aside>
