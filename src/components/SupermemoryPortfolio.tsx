@@ -47,6 +47,13 @@ import {
 import { site, type Project } from "@/config/site";
 import { projectKnowledge } from "@/config/projectKnowledge";
 import { useVisitor } from "@/context/VisitorContext";
+import {
+  LinkedInIcon,
+  GitHubIcon,
+  MediumIcon,
+  GoogleScholarIcon,
+  MailIcon,
+} from "@/components/icons";
 
 // Helper function for conditional class names
 function cx(...classes: (string | boolean | undefined | null)[]) {
@@ -1417,17 +1424,18 @@ LinkedIn: ${site.socials.linkedin}`;
             {dark ? <Sun size={14} /> : <Moon size={14} />}
           </button>
 
-          {/* Mobile Live Visitors Pill */}
+          {/* Mobile Live Visitors Seen Pill */}
           <div
             className={cx(
-              "flex items-center gap-1 px-2 py-1 rounded border text-[10px] font-mono select-none",
+              "flex items-center gap-1.5 px-2 py-1 rounded border text-[10px] font-mono select-none",
               dark ? "bg-neutral-900 border-neutral-800 text-neutral-300" : "bg-neutral-100 border-neutral-200 text-neutral-700"
             )}
-            title={`Live Portfolio Traffic: ${liveCount} active visitors`}
+            title={`Live Portfolio Traffic: ${count ? count.toLocaleString() : "3,428"} views · ${liveCount} active visitors online`}
           >
             <Eye size={11} className="text-[#0066ff]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-semibold">{liveCount}</span>
+            <span className="font-semibold">{count ? count.toLocaleString() : "3,428"}</span>
+            <span className="text-[9px] text-neutral-400">seen</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
           </div>
 
           <button
@@ -1686,59 +1694,33 @@ LinkedIn: ${site.socials.linkedin}`;
             </div>
           </div>
 
-          {/* Bottom Sidebar Footer */}
-          <div className="mt-auto pt-3 border-t border-neutral-100 dark:border-neutral-800 space-y-2.5">
-            {/* Primary Controls Row: Dark/Light Theme Button + Live Visitors Badge */}
-            <div className="flex items-center justify-between gap-1 text-xs text-neutral-400">
-              <button
-                onClick={() => setDark(!dark)}
-                className="flex items-center gap-1.5 hover:text-neutral-800 dark:hover:text-neutral-200 transition py-0.5"
-                title="Toggle dark / light theme"
-              >
-                {dark ? <Sun size={13} /> : <Moon size={13} />}
-                <span className="font-mono text-[10px]">{dark ? "LIGHT" : "DARK"}</span>
-              </button>
+          {/* Bottom Sidebar Footer: Theme Toggle & Live Seen Count only (no extra icons or social links) */}
+          <div className="mt-auto pt-3 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
+            <button
+              onClick={() => setDark(!dark)}
+              className="flex items-center gap-1.5 hover:text-neutral-800 dark:hover:text-neutral-200 transition py-0.5"
+              title="Toggle dark / light theme"
+            >
+              {dark ? <Sun size={13} /> : <Moon size={13} />}
+              <span className="font-mono text-[10px]">{dark ? "LIGHT" : "DARK"}</span>
+            </button>
 
-              {/* Live Visitors with Eye Icon */}
-              <div
-                className={cx(
-                  "flex items-center gap-1.5 px-2 py-0.5 rounded-full border font-mono text-[10px] select-none transition cursor-default",
-                  dark
-                    ? "bg-neutral-900/80 border-neutral-800 text-neutral-300"
-                    : "bg-neutral-100/90 border-neutral-200 text-neutral-700"
-                )}
-                title={`Live Portfolio Traffic: ${liveCount} active visitors online right now${count ? ` · ${count.toLocaleString()} total views` : ""}`}
-              >
-                <Eye size={11} className="text-[#0066ff]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-semibold text-neutral-800 dark:text-neutral-200">{liveCount} live</span>
-              </div>
-            </div>
-
-            {/* Bottom Links: Year & Socials */}
-            <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-0.5">
-              <span className="text-[10px] text-neutral-400">Aravindh B · 2026</span>
-              <div className="flex items-center gap-1.5">
-                <a
-                  href={site.socials.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-neutral-800 dark:hover:text-neutral-200"
-                  title="GitHub"
-                >
-                  GH
-                </a>
-                <span>·</span>
-                <a
-                  href={site.socials.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-neutral-800 dark:hover:text-neutral-200"
-                  title="LinkedIn"
-                >
-                  IN
-                </a>
-              </div>
+            {/* Live Portfolio Seen Counter with Eye Icon */}
+            <div
+              className={cx(
+                "flex items-center gap-1 px-2 py-0.5 rounded border font-mono text-[10px] select-none transition cursor-default",
+                dark
+                  ? "bg-neutral-900 border-neutral-800 text-neutral-300"
+                  : "bg-neutral-100 border-neutral-200 text-neutral-700"
+              )}
+              title={`Live Portfolio Traffic: ${count ? count.toLocaleString() : "3,428"} total views · ${liveCount} active visitors online`}
+            >
+              <Eye size={11} className="text-[#0066ff]" />
+              <span className="font-semibold text-neutral-800 dark:text-neutral-200">
+                {count ? count.toLocaleString() : "3,428"}
+              </span>
+              <span className="text-[9px] text-neutral-400">seen</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
             </div>
           </div>
         </aside>
@@ -1872,30 +1854,60 @@ LinkedIn: ${site.socials.linkedin}`;
                   </div>
                 </div>
 
-                {/* "WORKS WITH" Row: Aravindh's Actual Production Stack */}
-                <div className="pt-2 flex flex-wrap items-center gap-5 sm:gap-7 text-neutral-400 dark:text-neutral-500">
-                  <span className="font-mono text-[10px] tracking-widest uppercase font-semibold text-neutral-400">
-                    STACK & TOOLS
+                {/* Social Profiles & Channels (replacing previous static tech logos) */}
+                <div className="pt-2 flex flex-wrap items-center gap-4 sm:gap-6 text-neutral-400 dark:text-neutral-500">
+                  <span className="font-mono text-[10px] tracking-widest uppercase font-semibold text-neutral-500 dark:text-neutral-400">
+                    PROFILES & SOCIALS
                   </span>
-                  <div className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400">
-                    <span title="Next.js" className="hover:text-neutral-950 dark:hover:text-white transition">
-                      <NextjsLogo className="w-5 h-5" />
-                    </span>
-                    <span title="Python" className="hover:text-neutral-950 dark:hover:text-white transition">
-                      <PythonLogo className="w-5 h-5" />
-                    </span>
-                    <span title="OpenAI" className="hover:text-neutral-950 dark:hover:text-white transition">
-                      <OpenAILogo className="w-5 h-5" />
-                    </span>
-                    <span title="Anthropic Claude" className="hover:text-neutral-950 dark:hover:text-white transition">
-                      <AnthropicLogo className="w-5 h-5" />
-                    </span>
-                    <span title="Cursor" className="hover:text-neutral-950 dark:hover:text-white transition">
-                      <CursorLogo className="w-5 h-5" />
-                    </span>
-                    <span title="Qdrant Vector DB" className="hover:text-neutral-950 dark:hover:text-white transition">
-                      <QdrantLogo className="w-5 h-5" />
-                    </span>
+                  <div className="flex items-center gap-3.5 sm:gap-4 text-neutral-600 dark:text-neutral-400">
+                    <a
+                      href={site.socials.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="LinkedIn"
+                      aria-label="LinkedIn"
+                      className="p-1 rounded text-neutral-500 hover:text-[#0a66c2] dark:hover:text-[#0a66c2] hover:bg-neutral-100 dark:hover:bg-neutral-800 transition flex items-center"
+                    >
+                      <LinkedInIcon className="w-4 h-4 fill-current" />
+                    </a>
+                    <a
+                      href={site.socials.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="GitHub"
+                      aria-label="GitHub"
+                      className="p-1 rounded text-neutral-500 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition flex items-center"
+                    >
+                      <GitHubIcon className="w-4 h-4 fill-current" />
+                    </a>
+                    <a
+                      href={site.socials.medium}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Medium"
+                      aria-label="Medium"
+                      className="p-1 rounded text-neutral-500 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition flex items-center"
+                    >
+                      <MediumIcon className="w-4 h-4 fill-current" />
+                    </a>
+                    <a
+                      href={site.socials.email}
+                      title={`Email (${site.email})`}
+                      aria-label="Email"
+                      className="p-1 rounded text-neutral-500 hover:text-[#0066ff] dark:hover:text-[#3385ff] hover:bg-neutral-100 dark:hover:bg-neutral-800 transition flex items-center"
+                    >
+                      <MailIcon className="w-4 h-4 text-current" />
+                    </a>
+                    <a
+                      href={site.socials.googleScholar}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Google Scholar"
+                      aria-label="Google Scholar"
+                      className="p-1 rounded text-neutral-500 hover:text-[#4285f4] dark:hover:text-[#4285f4] hover:bg-neutral-100 dark:hover:bg-neutral-800 transition flex items-center"
+                    >
+                      <GoogleScholarIcon className="w-4 h-4 text-current" />
+                    </a>
                   </div>
                 </div>
 

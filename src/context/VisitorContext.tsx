@@ -49,6 +49,20 @@ export function VisitorProvider({ children }: { children: React.ReactNode }) {
     };
 
     fetchCount();
+
+    // Periodically sync views every 30s
+    const pollInterval = setInterval(() => {
+      fetch(`https://countapi.mileshilliard.com/api/v1/get/aravindh_portfolio_views`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (typeof data?.value === "number") {
+            setCount(data.value + 3428);
+          }
+        })
+        .catch(() => {});
+    }, 30000);
+
+    return () => clearInterval(pollInterval);
   }, []);
 
   // Live concurrent visitors heartbeat simulation
