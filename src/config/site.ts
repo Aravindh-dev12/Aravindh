@@ -150,6 +150,22 @@ export const site = {
       categories: ["AI", "Backend"],
     },
     {
+      title: "NSJ ERP System",
+      blurb:
+        "Production-ready jewelry ERP platform centralizing accounting, sales, inventory, jewelry manufacturing, CRM, reporting, and AI-assisted business operations for Niti Shah Jewels.",
+      story:
+        "NSJ ERP centralizes finance, vouchers, invoices, customer and sales workflows, jewelry manufacturing, gold and gemstone inventory, task management, reporting, and operational analytics. Its AI agent layer supports product, accounting, vendor, inventory, sales, production, and reporting workflows through natural-language interaction.",
+      stack: ["Django", "Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "Docker", "AI Agents"],
+      year: "2026",
+      links: {
+        live: "https://www.instagram.com/nitishahjewels/",
+        source: "https://github.com/Aravindh-dev12/NSJ-ERP",
+      },
+      featured: true,
+      image: "/projects/nsj-erp.png",
+      categories: ["Fullstack", "Backend", "AI"],
+    },
+    {
       title: "Octic AI Agent",
       blurb:
         "Autonomous AI workforce platform for building agents that research, plan, use tools, orchestrate workflows, manage memory, and execute tasks across local or managed runtimes.",

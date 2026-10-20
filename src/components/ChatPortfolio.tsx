@@ -87,6 +87,15 @@ function answerFor(input: string, activeProject?: ChatProject): Omit<Message, "i
       project: p,
     };
   }
+  if (q.includes("nsj") || q.includes("niti shah") || (q.includes("jewelry") && q.includes("erp"))) {
+    const p = site.projects.find((x) => x.title.toLowerCase().includes("nsj"));
+    return {
+      role: "assistant",
+      text: "NSJ ERP is a production-ready jewelry enterprise platform built for Niti Shah Jewels (@nitishahjewels), combining full-stack accounting, inventory, manufacturing, and domain-specific AI agents.",
+      section: "project",
+      project: p,
+    };
+  }
   if (q.includes("architect") || q.includes("system design") || q.includes("how does") || q.includes("how it works")) {
     const p = site.projects[0];
     return {

@@ -384,8 +384,20 @@ function generateAgentResponse(query: string): string {
     );
   }
 
+  // 10.5. NSJ ERP
+  if (clean.includes("nsj") || clean.includes("niti shah") || clean.includes("nitishah") || clean.includes("jewelry erp") || (clean.includes("jewelry") && clean.includes("erp"))) {
+    return (
+      `**NSJ ERP System** is a production-ready, full-stack Enterprise Resource Planning platform tailored for jewelry manufacturing and retail (Niti Shah Jewels).\n\n` +
+      `• **Core Capabilities**: End-to-end accounting vouchers & invoices, customer & sales workflows, gold & gemstone inventory tracking, manufacturing jobs, and multi-domain AI agents.\n` +
+      `• **AI Agent Layer**: Intelligent agents assist employees in product management, accounting, vendor tracking, inventory, sales, production, and automated reporting via natural language.\n` +
+      `• **Engineering Stack**: Django REST Framework, Next.js 14, TypeScript, PostgreSQL, Tailwind CSS, shadcn/ui, Docker, AI Agents.\n` +
+      `• **Live Business Showcase**: [Instagram @nitishahjewels](https://www.instagram.com/nitishahjewels/)\n` +
+      `• **GitHub Source**: [github.com/Aravindh-dev12/NSJ-ERP](https://github.com/Aravindh-dev12/NSJ-ERP)`
+    );
+  }
+
   // 11. openDev
-  if (clean.includes("opendev") || clean.includes("open dev") || clean.includes("company operator") || clean.includes("invoice") || clean.includes("erp")) {
+  if (clean.includes("opendev") || clean.includes("open dev") || clean.includes("company operator") || clean.includes("invoice") || (clean.includes("erp") && clean.includes("operator"))) {
     return (
       `**openDev** is a local autonomous company operator with deterministic guardrails.\n\n` +
       `• **Core Concept**: Handles complex enterprise operations (such as invoice intake, purchase orders, and accounting workflows) without blindly trusting LLM claims.\n` +
@@ -493,11 +505,12 @@ function generateAgentResponse(query: string): string {
       `**Aravindh's Flagship Engineering Projects**:\n\n` +
       `1. **CIEAV**: The commit layer for the internet (Ed25519 signing + IBM Granite + local authority).\n` +
       `2. **openDev**: Local autonomous company operator with deterministic ERP verification.\n` +
-      `3. **Looca Voice AI**: Real-time voice agent with Qdrant episodic memory.\n` +
-      `4. **Octic AI Agent**: Autonomous AI workforce framework for inspectable tool execution.\n` +
-      `5. **Oundnote**: Local-first private meeting assistant with offline RAG & speaker diarization.\n` +
-      `6. **Oli**: Sovereign notch-resident meeting copilot with Rust whisper.cpp.\n` +
-      `7. **CLI Smart Inbox Agent**: Enterprise email & OCR workflow with provenance tracking.\n\n` +
+      `3. **NSJ ERP System**: Jewelry enterprise ERP platform with multi-domain AI agents ([live on Instagram](https://www.instagram.com/nitishahjewels/)).\n` +
+      `4. **Looca Voice AI**: Real-time voice agent with Qdrant episodic memory.\n` +
+      `5. **Octic AI Agent**: Autonomous AI workforce framework for inspectable tool execution.\n` +
+      `6. **Oundnote**: Local-first private meeting assistant with offline RAG & speaker diarization.\n` +
+      `7. **Oli**: Sovereign notch-resident meeting copilot with Rust whisper.cpp.\n` +
+      `8. **CLI Smart Inbox Agent**: Enterprise email & OCR workflow with provenance tracking.\n\n` +
       `Which project would you like to explore deeper?`
     );
   }
@@ -1049,7 +1062,7 @@ function ProjectCardItem({
               rel="noreferrer"
               className="text-[#0066ff] hover:underline flex items-center gap-1 font-medium"
             >
-              Live demo <ArrowUpRight size={12} />
+              {project.links.live.includes("instagram.com") ? "Live (NSJ)" : "Live demo"} <ArrowUpRight size={12} />
             </a>
           )}
           {project.links.source && (
@@ -3080,7 +3093,7 @@ LinkedIn: ${site.socials.linkedin}`;
                       rel="noreferrer"
                       className="px-4 py-2 bg-[#0066ff] hover:bg-[#0052cc] text-white rounded font-mono text-xs font-semibold flex items-center gap-1.5 transition"
                     >
-                      Live Deployment <ArrowUpRight size={13} />
+                      {selectedProject.links.live.includes("instagram.com") ? "Live Showcase (NSJ)" : "Live Deployment"} <ArrowUpRight size={13} />
                     </a>
                   )}
                   {selectedProject.links.source && (

@@ -11,6 +11,12 @@ export const projectKnowledge: Record<string, { architecture: string; capabiliti
     engineering: "Python, Qwen through Ollama or OpenAI-compatible servers, Playwright, Flask ERP, BM25, YAML policy, hash-chained audit logs, and system-of-record verification.",
     depth: "The prototype is intentionally narrow and testable. The verifier checks real ERP state and invariants instead of trusting the model's final claim."
   },
+  "NSJ ERP System": {
+    architecture: "Next.js frontend + Django REST backend + PostgreSQL + Docker -> AI Agent orchestration across sales, accounting, vendor, inventory, production, and reporting.",
+    capabilities: "End-to-end jewelry ERP, live Instagram business showcase (@nitishahjewels), gold/gemstone inventory, accounting vouchers & invoices, manufacturing tracking, customer relationship management, and natural language AI assistants.",
+    engineering: "Django REST Framework, Next.js, TypeScript, PostgreSQL, Tailwind CSS, shadcn/ui, Docker, and multi-domain AI agent workflows.",
+    depth: "Built for real enterprise jewellery manufacturing and retail operations (Niti Shah Jewels), centralizing operations and automating day-to-day business tracking with natural-language AI agents."
+  },
   "Octic AI Agent": {
     architecture: "Context -> Harness -> Loop -> Graph -> Managed runtime, with tools, memory, planning and execution separated into inspectable layers.",
     capabilities: "Research, coding, content, data pipelines, customer support, workflow automation, multi-agent teams, memory, tool use, and managed execution.",
