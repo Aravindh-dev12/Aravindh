@@ -82,7 +82,7 @@ function answerFor(input: string, activeProject?: ChatProject): Omit<Message, "i
     const p = site.projects.find((x) => x.title === "CIEAV");
     return {
       role: "assistant",
-      text: "CIEAV is designed as a local commit layer between digital intent and consequence. Cloud services can interpret intent, while deterministic safety checks, policy decisions, signing, and final authority remain local.",
+      text: "CIEAV is designed as a local commit layer between digital intent and consequence. Cloud services can interpret intent, while deterministic safety checks, policy decisions, signing, and final authority remain local.\n\n• Live Demo: https://cieav.vercel.app/\n• GitHub: https://github.com/Aravindh-dev12/cieav",
       section: "architecture",
       project: p,
     };

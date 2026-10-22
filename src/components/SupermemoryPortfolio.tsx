@@ -907,6 +907,7 @@ function isProjectInCategory(project: Project, categoryId: ProjectCategoryId): b
     case "agents":
       return [
         "openDev",
+        "NSJ ERP System",
         "Octic AI Agent",
         "Looca Voice AI Agent",
         "Oundnote",
@@ -923,6 +924,7 @@ function isProjectInCategory(project: Project, categoryId: ProjectCategoryId): b
     case "fullstack":
       return [
         "CIEAV",
+        "NSJ ERP System",
         "Looca Voice AI Agent",
         "Oli — Sovereign Notch Meeting Copilot",
         "CLI Smart Inbox Agent",
@@ -1062,7 +1064,7 @@ function ProjectCardItem({
               rel="noreferrer"
               className="text-[#0066ff] hover:underline flex items-center gap-1 font-medium"
             >
-              {project.links.live.includes("instagram.com") ? "Live (NSJ)" : "Live demo"} <ArrowUpRight size={12} />
+              {project.title === "CIEAV" ? "Live (CIEAV)" : project.links.live.includes("instagram.com") ? "Live (NSJ)" : "Live demo"} <ArrowUpRight size={12} />
             </a>
           )}
           {project.links.source && (
@@ -1751,24 +1753,29 @@ LinkedIn: ${site.socials.linkedin}`;
               <div className="space-y-16 lg:space-y-24">
                 {/* Hero Section */}
                 <section id="hero" className="space-y-7 pt-2">
-                  {/* Top Badge: Introducing CIEAV / Status */}
+                  {/* Top Badge: Introducing CIEAV / Status with Live Link */}
                   <div>
-                    <div className={cx(
-                      "inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-xs transition",
-                      dark
-                        ? "border-neutral-800 bg-neutral-900/60 hover:bg-neutral-800/80"
-                        : "border-neutral-200 bg-neutral-50/70 hover:bg-neutral-100"
-                    )}>
+                    <a
+                      href="https://cieav.vercel.app/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className={cx(
+                        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-xs transition group cursor-pointer",
+                        dark
+                          ? "border-neutral-800 bg-neutral-900/60 hover:bg-neutral-800/80 text-neutral-300"
+                          : "border-neutral-200 bg-neutral-50/70 hover:bg-neutral-100 text-neutral-700"
+                      )}
+                      title="Open CIEAV Live Application (https://cieav.vercel.app/)"
+                    >
                       <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-neutral-600 dark:text-neutral-400 font-medium">Introducing CIEAV & Local AI</span>
+                      <span className="font-medium group-hover:text-neutral-950 dark:group-hover:text-white transition">
+                        Introducing CIEAV & Local AI
+                      </span>
                       <span className="text-neutral-300 dark:text-neutral-700">|</span>
-                      <button
-                        onClick={() => scrollToSection("projects")}
-                        className="inline-flex items-center gap-1 font-medium text-neutral-950 dark:text-white hover:underline"
-                      >
-                        Explore projects <ArrowUpRight size={13} />
-                      </button>
-                    </div>
+                      <span className="inline-flex items-center gap-1 font-medium text-[#0066ff] group-hover:underline">
+                        Live demo <ArrowUpRight size={13} />
+                      </span>
+                    </a>
                   </div>
 
                   {/* Main Hero Headline (Compact, Grotesque Lowercase Style like screenshot) */}
@@ -3093,7 +3100,7 @@ LinkedIn: ${site.socials.linkedin}`;
                       rel="noreferrer"
                       className="px-4 py-2 bg-[#0066ff] hover:bg-[#0052cc] text-white rounded font-mono text-xs font-semibold flex items-center gap-1.5 transition"
                     >
-                      {selectedProject.links.live.includes("instagram.com") ? "Live Showcase (NSJ)" : "Live Deployment"} <ArrowUpRight size={13} />
+                      {selectedProject.title === "CIEAV" ? "Live CIEAV Deployment" : selectedProject.links.live.includes("instagram.com") ? "Live Showcase (NSJ)" : "Live Deployment"} <ArrowUpRight size={13} />
                     </a>
                   )}
                   {selectedProject.links.source && (
