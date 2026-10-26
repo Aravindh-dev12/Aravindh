@@ -142,6 +142,34 @@ export function Experience() {
                   </ul>
                 ) : null}
 
+                {job.liveLinks?.length ? (
+                  <div className="mt-5 pt-4 border-t border-[var(--line)]">
+                    <span className="font-mono text-[10.5px] uppercase tracking-wider text-[#0066ff] font-semibold flex items-center gap-1.5 mb-2.5">
+                      <span className="size-1.5 rounded-full bg-[#0066ff] animate-pulse" />
+                      Live Production Links:
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {job.liveLinks.map((link) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[var(--line)] bg-[var(--card)] hover:border-[#0066ff] text-xs font-mono text-[var(--fg)] hover:text-[#0066ff] transition-all group/livelink"
+                        >
+                          <span className="font-medium">{link.label}</span>
+                          {link.badge && (
+                            <span className="text-[9.5px] px-1.5 py-0.2 rounded bg-[var(--chip)] text-[var(--muted)] font-sans">
+                              {link.badge}
+                            </span>
+                          )}
+                          <ArrowUpRight className="size-3 text-[#0066ff] group-hover/livelink:translate-x-0.5 group-hover/livelink:-translate-y-0.5 transition-transform" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
                 {job.clients?.length ? (
                   <div className="mt-5 pt-4 border-t border-[var(--line)]">
                     <span className="font-mono text-[10.5px] uppercase tracking-wider text-[var(--soft)] font-medium block mb-3">

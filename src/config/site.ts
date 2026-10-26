@@ -4,7 +4,7 @@ export type Project = {
   story?: string;
   stack: string[];
   year: string;
-  links: { live?: string; source?: string };
+  links: { live?: string; demo?: string; source?: string };
   featured?: boolean;
   status?: string;
   image?: string;
@@ -18,6 +18,12 @@ export type JobClient = {
   url?: string;
 };
 
+export type JobLiveLink = {
+  label: string;
+  url: string;
+  badge?: string;
+};
+
 export type Job = {
   company: string;
   role: string;
@@ -26,6 +32,7 @@ export type Job = {
   bullets?: string[];
   url?: string;
   clients?: JobClient[];
+  liveLinks?: JobLiveLink[];
 };
 
 export type Education = {
@@ -104,6 +111,23 @@ export const site = {
       company: "Nuclei Tech Solutions",
       role: "Software Developer · Freelance",
       period: "Jun 2026 – Present",
+      liveLinks: [
+        {
+          label: "Solar SCADA Case Study",
+          url: "https://www.nucleitech.online/case-study-solar.html",
+          badge: "Live Telemetry",
+        },
+        {
+          label: "Naga Limited Portal",
+          url: "https://www.nagamills.com/",
+          badge: "Enterprise Client",
+        },
+        {
+          label: "Surya Batteries Portal",
+          url: "https://suryaabatteries.com/",
+          badge: "Enterprise Client",
+        },
+      ],
       clients: [
         {
           name: "Naga Private Limited",
@@ -131,6 +155,18 @@ export const site = {
       company: "Loam AI",
       role: "AI Engineer",
       period: "Feb 2026 – Jun 2026",
+      liveLinks: [
+        {
+          label: "Suspire Marketplace",
+          url: "https://suspire.in/",
+          badge: "Live (400+ Brands)",
+        },
+        {
+          label: "NSJ ERP Showcase",
+          url: "https://www.instagram.com/nitishahjewels/",
+          badge: "Live Enterprise ERP",
+        },
+      ],
       bullets: [
         "Engineered core full-stack platform features and vendor infrastructure for [Suspire](https://suspire.in/)—India's home of 400+ sustainable, eco-friendly, vegan, and cruelty-free curated brands—supporting 800+ vendors and 2,000+ active customers across fashion, cosmetics, home decor, and food & beverages.",
         "Built and launched a full-stack B2B freight-forwarding product from scratch, delivering the MVP in five months while owning ideation, architecture, production readiness, and Agile execution.",
@@ -271,7 +307,11 @@ export const site = {
         "Client renewable-energy EPC website covering EPC services, power evacuation, grid connectivity, transmission infrastructure, testing, commissioning, safety, quality, and O&M.",
       stack: ["React", "TypeScript", "Vite", "React Router"],
       year: "Client",
-      links: { live: "https://propcare-epc.vercel.app/", source: "https://github.com/Aravindh-dev12/Propecare" },
+      links: {
+        live: "https://propecare.com/",
+        demo: "https://propcare-epc.vercel.app/",
+        source: "https://github.com/Aravindh-dev12/Propecare",
+      },
       featured: false,
       image: "https://raw.githubusercontent.com/Aravindh-dev12/Propecare/main/public/images/propecare-site-1.jpg",
       categories: ["Frontend"],

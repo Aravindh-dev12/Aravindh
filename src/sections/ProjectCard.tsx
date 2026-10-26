@@ -60,16 +60,28 @@ export function ProjectCard({ project: p }: { project: Project; index?: number }
           ))}
         </div>
 
-        <div className="mt-auto grid grid-cols-2 gap-2 border-t border-[var(--line)] pt-4">
+        <div className="mt-auto flex flex-wrap gap-2 border-t border-[var(--line)] pt-4">
           {p.links.live && (
             <a
               href={p.links.live}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={p.title + " website"}
-              className="flex h-9 items-center justify-between rounded-lg border border-[var(--line)] px-3 font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--fg)] transition-colors hover:bg-[var(--fg)] hover:text-[var(--bg)]"
+              className="flex-1 min-w-[85px] flex h-9 items-center justify-between rounded-lg border border-[var(--line)] px-3 font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--fg)] transition-colors hover:bg-[var(--fg)] hover:text-[var(--bg)]"
             >
               <span className="flex items-center gap-1.5"><Globe2 className="size-3" /> Live</span>
+              <ArrowUpRight className="size-3" />
+            </a>
+          )}
+          {p.links.demo && (
+            <a
+              href={p.links.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={p.title + " demo"}
+              className="flex-1 min-w-[85px] flex h-9 items-center justify-between rounded-lg border border-[var(--line)] px-3 font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--fg)] transition-colors hover:bg-[var(--fg)] hover:text-[var(--bg)]"
+            >
+              <span className="flex items-center gap-1.5"><Globe2 className="size-3" /> Demo</span>
               <ArrowUpRight className="size-3" />
             </a>
           )}
@@ -79,7 +91,7 @@ export function ProjectCard({ project: p }: { project: Project; index?: number }
               target="_blank"
               rel="noopener noreferrer"
               aria-label={p.title + " GitHub repository"}
-              className="flex h-9 items-center justify-between rounded-lg border border-[var(--line)] px-3 font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--fg)] transition-colors hover:bg-[var(--fg)] hover:text-[var(--bg)]"
+              className="flex-1 min-w-[85px] flex h-9 items-center justify-between rounded-lg border border-[var(--line)] px-3 font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--fg)] transition-colors hover:bg-[var(--fg)] hover:text-[var(--bg)]"
             >
               <span className="flex items-center gap-1.5"><Github className="size-3" /> GitHub</span>
               <ArrowUpRight className="size-3" />

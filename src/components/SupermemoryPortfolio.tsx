@@ -422,6 +422,18 @@ function generateAgentResponse(query: string): string {
     );
   }
 
+  // 10.8. Propecare Energy Care
+  if (clean.includes("propecare") || clean.includes("propercare") || clean.includes("energy care") || clean.includes("epc")) {
+    return (
+      `**Propecare Energy Care** is a renewable-energy EPC and power evacuation platform.\n\n` +
+      `• **Live Production Website**: [propecare.com](https://propecare.com/)\n` +
+      `• **Live Demo on Vercel**: [propcare-epc.vercel.app](https://propcare-epc.vercel.app/)\n` +
+      `• **GitHub Source**: [github.com/Aravindh-dev12/Propecare](https://github.com/Aravindh-dev12/Propecare)\n` +
+      `• **Engineering Stack**: React, TypeScript, Vite, React Router, Tailwind CSS.\n` +
+      `• **Core Capabilities**: Turnkey renewable EPC services, power evacuation, grid connectivity, transmission line design, substation testing, commissioning, and O&M.`
+    );
+  }
+
   // 11. openDev
   if (clean.includes("opendev") || clean.includes("open dev") || clean.includes("company operator") || clean.includes("invoice") || (clean.includes("erp") && clean.includes("operator"))) {
     return (
@@ -1135,7 +1147,7 @@ function ProjectCardItem({
         "px-4 sm:px-5 py-3 border-t mt-2 flex items-center justify-between text-xs font-mono",
         dark ? "border-neutral-800 bg-neutral-950/40" : "border-neutral-100 bg-neutral-50/50"
       )}>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           {project.links.live && (
             <a
               href={project.links.live}
@@ -1147,9 +1159,21 @@ function ProjectCardItem({
                 ? "Live (CIEAV)"
                 : project.title === "Suspire"
                   ? "Live (Suspire)"
-                  : project.links.live.includes("instagram.com")
-                    ? "Live (NSJ)"
-                    : "Live demo"} <ArrowUpRight size={12} />
+                  : project.title === "Propecare Energy Care"
+                    ? "Live (propecare.com)"
+                    : project.links.live.includes("instagram.com")
+                      ? "Live (NSJ)"
+                      : "Live demo"} <ArrowUpRight size={12} />
+            </a>
+          )}
+          {project.links.demo && (
+            <a
+              href={project.links.demo}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#0066ff] hover:underline flex items-center gap-1 font-medium"
+            >
+              Live demo (Vercel) <ArrowUpRight size={12} />
             </a>
           )}
           {project.links.source && (
@@ -1377,10 +1401,11 @@ Key Production Projects:
 2. openDev: Local autonomous company operator with deterministic guardrails.
 3. NSJ ERP System: Production jewelry ERP with AI agents (https://www.instagram.com/nitishahjewels/).
 4. Suspire: Curated conscious marketplace for 400+ sustainable brands, 800+ vendors, 2000+ customers (https://suspire.in/).
-5. Octic AI Agent: Autonomous AI workforce platform for tool execution.
-6. Looca Voice AI Agent: Voice-first AI platform with retrieval memory.
-7. Oundnote: Private local-first AI meeting assistant with RAG & diarization.
-8. Oli: Notch-resident ambient meeting copilot.
+5. Propecare Energy Care: Renewable EPC & power evacuation client platform (https://propecare.com/ | Demo: https://propcare-epc.vercel.app/).
+6. Octic AI Agent: Autonomous AI workforce platform for tool execution.
+7. Looca Voice AI Agent: Voice-first AI platform with retrieval memory.
+8. Oundnote: Private local-first AI meeting assistant with RAG & diarization.
+9. Oli: Notch-resident ambient meeting copilot.
 
 Experience:
 - Nuclei Tech Solutions (Jun 2026 – Present): Freelance Software Developer. Delivered 5+ production web applications, live solar and windmill IoT monitoring dashboards (Case Study: https://www.nucleitech.online/case-study-solar.html), and SCADA services for enterprise clients including Naga Private Limited and Surya Batteries; 100+ user CRM in renewable energy.
@@ -2467,6 +2492,47 @@ LinkedIn: ${site.socials.linkedin}`;
                         ))}
                       </ul>
 
+                      {job.liveLinks && job.liveLinks.length > 0 && (
+                        <div className="mt-4 pt-3.5 border-t border-neutral-100 dark:border-neutral-800/80">
+                          <div className="flex items-center gap-2 mb-2.5">
+                            <span className="font-mono text-[10.5px] uppercase tracking-wider text-[#0066ff] font-semibold flex items-center gap-1.5">
+                              <span className="size-1.5 rounded-full bg-[#0066ff] animate-pulse" />
+                              Live Production Links:
+                            </span>
+                            <span className="h-px flex-1 bg-neutral-100 dark:bg-neutral-800" />
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {job.liveLinks.map((link) => (
+                              <a
+                                key={link.url}
+                                href={link.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={cx(
+                                  "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all group/livelink",
+                                  dark
+                                    ? "bg-neutral-900/90 border-neutral-700/80 hover:border-[#0066ff] text-neutral-200 hover:text-white"
+                                    : "bg-neutral-50 border-neutral-200/90 hover:border-[#0066ff] text-neutral-800 hover:text-neutral-950 shadow-2xs"
+                                )}
+                              >
+                                <span className="font-medium text-neutral-900 dark:text-neutral-100 group-hover/livelink:text-[#0066ff] transition-colors">
+                                  {link.label}
+                                </span>
+                                {link.badge && (
+                                  <span className={cx(
+                                    "text-[9.5px] px-1.5 py-0.2 rounded font-sans font-medium",
+                                    dark ? "bg-neutral-800 text-neutral-400" : "bg-neutral-200/70 text-neutral-600"
+                                  )}>
+                                    {link.badge}
+                                  </span>
+                                )}
+                                <ArrowUpRight className="size-3 text-[#0066ff] group-hover/livelink:translate-x-0.5 group-hover/livelink:-translate-y-0.5 transition-transform" />
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
                       {job.clients && job.clients.length > 0 && (
                         <div className="mt-5 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
                           <span className="font-mono text-[10px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-semibold block mb-2.5">
@@ -3238,7 +3304,7 @@ LinkedIn: ${site.socials.linkedin}`;
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-neutral-100 dark:border-neutral-800">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   {selectedProject.links.live && (
                     <a
                       href={selectedProject.links.live}
@@ -3246,7 +3312,28 @@ LinkedIn: ${site.socials.linkedin}`;
                       rel="noreferrer"
                       className="px-4 py-2 bg-[#0066ff] hover:bg-[#0052cc] text-white rounded font-mono text-xs font-semibold flex items-center gap-1.5 transition"
                     >
-                      {selectedProject.title === "CIEAV" ? "Live CIEAV Deployment" : selectedProject.links.live.includes("instagram.com") ? "Live Showcase (NSJ)" : "Live Deployment"} <ArrowUpRight size={13} />
+                      {selectedProject.title === "CIEAV"
+                        ? "Live CIEAV Deployment"
+                        : selectedProject.title === "Suspire"
+                          ? "Live Marketplace (Suspire)"
+                          : selectedProject.title === "Propecare Energy Care"
+                            ? "Live Website (propecare.com)"
+                            : selectedProject.links.live.includes("instagram.com")
+                              ? "Live Showcase (NSJ)"
+                              : "Live Deployment"} <ArrowUpRight size={13} />
+                    </a>
+                  )}
+                  {selectedProject.links.demo && (
+                    <a
+                      href={selectedProject.links.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={cx(
+                        "px-4 py-2 rounded font-mono text-xs flex items-center gap-1.5 border transition",
+                        dark ? "border-neutral-800 hover:bg-neutral-800 text-neutral-300" : "border-neutral-200 hover:bg-neutral-100 text-neutral-800"
+                      )}
+                    >
+                      Live Demo (Vercel) <ArrowUpRight size={13} />
                     </a>
                   )}
                   {selectedProject.links.source && (

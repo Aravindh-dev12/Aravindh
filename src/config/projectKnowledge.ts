@@ -23,6 +23,12 @@ export const projectKnowledge: Record<string, { architecture: string; capabiliti
     engineering: "Next.js, React, TypeScript, Node.js, PostgreSQL, Tailwind CSS, REST/GraphQL APIs, CDN caching, and high-concurrency order processing.",
     depth: "Engineered to scale India's premier sustainable marketplace, balancing rich multi-brand product discovery with fast page performance, low-latency search, and reliable multi-vendor order routing."
   },
+  "Propecare Energy Care": {
+    architecture: "React + Vite SPA -> Client presentation layer -> Service catalog & power evacuation technical specs -> Live deployment at propecare.com.",
+    capabilities: "Renewable energy EPC portfolio, power evacuation pathways, grid interconnection specs, transmission lines, substation testing, commissioning protocols, and O&M operations.",
+    engineering: "React 18, TypeScript, Vite, React Router, Tailwind CSS, Lucide icons, responsive layout primitives, and dual deployment pipelines (propecare.com & Vercel demo).",
+    depth: "Engineered with focus on clarity, performance, and industrial reliability, providing energy developers with immediate access to technical project capabilities and turnkey EPC service offerings."
+  },
   "Octic AI Agent": {
     architecture: "Context -> Harness -> Loop -> Graph -> Managed runtime, with tools, memory, planning and execution separated into inspectable layers.",
     capabilities: "Research, coding, content, data pipelines, customer support, workflow automation, multi-agent teams, memory, tool use, and managed execution.",
