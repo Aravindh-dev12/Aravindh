@@ -1363,28 +1363,42 @@ export function SupermemoryPortfolio() {
       "contact",
     ];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-            break;
+    let ticking = false;
+    const updateActiveSection = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        let current = "hero";
+        for (const id of sectionIds) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 240) {
+              current = id;
+            }
           }
         }
-      },
-      {
-        root: typeof window !== "undefined" && window.innerWidth >= 1024 ? mainRef.current : null,
-        rootMargin: "-15% 0px -65% 0px",
-        threshold: 0
+        setActiveSection(current);
+      });
+    };
+
+    const container = mainRef.current;
+    if (container) {
+      container.addEventListener("scroll", updateActiveSection, { passive: true });
+    }
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection, { passive: true });
+
+    updateActiveSection();
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", updateActiveSection);
       }
-    );
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   const setupPromptText = `// ARAVINDH B — SYSTEM PROMPT & KNOWLEDGE CONTEXT
@@ -1479,7 +1493,15 @@ LinkedIn: ${site.socials.linkedin}`;
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      if (mainRef.current && window.innerWidth >= 1024) {
+        const container = mainRef.current;
+        const containerTop = container.getBoundingClientRect().top;
+        const elemTop = element.getBoundingClientRect().top;
+        const targetScrollTop = container.scrollTop + (elemTop - containerTop) - 20;
+        container.scrollTo({ top: Math.max(0, targetScrollTop), behavior: "smooth" });
+      } else {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
     setMobileMenuOpen(false);
   };
@@ -1611,15 +1633,26 @@ LinkedIn: ${site.socials.linkedin}`;
                 { label: "Education", id: "education" },
                 { label: "Writing", id: "writing" },
                 { label: "Contact", id: "contact" },
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="w-full text-left py-2 px-3 rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm font-medium"
-                >
-                  {item.label}
-                </button>
-              ))}
+              ].map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={cx(
+                      "w-full text-left py-2 px-3 rounded text-sm font-medium flex items-center transition",
+                      isActive
+                        ? "bg-[#0066ff]/10 text-[#0066ff] font-semibold"
+                        : "hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
+                    )}
+                  >
+                    {isActive && (
+                      <span className="w-2 h-2 rounded-full bg-[#0066ff] inline-block mr-2.5 shrink-0 shadow-[0_0_6px_rgba(0,102,255,0.7)]" />
+                    )}
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
             </div>
 
             <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 space-y-2">
@@ -1716,58 +1749,38 @@ LinkedIn: ${site.socials.linkedin}`;
 
           {/* Primary Navigation Menu */}
           <nav className="space-y-2 mb-6 text-sm" aria-label="Main Navigation">
-            <button
-              onClick={() => scrollToSection("hero")}
-              className={cx(
-                "group flex items-center w-full text-left transition font-normal",
-                activeSection === "hero" || activeSection === "overview"
-                  ? "text-neutral-950 dark:text-white font-medium"
-                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white"
-              )}
-            >
-              <span className="w-2 h-2 rounded-[1px] bg-[#0066ff] inline-block mr-2.5" />
-              <span>Home</span>
-            </button>
-
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="flex items-center w-full text-left text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition"
-            >
-              <span className="w-2 mr-2.5" />
-              <span>Product</span>
-            </button>
-
-            <button
-              onClick={() => scrollToSection("writing")}
-              className="flex items-center w-full text-left text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition"
-            >
-              <span className="w-2 mr-2.5" />
-              <span>Blog</span>
-            </button>
-
-            <button
-              onClick={() => scrollToSection("experience")}
-              className="flex items-center w-full text-left text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition"
-            >
-              <span className="w-2 mr-2.5" />
-              <span>Changelog</span>
-            </button>
-
-            <button
-              onClick={() => scrollToSection("skills")}
-              className="flex items-center w-full text-left text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition"
-            >
-              <span className="w-2 mr-2.5" />
-              <span>Stack</span>
-            </button>
-
-            <button
-              onClick={() => scrollToSection("what-i-build")}
-              className="flex items-center w-full text-left text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition"
-            >
-              <span className="w-2 mr-2.5" />
-              <span>Research</span>
-            </button>
+            {[
+              { id: "hero", label: "Home", match: ["hero", "overview"] },
+              { id: "projects", label: "Product", match: ["projects"] },
+              { id: "writing", label: "Blog", match: ["writing"] },
+              { id: "experience", label: "Changelog", match: ["experience"] },
+              { id: "skills", label: "Stack", match: ["skills", "education"] },
+              { id: "what-i-build", label: "Research", match: ["what-i-build"] },
+            ].map((item) => {
+              const isActive = item.match.includes(activeSection);
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={cx(
+                    "group flex items-center w-full text-left transition font-normal",
+                    isActive
+                      ? "text-neutral-950 dark:text-white font-medium"
+                      : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white"
+                  )}
+                >
+                  <span
+                    className={cx(
+                      "w-2 h-2 rounded-[2px] inline-block mr-2.5 shrink-0 transition-all duration-200",
+                      isActive
+                        ? "bg-[#0066ff] shadow-[0_0_8px_rgba(0,102,255,0.85)] scale-100 opacity-100"
+                        : "bg-transparent group-hover:bg-neutral-300 dark:group-hover:bg-neutral-700 scale-75 opacity-0 group-hover:opacity-100"
+                    )}
+                  />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
 
             <a
               href={site.socials.resume}
