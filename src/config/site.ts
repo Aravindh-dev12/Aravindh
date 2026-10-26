@@ -31,6 +31,7 @@ export type Job = {
   blurb?: string;
   bullets?: string[];
   url?: string;
+  clientsLabel?: string;
   clients?: JobClient[];
   liveLinks?: JobLiveLink[];
 };
@@ -117,17 +118,8 @@ export const site = {
           url: "https://www.nucleitech.online/case-study-solar.html",
           badge: "Live Telemetry",
         },
-        {
-          label: "Naga Limited Portal",
-          url: "https://www.nagamills.com/",
-          badge: "Enterprise Client",
-        },
-        {
-          label: "Surya Batteries Portal",
-          url: "https://suryaabatteries.com/",
-          badge: "Enterprise Client",
-        },
       ],
+      clientsLabel: "SCADA Services & Enterprise Clients",
       clients: [
         {
           name: "Naga Private Limited",
@@ -155,16 +147,19 @@ export const site = {
       company: "Loam AI",
       role: "AI Engineer",
       period: "Feb 2026 – Jun 2026",
-      liveLinks: [
+      clientsLabel: "Live Products & Enterprise Platforms",
+      clients: [
         {
-          label: "Suspire Marketplace",
+          name: "Suspire Marketplace",
+          logo: "/clients/suspire.jpg",
+          role: "Live (400+ Sustainable Brands, 800+ Vendors)",
           url: "https://suspire.in/",
-          badge: "Live (400+ Brands)",
         },
         {
-          label: "NSJ ERP Showcase",
+          name: "NSJ ERP System",
+          logo: "/clients/nsj.png",
+          role: "Live Enterprise ERP (Niti Shah Jewels)",
           url: "https://www.instagram.com/nitishahjewels/",
-          badge: "Live Enterprise ERP",
         },
       ],
       bullets: [

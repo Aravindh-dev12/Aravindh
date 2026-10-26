@@ -173,7 +173,7 @@ export function Experience() {
                 {job.clients?.length ? (
                   <div className="mt-5 pt-4 border-t border-[var(--line)]">
                     <span className="font-mono text-[10.5px] uppercase tracking-wider text-[var(--soft)] font-medium block mb-3">
-                      SCADA Services & Enterprise Clients
+                      {job.clientsLabel || "Enterprise Clients & Products"}
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {job.clients.map((client) => (

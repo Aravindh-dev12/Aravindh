@@ -2550,7 +2550,7 @@ LinkedIn: ${site.socials.linkedin}`;
                       {job.clients && job.clients.length > 0 && (
                         <div className="mt-5 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
                           <span className="font-mono text-[10px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-semibold block mb-2.5">
-                            SCADA Services & Enterprise Clients
+                            {job.clientsLabel || "Enterprise Clients & Products"}
                           </span>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {job.clients.map((client) => (
