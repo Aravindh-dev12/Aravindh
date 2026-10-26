@@ -59,8 +59,8 @@ const EXPERIENCE_META: Record<string, { focus: string; tags: string[] }> = {
     tags: ["Solar & Wind Monitoring", "SCADA Services", "Naga Ltd & Surya", "IoT Telemetry", "100+ User CRM", "5+ Delivered Apps", "MLP-Mixer"],
   },
   "Loam AI": {
-    focus: "Full-stack product ownership · Suspire (400+ Brands) · AI engineering · Team leadership",
-    tags: ["Suspire (400+ Brands)", "800+ Vendors", "Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "PWA"],
+    focus: "Full-stack product ownership · Suspire (400+ Brands) · NSJ Jewelry ERP · AI engineering · Team leadership",
+    tags: ["Suspire (400+ Brands)", "NSJ Jewelry ERP", "800+ Vendors", "Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "AI Agents"],
   },
   "Perspectiv Labs": {
     focus: "Full-stack architecture · product engineering · production delivery",

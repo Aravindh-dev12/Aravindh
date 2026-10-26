@@ -510,6 +510,7 @@ function generateAgentResponse(query: string): string {
       `   • Embedded on-premise ERP telemetry acquisition with zero data loss, and implemented lightweight MLP-Mixer neural models for edge anomaly detection.\n\n` +
       `2. **Loam AI** (Feb 2026 – Jun 2026) · *AI Engineer*\n` +
       `   • Engineered core full-stack platform features and vendor infrastructure for **[Suspire](https://suspire.in/)**—India's home of **400+ sustainable curated brands**, **800+ vendors**, and **2,000+ customers** across eco-friendly fashion, cosmetics, and food.\n` +
+      `   • Architected and shipped the **[NSJ ERP System](https://www.instagram.com/nitishahjewels/)** for Niti Shah Jewels, an enterprise jewelry ERP centralizing manufacturing, gold/gemstone inventory, accounting, and multi-domain AI agents.\n` +
       `   • Built and launched a full-stack B2B freight-forwarding product from scratch (MVP delivered in 5 months).\n` +
       `   • Architected modular stack: React, Next.js, TypeScript, PostgreSQL, Drizzle ORM, RBAC auth, CI/CD, and led a team of 5 developers.\n\n` +
       `3. **Perspectiv Labs** (Jul 2024 – Feb 2026) · *Software Developer*\n` +
@@ -1409,7 +1410,7 @@ Key Production Projects:
 
 Experience:
 - Nuclei Tech Solutions (Jun 2026 – Present): Freelance Software Developer. Delivered 5+ production web applications, live solar and windmill IoT monitoring dashboards (Case Study: https://www.nucleitech.online/case-study-solar.html), and SCADA services for enterprise clients including Naga Private Limited and Surya Batteries; 100+ user CRM in renewable energy.
-- Loam AI (Feb 2026 – Jun 2026): AI Engineer (Engineered full-stack systems for Suspire with 400+ sustainable brands & 800+ vendors; B2B freight forwarding product MVP from scratch, led team of 5).
+- Loam AI (Feb 2026 – Jun 2026): AI Engineer (Engineered full-stack systems for Suspire with 400+ sustainable brands & 800+ vendors; built NSJ ERP System for Niti Shah Jewels; B2B freight forwarding product MVP from scratch, led team of 5).
 - Perspectiv Labs (Jul 2024 – Feb 2026): Software Developer (modular Next.js, FastAPI, PostgreSQL).
 
 Skills:

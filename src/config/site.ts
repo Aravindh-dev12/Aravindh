@@ -169,6 +169,7 @@ export const site = {
       ],
       bullets: [
         "Engineered core full-stack platform features and vendor infrastructure for [Suspire](https://suspire.in/)—India's home of 400+ sustainable, eco-friendly, vegan, and cruelty-free curated brands—supporting 800+ vendors and 2,000+ active customers across fashion, cosmetics, home decor, and food & beverages.",
+        "Architected and deployed the [NSJ ERP System](https://www.instagram.com/nitishahjewels/) for Niti Shah Jewels, an enterprise-grade ERP centralizing jewelry manufacturing, gemstone & gold inventory, accounting vouchers, sales pipelines, and multi-domain AI agent workflows.",
         "Built and launched a full-stack B2B freight-forwarding product from scratch, delivering the MVP in five months while owning ideation, architecture, production readiness, and Agile execution.",
         "Architected a modular application across frontend, backend, database, and integrations using React, Next.js, TypeScript, PostgreSQL, and Drizzle ORM.",
         "Implemented RBAC authentication, transactional email workflows, guided onboarding, currency-conversion markups, PWA push notifications, and CI/CD pipelines.",
