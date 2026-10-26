@@ -397,6 +397,31 @@ function generateAgentResponse(query: string): string {
     );
   }
 
+  // 10.6. Suspire (Sustainable Marketplace)
+  if (clean.includes("suspire") || clean.includes("sustainable") || clean.includes("curated brand") || clean.includes("vegan") || clean.includes("cruelty-free") || clean.includes("eco-friendly")) {
+    return (
+      `**Suspire** is India's premier conscious e-commerce marketplace dedicated to sustainable, eco-friendly living.\n\n` +
+      `• **Marketplace Scale**: The curated home of **400+ sustainable brands**, **800+ vendor partners**, and **2,000+ active customers**.\n` +
+      `• **Product Categories**: Eco-friendly, vegan, and cruelty-free fashion, cosmetics, home decor, food & beverages, and conscious lifestyle essentials.\n` +
+      `• **Engineering Depth**: Engineered full-stack merchant onboarding pipelines, dynamic catalog search, high-throughput checkout workflows, and resilient order fulfillment.\n` +
+      `• **Live Application**: [suspire.in](https://suspire.in/)\n` +
+      `• **Tech Stack**: Next.js, React, TypeScript, Node.js, PostgreSQL, Tailwind CSS.`
+    );
+  }
+
+  // 10.7. SCADA & Enterprise Clients (Naga Ltd & Surya Batteries)
+  if (clean.includes("scada") || clean.includes("naga") || clean.includes("surya") || clean.includes("case study") || clean.includes("solar dashboard")) {
+    return (
+      `**Industrial SCADA & Telemetry Services** (Nuclei Tech Solutions):\n\n` +
+      `Aravindh architected industrial-grade SCADA telemetry, automated monitoring, and production web applications for major enterprises:\n\n` +
+      `• **Naga Private Limited**: SCADA services and high-reliability operational telemetry for large-scale milling and food manufacturing industrial facilities.\n` +
+      `• **Surya Batteries**: Battery performance telemetry, automated testing, and energy storage SCADA systems.\n` +
+      `• **5+ Production Web Dashboards**: Built real-time monitoring systems for solar plants and windmills with high-frequency IoT streaming and instant anomaly alerts.\n` +
+      `• **Live Case Study**: Explore the production [Solar SCADA Case Study](https://www.nucleitech.online/case-study-solar.html)\n` +
+      `• **Renewable CRM**: Custom enterprise platform actively serving **100+ daily operational users**.`
+    );
+  }
+
   // 11. openDev
   if (clean.includes("opendev") || clean.includes("open dev") || clean.includes("company operator") || clean.includes("invoice") || (clean.includes("erp") && clean.includes("operator"))) {
     return (
@@ -462,18 +487,19 @@ function generateAgentResponse(query: string): string {
   }
 
   // 17. Experience / Career Timeline
-  if (clean.includes("experience") || clean.includes("job") || clean.includes("work") || clean.includes("career") || clean.includes("company") || clean.includes("nuclei") || clean.includes("loam") || clean.includes("perspectiv")) {
+  if (clean.includes("experience") || clean.includes("job") || clean.includes("work") || clean.includes("career") || clean.includes("company") || clean.includes("nuclei") || clean.includes("loam") || clean.includes("perspectiv") || clean.includes("client")) {
     return (
       `**Aravindh's Professional Engineering Experience**:\n\n` +
       `1. **Nuclei Tech Solutions** (Jun 2026 – Present) · *Software Developer (Freelance)*\n` +
-      `   • Built and delivered **5+ full-stack production web applications** from scratch for real end users in the renewable energy industry.\n` +
-      `   • Engineered **live real-time monitoring dashboards** for solar power plants and windmill installations, streaming high-frequency IoT sensor telemetry, power output, inverter metrics, and fault alarms.\n` +
-      `   • Deployed a **dedicated enterprise CRM application** actively serving **100+ daily operational users** across renewable energy operations.\n` +
-      `   • Designed robust data acquisition workflows for embedded devices in local on-premise ERPs and built lightweight MLP-Mixer neural models for multi-sensor signal processing.\n\n` +
+      `   • Architected, built, and delivered **5+ full-stack production web applications** from scratch—explore the live [Solar SCADA Case Study](https://www.nucleitech.online/case-study-solar.html).\n` +
+      `   • Engineered industrial **SCADA telemetry systems & automation** for top industrial clients including **Naga Private Limited** and **Surya Batteries**.\n` +
+      `   • Deployed **live real-time monitoring dashboards** for solar power plants and windmill installations, streaming high-frequency IoT telemetry and instant fault alerts.\n` +
+      `   • Designed an **enterprise CRM application** actively serving **100+ daily operational users** across renewable energy operations.\n` +
+      `   • Embedded on-premise ERP telemetry acquisition with zero data loss, and implemented lightweight MLP-Mixer neural models for edge anomaly detection.\n\n` +
       `2. **Loam AI** (Feb 2026 – Jun 2026) · *AI Engineer*\n` +
+      `   • Engineered core full-stack platform features and vendor infrastructure for **[Suspire](https://suspire.in/)**—India's home of **400+ sustainable curated brands**, **800+ vendors**, and **2,000+ customers** across eco-friendly fashion, cosmetics, and food.\n` +
       `   • Built and launched a full-stack B2B freight-forwarding product from scratch (MVP delivered in 5 months).\n` +
-      `   • Architected modular stack: React, Next.js, TypeScript, PostgreSQL, Drizzle ORM, RBAC auth, CI/CD.\n` +
-      `   • Led an engineering team of 5 developers.\n\n` +
+      `   • Architected modular stack: React, Next.js, TypeScript, PostgreSQL, Drizzle ORM, RBAC auth, CI/CD, and led a team of 5 developers.\n\n` +
       `3. **Perspectiv Labs** (Jul 2024 – Feb 2026) · *Software Developer*\n` +
       `   • Built modular full-stack systems, onboarding tours, currency conversions, PWA push notifications, and deployment pipelines.`
     );
@@ -506,14 +532,15 @@ function generateAgentResponse(query: string): string {
   if (clean.includes("project") || clean.includes("built") || clean.includes("portfolio") || clean.includes("products")) {
     return (
       `**Aravindh's Flagship Engineering Projects**:\n\n` +
-      `1. **CIEAV**: The commit layer for the internet (Ed25519 signing + IBM Granite + local authority).\n` +
+      `1. **CIEAV**: The commit layer for the internet (Ed25519 signing + IBM Granite + local authority) ([cieav.vercel.app](https://cieav.vercel.app/)).\n` +
       `2. **openDev**: Local autonomous company operator with deterministic ERP verification.\n` +
       `3. **NSJ ERP System**: Jewelry enterprise ERP platform with multi-domain AI agents ([live on Instagram](https://www.instagram.com/nitishahjewels/)).\n` +
-      `4. **Looca Voice AI**: Real-time voice agent with Qdrant episodic memory.\n` +
-      `5. **Octic AI Agent**: Autonomous AI workforce framework for inspectable tool execution.\n` +
-      `6. **Oundnote**: Local-first private meeting assistant with offline RAG & speaker diarization.\n` +
-      `7. **Oli**: Sovereign notch-resident meeting copilot with Rust whisper.cpp.\n` +
-      `8. **CLI Smart Inbox Agent**: Enterprise email & OCR workflow with provenance tracking.\n\n` +
+      `4. **Suspire**: Conscious e-commerce marketplace for 400+ sustainable brands, 800+ vendors, 2,000+ customers ([suspire.in](https://suspire.in/)).\n` +
+      `5. **Looca Voice AI**: Real-time voice agent with Qdrant episodic memory.\n` +
+      `6. **Octic AI Agent**: Autonomous AI workforce framework for inspectable tool execution.\n` +
+      `7. **Oundnote**: Local-first private meeting assistant with offline RAG & speaker diarization.\n` +
+      `8. **Oli**: Sovereign notch-resident meeting copilot with Rust whisper.cpp.\n` +
+      `9. **CLI Smart Inbox Agent**: Enterprise email & OCR workflow with provenance tracking.\n\n` +
       `Which project would you like to explore deeper?`
     );
   }
@@ -928,6 +955,7 @@ function isProjectInCategory(project: Project, categoryId: ProjectCategoryId): b
       return [
         "CIEAV",
         "NSJ ERP System",
+        "Suspire",
         "Looca Voice AI Agent",
         "Oli — Sovereign Notch Meeting Copilot",
         "CLI Smart Inbox Agent",
@@ -938,6 +966,54 @@ function isProjectInCategory(project: Project, categoryId: ProjectCategoryId): b
     default:
       return false;
   }
+}
+
+function renderBulletWithLinks(text: string) {
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s)\]]+)/g;
+  const elements: (string | React.ReactNode)[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      elements.push(text.substring(lastIndex, match.index));
+    }
+    if (match[1] && match[2]) {
+      elements.push(
+        <a
+          key={match.index}
+          href={match[2]}
+          target="_blank"
+          rel="noreferrer"
+          className="text-[#0066ff] underline underline-offset-2 hover:opacity-85 font-medium inline-flex items-center gap-0.5"
+        >
+          {match[1]}
+          <ArrowUpRight className="size-2.5 inline shrink-0" />
+        </a>
+      );
+    } else if (match[3]) {
+      const url = match[3];
+      elements.push(
+        <a
+          key={match.index}
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="text-[#0066ff] underline underline-offset-2 hover:opacity-85 font-medium inline-flex items-center gap-0.5"
+        >
+          {url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+          <ArrowUpRight className="size-2.5 inline shrink-0" />
+        </a>
+      );
+    }
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    elements.push(text.substring(lastIndex));
+  }
+
+  return elements.length > 0 ? elements : text;
 }
 
 // Clean, Responsive Project Card
@@ -1067,7 +1143,13 @@ function ProjectCardItem({
               rel="noreferrer"
               className="text-[#0066ff] hover:underline flex items-center gap-1 font-medium"
             >
-              {project.title === "CIEAV" ? "Live (CIEAV)" : project.links.live.includes("instagram.com") ? "Live (NSJ)" : "Live demo"} <ArrowUpRight size={12} />
+              {project.title === "CIEAV"
+                ? "Live (CIEAV)"
+                : project.title === "Suspire"
+                  ? "Live (Suspire)"
+                  : project.links.live.includes("instagram.com")
+                    ? "Live (NSJ)"
+                    : "Live demo"} <ArrowUpRight size={12} />
             </a>
           )}
           {project.links.source && (
@@ -1291,16 +1373,18 @@ Core Philosophy:
 "${site.quote.text}" — ${site.quote.author}
 
 Key Production Projects:
-1. CIEAV: The commit layer for the internet (Ed25519, IBM Granite, local authority).
+1. CIEAV: The commit layer for the internet (Ed25519, IBM Granite, local authority) (https://cieav.vercel.app/).
 2. openDev: Local autonomous company operator with deterministic guardrails.
-3. Octic AI Agent: Autonomous AI workforce platform for tool execution.
-4. Looca Voice AI Agent: Voice-first AI platform with retrieval memory.
-5. Oundnote: Private local-first AI meeting assistant with RAG & diarization.
-6. Oli: Notch-resident ambient meeting copilot.
+3. NSJ ERP System: Production jewelry ERP with AI agents (https://www.instagram.com/nitishahjewels/).
+4. Suspire: Curated conscious marketplace for 400+ sustainable brands, 800+ vendors, 2000+ customers (https://suspire.in/).
+5. Octic AI Agent: Autonomous AI workforce platform for tool execution.
+6. Looca Voice AI Agent: Voice-first AI platform with retrieval memory.
+7. Oundnote: Private local-first AI meeting assistant with RAG & diarization.
+8. Oli: Notch-resident ambient meeting copilot.
 
 Experience:
-- Nuclei Tech Solutions (Jun 2026 – Present): Freelance Software Developer. Delivered 5+ production web applications, live solar and windmill IoT monitoring dashboards, and a custom enterprise CRM used by 100+ active users in the renewable energy industry; embedded ERP data acquisition and MLP-Mixer architecture.
-- Loam AI (Feb 2026 – Jun 2026): AI Engineer (B2B freight forwarding product MVP from scratch, led team of 5).
+- Nuclei Tech Solutions (Jun 2026 – Present): Freelance Software Developer. Delivered 5+ production web applications, live solar and windmill IoT monitoring dashboards (Case Study: https://www.nucleitech.online/case-study-solar.html), and SCADA services for enterprise clients including Naga Private Limited and Surya Batteries; 100+ user CRM in renewable energy.
+- Loam AI (Feb 2026 – Jun 2026): AI Engineer (Engineered full-stack systems for Suspire with 400+ sustainable brands & 800+ vendors; B2B freight forwarding product MVP from scratch, led team of 5).
 - Perspectiv Labs (Jul 2024 – Feb 2026): Software Developer (modular Next.js, FastAPI, PostgreSQL).
 
 Skills:
@@ -2379,9 +2463,52 @@ LinkedIn: ${site.socials.linkedin}`;
 
                       <ul className="space-y-2 text-xs text-neutral-600 dark:text-neutral-400 list-disc pl-4 leading-relaxed">
                         {job.bullets?.map((bullet, idx) => (
-                          <li key={idx}>{bullet}</li>
+                          <li key={idx}>{renderBulletWithLinks(bullet)}</li>
                         ))}
                       </ul>
+
+                      {job.clients && job.clients.length > 0 && (
+                        <div className="mt-5 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
+                          <span className="font-mono text-[10px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-semibold block mb-2.5">
+                            SCADA Services & Enterprise Clients
+                          </span>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {job.clients.map((client) => (
+                              <a
+                                key={client.name}
+                                href={client.url || "#"}
+                                target={client.url ? "_blank" : undefined}
+                                rel="noreferrer"
+                                className={cx(
+                                  "flex items-center gap-3 p-2.5 rounded-lg border transition-all duration-200 group/client",
+                                  dark
+                                    ? "bg-neutral-800/40 hover:bg-neutral-800/80 border-neutral-800 hover:border-neutral-700"
+                                    : "bg-neutral-50/80 hover:bg-neutral-100/90 border-neutral-200/80 hover:border-neutral-300"
+                                )}
+                              >
+                                <div className="size-11 rounded-md overflow-hidden bg-white flex items-center justify-center p-1 border border-neutral-200 shrink-0 shadow-xs">
+                                  <img
+                                    src={client.logo}
+                                    alt={client.name}
+                                    className="max-h-full max-w-full object-contain"
+                                  />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <div className="text-xs font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-1 group-hover/client:text-[#0066ff] transition-colors">
+                                    <span className="truncate">{client.name}</span>
+                                    <ArrowUpRight className="size-3 shrink-0 opacity-0 group-hover/client:opacity-100 transition-opacity" />
+                                  </div>
+                                  {client.role && (
+                                    <div className="text-[11px] text-neutral-500 dark:text-neutral-400 truncate mt-0.5">
+                                      {client.role}
+                                    </div>
+                                  )}
+                                </div>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

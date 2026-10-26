@@ -11,6 +11,13 @@ export type Project = {
   categories?: ("Frontend" | "Backend" | "Fullstack" | "AI")[];
 };
 
+export type JobClient = {
+  name: string;
+  logo: string;
+  role?: string;
+  url?: string;
+};
+
 export type Job = {
   company: string;
   role: string;
@@ -18,6 +25,7 @@ export type Job = {
   blurb?: string;
   bullets?: string[];
   url?: string;
+  clients?: JobClient[];
 };
 
 export type Education = {
@@ -96,9 +104,24 @@ export const site = {
       company: "Nuclei Tech Solutions",
       role: "Software Developer · Freelance",
       period: "Jun 2026 – Present",
+      clients: [
+        {
+          name: "Naga Private Limited",
+          logo: "/clients/naga.jpg",
+          role: "Industrial SCADA & Telemetry Systems",
+          url: "https://www.nagamills.com/",
+        },
+        {
+          name: "Surya Batteries",
+          logo: "/clients/surya.png",
+          role: "Battery Monitoring & SCADA Automation",
+          url: "https://suryaabatteries.com/",
+        },
+      ],
       bullets: [
-        "Architected, built, and delivered 5+ full-stack production web applications from scratch, translating complex enterprise requirements into scalable, dependable software architectures utilized by real operational teams.",
-        "Engineered live real-time monitoring dashboards for solar power plants and windmill installations across the renewable energy industry, streaming high-frequency IoT telemetry, power generation metrics, turbine health, and instant fault alert workflows.",
+        "Architected, built, and delivered 5+ full-stack production web applications and live dashboards—explore the live [Solar SCADA Case Study](https://www.nucleitech.online/case-study-solar.html)—translating complex industrial requirements into scalable architectures used by real operational teams.",
+        "Engineered industrial SCADA services, real-time telemetry monitoring, and automated control pipelines for premier industrial clients including Naga Private Limited (large-scale mills & manufacturing) and Surya Batteries (energy storage & battery testing).",
+        "Built live real-time monitoring dashboards for solar power plants and windmill installations across the renewable energy industry, streaming high-frequency IoT telemetry, power generation metrics, turbine health, and instant fault alert workflows.",
         "Designed and deployed a full-featured enterprise CRM platform actively serving 100+ daily operational users in the renewable energy sector to manage client pipelines, site commissioning, maintenance ticketing, and stakeholder communication.",
         "Developed resilient data acquisition and processing pipelines for embedded devices and local on-premise ERP systems, ensuring continuous offline telemetry capture with zero data loss.",
         "Implemented a lightweight MLP-Mixer neural architecture for multi-sensor signal processing, enabling predictive maintenance and anomaly detection on edge devices.",
@@ -109,6 +132,7 @@ export const site = {
       role: "AI Engineer",
       period: "Feb 2026 – Jun 2026",
       bullets: [
+        "Engineered core full-stack platform features and vendor infrastructure for [Suspire](https://suspire.in/)—India's home of 400+ sustainable, eco-friendly, vegan, and cruelty-free curated brands—supporting 800+ vendors and 2,000+ active customers across fashion, cosmetics, home decor, and food & beverages.",
         "Built and launched a full-stack B2B freight-forwarding product from scratch, delivering the MVP in five months while owning ideation, architecture, production readiness, and Agile execution.",
         "Architected a modular application across frontend, backend, database, and integrations using React, Next.js, TypeScript, PostgreSQL, and Drizzle ORM.",
         "Implemented RBAC authentication, transactional email workflows, guided onboarding, currency-conversion markups, PWA push notifications, and CI/CD pipelines.",
@@ -167,6 +191,21 @@ export const site = {
       featured: true,
       image: "/projects/nsj-erp.png",
       categories: ["Fullstack", "Backend", "AI"],
+    },
+    {
+      title: "Suspire",
+      blurb:
+        "Home of 400+ sustainable and curated brands across eco-friendly, vegan, and cruelty-free fashion, cosmetics, home decor, and food & beverages, serving 800+ vendors and 2,000+ active customers.",
+      story:
+        "Suspire is India's premier conscious e-commerce marketplace bringing together over 400+ sustainable brands. Engineered scalable vendor onboarding pipelines supporting 800+ merchant integrations, multi-category catalog search, fast checkout pipelines, and reliable order fulfillment serving 2,000+ customers.",
+      stack: ["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
+      year: "2026",
+      links: {
+        live: "https://suspire.in/",
+      },
+      featured: true,
+      image: "/projects/suspire.jpg",
+      categories: ["Fullstack", "Frontend", "Backend"],
     },
     {
       title: "Octic AI Agent",

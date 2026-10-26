@@ -17,6 +17,12 @@ export const projectKnowledge: Record<string, { architecture: string; capabiliti
     engineering: "Django REST Framework, Next.js, TypeScript, PostgreSQL, Tailwind CSS, shadcn/ui, Docker, and multi-domain AI agent workflows.",
     depth: "Built for real enterprise jewellery manufacturing and retail operations (Niti Shah Jewels), centralizing operations and automating day-to-day business tracking with natural-language AI agents."
   },
+  Suspire: {
+    architecture: "Next.js frontend + Node.js API services + PostgreSQL + E-commerce catalog & checkout pipelines -> Multi-vendor portal & catalog ingestion -> High-speed search & cached cart -> Automated fulfillment & notification pipelines.",
+    capabilities: "Curated conscious e-commerce marketplace, 400+ sustainable brands, 800+ vendor onboarding & inventory sync, 2,000+ active customers, categorized collections (vegan fashion, cruelty-free cosmetics, eco-home, organic food), cart, payments, and order tracking.",
+    engineering: "Next.js, React, TypeScript, Node.js, PostgreSQL, Tailwind CSS, REST/GraphQL APIs, CDN caching, and high-concurrency order processing.",
+    depth: "Engineered to scale India's premier sustainable marketplace, balancing rich multi-brand product discovery with fast page performance, low-latency search, and reliable multi-vendor order routing."
+  },
   "Octic AI Agent": {
     architecture: "Context -> Harness -> Loop -> Graph -> Managed runtime, with tools, memory, planning and execution separated into inspectable layers.",
     capabilities: "Research, coding, content, data pipelines, customer support, workflow automation, multi-agent teams, memory, tool use, and managed execution.",

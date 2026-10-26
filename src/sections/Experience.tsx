@@ -1,16 +1,66 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { Shell, SectionHeader } from "@/components/Layout";
 import { site } from "@/config/site";
 import { Reveal } from "@/components/CinematicEffects";
+import { ArrowUpRight } from "lucide-react";
+
+function formatBulletText(text: string) {
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s)\]]+)/g;
+  const elements: (string | React.ReactNode)[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      elements.push(text.substring(lastIndex, match.index));
+    }
+    if (match[1] && match[2]) {
+      elements.push(
+        <a
+          key={match.index}
+          href={match[2]}
+          target="_blank"
+          rel="noreferrer"
+          className="text-[#0066ff] underline underline-offset-2 hover:opacity-80 font-medium inline-flex items-center gap-0.5"
+        >
+          {match[1]}
+          <ArrowUpRight className="size-3 inline shrink-0" />
+        </a>
+      );
+    } else if (match[3]) {
+      const url = match[3];
+      elements.push(
+        <a
+          key={match.index}
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="text-[#0066ff] underline underline-offset-2 hover:opacity-80 font-medium inline-flex items-center gap-0.5"
+        >
+          {url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+          <ArrowUpRight className="size-3 inline shrink-0" />
+        </a>
+      );
+    }
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    elements.push(text.substring(lastIndex));
+  }
+
+  return elements.length > 0 ? elements : text;
+}
 
 const EXPERIENCE_META: Record<string, { focus: string; tags: string[] }> = {
   "Nuclei Tech Solutions": {
-    focus: "Renewable energy telemetry · solar & windmill IoT · 100+ user CRM · 5+ web apps delivered",
-    tags: ["Solar & Wind Monitoring", "IoT Telemetry", "100+ User CRM", "5+ Delivered Apps", "On-Prem ERP", "MLP-Mixer", "React/Node"],
+    focus: "Renewable SCADA telemetry · Solar & Wind monitoring · Naga Ltd & Surya Batteries · 100+ user CRM · 5+ web apps",
+    tags: ["Solar & Wind Monitoring", "SCADA Services", "Naga Ltd & Surya", "IoT Telemetry", "100+ User CRM", "5+ Delivered Apps", "MLP-Mixer"],
   },
   "Loam AI": {
-    focus: "Full-stack product ownership · AI engineering · team leadership",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "PWA", "CI/CD"],
+    focus: "Full-stack product ownership · Suspire (400+ Brands) · AI engineering · Team leadership",
+    tags: ["Suspire (400+ Brands)", "800+ Vendors", "Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "PWA"],
   },
   "Perspectiv Labs": {
     focus: "Full-stack architecture · product engineering · production delivery",
@@ -83,13 +133,51 @@ export function Experience() {
 
                 {job.bullets?.length ? (
                   <ul className="mt-4 space-y-2.5 text-[13.5px] leading-relaxed text-[var(--muted)]">
-                    {job.bullets.map((bullet) => (
-                      <li key={bullet} className="flex gap-2.5">
+                    {job.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx} className="flex gap-2.5">
                         <span className="mt-[9px] size-1 shrink-0 rounded-full bg-[var(--soft)]" />
-                        <span>{bullet}</span>
+                        <span>{formatBulletText(bullet)}</span>
                       </li>
                     ))}
                   </ul>
+                ) : null}
+
+                {job.clients?.length ? (
+                  <div className="mt-5 pt-4 border-t border-[var(--line)]">
+                    <span className="font-mono text-[10.5px] uppercase tracking-wider text-[var(--soft)] font-medium block mb-3">
+                      SCADA Services & Enterprise Clients
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {job.clients.map((client) => (
+                        <a
+                          key={client.name}
+                          href={client.url || "#"}
+                          target={client.url ? "_blank" : undefined}
+                          rel="noreferrer"
+                          className="flex items-center gap-3 p-3 rounded-lg border border-[var(--line)] bg-[var(--card)] hover:bg-[var(--chip)] transition-colors group/client"
+                        >
+                          <div className="size-11 rounded-md overflow-hidden bg-white flex items-center justify-center p-1 border border-neutral-200 shrink-0 shadow-xs">
+                            <img
+                              src={client.logo}
+                              alt={client.name}
+                              className="max-h-full max-w-full object-contain"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="text-[13px] font-semibold text-[var(--fg)] flex items-center gap-1 group-hover/client:text-[#0066ff] transition-colors">
+                              <span className="truncate">{client.name}</span>
+                              <ArrowUpRight className="size-3 shrink-0 opacity-0 group-hover/client:opacity-100 transition-opacity" />
+                            </div>
+                            {client.role && (
+                              <div className="text-[11px] text-[var(--muted)] truncate mt-0.5">
+                                {client.role}
+                              </div>
+                            )}
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 ) : null}
 
                 {meta?.tags?.length ? (
