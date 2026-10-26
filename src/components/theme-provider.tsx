@@ -17,7 +17,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       if (stored === "dark" || stored === "light") return stored;
       return "light";
     }
-    return "dark";
+    return "light";
   });
 
   useEffect(() => {
@@ -25,9 +25,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (theme === "light") {
       root.classList.add("light");
       root.classList.remove("dark");
+      root.setAttribute("data-theme", "light");
     } else {
       root.classList.add("dark");
       root.classList.remove("light");
+      root.setAttribute("data-theme", "dark");
     }
     localStorage.setItem("theme", theme);
   }, [theme]);

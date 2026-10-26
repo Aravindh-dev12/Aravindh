@@ -22,18 +22,18 @@ export function Writing() {
                 href={post.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6 transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900/70 backdrop-blur-md"
+                className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 p-6 transition-all duration-300 hover:border-neutral-300 dark:hover:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-900/70 backdrop-blur-md"
               >
                 <div>
-                  <h3 className="font-semibold text-lg text-neutral-100 transition-colors group-hover:text-white flex items-center gap-2">
+                  <h3 className="font-semibold text-lg text-neutral-950 dark:text-neutral-100 transition-colors group-hover:text-[#0066ff] flex items-center gap-2">
                     {post.title}
                     <ArrowUpRight className="text-neutral-400 opacity-0 transition-opacity group-hover:opacity-100" />
                   </h3>
-                  <p className="mt-2 text-sm text-neutral-300 leading-relaxed">{post.summary}</p>
+                  <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">{post.summary}</p>
                 </div>
-                <div className="flex sm:flex-col items-start sm:items-end justify-between gap-1 flex-none font-mono text-xs text-neutral-400 border-t sm:border-t-0 border-neutral-800 pt-3 sm:pt-0">
+                <div className="flex sm:flex-col items-start sm:items-end justify-between gap-1 flex-none font-mono text-xs text-neutral-500 dark:text-neutral-400 border-t sm:border-t-0 border-neutral-200 dark:border-neutral-800 pt-3 sm:pt-0">
                   <span>{post.date}</span>
-                  {post.readingTime && <span className="text-neutral-500">{post.readingTime}</span>}
+                  {post.readingTime && <span className="text-neutral-400 dark:text-neutral-500">{post.readingTime}</span>}
                 </div>
               </a>
             </Reveal>
@@ -44,11 +44,11 @@ export function Writing() {
           href={site.socials.medium}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center justify-between rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6 text-neutral-200 transition-all hover:border-neutral-700 hover:bg-neutral-900/70"
+          className="group flex items-center justify-between rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 p-6 text-neutral-800 dark:text-neutral-200 transition-all hover:border-neutral-300 dark:hover:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-900/70"
         >
           <div>
-            <h3 className="font-semibold text-lg">Read all posts on Medium</h3>
-            <p className="mt-1 text-sm text-neutral-400">medium.com/@aravindh1653</p>
+            <h3 className="font-semibold text-lg text-neutral-950 dark:text-white">Read all posts on Medium</h3>
+            <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">medium.com/@aravindh1653</p>
           </div>
           <ArrowUpRight className="text-neutral-400" />
         </a>

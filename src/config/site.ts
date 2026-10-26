@@ -97,8 +97,11 @@ export const site = {
       role: "Software Developer · Freelance",
       period: "Jun 2026 – Present",
       bullets: [
-        "Engineer data acquisition and processing workflows for embedded-device data used in local, on-premise ERP systems.",
-        "Developed a lightweight MLP-Mixer-based architecture designed for extensibility across multiple data modalities.",
+        "Architected, built, and delivered 5+ full-stack production web applications from scratch, translating complex enterprise requirements into scalable, dependable software architectures utilized by real operational teams.",
+        "Engineered live real-time monitoring dashboards for solar power plants and windmill installations across the renewable energy industry, streaming high-frequency IoT telemetry, power generation metrics, turbine health, and instant fault alert workflows.",
+        "Designed and deployed a full-featured enterprise CRM platform actively serving 100+ daily operational users in the renewable energy sector to manage client pipelines, site commissioning, maintenance ticketing, and stakeholder communication.",
+        "Developed resilient data acquisition and processing pipelines for embedded devices and local on-premise ERP systems, ensuring continuous offline telemetry capture with zero data loss.",
+        "Implemented a lightweight MLP-Mixer neural architecture for multi-sensor signal processing, enabling predictive maintenance and anomaly detection on edge devices.",
       ],
     },
     {
@@ -299,11 +302,11 @@ export const site = {
     {
       title: "NucleiTech CRM",
       blurb:
-        "Client CRM product focused on practical customer-management workflows and an operational business interface.",
-      stack: ["React", "CRM", "TypeScript", "Product UI"],
+        "Enterprise CRM application actively serving 100+ daily operational users in the renewable energy sector, streamlining client management, solar/windmill project pipelines, commissioning, and maintenance workflows.",
+      stack: ["React", "CRM", "TypeScript", "Node.js", "PostgreSQL"],
       year: "Client",
       links: { source: "https://github.com/Aravindh-dev12/Nucleitech-CRM-App" },
-      featured: false,
+      featured: true,
       image: "https://images.unsplash.com/photo-1763038311036-6d18805537e5?auto=format&fit=crop&w=1200&q=80",
       categories: ["Fullstack"],
     },

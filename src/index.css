@@ -97,6 +97,22 @@
 /*  Onyx Theme CSS Variables                                          */
 /* ------------------------------------------------------------------ */
 :root {
+  --bg: #ffffff;
+  --fg: #09090b;
+  --muted: #52525b;
+  --soft: #71717a;
+  --line: #e5e7eb;
+  --stripe: rgba(0, 0, 0, 0.025);
+  --hover: rgba(0, 102, 255, 0.05);
+  --card: #ffffff;
+  --chip: #f4f4f5;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Amiamie', 'Inter', system-ui, sans-serif;
+  --font-amiamie-round: 'Amiamie-Round', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+.dark {
   --bg: #0a0a0a;
   --fg: #f5f5f4;
   --muted: #a1a1aa;
@@ -106,17 +122,13 @@
   --hover: rgba(255, 255, 255, 0.05);
   --card: #101010;
   --chip: #161616;
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-sans: 'Amiamie', 'Inter', system-ui, sans-serif;
-  --font-amiamie-round: 'Amiamie-Round', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
 }
 
 .light {
   --bg: #ffffff;
   --fg: #09090b;
-  --muted: #71717a;
-  --soft: #a1a1aa;
+  --muted: #52525b;
+  --soft: #71717a;
   --line: #e5e7eb;
   --stripe: rgba(0, 0, 0, 0.025);
   --hover: rgba(0, 102, 255, 0.05);

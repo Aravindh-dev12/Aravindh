@@ -47,6 +47,7 @@ import {
 import { site, type Project } from "@/config/site";
 import { projectKnowledge } from "@/config/projectKnowledge";
 import { useVisitor } from "@/context/VisitorContext";
+import { useTheme } from "@/components/theme-provider";
 import {
   LinkedInIcon,
   GitHubIcon,
@@ -465,8 +466,10 @@ function generateAgentResponse(query: string): string {
     return (
       `**Aravindh's Professional Engineering Experience**:\n\n` +
       `1. **Nuclei Tech Solutions** (Jun 2026 – Present) · *Software Developer (Freelance)*\n` +
-      `   • Engineer data acquisition and processing workflows for embedded devices in on-premise ERPs.\n` +
-      `   • Developed lightweight MLP-Mixer-based architecture for multi-modal data streams.\n\n` +
+      `   • Built and delivered **5+ full-stack production web applications** from scratch for real end users in the renewable energy industry.\n` +
+      `   • Engineered **live real-time monitoring dashboards** for solar power plants and windmill installations, streaming high-frequency IoT sensor telemetry, power output, inverter metrics, and fault alarms.\n` +
+      `   • Deployed a **dedicated enterprise CRM application** actively serving **100+ daily operational users** across renewable energy operations.\n` +
+      `   • Designed robust data acquisition workflows for embedded devices in local on-premise ERPs and built lightweight MLP-Mixer neural models for multi-sensor signal processing.\n\n` +
       `2. **Loam AI** (Feb 2026 – Jun 2026) · *AI Engineer*\n` +
       `   • Built and launched a full-stack B2B freight-forwarding product from scratch (MVP delivered in 5 months).\n` +
       `   • Architected modular stack: React, Next.js, TypeScript, PostgreSQL, Drizzle ORM, RBAC auth, CI/CD.\n` +
@@ -1093,7 +1096,23 @@ function ProjectCardItem({
 export function SupermemoryPortfolio() {
   // Mode: "human" | "agent"
   const [mode, setMode] = useState<"human" | "agent">("human");
-  const [dark, setDark] = useState<boolean>(false);
+  const { theme, setTheme } = useTheme();
+  const dark = theme === "dark";
+  const setDark = (val: boolean | ((prev: boolean) => boolean)) => {
+    const next = typeof val === "function" ? val(dark) : val;
+    setTheme(next ? "dark" : "light");
+  };
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (dark) {
+      root.classList.add("dark");
+      root.classList.remove("light");
+    } else {
+      root.classList.add("light");
+      root.classList.remove("dark");
+    }
+  }, [dark]);
   const { count, liveCount } = useVisitor();
   const [activeSection, setActiveSection] = useState<string>("overview");
   const [copiedPrompt, setCopiedPrompt] = useState<boolean>(false);
@@ -1280,7 +1299,7 @@ Key Production Projects:
 6. Oli: Notch-resident ambient meeting copilot.
 
 Experience:
-- Nuclei Tech Solutions (Jun 2026 – Present): Freelance Software Developer (embedded data acquisition, MLP-Mixer).
+- Nuclei Tech Solutions (Jun 2026 – Present): Freelance Software Developer. Delivered 5+ production web applications, live solar and windmill IoT monitoring dashboards, and a custom enterprise CRM used by 100+ active users in the renewable energy industry; embedded ERP data acquisition and MLP-Mixer architecture.
 - Loam AI (Feb 2026 – Jun 2026): AI Engineer (B2B freight forwarding product MVP from scratch, led team of 5).
 - Perspectiv Labs (Jul 2024 – Feb 2026): Software Developer (modular Next.js, FastAPI, PostgreSQL).
 
@@ -1372,7 +1391,7 @@ LinkedIn: ${site.socials.linkedin}`;
   return (
     <div className={cx(
       "min-h-screen font-sans transition-colors duration-150 antialiased selection:bg-[#0066ff] selection:text-white",
-      dark ? "bg-[#09090b] text-neutral-100" : "bg-[#ffffff] text-neutral-900"
+      dark ? "dark bg-[#09090b] text-neutral-100" : "light bg-[#ffffff] text-neutral-900"
     )}>
       {/* Mobile Top Navigation Bar */}
       <header className={cx(
@@ -1783,7 +1802,7 @@ LinkedIn: ${site.socials.linkedin}`;
                     <h1 className="text-3xl sm:text-4xl lg:text-[38px] font-normal tracking-[-0.03em] text-neutral-950 dark:text-neutral-50 leading-[1.16]">
                       {site.firstName.toLowerCase()} is building end-to-end products across modern web stacks and ai-powered systems.
                     </h1>
-                    <p className="text-neutral-500 dark:text-neutral-400 text-sm sm:text-base font-normal leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base font-normal leading-relaxed">
                       {site.tagline}
                     </p>
                   </div>
@@ -2019,7 +2038,7 @@ LinkedIn: ${site.socials.linkedin}`;
                     — {site.quote.author}
                   </p>
 
-                  <div className="space-y-3 pt-2 text-neutral-600 dark:text-neutral-300 text-base leading-relaxed">
+                  <div className="space-y-3 pt-2 text-neutral-700 dark:text-neutral-300 text-base leading-relaxed">
                     {site.about.map((paragraph, idx) => (
                       <p key={idx}>{paragraph}</p>
                     ))}
@@ -2501,7 +2520,7 @@ LinkedIn: ${site.socials.linkedin}`;
                           </h3>
                           <ArrowUpRight size={14} className="text-neutral-400 group-hover:text-[#0066ff] transition" />
                         </div>
-                        <p className="text-xs text-neutral-500 dark:text-neutral-400 max-w-2xl leading-relaxed">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed">
                           {post.summary}
                         </p>
                       </div>

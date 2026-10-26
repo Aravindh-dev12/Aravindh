@@ -5,8 +5,8 @@ import { Reveal } from "@/components/CinematicEffects";
 
 const EXPERIENCE_META: Record<string, { focus: string; tags: string[] }> = {
   "Nuclei Tech Solutions": {
-    focus: "Enterprise systems · embedded data · applied ML",
-    tags: ["On-Prem ERP", "Embedded Data", "MLP-Mixer", "Applied ML"],
+    focus: "Renewable energy telemetry · solar & windmill IoT · 100+ user CRM · 5+ web apps delivered",
+    tags: ["Solar & Wind Monitoring", "IoT Telemetry", "100+ User CRM", "5+ Delivered Apps", "On-Prem ERP", "MLP-Mixer", "React/Node"],
   },
   "Loam AI": {
     focus: "Full-stack product ownership · AI engineering · team leadership",
