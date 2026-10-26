@@ -434,6 +434,30 @@ function generateAgentResponse(query: string): string {
     );
   }
 
+  // 10.9. Multi-Channel Alerting (WhatsApp Business API, Telegram Bots, SMS Gateways)
+  if (
+    clean.includes("whatsapp") ||
+    clean.includes("telegram") ||
+    clean.includes("sms") ||
+    clean.includes("template approval") ||
+    clean.includes("opt-in") ||
+    clean.includes("opt in")
+  ) {
+    return (
+      `**Yes, absolutely.** Aravindh has built, integrated, and operated all three in live production environments:\n\n` +
+      `1. **WhatsApp Business API & Live Account Compliance**:\n` +
+      `   • **Template Approvals**: Handled Meta Business Manager live account onboarding, phone number verification, and created/secured approvals for production message templates (including category assignment for Utility and Alerts, parameterized variables {{1}}, dynamic fallback text, and interactive quick-reply buttons).\n` +
+      `   • **User Opt-In Requirements**: Implemented explicit user opt-in consent mechanisms (via web portal consent checkboxes and customer onboarding flows) strictly adhering to Meta's messaging policies and 24-hour service window rules.\n` +
+      `   • **Live Monitoring Dispatch**: Integrated with Nuclei Tech Solutions' live web dashboards to dispatch automated solar inverter and windmill trip alerts to on-duty plant engineers.\n\n` +
+      `2. **Production Telegram Bot Integrations**:\n` +
+      `   • Built and operated custom Telegram bots in production utilizing the official Telegram Bot API with secure webhook endpoints and secret token validation.\n` +
+      `   • Configured automated threshold alert bots streaming real-time IoT power generation dips, inverter fault codes, and wind turbine status alerts directly to field engineering group channels.\n\n` +
+      `3. **Production SMS Gateway Integration**:\n` +
+      `   • Integrated enterprise transactional SMS gateways (Twilio, MSG91, Kaleyra) with full DLT template registration compliance.\n` +
+      `   • Configured high-reliability fallback SMS routing, delivery receipt callbacks, and instant critical fault dispatch across renewable plant sites.`
+    );
+  }
+
   // 11. openDev
   if (clean.includes("opendev") || clean.includes("open dev") || clean.includes("company operator") || clean.includes("invoice") || (clean.includes("erp") && clean.includes("operator"))) {
     return (
@@ -505,6 +529,7 @@ function generateAgentResponse(query: string): string {
       `1. **Nuclei Tech Solutions** (Jun 2026 – Present) · *Software Developer (Freelance)*\n` +
       `   • Architected, built, and delivered **5+ full-stack production web applications** from scratch—explore the live [Solar SCADA Case Study](https://www.nucleitech.online/case-study-solar.html).\n` +
       `   • Engineered industrial **SCADA telemetry systems & automation** for top industrial clients including **Naga Private Limited** and **Surya Batteries**.\n` +
+      `   • Integrated **multi-channel real-time alerting**: connected **SMS gateways**, production **Telegram bots**, and **live WhatsApp Business API** accounts (Meta template approvals & user opt-in compliance) to dispatch automated fault alerts to engineers.\n` +
       `   • Deployed **live real-time monitoring dashboards** for solar power plants and windmill installations, streaming high-frequency IoT telemetry and instant fault alerts.\n` +
       `   • Designed an **enterprise CRM application** actively serving **100+ daily operational users** across renewable energy operations.\n` +
       `   • Embedded on-premise ERP telemetry acquisition with zero data loss, and implemented lightweight MLP-Mixer neural models for edge anomaly detection.\n\n` +
@@ -1183,13 +1208,13 @@ Key Production Projects:
 9. Oli: Notch-resident ambient meeting copilot.
 
 Experience:
-- Nuclei Tech Solutions (Jun 2026 – Present): Freelance Software Developer. Delivered 5+ production web applications, live solar and windmill IoT monitoring dashboards (Case Study: https://www.nucleitech.online/case-study-solar.html), and SCADA services for enterprise clients including Naga Private Limited and Surya Batteries; 100+ user CRM in renewable energy.
+- Nuclei Tech Solutions (Jun 2026 – Present): Freelance Software Developer. Delivered 5+ production web applications, live solar and windmill IoT monitoring dashboards (Case Study: https://www.nucleitech.online/case-study-solar.html), SCADA services for enterprise clients including Naga Private Limited and Surya Batteries, 100+ user CRM in renewable energy, and production multi-channel alerting (WhatsApp Business API with Meta template approval & user opt-in, Telegram bot alerts, and SMS gateways).
 - Loam AI (Feb 2026 – Jun 2026): AI Engineer (Engineered full-stack systems for Suspire with 400+ sustainable brands & 800+ vendors; built NSJ ERP System for Niti Shah Jewels; B2B freight forwarding product MVP from scratch, led team of 5).
 - Perspectiv Labs (Jul 2024 – Feb 2026): Software Developer (modular Next.js, FastAPI, PostgreSQL).
 
 Skills:
 Frontend: React, Next.js, React Native, TypeScript, Tailwind CSS.
-Backend: Python, FastAPI, Node.js, PostgreSQL, Redis, MongoDB, Qdrant.
+Backend: Python, FastAPI, Node.js, PostgreSQL, Redis, MongoDB, Qdrant, WhatsApp Business API, Telegram Bots, SMS Gateways.
 AI Engineering: LLMs, RAG, MCP, Multi-Agent Systems, LoRA/PEFT, Transformers, PyTorch.
 
 Contact: ${site.email}
@@ -2373,7 +2398,7 @@ LinkedIn: ${site.socials.linkedin}`;
                     {
                       title: "Backend & Data",
                       description: "APIs, data models, integrations, and services.",
-                      skills: ["Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "Qdrant"]
+                      skills: ["Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "Qdrant", "WhatsApp API", "Telegram Bots", "SMS Gateways"]
                     },
                     {
                       title: "AI Engineering",

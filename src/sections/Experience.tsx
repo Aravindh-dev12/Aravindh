@@ -55,8 +55,8 @@ function formatBulletText(text: string) {
 
 const EXPERIENCE_META: Record<string, { focus: string; tags: string[] }> = {
   "Nuclei Tech Solutions": {
-    focus: "Renewable SCADA telemetry · Solar & Wind monitoring · Naga Ltd & Surya Batteries · 100+ user CRM · 5+ web apps",
-    tags: ["Solar & Wind Monitoring", "SCADA Services", "Naga Ltd & Surya", "IoT Telemetry", "100+ User CRM", "5+ Delivered Apps", "MLP-Mixer"],
+    focus: "Renewable SCADA telemetry · Solar & Wind monitoring · Naga Ltd & Surya Batteries · SMS/Telegram/WhatsApp Alerting · 100+ user CRM",
+    tags: ["Solar & Wind Monitoring", "SCADA Services", "Naga Ltd & Surya", "WhatsApp Business API", "Telegram Bot", "SMS Gateway", "100+ User CRM", "MLP-Mixer"],
   },
   "Loam AI": {
     focus: "Full-stack product ownership · Suspire (400+ Brands) · NSJ Jewelry ERP · AI engineering · Team leadership",

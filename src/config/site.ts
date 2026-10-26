@@ -138,6 +138,7 @@ export const site = {
         "Architected, built, and delivered 5+ full-stack production web applications and live dashboards—explore the live [Solar SCADA Case Study](https://www.nucleitech.online/case-study-solar.html)—translating complex industrial requirements into scalable architectures used by real operational teams.",
         "Engineered industrial SCADA services, real-time telemetry monitoring, and automated control pipelines for premier industrial clients including Naga Private Limited (large-scale mills & manufacturing) and Surya Batteries (energy storage & battery testing).",
         "Built live real-time monitoring dashboards for solar power plants and windmill installations across the renewable energy industry, streaming high-frequency IoT telemetry, power generation metrics, turbine health, and instant fault alert workflows.",
+        "Engineered multi-channel real-time alert pipelines integrated directly into web monitoring dashboards: connected production SMS gateways for critical telemetry thresholds, automated Telegram bots for instantaneous solar inverter fault and windmill turbine trip alerts, and live WhatsApp Business API accounts with pre-approved Meta message templates and user opt-in compliance to dispatch actionable alerts to field engineers.",
         "Designed and deployed a full-featured enterprise CRM platform actively serving 100+ daily operational users in the renewable energy sector to manage client pipelines, site commissioning, maintenance ticketing, and stakeholder communication.",
         "Developed resilient data acquisition and processing pipelines for embedded devices and local on-premise ERP systems, ensuring continuous offline telemetry capture with zero data loss.",
         "Implemented a lightweight MLP-Mixer neural architecture for multi-sensor signal processing, enabling predictive maintenance and anomaly detection on edge devices.",
@@ -390,7 +391,7 @@ export const site = {
     "TypeScript", "JavaScript", "React", "React Native", "Next.js", "Node.js", "FastAPI",
     "Tailwind CSS", "PostgreSQL", "MongoDB", "Redis", "Qdrant", "RAG", "LLMs", "LoRA/PEFT",
     "Transformers", "MCP", "Multi-Agent Systems", "PyTorch", "Docker", "Kubernetes", "AWS",
-    "GCP", "Git", "GitHub", "Vercel", "Python",
+    "GCP", "Git", "GitHub", "Vercel", "Python", "WhatsApp Business API", "Telegram Bots", "SMS Gateways",
   ],
   writing: [
     {
